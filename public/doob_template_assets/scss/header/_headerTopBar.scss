@@ -1,0 +1,33 @@
+.header-transparent-with-topbar {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: auto;
+    z-index: 99;
+
+
+    .header-top-bar {
+        background-color: transparent;
+
+        @media #{$md-layout} {
+            background-color: var(--color-darker);
+        }
+
+        @media #{$sm-layout} {
+            background-color: var(--color-darker);
+        }
+    }
+
+    .header-default {
+        background-color: transparent;
+        background-image: none;
+
+        @media #{$md-layout} {
+            background-color: var(--color-darker);
+        }
+
+        @media #{$sm-layout} {
+            background-color: var(--color-darker);
+        }
+    }
+}

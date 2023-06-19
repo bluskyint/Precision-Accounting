@@ -1,0 +1,559 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+/*==================================================================
+=================== Global properties ==============================
+==================================================================*/
+
+/*=========== Css Vars ===========*/
+
+:root {
+    --blue: #045e90;
+    --blue_opacity: #045f902d;
+    --blue_light: #045f902c;
+    --blue_dark: #04476b;
+}
+
+/*=========== Global Css ===========*/
+body{
+    font-family: 'Montserrat', sans-serif !important;
+}
+p,a,li,h2,h3,h4,h5,h6{
+    font-family: 'Montserrat', sans-serif !important;
+}
+.float-right {
+    float: right;
+}
+
+.float-left {
+    float: left;
+}
+
+/*=========== Select 2 Libaray ===========*/
+.select2-selection {
+    -webkit-box-shadow: 0;
+    box-shadow: 0;
+    background-color: #fff;
+    border: 0;
+    border-radius: 3;
+    color: #000 !important;
+    font-size: 15px;
+    outline: 0;
+    min-height: 42px;
+    text-align: left;
+}
+.select2-container--default .select2-selection--single .select2-selection__placeholder {
+    color: #4e4e4e;
+}
+.select2-selection__rendered {
+    margin: 7px 10px;
+}
+
+.select2-selection__arrow {
+    margin: 10px;
+}
+/*=========== sweet alert ===========*/
+.swal2-styled.swal2-confirm {
+    background-color: var(--blue) !important;
+}
+
+/*=========== scrollbar ===========*/
+
+body::-webkit-scrollbar {
+    background-color: var(--blue_light);
+    width: 10px;
+    right: -10px
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: var(--blue_dark);
+    border-radius: 8px;
+    right: -10px
+}
+
+/*=========== table ===========*/
+table.show-data td.text-capitalize {
+    vertical-align: top;
+}
+
+/*=========== txt ===========*/
+.text-primary {
+    color: var(--blue) !important;
+}
+
+.text-primary:hover {
+    color: var(--blue) !important;
+}
+
+.font-wieght-bold {
+    font-weight: bolder;
+}
+
+/*=========== Buttons ===========*/
+.btn-primary {
+    background-color: var(--blue) !important;
+    border: 1px solid var(--blue) !important;
+    color: #fff;
+    box-shadow: none;
+}
+
+.btn-primary:hover {
+    background-color: var(--blue_dark) !important;
+    border: 1px solid var(--blue_dark) !important;
+    color: #fff;
+}
+
+/*=========== notification ===========*/
+.dropdown-menu a.notification-link.not_seen {
+    z-index: 1;
+    color: #374151;
+    text-decoration: none;
+    background-color: #f2f4f6;
+}
+
+/*=========== checkbox ==============*/
+.form-check-input:checked {
+    background-color: var(--blue);
+    border-color: var(--blue);
+}
+
+/*=========== Inputs ==============*/
+div.input-content {
+    transition: all 0.3s ease-in-out;
+}
+
+.form-control {
+    transition: all 0.3s ease-in-out;
+}
+
+.form-control:focus {
+    color: #6b7280;
+    background-color: #fff;
+    border: 1px solid var(--blue) !important;
+    outline: 0;
+    box-shadow: 0 0px 0px 0 var(--blue_light), 0 0 0 0.18rem var(--blue_light) !important;
+}
+
+.form-select {
+    font-size: 14px;
+}
+select.form-select option{
+    font-size: 14px !important;
+}
+.input-content label.required:after {
+    content: "*";
+    color: rgb(247, 16, 16);
+}
+
+.input-content label i {
+    color: var(--blue);
+}
+
+select.form-select option {
+    font-size: 1.1rem;
+}
+
+/*=========== Dynamic Pagination ===========*/
+.dropdown-menu.dynamic-pagination .dropdown-item.active::after {
+    font-family: "Font Awesome 5 Free";
+    content: "\f00c";
+    padding-right: 5px;
+    float: right;
+    vertical-align: middle;
+    font-weight: 900;
+}
+
+/*=========== Pagination ===========*/
+.page-item.active .page-link {
+    background-color: var(--blue_dark) !important;
+    border-color: var(--blue_dark) !important;
+}
+
+.page-item.active .page-link:hover {
+    background-color: var(--blue) !important;
+    border-color: var(--blue) !important;
+}
+
+/*=========== button-scroll-up ===========*/
+#admin #button-scroll-up {
+    display: inline-block;
+    background-color: var(--blue_opacity);
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border-radius: 4px;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    transition: background-color .3s,
+        opacity .5s, visibility .5s;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000;
+}
+
+#admin #button-scroll-up::after {
+    content: "\f077";
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 2em;
+    line-height: 50px;
+    color: #fff;
+}
+
+#admin #button-scroll-up:hover {
+    cursor: pointer;
+    background-color: var(--blue);
+}
+
+#admin #button-scroll-up:active {
+    background-color: var(--blue);
+}
+
+#admin #button-scroll-up.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+
+/*===== Dynamic Input ====*/
+.dynamic-inputs #inputFormRow {
+    margin-top: 10px;
+    transition: all 0.5s ease-in-out;
+}
+
+.dynamic-inputs>#inputFormRow:first-of-type {
+    margin-top: 0;
+}
+
+.dynamic-inputs #inputFormRow input[id="medicine"] {
+    width: calc(100% - 100px);
+}
+
+.dynamic-inputs .input-group-append {
+    position: absolute;
+    top: 0;
+    right: 0px;
+    width: 100px;
+    z-index: 99;
+}
+
+.dynamic-inputs button {
+    transition: all 0.3s ease-in-out;
+    border-radius: 50% !important;
+    padding: 8px 10px !important;
+    line-height: 1;
+    margin: 0px !important;
+}
+
+.dynamic-inputs button:first-of-type {
+    margin-left: 10px !important;
+}
+
+.dynamic-inputs button:hover {
+    transform: translateY(-3px);
+    background-color: #fff;
+}
+/*==================================================================
+=================== nav-tabs =======================================
+==================================================================*/
+ul.nav-tabs li{
+    border-bottom: 1px solid;
+}
+.nav-tabs .nav-link.active {
+    color: #fff;
+    background-color: #04476b;
+}
+/*==================================================================
+=================== NavBar  =======================================
+==================================================================*/
+#admin li.nav-item.dropdown.ms-lg-3 i,
+#admin li.nav-item.dropdown.ms-lg-3 span {
+    font-size: 20px;
+}
+
+#admin li.nav-item.dropdown.ms-lg-3 i {
+    color: #111827
+}
+
+#admin .navbar.navbar-top.navbar-expand #navbarSupportedContent {
+    border: 1px solid #a1a1a1;
+    border-radius: 3px;
+    padding: 7px;
+    box-shadow: 0px 0px 30px -3px #a1a1a1;
+    background-color: var(--blue_light);
+}
+
+/*==================================================================
+=================== NavBar (Md Screen)  ============================
+==================================================================*/
+.navbar-theme-primary:not(.headroom) {
+    background-color: var(--blue_dark);
+}
+
+/*==================================================================
+=================== SideBar =======================================
+==================================================================*/
+
+#admin nav#sidebarMenu {
+    background-color: var(--blue_dark) !important;
+}
+
+#admin nav#sidebarMenu .nav-link.active,
+#admin nav#sidebarMenu .nav-link:hover {
+    background-color: var(--blue) !important;
+}
+
+#admin nav#sidebarMenu .nav-item .sidebar-text,
+#admin nav#sidebarMenu .nav-item .sidebar-icon {
+    color: #fff !important;
+}
+
+#admin nav#sidebarMenu .sidebar .nav-item {
+    margin-bottom: 0 !important;
+}
+
+#admin nav#sidebarMenu .sidebar-icon i {
+    font-size: 1.2rem !important;
+}
+
+#admin nav#sidebarMenu .sidebar-icon.brand-img img {
+    width: 25px !important;
+    max-width: 25px !important;
+}
+
+#admin nav#sidebarMenu .sidebar-inner {
+    overflow-y: visible !important;
+}
+
+#admin nav#sidebarMenu .multi-level .nav-item .nav-link {
+    padding-left: 25px !important;
+}
+
+/*==================================================================
+=================== Dashboard ====================================
+==================================================================*/
+
+.main-content {
+	padding-top: 100px;
+	padding-bottom: 100px;
+}
+
+.stat-card {
+	background: #fff;
+	padding: 25px;
+	margin-bottom: 25px;
+	border-radius: 5px;
+	overflow: hidden;
+	display: flex;
+	justify-content: space-between;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+	transition: all 0.2s;
+}
+.stat-card:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+.stat-card a.view-more{
+    text-decoration: underline;
+}
+.stat-card__icon-circle {
+	height: 60px;
+	width: 60px;
+	border-radius: 60px;
+	background: rgba(0, 123, 255, 0.2);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.stat-card__icon-circle i {
+	font-size: 30px;
+	color: #007bff;
+}
+.stat-card__icon.stat-card__icon--success .stat-card__icon-circle {
+	background: rgba(40, 167, 69, 0.2);
+}
+.stat-card__icon.stat-card__icon--success .stat-card__icon-circle i {
+	color: #28a745;
+}
+.stat-card__icon.stat-card__icon--danger .stat-card__icon-circle {
+	background: rgba(220, 53, 69, 0.2);
+}
+.stat-card__icon.stat-card__icon--danger .stat-card__icon-circle i {
+	color: #dc3545;
+}
+.stat-card__icon.stat-card__icon--warning .stat-card__icon-circle {
+	background: rgba(255, 193, 7, 0.2);
+}
+.stat-card__icon.stat-card__icon--warning .stat-card__icon-circle i {
+	color: #ffc107;
+}
+.stat-card__icon.stat-card__icon--primary .stat-card__icon-circle {
+	background: rgba(0, 123, 255, 0.2);
+}
+.stat-card__icon.stat-card__icon--primary .stat-card__icon-circle i {
+	color: #007bff;
+}
+.stat-card__icon.stat-card__icon--danger .stat-card__icon-circle {
+	background: #ff002b36
+}
+.stat-card__icon.stat-card__icon--danger .stat-card__icon-circle i {
+	color: #fc153b;
+}
+.stat-card__icon.stat-card__icon--info .stat-card__icon-circle {
+	background: #15b3fc21
+}
+.stat-card__icon.stat-card__icon--info .stat-card__icon-circle i {
+	color: #15b3fc;
+}
+.stat-card__icon.stat-card__icon--gray .stat-card__icon-circle {
+	background: #2c343828
+}
+.stat-card__icon.stat-card__icon--gray .stat-card__icon-circle i {
+	color: #2c3438;
+}
+.stat-card__icon.stat-card__icon--orange .stat-card__icon-circle {
+	background: #f78c212f
+}
+.stat-card__icon.stat-card__icon--orange .stat-card__icon-circle i {
+	color: #f78c21;
+}
+.stat-card__icon.stat-card__icon--purple .stat-card__icon-circle {
+	background: #851f922f
+}
+.stat-card__icon.stat-card__icon--purple .stat-card__icon-circle i {
+	color: #851f92;
+}
+
+
+/*==================================================================
+=================== table index ====================================
+==================================================================*/
+#admin table.index-table td.actions i {
+    font-size: 1.2rem;
+}
+
+#admin table.index-table i.fa-user {
+    color: var(--blue_dark);
+}
+
+#admin table.index-table .delete-btn {
+    border: none;
+    padding: 0;
+    background-color: transparent;
+}
+
+#admin table.index-table td span.badge {
+    color: #fff !important;
+    padding: 7px 10px;
+    border-radius: 3px;
+}
+
+#admin table.index-table td span.badge i {
+    padding-right: 3px;
+}
+
+#admin table.index-table .user-link {
+    text-decoration: underline;
+}
+#admin table td.check-icons{
+    padding-left: 20px;
+}
+#admin table td.check-icons i{
+    margin-left: 15%;
+}
+/*===== Animation =========*/
+#admin table.index-table tr.pending {
+    animation: pendingBg 1s infinite;
+}
+
+@keyframes pendingBg {
+    from {
+        background-color: #e6203a10;
+    }
+
+    to {
+        background-color: #e6203a25;
+    }
+}
+
+/*===== notification =========*/
+#admin table.index-table tr.not_seen {
+    --bs-table-accent-bg: var(--bs-table-hover-bg);
+    color: #374151;
+}
+
+/*==================================================================
+=================== Create form ====================================
+==================================================================*/
+
+
+/*==================================================================
+=================== edit form ====================================
+==================================================================*/
+form.edit-form .show-img-container {
+    margin-left: 20px;
+    box-shadow: 0px 2px 36px 2px rgba(0, 0, 0, 0.13);
+    display: inline;
+    border-radius: 5px;
+    padding: 3px;
+}
+
+form.edit-form .show-img-container img {
+    width: 50px;
+
+}
+
+/*==================================================================
+=================== table show ====================================
+==================================================================*/
+table.show-data tr td>i {
+    color: var(--blue) !important;
+}
+.table td, .table th{
+    white-space: normal;
+}
+.table td:first-child{
+    white-space: nowrap;
+}
+table.show-data .product-price {
+    color: #2e8345;
+    font-weight: bolder;
+}
+
+table.show-data .show-img-container {
+    box-shadow: 0px 2px 36px 2px rgb(0 0 0 / 16%);
+    display: inline-block;
+    border-radius: 5px;
+    padding: 3px;
+}
+table.show-data .show-img-container img{
+    width: 240px;
+}
+table.show-data td.product-image img {
+    height: 120px;
+}
+
+table.show-data td.product-desc {
+    white-space: normal;
+}
+
+table.show-data td span.badge {
+    color: #fff !important;
+    padding: 7px 10px;
+    border-radius: 3px;
+}
+
+table.show-data td span.badge i {
+    padding-right: 3px;
+}
+
+/*============ order-products ====*/
+table.show-data .order-products {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+table.show-data .order-products img {
+    width: 120px;
+}

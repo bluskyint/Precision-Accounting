@@ -1,0 +1,22 @@
+
+/**************************************
+            pagintation
+***************************************/
+
+div.pagination-container{
+    li{
+        width: 30px;
+        text-align: center;
+        .page-link{
+            color: #0f3e65;
+
+        }
+        &.active{
+            .page-link{
+                background-color: #0f3e65;
+                border-color: #0f3e65;
+            }
+        }
+    }
+    display: none;
+}
