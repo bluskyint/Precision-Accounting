@@ -34,6 +34,8 @@ Route::post('/subscribe', [App\Http\Controllers\SubscriberController::class, 'st
 Route::get('/team', [App\Http\Controllers\MemberController::class, 'index'])->name('team');
 
 
+
+
 // Consulting
 Route::get('/consulting', [App\Http\Controllers\ConsultingController::class, 'index'])->name('consulting');
 Route::post('/consulting/send', [App\Http\Controllers\ConsultingController::class, 'send'])->name('consulting.send');

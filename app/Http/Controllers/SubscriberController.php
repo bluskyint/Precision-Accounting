@@ -25,7 +25,7 @@ class SubscriberController extends Controller
         // Store in DB
         try {
             $resource = Subscriber::create( $requestData );
-            return view("submission");
+                return view("submission");
             if(!$resource)
                 return Subscriber::back()-> with( [ "failed" => "Error at store opration"] ) ;
         } catch (\Exception $e) {
