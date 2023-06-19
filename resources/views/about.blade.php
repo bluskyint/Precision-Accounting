@@ -12,7 +12,7 @@
                         {{-- <span class="subtitle">Certified Public Accountants</span> --}}
                         <h4 class="subtitle d-inline p-2" style="background-color: #fff; border-radius:5px"
                         data-sal="slide-left" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back"><span class="theme-gradient"> Certified Public Accountants </span></h4>
-                        <h1 class="title display-two"><span class="theme-gradient">We can help you with</span> <br>
+                        <p class="title display-two fw-bolder"><span class="theme-gradient">We can help you with</span> <br>
                             <span class="header-caption">
                                 <span class="cd-headline clip is-full-width">
                                     <span class="cd-words-wrapper">
@@ -26,7 +26,7 @@
                                     </span>
                                 </span>
                             </span>
-                        </h1>
+                        </p>
                         <p class="description">
                             Set a vision, take a decision, and do both with <strong>Precision</strong>.
                             {{-- We help your business improve its financial recordkeeping,

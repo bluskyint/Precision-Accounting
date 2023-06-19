@@ -16,7 +16,7 @@
                         <div class="col-lg-8 offset-lg-2">
                             <div class="content text-center">
                                 <div class="page-title"  data-sal="slide-right" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
-                                    <h1 class="theme-gradient"> {{ $tax_center->title }} </h1>
+                                    <p class="theme-gradient h1"> {{ $tax_center->title }} </p>
                                 </div>
                                 <div class="thumbnail alignwide mt--60"  data-sal="slide-down" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
                                     <img class="w-100 radius"

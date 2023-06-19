@@ -13,7 +13,7 @@
                 <div class="row row--30 align-items-center">
                     <div class="order-2 order-lg-1 col-lg-7">
                         <div class="inner text-left">
-                            <h1 class="title"> IRS Acceptance <br> Agents in NJ </h1>
+                            <p class="title h1"> IRS Acceptance <br> Agents in NJ </p>
                             <p class="description">
                                 Applying for an ITIN? We will help you obtain your ITIN if you are not qualified for an SSN. We simplify the application process by reviewing the essential documents and redirecting completed Forms to IRS.
                             </p>
@@ -34,7 +34,7 @@
                 <div class="row row--30 align-items-center">
                     <div class="order-2 order-lg-1 col-lg-7">
                         <div class="inner text-left">
-                            <h1 class="title">Making <br> Accounting Marvels</h1>
+                            <p class="title h1">Making <br> Accounting Marvels</p>
                             <p class="description">We aim to establish a long-lasting partnership with you from the beginning to the end.</p>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
                 <div class="row row--30 align-items-center">
                     <div class="order-2 order-lg-1 col-lg-7">
                         <div class="inner text-left">
-                            <h1 class="title">Helping  <br> Your Business Grow</h1>
+                            <p class="title h1">Helping  <br> Your Business Grow</p>
                             <p class="description">Our main goal is to optimize your business processes, and minimize your taxes payable and liabilities. Your books and payroll processes are taken good care of.</p>
                         </div>
                     </div>
@@ -60,7 +60,7 @@
                 <div class="row row--30 align-items-center">
                     <div class="order-2 order-lg-1 col-lg-7">
                         <div class="inner text-left">
-                            <h1 class="title">Free <br> Consulting</h1>
+                            <p class="title h1">Free <br> Consulting</p>
                             <p class="description">
                             You’ll find us providing you with reasonable advice to meet your best interests and supporting you with all your concerns.</p>
                             <div class="button-group mt--30"><a class="btn-default" target="_blank" href="{{ route("consulting") }}">
