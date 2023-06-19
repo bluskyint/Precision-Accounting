@@ -27,7 +27,7 @@ class TaxcenterController extends Controller
         // SEO Trait
         $this->dynamicPagesSeo($tax_center);
 
-        return view('tax_center',compact("tax_center"));
+        return view('tax_center',compact("tax_center", "slug"));
     }
 
 

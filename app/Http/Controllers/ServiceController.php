@@ -28,7 +28,7 @@ class ServiceController extends Controller
         // SEO Trait
         $this->dynamicPagesSeo($service);
 
-        return view('service',compact("service"));
+        return view('service',compact("service", 'slug'));
     }
 
 

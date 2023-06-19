@@ -48,7 +48,7 @@ class BlogController extends Controller
         // SEO Trait
         $this->dynamicPagesSeo($article);
 
-        return view('article',compact('article','categories'));
+        return view('article',compact('article','categories', 'slug'));
     }
 
     public function search(Request $request)

@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('pageUrl', $slug)
+
 @section('content')
     <div class="main-content pt--125">
 

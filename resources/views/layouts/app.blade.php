@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="{{ asset('doob_template_assets/css/plugins/slick-theme.css') }}">
     <link rel="stylesheet" href="{{ asset('doob_template_assets/css/plugins/lightbox.css') }}">
     <link rel="stylesheet" href="{{ asset('doob_template_assets/css/style.css') }}">
-
+    <link rel="alternate" href="https://cpapai.com/@yield('pageUrl')" hreflang="en-us" />
 </head>
 
 <body class="active-light-mode">
