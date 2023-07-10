@@ -33,6 +33,9 @@ Route::post('/subscribe', [App\Http\Controllers\SubscriberController::class, 'st
 // Team
 Route::get('/team', [App\Http\Controllers\MemberController::class, 'index'])->name('team');
 
+// Team
+Route::get('/career', [App\Http\Controllers\CareerController::class, 'index'])->name('career');
+
 
 
 
