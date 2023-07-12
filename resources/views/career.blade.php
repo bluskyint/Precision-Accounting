@@ -11,10 +11,14 @@
                 <div class="main-content">
                     <div class="rainbow-about-area rainbow-section-gap">
                         <div class="container">
-                            <div class="section-title text-center">
-                                <h2 class="title w-600 mb--20 sal-animate" data-sal="slide-right" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
-                                    Join Our Team
-                                </h2>
+                            <div class="row">
+                                <div class="col-lg-8 offset-lg-2">
+                                    <div class="content text-center">
+                                        <div class="page-title sal-animate" data-sal="slide-right" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
+                                            <p class="theme-gradient h1"> Want To join Us ? </p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row row--30 align-items-center">
                                 <div class="col-lg-7 mt_md--40 mt_sm--40">

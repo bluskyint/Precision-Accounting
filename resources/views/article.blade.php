@@ -17,7 +17,7 @@
                                 <ul class="rn-meta-list" data-sal="slide-right" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
                                     <li>
                                         <i class="feather-user"></i>
-                                        <a href="#"> {{ $article->author }}  </a>
+                                        <a href="#"> {{ $article->author }} </a>
                                     </li>
                                     <li>
                                         <i class="feather-calendar"></i>
