@@ -254,6 +254,7 @@
                         <li><a href="{{ route("team") }}">Team</a></li>
                         <li><a href="{{ route("contact") }}">Contact</a></li>
                         <li><a href="{{ route("resources") }}">Resources</a></li>
+                        <li><a href="{{ route("career") }}">Careers</a></li>
                     </ul>
 
                 </div>
