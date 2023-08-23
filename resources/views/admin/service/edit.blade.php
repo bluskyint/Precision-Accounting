@@ -50,7 +50,23 @@
                                             @enderror
                                         </div>
 
+                                        <!----------------- slug -------------------->
+                                        <div class="mb-4 input-content">
+                                            <label for="slug" class="capitalize"> <i class="fa-solid fa-file-signature"></i> Permalink </label>
+                                            <input type="text" name="slug" id="slug" class="form-control @error('slug') is-invalid @enderror" value="{{ $service->slug }}" aria-describedby="emailHelp" placeholder="Ex: precision-accounting-international" autocomplete="nope" />
+                                            @error('slug')
+                                            <small class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
 
+                                        <!----------------- subtitle -------------------->
+                                        <div class="mb-4 input-content">
+                                            <label for="subtitle" class="capitalize"> <i class="fa-solid fa-file-signature"></i> Subtitle </label>
+                                            <input type="text" name="subtitle" id="subtitle" class="form-control @error('subtitle') is-invalid @enderror" value="{{ $service->subtitle }}" aria-describedby="emailHelp" placeholder="Type Service Subtitle..." autocomplete="nope" />
+                                            @error('subtitle')
+                                            <small class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
 
                                         <!----------------- summary -------------------->
                                         <div class="mb-4 input-content">
@@ -137,8 +153,8 @@
                                             <label for="icon" class="form-label d-flex align-items-center">
                                                 <i class="fa-solid fa-image"></i> &nbsp;  Icon
                                                 <div class="show-img-container">
-                                                    <a href="{{ asset("images/services/".$service->icon) }}"  target="_blank">
-                                                        <img src="{{ asset("images/services/".$service->icon) }}" alt="service-icon">
+                                                    <a href="{{ asset("storage/services/icons/".$service->icon) }}"  target="_blank">
+                                                        <img src="{{ asset("storage/services/icons/".$service->icon) }}" alt="service-icon">
                                                     </a>
                                                 </div>
                                             </label>
@@ -154,8 +170,8 @@
                                             <label for="img" class="form-label d-flex align-items-center">
                                                 <i class="fa-solid fa-image"></i> &nbsp;  Image
                                                 <div class="show-img-container">
-                                                    <a href="{{ asset("images/services/".$service->img) }}"  target="_blank">
-                                                        <img src="{{ asset("images/services/".$service->img) }}" alt="service-img">
+                                                    <a href="{{ asset("storage/services/images/".$service->img) }}"  target="_blank">
+                                                        <img src="{{ asset("storage/services/images/".$service->img) }}" alt="service-img">
                                                     </a>
                                                 </div>
                                             </label>

@@ -25,15 +25,16 @@ class UpdateServiceRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'           => ['required' , 'string' , 'max:100' , Rule::unique('services', 'title')->ignore($this->service)],
+            'title'           => ['required' , 'string' , 'max:100' , Rule::unique('services')->ignore($this->service)],
+            'slug'           => ['required' , 'string' , 'max:255', 'regex:/[a-z0-9]-/', 'alpha_dash', Rule::unique('services')->ignore($this->service)],
             'summary'         => ['required' , 'string' , 'max:255'],
             'seo_title'       => ['required' , 'string' , 'max:500'],
             'seo_description' => ['required' , 'string' , 'max:1000'],
             'seo_keywords'    => ['required' , 'string' , 'max:1000'],
             'parent_id'       => ['nullable' , 'numeric' , 'digits_between:1,11' ],
             'content'         => ['required' , 'string' ],
-            'icon'            => ['nullable' , 'mimes:jpeg,png,jpg' , 'max:2048'],
-            'img'             => ['nullable' , 'mimes:jpeg,png,jpg' , 'max:2048'],
+            'icon'            => ['nullable' , 'mimes:jpeg,png,jpg,webp' , 'max:2048'],
+            'img'             => ['nullable' , 'mimes:webp' , 'max:2048'],
         ];
     }
 }

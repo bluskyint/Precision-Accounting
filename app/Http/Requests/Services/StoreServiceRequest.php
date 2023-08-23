@@ -25,15 +25,17 @@ class StoreServiceRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'           => ['required' , 'string' , 'max:100' , Rule::unique('services', 'title')->ignore($this->service)],
+            'title'           => ['required' , 'string' , 'max:100' , 'unique:services'],
+            'slug'           => ['required' , 'string' , 'max:255' , 'regex:/[a-z0-9]-/', 'alpha_dash', 'unique:services'],
+            'subtitle'           => ['required' , 'string' , 'max:255'],
             'summary'         => ['required' , 'string' , 'max:255'],
             'seo_title'       => ['required' , 'string' , 'max:500'],
             'seo_description' => ['required' , 'string' , 'max:1000'],
             'seo_keywords'    => ['required' , 'string' , 'max:1000'],
             'parent_id'       => ['nullable' , 'numeric' , 'digits_between:1,11' ],
             'content'         => ['required' , 'string' ],
-            'icon'            => ['required' , 'mimes:jpeg,png,jpg' , 'max:2048'],
-            'img'             => ['required' , 'mimes:jpeg,png,jpg' , 'max:2048'],
+            'icon'            => ['required' , 'mimes:jpeg,png,jpg,webp' , 'max:2048'],
+            'img'             => ['required' , 'mimes:webp' , 'max:2048'],
         ];
     }
 }

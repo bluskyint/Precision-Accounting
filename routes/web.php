@@ -91,7 +91,7 @@ Route::group([ "prefix" => "admin" , 'middleware' => "admin" , "as" => "admin." 
     Route::post('resource/search' , [App\Http\Controllers\Admin\ResourceController::class, 'search'])->name("resource.search");
     Route::post('resource/multiAction' , [App\Http\Controllers\Admin\ResourceController::class, 'multiAction'])->name("resource.multiAction");
     Route::resource('resource', App\Http\Controllers\Admin\ResourceController::class);
-    Route::get('resource/destroy/{id}' , [App\Http\Controllers\Admin\ResourceController::class, 'destroy'] )->name("resource.destroy");
+    Route::get('resource/destroy/{resource}' , [App\Http\Controllers\Admin\ResourceController::class, 'destroy'] )->name("resource.destroy");
 
 
 
@@ -118,7 +118,7 @@ Route::group([ "prefix" => "admin" , 'middleware' => "admin" , "as" => "admin." 
     Route::post('service/search' , [App\Http\Controllers\Admin\ServiceController::class, 'search'])->name("service.search");
     Route::post('service/multiAction' , [App\Http\Controllers\Admin\ServiceController::class, 'multiAction'])->name("service.multiAction");
     Route::resource('service', App\Http\Controllers\Admin\ServiceController::class);
-    Route::get('service/destroy/{id}' , [App\Http\Controllers\Admin\ServiceController::class, 'destroy'] )->name("service.destroy");
+    Route::get('service/destroy/{service}' , [App\Http\Controllers\Admin\ServiceController::class, 'destroy'] )->name("service.destroy");
 
 
     // testimonial

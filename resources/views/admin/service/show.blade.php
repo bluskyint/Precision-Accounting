@@ -50,24 +50,32 @@
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Image </td>
                                             <td class="service-image">
-                                                <a class="show-img-container" href="{{ asset('images/services/'.$service->img) }}" target="_blank">
-                                                    <img src="{{ asset('images/services/'.$service->img) }}" alt="service-image">
+                                                <a class="show-img-container" href="{{ asset('storage/services/images/'.$service->img) }}" target="_blank">
+                                                    <img src="{{ asset('storage/services/images/'.$service->img) }}" alt="service-image">
                                                 </a>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Title </td>
-                                            <td> {{ $service->title != "" ? $service->title : '-'  }} </td>
+                                            <td> {{ $service->title }} </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Permalink </td>
+                                            <td> {{ $service->slug }} </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Subtitle </td>
+                                            <td> {{ $service->subtitle }} </td>
                                         </tr>
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-align-left"></i> Summary </td>
-                                            <td> {{ $service->summary != "" ? $service->summary : '-'  }} </td>
+                                            <td> {{ $service->summary }} </td>
                                         </tr>
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Icon </td>
                                             <td class="service-image">
-                                                <a class="show-img-container" href="{{ asset('images/services/'.$service->icon) }}" target="_blank">
-                                                    <img src="{{ asset('images/services/'.$service->icon) }}" alt="service-image" style="width:80px !important">
+                                                <a class="show-img-container" href="{{ asset('storage/services/icons/'.$service->icon) }}" target="_blank">
+                                                    <img src="{{ asset('storage/services/icons/'.$service->icon) }}" alt="service-image" style="width:80px !important">
                                                 </a>
                                             </td>
                                         </tr>
