@@ -27,7 +27,7 @@ class UpdateResourceRequest extends FormRequest
         return [
             'title'          => ['required' , 'string' , 'max:100' , Rule::unique('resources')->ignore($this->resource)],
             'content'        => ['required' , 'string' ],
-            'img'            => ['nullable' , 'mimes:jpeg,png,jpg' , 'max:2048', Rule::unique('resources')->ignore($this->resource)],
+            'img'            => ['nullable' , 'mimes:webp' , 'max:2048'],
             'slug'           => ['required' , 'string' , 'max:255', 'regex:/[a-z0-9]-/', 'alpha_dash', Rule::unique('resources')->ignore($this->resource)],
             'subtitle'       => ['required' , 'string' , 'max:255'],
             'summary'        => ['required' , 'string' , 'max:255'],

@@ -4,7 +4,7 @@ namespace App\Http\Requests\Resources;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DeleteMultiResourcesRequest extends FormRequest
+class MultiActionResourcesRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

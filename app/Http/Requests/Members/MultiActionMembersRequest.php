@@ -4,7 +4,7 @@ namespace App\Http\Requests\Members;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DeleteMultiMembersRequest extends FormRequest
+class MultiActionMembersRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

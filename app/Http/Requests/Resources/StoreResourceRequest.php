@@ -27,7 +27,7 @@ use Illuminate\Foundation\Http\FormRequest;
         return [
             'title'          => ['required' , 'string' , 'max:100' , 'unique:resources'],
             'content'        => ['required' , 'string' ],
-            'img'            => ['required' , 'mimes:jpeg,png,jpg' , 'max:2048', 'unique:resources'],
+            'img'            => ['required' , 'mimes:webp' , 'max:2048'],
             'slug'           => ['required' , 'string' , 'max:255', 'regex:/[a-z0-9]-/', 'alpha_dash', 'unique:resources'],
             'subtitle'       => ['required' , 'string' , 'max:255'],
             'summary'        => ['required' , 'string' , 'max:255'],

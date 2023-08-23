@@ -28,7 +28,7 @@ use Illuminate\Foundation\Http\FormRequest;
             'name'            => ['required' , 'string' , 'max:100' , 'unique:members'],
             'job_title'       => ['required' , 'string' , 'max:100'],
             'slider_show'     => ['required' , 'string' , 'max:1'],
-            'img'             => ['required' , 'mimes:webp' , 'max:2048', 'unique:members'],
+            'img'             => ['required' , 'mimes:webp' , 'max:2048'],
         ];
     }
 }

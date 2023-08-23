@@ -28,7 +28,7 @@ class UpdateMemberRequest extends FormRequest
             'name'            => ['required' , 'string' , 'max:100' , Rule::unique('members')->ignore($this->member)],
             'job_title'       => ['required' , 'string' , 'max:100'],
             'slider_show'     => ['required' , 'string' , 'max:1'],
-            'img'             => ['nullable' , 'mimes:webp' , 'max:2048', Rule::unique('members')->ignore($this->member)],
+            'img'             => ['nullable' , 'mimes:webp' , 'max:2048'],
         ];
     }
 }
