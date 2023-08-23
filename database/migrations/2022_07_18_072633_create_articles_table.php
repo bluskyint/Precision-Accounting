@@ -16,8 +16,10 @@ return new class extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('category_id');
-            $table->string('title', 100 )->index();
-            $table->string('slug')->index();
+            $table->string('title', 100 )->unique()->index();
+            $table->string('slug')->unique()->index();
+            $table->string('subtitle');
+            $table->string('summary');
             $table->text('content');
             $table->string('seo_title', 500);
             $table->string('seo_description', 1000);

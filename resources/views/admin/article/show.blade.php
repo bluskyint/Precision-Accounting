@@ -57,7 +57,19 @@
                                         </tr>
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Title </td>
-                                            <td> {{ $article->title != "" ? $article->title : '-'  }} </td>
+                                            <td> {{ $article->title  }} </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Slug </td>
+                                            <td> {{ $article->slug }} </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Subtitle </td>
+                                            <td> {{ $article->subtitle }} </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Summary </td>
+                                            <td> {{ $article->summary }} </td>
                                         </tr>
                                         <tr>
                                             <td class="text-capitalize content"> <i class="fa-solid fa-align-left"></i> Content </td>

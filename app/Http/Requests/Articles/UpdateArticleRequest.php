@@ -25,7 +25,10 @@ class UpdateArticleRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'           => ['required' , 'string' , 'max:100' , Rule::unique('articles', 'title')->ignore($this->article)],
+            'title'           => ['required' , 'string' , 'max:100' , Rule::unique('articles')->ignore($this->article)],
+            'slug'           => ['required' , 'string' , 'max:255', 'regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/', 'unique:articles'],
+            'subtitle'       => ['required' , 'string' , 'max:255'],
+            'summary'        => ['required' , 'string' , 'max:255'],
             'content'         => ['required' , 'string' ],
             'seo_title'       => ['required' , 'string' , 'max:500'],
             'seo_description' => ['required' , 'string' , 'max:1000'],

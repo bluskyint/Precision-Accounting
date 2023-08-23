@@ -82,7 +82,7 @@ Route::group([ "prefix" => "admin" , 'middleware' => "admin" , "as" => "admin." 
     Route::post('article/search' , [App\Http\Controllers\Admin\ArticleController::class, 'search'])->name("article.search");
     Route::post('article/multiAction' , [App\Http\Controllers\Admin\ArticleController::class, 'multiAction'])->name("article.multiAction");
     Route::resource('article', App\Http\Controllers\Admin\ArticleController::class);
-    Route::get('article/destroy/{id}' , [App\Http\Controllers\Admin\ArticleController::class, 'destroy'] )->name("article.destroy");
+    Route::get('article/destroy/{article}' , [App\Http\Controllers\Admin\ArticleController::class, 'destroy'] )->name("article.destroy");
 
 
 
