@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Members\DeleteMultiMembersRequest;
+use App\Http\Requests\Members\MultiActionMembersRequest;
+use App\Traits\StoreFileTrait;
 use Illuminate\Http\Request;
 use App\Models\Member;
 use App\Http\Requests\Members\StoreMemberRequest;
@@ -16,6 +17,7 @@ use Illuminate\Support\Str;
 
 class MemberController extends Controller
 {
+    use StoreFileTrait;
     public function perPage($num = 10)
     {
         // Dynamic pagination
@@ -38,10 +40,7 @@ class MemberController extends Controller
     {
         try {
             $requestData = $request->validated();
-            $file = $request->file('img');
-            $file_name = Str::slug($request->validated('name')) . '.' . $file->getClientOriginalExtension();
-            $file->storeAs('members', $file_name, 'public');
-            $requestData['img'] = $file_name;
+            $requestData['img'] = $this->storeFile('members', $request->name, $request->file('img'));
             Member::create($requestData);
 
             return to_route("admin.member.index")->with("success", "Member store successfully");
@@ -70,10 +69,7 @@ class MemberController extends Controller
         try {
             if ($request->hasFile('img')) {
                 Storage::disk('public')->delete("members/$member->img");
-                $file = $request->file('img');
-                $file_name = Str::slug($request->validated('name')) . '.' . $file->getClientOriginalExtension();
-                $file->storeAs('members', $file_name, 'public');
-                $requestData['img'] = $file_name;
+                $requestData['img'] = $this->storeFile('members', $request->name, $request->file('img'));
             }
 
             if ($member->name !== $request->validated('name') && !$request->hasFile('img')) {
@@ -117,7 +113,7 @@ class MemberController extends Controller
     }
 
 
-    public function multiAction(DeleteMultiMembersRequest $request)
+    public function multiAction(MultiActionMembersRequest $request)
     {
         try {
             // If Action is Delete

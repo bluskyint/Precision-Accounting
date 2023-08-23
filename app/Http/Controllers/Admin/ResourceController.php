@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Resources\DeleteMultiResourcesRequest;
+use App\Http\Requests\Resources\MultiActionResourcesRequest;
+use App\Traits\StoreFileTrait;
 use Illuminate\Http\Request;
 use App\Models\Resource;
 use App\Http\Requests\Resources\StoreResourceRequest;
@@ -16,6 +17,8 @@ use Illuminate\Support\Str;
 
 class ResourceController extends Controller
 {
+    use StoreFileTrait;
+
     public function perPage( $num=10 )
     {
         // Dynamic pagination
@@ -38,10 +41,7 @@ class ResourceController extends Controller
     {
         try {
             $requestData = $request->validated();
-            $file = $request->file('img');
-            $file_name = Str::slug($request->validated('title')) . '.' . $file->getClientOriginalExtension();
-            $file->storeAs('resources', $file_name, 'public');
-            $requestData['img'] = $file_name;
+            $requestData['img'] = $this->storeFile('resources', $request->title, $request->file('img'));
             Resource::create($requestData);
 
             return to_route("admin.resource.index")->with("success", "Resource store successfully");
@@ -72,10 +72,7 @@ class ResourceController extends Controller
         try {
             if ($request->hasFile('img')) {
                 Storage::disk('public')->delete("resources/$resource->img");
-                $file = $request->file('img');
-                $file_name = Str::slug($request->validated('title')) . '.' . $file->getClientOriginalExtension();
-                $file->storeAs('resources', $file_name, 'public');
-                $requestData['img'] = $file_name;
+                $requestData['img'] = $this->storeFile('resources', $request->title, $request->file('img'));
             }
 
             if ($resource->title !== $request->validated('name') && !$request->hasFile('img')) {
@@ -120,15 +117,15 @@ class ResourceController extends Controller
 
 
 
-    public function multiAction(DeleteMultiResourcesRequest $request)
+    public function multiAction(MultiActionResourcesRequest $request)
     {
         try {
             // If Action is Delete
             if ($request->action === "delete") {
-                $members = Resource::findOrFail($request->id);
+                $resources = Resource::findOrFail($request->id);
                 Resource::destroy($request->id);
-                foreach ($members as $member) {
-                    Storage::disk('public')->delete("resources/$member->img");
+                foreach ($resources as $resource) {
+                    Storage::disk('public')->delete("resources/$resource->img");
                 }
             }
 
