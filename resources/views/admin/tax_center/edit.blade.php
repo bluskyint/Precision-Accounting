@@ -68,6 +68,16 @@
                                             @enderror
                                         </div>
 
+
+                                        <!----------------- summary -------------------->
+                                        <div class="mb-4 input-content">
+                                            <label for="summary" class="capitalize"> <i class="fa-solid fa-file-signature"></i> Summary </label>
+                                            <input type="text" name="summary" id="title" class="form-control @error('summary') is-invalid @enderror" value="{{ $tax_center->summary }}" aria-describedby="emailHelp" placeholder="Type TaxCenter Summary..." autocomplete="nope" />
+                                            @error('summary')
+                                            <small class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+
                                         <!----------------- Content -------------------->
                                         <div class="mb-4 input-content">
                                             <label for="content" class="capitalize"> <i class="fa-solid fa-align-left"></i> Tax Center Content </label>

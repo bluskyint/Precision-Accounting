@@ -14,6 +14,7 @@ class TaxCenter extends Model
         'title',
         'slug',
         'subtitle',
+        'summary',
         'seo_title',
         'seo_description',
         'seo_keywords',

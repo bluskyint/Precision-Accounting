@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('title', 100 )->unique()->index();
             $table->string('slug')->unique()->index();
             $table->string('subtitle');
+            $table->string('summary');
             $table->string('seo_title', 500);
             $table->string('seo_description', 1000);
             $table->string('seo_keywords', 1000);
