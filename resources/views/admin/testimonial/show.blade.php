@@ -50,18 +50,18 @@
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Image </td>
                                             <td class="testimonial-image">
-                                                <a class="show-img-container" href="{{ asset('images/testimonials/'.$testimonial->img) }}" target="_blank">
-                                                    <img src="{{ asset('images/testimonials/'.$testimonial->img) }}" alt="testimonial-image" style="width: 50px">
+                                                <a class="show-img-container" href="{{ asset('storage/testimonials/'.$testimonial->img) }}" target="_blank">
+                                                    <img src="{{ asset('storage/testimonials/'.$testimonial->img) }}" alt="testimonial-image" style="width: 50px">
                                                 </a>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> name </td>
-                                            <td> {{ $testimonial->name != "" ? $testimonial->name : '-'  }} </td>
+                                            <td> {{ $testimonial->name }} </td>
                                         </tr>
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-user-tie"></i> Job Title </td>
-                                            <td> {{ $testimonial->job_title != "" ? $testimonial->job_title : '-'  }} </td>
+                                            <td> {{ $testimonial->job_title }} </td>
                                         </tr>
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-eye"></i> Visibility </td>

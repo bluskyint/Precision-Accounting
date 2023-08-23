@@ -162,7 +162,7 @@
                                         </div>
                                     </td>
                                     <td><a href="{{ route('admin.testimonial.show', $testimonial->id) }}" class="d-flex align-items-center"><img
-                                        src="{{ asset('images/testimonials/' . $testimonial->img) }}"
+                                        src="{{ asset('storage/testimonials/' . $testimonial->img) }}"
                                         class="avatar rounded-circle me-3" alt="testimonail-image">
                                     <div class="d-block">
                                         <span class="fw-bold">

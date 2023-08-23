@@ -89,8 +89,8 @@
                                             <label for="img" class="form-label d-flex align-items-center">
                                                 <i class="fa-solid fa-image"></i> &nbsp;  Image
                                                 <div class="show-img-container">
-                                                    <a href="{{ asset("images/testimonials/".$testimonial->img) }}"  target="_blank">
-                                                        <img src="{{ asset("images/testimonials/".$testimonial->img) }}" alt="testimonial-img">
+                                                    <a href="{{ asset("storage/testimonials/".$testimonial->img) }}"  target="_blank">
+                                                        <img src="{{ asset("storage/testimonials/".$testimonial->img) }}" alt="testimonial-img">
                                                     </a>
                                                 </div>
                                             </label>

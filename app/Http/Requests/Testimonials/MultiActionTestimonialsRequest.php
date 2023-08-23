@@ -3,9 +3,8 @@
 namespace App\Http\Requests\Testimonials;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class StoreTestimonialRequest extends FormRequest
+class MultiActionTestimonialsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,11 +24,8 @@ class StoreTestimonialRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'           => ['required' , 'string' , 'max:100' , 'unique:testimonials'],
-            'job_title'      => ['nullable' , 'string' , 'max:100' ],
-            'visibility'     => ['required' , 'integer' , 'max:1' ],
-            'content'        => ['required' , 'string' , 'max:1000'],
-            'img'            => ['required' , 'mimes:webp' , 'max:2048'],
+            "action" => 'required|string',
+            "id" => 'required|exists:testimonials'
         ];
     }
 }
