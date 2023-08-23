@@ -26,7 +26,7 @@ class UpdateServiceRequest extends FormRequest
     {
         return [
             'title'           => ['required' , 'string' , 'max:100' , Rule::unique('services')->ignore($this->service)],
-            'slug'           => ['required' , 'string' , 'max:255', 'regex:/[a-z0-9]-/', 'alpha_dash', Rule::unique('services')->ignore($this->service)],
+            'slug'           => ['required' , 'string' , 'max:255', 'regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/', Rule::unique('services')->ignore($this->service)],
             'summary'         => ['required' , 'string' , 'max:255'],
             'seo_title'       => ['required' , 'string' , 'max:500'],
             'seo_description' => ['required' , 'string' , 'max:1000'],
