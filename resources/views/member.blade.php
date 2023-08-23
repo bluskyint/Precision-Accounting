@@ -19,7 +19,7 @@
                             <div class="rn-team team-style-default">
                                 <div class="inner">
                                     <div class="thumbnail">
-                                        <img src="{{ asset('images/members/' . $member->img) }}" alt="member-image">
+                                        <img src="{{ $member->img }}" alt="member-image">
                                     </div>
                                     <div class="content">
                                         <h2 class="title">{{ $member->name }}</h2>

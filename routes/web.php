@@ -100,7 +100,7 @@ Route::group([ "prefix" => "admin" , 'middleware' => "admin" , "as" => "admin." 
     Route::post('member/search' , [App\Http\Controllers\Admin\MemberController::class, 'search'])->name("member.search");
     Route::post('member/multiAction' , [App\Http\Controllers\Admin\MemberController::class, 'multiAction'])->name("member.multiAction");
     Route::resource('member', App\Http\Controllers\Admin\MemberController::class);
-    Route::get('member/destroy/{id}' , [App\Http\Controllers\Admin\MemberController::class, 'destroy'] )->name("member.destroy");
+    Route::get('member/destroy/{member}' , [App\Http\Controllers\Admin\MemberController::class, 'destroy'] )->name("member.destroy");
 
 
 

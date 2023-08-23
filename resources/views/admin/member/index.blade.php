@@ -172,7 +172,7 @@
                                         </div>
                                     </td>
                                     <td><a href="{{ route('admin.member.show', $member->id) }}" class="d-flex align-items-center"><img
-                                                src="{{ asset('images/members/' . $member->img) }}"
+                                                src="{{ asset("storage/members/$member->img") }}"
                                                 class="avatar rounded-circle me-3" alt="member-image">
                                             <div class="d-block">
                                                 <span class="fw-bold">

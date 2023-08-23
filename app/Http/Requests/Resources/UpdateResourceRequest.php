@@ -25,9 +25,12 @@ class UpdateResourceRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'           => ['required' , 'string' , 'max:100' , Rule::unique('resources', 'title')->ignore($this->resource)],
-            'content'         => ['required' , 'string' ],
-            'img'             => ['nullable' , 'mimes:jpeg,png,jpg' , 'max:2048'],
+            'title'          => ['required' , 'string' , 'max:100' , Rule::unique('resources')->ignore($this->resource)],
+            'content'        => ['required' , 'string' ],
+            'img'            => ['nullable' , 'mimes:jpeg,png,jpg' , 'max:2048', Rule::unique('resources')->ignore($this->resource)],
+            'slug'           => ['required' , 'string' , 'max:255', 'regex:/[a-z0-9]-/', 'alpha_dash', Rule::unique('resources')->ignore($this->resource)],
+            'subtitle'       => ['required' , 'string' , 'max:255'],
+            'summary'        => ['required' , 'string' , 'max:255'],
         ];
     }
 }

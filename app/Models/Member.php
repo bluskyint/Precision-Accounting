@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -19,6 +20,5 @@ class Member extends Model
      protected $fillable = [
         'name', 'job_title', 'slider_show' , 'img'
     ];
-
 
 }

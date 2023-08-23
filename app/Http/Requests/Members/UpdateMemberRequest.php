@@ -25,10 +25,10 @@ class UpdateMemberRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'            => ['required' , 'string' , 'max:100' , Rule::unique('members', 'name')->ignore($this->member)],
+            'name'            => ['required' , 'string' , 'max:100' , Rule::unique('members')->ignore($this->member)],
             'job_title'       => ['required' , 'string' , 'max:100'],
             'slider_show'     => ['required' , 'string' , 'max:1'],
-            'img'             => ['nullable' , 'mimes:jpeg,png,jpg' , 'max:2048'],
+            'img'             => ['nullable' , 'mimes:webp' , 'max:2048', Rule::unique('members')->ignore($this->member)],
         ];
     }
 }

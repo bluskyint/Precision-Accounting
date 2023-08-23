@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests\Members;
 
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-    class StoreMemberRequest extends FormRequest
+class DeleteMultiMembersRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,10 +24,8 @@ use Illuminate\Foundation\Http\FormRequest;
     public function rules()
     {
         return [
-            'name'            => ['required' , 'string' , 'max:100' , 'unique:members'],
-            'job_title'       => ['required' , 'string' , 'max:100'],
-            'slider_show'     => ['required' , 'string' , 'max:1'],
-            'img'             => ['required' , 'mimes:webp' , 'max:2048', 'unique:members'],
+            "action" => 'required|string',
+            "id" => 'required|exists:members'
         ];
     }
 }

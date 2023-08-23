@@ -51,18 +51,18 @@
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Image </td>
                                             <td class="member-image">
-                                                <a class="show-img-container" href="{{ asset('images/members/'.$member->img) }}" target="_blank">
-                                                    <img src="{{ asset('images/members/'.$member->img) }}" alt="member-image">
+                                                <a class="show-img-container" href="{{ asset("storage/members/$member->img") }}" target="_blank">
+                                                    <img src="{{ asset("storage/members/$member->img") }}" alt="member-image">
                                                 </a>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Name </td>
-                                            <td> {{ $member->name != "" ? $member->name : '-'  }} </td>
+                                            <td> {{ $member->name }} </td>
                                         </tr>
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-user-tie"></i> Job Title </td>
-                                            <td> {{ $member->job_title != "" ? $member->job_title : '-'  }} </td>
+                                            <td> {{ $member->job_title }} </td>
                                         </tr>
                                     </tbody>
                                 </table>

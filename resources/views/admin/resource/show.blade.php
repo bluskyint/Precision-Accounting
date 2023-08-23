@@ -50,14 +50,26 @@
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Image </td>
                                             <td class="resource-image">
-                                                <a class="show-img-container" href="{{ asset('images/resources/'.$resource->img) }}" target="_blank">
-                                                    <img src="{{ asset('images/resources/'.$resource->img) }}" alt="resource-image">
+                                                <a class="show-img-container" href="{{ asset("storage/resources/$resource->img") }}" target="_blank">
+                                                    <img src="{{ asset("storage/resources/$resource->img") }}" alt="resource-image">
                                                 </a>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Title </td>
-                                            <td> {{ $resource->title != "" ? $resource->title : '-'  }} </td>
+                                            <td> {{ $resource->title }} </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Slug </td>
+                                            <td> {{ $resource->slug }} </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Subtitle </td>
+                                            <td> {{ $resource->subtitle }} </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Summary </td>
+                                            <td> {{ $resource->summary }} </td>
                                         </tr>
                                         <tr>
                                             <td class="text-capitalize content"> <i class="fa-solid fa-align-left"></i> Content </td>

@@ -15,9 +15,12 @@ return new class extends Migration
     {
         Schema::create('resources', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 100 )->index();
+            $table->string('title', 100 )->unique()->index();
             $table->text('content');
-            $table->string('img');
+            $table->string('img')->unique();
+            $table->string('slug')->unique();
+            $table->string('subtitle');
+            $table->string('summary');
             $table->timestamps();
         });
     }
