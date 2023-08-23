@@ -50,14 +50,22 @@
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Image </td>
                                             <td class="tax_center-image">
-                                                <a class="show-img-container" href="{{ asset('images/tax_center/'.$tax_center->img) }}" target="_blank">
-                                                    <img src="{{ asset('images/tax_center/'.$tax_center->img) }}" alt="tax_center-image">
+                                                <a class="show-img-container" href="{{ asset('storage/taxCenterS/'.$tax_center->img) }}" target="_blank">
+                                                    <img src="{{ asset('storage/taxCenterS/'.$tax_center->img) }}" alt="tax_center-image">
                                                 </a>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Title </td>
-                                            <td> {{ $tax_center->title != "" ? $tax_center->title : '-'  }} </td>
+                                            <td> {{ $tax_center->title }} </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Permalink </td>
+                                            <td> {{ $tax_center->slug }} </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Subtitle </td>
+                                            <td> {{ $tax_center->subtitle }} </td>
                                         </tr>
                                         <tr>
                                             <td class="text-capitalize content"> <i class="fa-solid fa-align-left"></i> Content </td>

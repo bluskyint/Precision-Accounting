@@ -50,6 +50,23 @@
                                             @enderror
                                         </div>
 
+                                        <!----------------- slug -------------------->
+                                        <div class="mb-4 input-content">
+                                            <label for="slug" class="capitalize"> <i class="fa-solid fa-file-signature"></i> Permalink </label>
+                                            <input type="text" name="slug" id="slug" class="form-control @error('slug') is-invalid @enderror" value="{{ $tax_center->slug }}" aria-describedby="emailHelp" placeholder="Ex: precision-accounting-international" autocomplete="nope" />
+                                            @error('slug')
+                                            <small class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+
+                                        <!----------------- subtitle -------------------->
+                                        <div class="mb-4 input-content">
+                                            <label for="subtitle" class="capitalize"> <i class="fa-solid fa-file-signature"></i> Subtitle </label>
+                                            <input type="text" name="subtitle" id="subtitle" class="form-control @error('subtitle') is-invalid @enderror" value="{{ $tax_center->subtitle }}" aria-describedby="emailHelp" placeholder="Type TaxCenter Subtitle..." autocomplete="nope" />
+                                            @error('subtitle')
+                                            <small class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
 
                                         <!----------------- Content -------------------->
                                         <div class="mb-4 input-content">
@@ -111,8 +128,8 @@
                                             <label for="img" class="form-label d-flex align-items-center">
                                                 <i class="fa-solid fa-image"></i> &nbsp;  Image
                                                 <div class="show-img-container">
-                                                    <a href="{{ asset("images/tax_center/".$tax_center->img) }}"  target="_blank">
-                                                        <img src="{{ asset("images/tax_center/".$tax_center->img) }}" alt="tax_center-img">
+                                                    <a href="{{ asset("storage/taxCenterS/".$tax_center->img) }}"  target="_blank">
+                                                        <img src="{{ asset("storage/taxCenterS/".$tax_center->img) }}" alt="tax_center-img">
                                                     </a>
                                                 </div>
                                             </label>

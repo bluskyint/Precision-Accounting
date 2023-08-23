@@ -75,7 +75,7 @@ class ResourceController extends Controller
                 $requestData['img'] = $this->storeFile('resources', $request->title, $request->file('img'));
             }
 
-            if ($resource->title !== $request->validated('name') && !$request->hasFile('img')) {
+            if ($resource->title !== $request->validated('title') && !$request->hasFile('img')) {
                 $new_file_name = Str::slug($request->validated('title')) . '.' . Str::afterLast($resource->img, '.');
                 rename("storage/resources/$resource->img", "storage/resources/$new_file_name");
                 $requestData['img'] = $new_file_name;
@@ -96,7 +96,7 @@ class ResourceController extends Controller
             Storage::disk('public')->delete("resources/$resource->img");
             $resource->delete();
 
-            return to_route("admin.resource.index")->with(["success" => " Resource deleted successfully"]);
+            return to_route("admin.resource.index")->with(["success" => "Resource deleted successfully"]);
 
         } catch (\Exception $e) {
             return to_route("admin.resource.index")->with("failed","Error at delete operation");
@@ -129,7 +129,7 @@ class ResourceController extends Controller
                 }
             }
 
-            return to_route("admin.resource.index")->with(["success" => " Resource deleted successfully"]);
+            return to_route("admin.resource.index")->with(["success" => "Resource deleted successfully"]);
 
         } catch (\Exception $e) {
             return to_route("admin.resource.index")->with("failed","Error at delete operation");

@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('tax_centers', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 100 )->index();
-            $table->string('slug')->index();
+            $table->string('title', 100 )->unique()->index();
+            $table->string('slug')->unique()->index();
+            $table->string('subtitle');
             $table->string('seo_title', 500);
             $table->string('seo_description', 1000);
             $table->string('seo_keywords', 1000);

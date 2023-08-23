@@ -1,6 +1,15 @@
 @extends('layouts.admin')
 
 @section('content')
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="py-4 admin-page-info">
 
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">

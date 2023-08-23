@@ -11,6 +11,14 @@ class TaxCenter extends Model
 
 
     protected $fillable = [
-        'title', 'slug',  'seo_title',  'seo_description',  'seo_keywords', 'content', 'visibility' , 'img'
+        'title',
+        'slug',
+        'subtitle',
+        'seo_title',
+        'seo_description',
+        'seo_keywords',
+        'content',
+        'visibility',
+        'img'
     ];
 }

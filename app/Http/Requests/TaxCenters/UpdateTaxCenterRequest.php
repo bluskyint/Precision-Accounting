@@ -25,12 +25,14 @@ class UpdateTaxCenterRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'           => ['required' , 'string' , 'max:100' , Rule::unique('tax_centers', 'title')->ignore($this->tax_center)],
+            'title'           => ['required' , 'string' , 'max:100' , Rule::unique('tax_centers')->ignore($this->tax_center)],
+            'slug'            => ['required' , 'string' , 'max:255', 'regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/', Rule::unique('tax_centers')->ignore($this->tax_center)],
+            'subtitle'        => ['required' , 'string' , 'max:255'],
             'content'         => ['required' , 'string' ],
             'seo_title'       => ['required' , 'string' , 'max:500'],
             'seo_description' => ['required' , 'string' , 'max:1000'],
             'seo_keywords'    => ['required' , 'string' , 'max:1000'],
-            'img'             => ['nullable' , 'mimes:jpeg,png,jpg' , 'max:2048'],
+            'img'             => ['nullable' , 'mimes:webp' , 'max:2048'],
         ];
     }
 }
