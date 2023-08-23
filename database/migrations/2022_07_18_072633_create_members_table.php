@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name', 100 )->unique()->index();
             $table->string('job_title', 100 );
             $table->string('slider_show' , 1 )->default('0');
-            $table->string('img')->unique();
+            $table->string('img');
             $table->timestamps();
         });
     }
