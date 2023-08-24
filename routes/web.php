@@ -102,6 +102,15 @@ Route::group([ "prefix" => "admin" , 'middleware' => "admin" , "as" => "admin." 
 
 
 
+    // authors
+    Route::get('author/perPage/{num}' , [App\Http\Controllers\Admin\AuthorController::class, 'perPage'])->name("author.perPage");
+    Route::post('author/search' , [App\Http\Controllers\Admin\AuthorController::class, 'search'])->name("author.search");
+    Route::post('author/multiAction' , [App\Http\Controllers\Admin\AuthorController::class, 'multiAction'])->name("author.multiAction");
+    Route::resource('author', App\Http\Controllers\Admin\AuthorController::class)->except('destroy');
+    Route::get('author/destroy/{author}' , [App\Http\Controllers\Admin\AuthorController::class, 'destroy'] )->name("author.destroy");
+
+
+
     // tax_center
     Route::get('tax_center/perPage/{num}' , [App\Http\Controllers\Admin\TaxCenterController::class, 'perPage'])->name("tax_center.perPage");
     Route::post('tax_center/search' , [App\Http\Controllers\Admin\TaxCenterController::class, 'search'])->name("tax_center.search");

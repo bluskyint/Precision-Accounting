@@ -189,6 +189,15 @@
                         </a>
                     </li>
                     <li class="nav-item ">
+                        <a href="{{ route('admin.author.index') }}"
+                            class="nav-link {{ Request::is('*/author*') ? 'active' : '' }}">
+                            <span class="sidebar-icon">
+                                <i class="fa-solid fa-marker"></i>
+                            </span>
+                            <span class="sidebar-text">Authors</span>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
                         <a href="{{ route('admin.tax_center.index') }}"
                             class="nav-link {{ Request::is('*/tax_center*') ? 'active' : '' }}">
                             <span class="sidebar-icon">

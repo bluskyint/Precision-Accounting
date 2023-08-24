@@ -15,7 +15,7 @@
                     </a>
                 </li>
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Admin</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('admin.member.index') }}">Members</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.member.index') }}">Authors</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Edit</li>
             </ol>
         </nav>
@@ -29,13 +29,13 @@
                                 <div class="row align-items-center">
                                     <div class="col">
                                         <h2 class="fs-5 fw-bold mb-0"> <i class="fa-solid fa-pen-to-square text-primary"></i> Edit
-                                            Member </h2>
+                                            Author </h2>
                                     </div>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="row align-items-center">
-                                    <form action="{{ route('admin.member.update' , $member->id) }}" class="edit-form" method="POST" enctype="multipart/form-data">
+                                    <form action="{{ route('admin.author.update' , $author->id) }}" class="edit-form" method="POST" enctype="multipart/form-data">
 
                                         @csrf
 
@@ -44,7 +44,7 @@
                                         <!----------------- Name -------------------->
                                         <div class="mb-4 input-content">
                                             <label for="name" class="capitalize"> <i class="fa-solid fa-file-signature"></i> Name </label>
-                                            <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ $member->name }}" aria-describedby="emailHelp" placeholder="Type Member Name..." autocomplete="nope" />
+                                            <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ $author->name }}" aria-describedby="emailHelp" placeholder="Type Author Name..." autocomplete="nope" />
                                             @error('name')
                                                 <small class="form-text text-danger">{{ $message }}</small>
                                             @enderror
@@ -53,40 +53,27 @@
                                         <!-----------------job title -------------------->
                                         <div class="mb-4 input-content">
                                             <label for="job_title" class="capitalize"> <i class="fa-solid fa-user-tie"></i> Job Title </label>
-                                            <input type="text" name="job_title" id="job_title" class="form-control @error('job_title') is-invalid @enderror" value="{{ $member->job_title }}" aria-describedby="emailHelp" placeholder="Type Member Job Title..." autocomplete="nope" />
+                                            <input type="text" name="job_title" id="job_title" class="form-control @error('job_title') is-invalid @enderror" value="{{ $author->job_title }}" aria-describedby="emailHelp" placeholder="Type Author Job Title..." autocomplete="nope" />
                                             @error('job_title')
-                                                <small class="form-text text-danger">{{ $message }}</small>
+                                            <small class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+
+                                        <!----------------- slug -------------------->
+                                        <div class="mb-4 input-content">
+                                            <label for="slug" class="capitalize"> <i class="fa-solid fa-file-signature"></i> Permalink </label>
+                                            <input type="text" name="slug" id="slug" class="form-control @error('slug') is-invalid @enderror" value="{{ $author->slug }}" aria-describedby="emailHelp" placeholder="Ex: precision-accounting-international" autocomplete="nope" />
+                                            @error('slug')
+                                            <small class="form-text text-danger">{{ $message }}</small>
                                             @enderror
                                         </div>
 
                                         <!----------------- LinkedIn Account Link -------------------->
                                         <div class="mb-4 input-content">
                                             <label for="linkedin" class="capitalize"> <i class="fa-brands fa-linkedin"></i> LinkedIn Account </label>
-                                            <input type="text" name="linkedin" id="linkedin" class="form-control @error('linkedin') is-invalid @enderror" value="{{ $member->linkedin }}" aria-describedby="emailHelp" placeholder="Type Member LinkedIn Account..." autocomplete="nope" />
+                                            <input type="text" name="linkedin" id="linkedin" class="form-control @error('linkedin') is-invalid @enderror" value="{{ $author->linkedin }}" aria-describedby="emailHelp" placeholder="Type Author LinkedIn Account..." autocomplete="nope" />
                                             @error('linkedin')
                                             <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-
-                                        <!----------------- Member Info -------------------->
-                                        <div class="mb-4 input-content">
-                                            <label for="info" class="capitalize"> <i class="fa-solid fa-align-left"></i> Info </label>
-                                            <textarea type="text" name="info" rows="5" class="ckeditor form-control @error('info') is-invalid @enderror" aria-describedby="emailHelp" placeholder="Type Member Info..." autocomplete="nope">{{ $member->info }}</textarea>
-                                            @error('info')
-                                            <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-
-                                        <!----------------- slider_show -------------------->
-                                        <div class="mb-4 input-content">
-                                            <label for="slider_show" class="capitalize"> <i class="fa-solid fa-sliders"></i> Visibile in Home Slider Show </label>
-                                            <select class="form-select form-control @error('slider_show') is-invalid @enderror" name="slider_show" id="slider_show"  aria-label="Default select example" >
-                                                <option></option>
-                                                <option value="0" {{ $member->slider_show == '0' ? "selected" : "" }}> No </option>
-                                                <option value="1" {{ $member->slider_show == '1' ? "selected" : "" }}> Yes </option>
-                                            </select>
-                                            @error('slider_show')
-                                                <small class="form-text text-danger">{{ $message }}</small>
                                             @enderror
                                         </div>
 
@@ -95,8 +82,8 @@
                                             <label for="img" class="form-label d-flex align-items-center">
                                                 <i class="fa-solid fa-image"></i> &nbsp;  Image
                                                 <div class="show-img-container">
-                                                    <a href="{{ asset("storage/members/$member->img") }}"  target="_blank">
-                                                        <img src="{{ asset("storage/members/$member->img") }}" alt="member-img">
+                                                    <a href="{{ asset("storage/authors/$author->img") }}"  target="_blank">
+                                                        <img src="{{ asset("storage/authors/$author->img") }}" alt="author-img">
                                                     </a>
                                                 </div>
                                             </label>

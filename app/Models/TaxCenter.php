@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class TaxCenter extends Model
 {
@@ -22,4 +23,10 @@ class TaxCenter extends Model
         'visibility',
         'img'
     ];
+
+
+    public function author(): BelongsTo
+    {
+        return $this->belongsTo(Author::class);
+    }
 }
