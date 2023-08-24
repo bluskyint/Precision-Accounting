@@ -37,6 +37,7 @@
                             </div>
                         </div>
                     </div>
+                    <x-social-media-btns/>
                 </div>
             </div>
         </div>

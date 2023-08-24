@@ -25,8 +25,8 @@
                                     </li>
                                 </ul>
                                 <div class="thumbnail alignwide mt--60"   data-sal="slide-down" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
-                                    <img class="w-100 radius"
-                                        src="{{ $article->img }}" alt="Blog Images"></div>
+                                    <img class="w-100 radius" src="{{ $article->img }}" alt="Blog Images">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -41,6 +41,7 @@
                             </div>
                         </div>
                     </div>
+                    <x-social-media-btns/>
                 </div>
             </div>
         </div>
