@@ -26,7 +26,7 @@ class UpdateArticleRequest extends FormRequest
     {
         return [
             'title'           => ['required' , 'string' , 'max:100' , Rule::unique('articles')->ignore($this->article)],
-            'slug'           => ['required' , 'string' , 'max:255', 'regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/', 'unique:articles'],
+            'slug'           => ['required' , 'string' , 'max:255', 'regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/', Rule::unique('articles')->ignore($this->article)],
             'subtitle'       => ['required' , 'string' , 'max:255'],
             'summary'        => ['required' , 'string' , 'max:255'],
             'content'         => ['required' , 'string' ],
@@ -36,7 +36,7 @@ class UpdateArticleRequest extends FormRequest
             'author'          => ['required' , 'string' , 'max:55'],
             'pinned'          => ['required' , 'string' , 'max:1'],
             'category_id'     => ['required' , 'numeric'],
-            'img'             => ['nullable' , 'mimes:jpeg,png,jpg' , 'max:2048'],
+            'img'             => ['nullable' , 'mimes:webp' , 'max:2048'],
         ];
     }
 }

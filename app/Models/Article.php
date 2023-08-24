@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use App\Models\Category;
 
 class Article extends Model
 {
@@ -34,7 +35,7 @@ class Article extends Model
 
     ############################## Relations ################################
     public function category(){
-        return  $this -> belongsTo("App\Models\Category") ;
+        return  $this -> belongsTo(Category::class) ;
     }
 
 }

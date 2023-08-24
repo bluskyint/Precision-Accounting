@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Articles\MultiActionArticlesRequest;
+use App\Traits\StoreFileTrait;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Http\Requests\Articles\StoreArticleRequest;
@@ -17,6 +18,7 @@ use Illuminate\Support\Str;
 
 class ArticleController extends Controller
 {
+    use StoreFileTrait;
 
     public function perPage( $num=10 )
     {
