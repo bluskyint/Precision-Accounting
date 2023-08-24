@@ -156,6 +156,7 @@
                                     </div>
                                 </th>
                                 <th class="border-bottom">Name</th>
+                                <th class="border-bottom">LinkedIn</th>
                                 <th class="border-bottom">Slider Show</th>
                                 <th class="border-bottom">Date Created</th>
                                 <th class="border-bottom">Action</th>
@@ -185,6 +186,9 @@
                                                 <div class="small text-gray">{{ $member->job_title }}</div>
                                             </div>
                                         </a></td>
+                                    <td>
+                                        <a class="btn btn-link" href="{{ $member->linkedin }}" target="_blank">link</a>
+                                    </td>
                                     <td class="check-icons">
                                         @if ( $member->slider_show === "0" )
                                             <span class="text-gray"> <i class="fa-solid fa-minus fa-2x"></i> </span>

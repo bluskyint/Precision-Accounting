@@ -58,6 +58,24 @@
                                             @enderror
                                         </div>
 
+                                        <!----------------- LinkedIn Account Link -------------------->
+                                        <div class="mb-4 input-content">
+                                            <label for="linkedin" class="capitalize"> <i class="fa-brands fa-linkedin"></i> LinkedIn Account </label>
+                                            <input type="text" name="linkedin" id="linkedin" class="form-control @error('linkedin') is-invalid @enderror" value="{{ old('linkedin') }}" aria-describedby="emailHelp" placeholder="Type Member LinkedIn Account..." autocomplete="nope" />
+                                            @error('linkedin')
+                                                <small class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+
+                                        <!----------------- Member Info -------------------->
+                                        <div class="mb-4 input-content">
+                                            <label for="info" class="capitalize"> <i class="fa-solid fa-align-left"></i> Info </label>
+                                            <textarea type="text" name="info" rows="5" class="ckeditor form-control @error('info') is-invalid @enderror" aria-describedby="emailHelp" placeholder="Type Member Info..." autocomplete="nope" >{{ old('info') }}</textarea>
+                                            @error('info')
+                                            <small class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+
 
                                         <!----------------- slider_show -------------------->
                                         <div class="mb-4 input-content">

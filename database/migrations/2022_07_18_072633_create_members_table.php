@@ -16,7 +16,10 @@ return new class extends Migration
         Schema::create('members', function (Blueprint $table) {
             $table->id();
             $table->string('name', 100 )->unique()->index();
+            $table->string('slug');
             $table->string('job_title', 100 );
+            $table->string('linkedin');
+            $table->text('info');
             $table->string('slider_show' , 1 )->default('0');
             $table->string('img');
             $table->timestamps();

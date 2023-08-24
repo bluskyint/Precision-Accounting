@@ -148,7 +148,7 @@
                                             </ul>
                                         </li>
                                         <li><a href="{{ route("blog") }}">Blog</a></li>
-                                        <li><a href="{{ route("team") }}">Team</a></li>
+                                        <li><a href="{{ route("members.index") }}">Team</a></li>
                                         <li><a href="{{ route("contact") }}">Contact</a></li>
                                         <li><a href="{{ route("resources") }}">Resources</a></li>
                                         <li><a href="{{ route("career") }}">Careers</a></li>
@@ -219,7 +219,8 @@
 
                         <li><a href="{{ route("home") }}">Home</a></li>
                         <li><a href="{{ route("about") }}">About</a></li>
-                        <li class="has-droupdown has-menu-child-item"><a href="#">Services</a>
+                        <li class="has-droupdown has-menu-child-item">
+                            <a href="#">Services</a>
                             <ul class="submenu">
                                 @foreach ( $parent_services as $parent_service )
                                     <li>
@@ -233,7 +234,11 @@
                                                 <a href="{{ route("service", $parent_service->slug ) }}"> {{ $parent_service->title }}  </a>
                                                 <ul class="submenu">
                                                     @foreach ( $sub_services as $sub_service )
-                                                        <li><a href="{{ route("service", $sub_service->slug ) }}"> {{ $sub_service->title }} </a></li>
+                                                        <li>
+                                                            <a href="{{ route("service", $sub_service->slug ) }}">
+                                                                {{ $sub_service->title }}
+                                                            </a>
+                                                        </li>
                                                     @endforeach
                                                 </ul>
                                             </li>
@@ -251,7 +256,7 @@
                             </ul>
                         </li>
                         <li><a href="{{ route("blog") }}">Blog</a></li>
-                        <li><a href="{{ route("team") }}">Team</a></li>
+                        <li><a href="{{ route("members.index") }}">Team</a></li>
                         <li><a href="{{ route("contact") }}">Contact</a></li>
                         <li><a href="{{ route("resources") }}">Resources</a></li>
                         <li><a href="{{ route("career") }}">Careers</a></li>

@@ -108,7 +108,7 @@
                         <div class="service service__style--1 icon-circle-style text-center">
                             <div class="service-icon pb-3">
                                 <a href="{{ route('service', $service->slug) }}">
-                                    <img src="{{ asset('images/services/' . $service->icon) }}" width="100"
+                                    <img src="{{ asset('storage/services/' . $service->icon) }}" width="100"
                                     alt="service-icon">
                                 </a>
                             </div>
@@ -183,11 +183,15 @@
                             <div class="rn-team team-style-default">
                                 <div class="inner">
                                     <div class="thumbnail">
-                                        <img src="{{ asset('images/members/' . $member->img) }}" alt="member-image">
+                                        <img src="{{ asset('storage/members/' . $member->img) }}" alt="member-image">
                                     </div>
                                     <div class="content">
-                                        <h2 class="title">{{ $member->name }}</h2>
+                                        <a class="title d-block" href="{{ route('members.show', $member->slug) }}">{{ $member->name }}</a>
                                         <h6 class="subtitle theme-gradient">{{ $member->job_title }}</h6>
+                                        <a href="{{ $member->linkedin }}" target="_blank" class="d-flex justify-content-center align-items-center gap-1">
+                                            <i class="fa-brands fa-linkedin"></i>
+                                            <span>Follow on LinkedIn</span>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -196,7 +200,7 @@
                 </div>
                 <div class="col-lg-12 text-center">
                     <div class="rwt-load-more text-center">
-                        <a class="btn-default mt--30" href="{{ route("team") }}">View Full Team
+                        <a class="btn-default mt--30" href="{{ route("members.index") }}">View Full Team
                             <i class="feather-loader"></i>
                         </a>
                     </div>
@@ -275,7 +279,7 @@
                             </div>
                             <div class="order-1 d-flex justify-content-center order-md-2 col-lg-2 col-md-4">
                                 <div class="thumbnail"><img class="w-100"
-                                        src="{{ asset('images/testimonials/' . $testimonial->img) }}" alt="client-image">
+                                        src="{{ asset('storage/testimonials/' . $testimonial->img) }}" alt="client-image">
                                 </div>
                             </div>
                         </div>
@@ -339,7 +343,7 @@
                                     <div class="inner">
                                         <div class="thumbnail"><a class="image"
                                                 href="{{ route('article', $article->slug) }}"><img class="w-100"
-                                                    src="{{ asset('images/articles/' . $article->img) }}"
+                                                    src="{{ asset('storage/articles/' . $article->img) }}"
                                                     alt="Blog Image"></a>
                                         </div>
                                         <div class="content">

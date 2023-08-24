@@ -64,6 +64,14 @@
                                             <td class="text-capitalize"> <i class="fa-solid fa-user-tie"></i> Job Title </td>
                                             <td> {{ $member->job_title }} </td>
                                         </tr>
+                                        <tr>
+                                            <td class="text-capitalize"> <i class="fa-brands fa-linkedin"></i> LinkedIn </td>
+                                            <td> {{ $member->linkedin }} </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-capitalize content"> <i class="fa-solid fa-align-left"></i> Info </td>
+                                            <td> {!! $member->info !!} </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>

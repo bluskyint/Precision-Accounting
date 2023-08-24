@@ -27,6 +27,8 @@ use Illuminate\Foundation\Http\FormRequest;
         return [
             'name'            => ['required' , 'string' , 'max:100' , 'unique:members'],
             'job_title'       => ['required' , 'string' , 'max:100'],
+            'linkedin'       => ['required' , 'string' , 'url', 'max:255'],
+            'info'       => ['required', 'string'],
             'slider_show'     => ['required' , 'string' , 'max:1'],
             'img'             => ['required' , 'mimes:webp' , 'max:2048'],
         ];
