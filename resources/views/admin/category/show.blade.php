@@ -43,13 +43,13 @@
                             <div class="table-responsive">
                                 <table class="table align-items-center table-flush show-data">
                                     <tbody>
-                                        {{-- <tr>
-                                            <td class="text-capitalize"> # ID </td>
-                                            <td> {{ $category->id != "" ? $category->id : '-'}} </td>
-                                        </tr> --}}
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Title </td>
-                                            <td> {{ $category->title != "" ? $category->title : '-'  }} </td>
+                                            <td> {{ $category->title }} </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Permalink </td>
+                                            <td> {{ $category->slug }} </td>
                                         </tr>
                                     </tbody>
                                 </table>

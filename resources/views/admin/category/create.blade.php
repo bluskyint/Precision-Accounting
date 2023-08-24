@@ -49,6 +49,15 @@
                                             @enderror
                                         </div>
 
+                                        <!----------------- slug -------------------->
+                                        <div class="mb-4 input-content">
+                                            <label for="slug" class="capitalize"> <i class="fa-solid fa-file-signature"></i> Permalink </label>
+                                            <input type="text" name="slug" id="slug" class="form-control @error('slug') is-invalid @enderror" value="{{ old('slug') }}" aria-describedby="emailHelp" placeholder="Ex: precision-accounting-international" autocomplete="nope" />
+                                            @error('slug')
+                                            <small class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+
                                         <!----------------- Submit Btn -------------------->
                                         <button type="submit" class="btn btn-primary float-right" > <i class="fa-solid fa-floppy-disk"></i> Submit </button>
 

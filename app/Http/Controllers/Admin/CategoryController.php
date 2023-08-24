@@ -13,11 +13,6 @@ use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function perPage( $num=10 )
     {
         // Dynamic pagination
@@ -25,64 +20,30 @@ class CategoryController extends Controller
         return view("admin.category.index",compact("categories"));
     }
 
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $categories = Category::orderBy('id','desc')->paginate( 10 );
         return view("admin.category.index",compact("categories"));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view("admin.category.create");
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(CategoryRequest $request)
     {
-
-        // save all request in one variable
-        $requestData = $request->all();
-
-
-        // add slug in $requestData Array
-        $requestData += [ 'slug' => Str::slug( $request->title , '-') ];
-
-
-        // return $requestData;
-        // Store in DB
         try {
-            $category = Category::create( $requestData );
-                return  redirect() -> route("admin.category.index")-> with( [ "success" => " Category store successfully"] ) ;
-            if(!$category)
-                return  redirect() -> route("admin.category.index")-> with( [ "failed" => "Error at store opration"] ) ;
+            $requestData = $request->validated();
+            Category::create($requestData);
+
+            return  redirect() -> route("admin.category.index")-> with( [ "success" => " Category store successfully"] ) ;
+
         } catch (\Exception $e) {
             return  redirect() -> route("admin.category.index")-> with( [ "failed" => "Error at store opration"] ) ;
         }
-
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         // find id in Db With Error 404
@@ -90,12 +51,6 @@ class CategoryController extends Controller
         return view("admin.category.show" , compact("category") ) ;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         // find id in Db With Error 404
@@ -103,13 +58,6 @@ class CategoryController extends Controller
         return view("admin.category.edit" , compact("category") ) ;
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(CategoryRequest $request, $id)
     {
         // find id in Db With Error 404
@@ -132,15 +80,8 @@ class CategoryController extends Controller
         } catch (\Exception $e) {
             return redirect() -> route("admin.category.index")-> with( [ "failed" => "Error at update opration"] ) ;
         }
-
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         // find id in Db With Error 404
@@ -157,14 +98,6 @@ class CategoryController extends Controller
         }
     }
 
-
-
-    /**
-     * search in record.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function search(Request $request)
     {
         // validate search and redirect back
@@ -174,7 +107,6 @@ class CategoryController extends Controller
 
         $categories = Category::where('title', 'like', "%{$request->search}%")->paginate( 10 );
         return view("admin.category.index",compact("categories"));
-
     }
 
 
@@ -208,8 +140,5 @@ class CategoryController extends Controller
                 return redirect() -> route("admin.category.index")-> with( [ "failed" => "Error at delete opration"] ) ;
             }
         }
-
     }
-
-
 }

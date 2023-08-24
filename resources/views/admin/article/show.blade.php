@@ -60,7 +60,7 @@
                                             <td> {{ $article->title  }} </td>
                                         </tr>
                                         <tr>
-                                            <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Slug </td>
+                                            <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Permalink </td>
                                             <td> {{ $article->slug }} </td>
                                         </tr>
                                         <tr>

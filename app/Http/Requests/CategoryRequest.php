@@ -25,7 +25,8 @@ use Illuminate\Foundation\Http\FormRequest;
     public function rules()
     {
         return [
-            'title'           => ['required' , 'string' , 'max:100' , Rule::unique('categories', 'title')->ignore($this->category)],
+            'title'           => ['required' , 'string' , 'max:100' , Rule::unique('categories')->ignore($this->category)],
+            'slug'           => ['required' , 'string' , 'max:255', 'regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/', Rule::unique('categories')->ignore($this->category)],
         ];
     }
 }
