@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Services\MultiActionServicesRequest;
+use App\Models\Author;
 use App\Traits\StoreFileTrait;
 use Illuminate\Http\Request;
 use App\Models\Service;
@@ -28,14 +29,15 @@ class ServiceController extends Controller
 
     public function index()
     {
-        $services = Service::orderBy('id','desc')->paginate( 10 );
+        $services = Service::with('author')->orderBy('id','desc')->paginate( 10 );
         return view("admin.service.index",compact("services"));
     }
 
     public function create()
     {
         $services = Service::select('id','title')->get();
-        return view("admin.service.create",compact("services"));
+        $authors = Author::select('id', 'name')->get();
+        return view("admin.service.create",compact("services", "authors"));
     }
 
     public function store(StoreServiceRequest $request)
@@ -56,7 +58,7 @@ class ServiceController extends Controller
     public function show($id)
     {
         // find id in Db With Error 404
-        $service = Service::findOrFail($id);
+        $service = Service::with('author')->findOrFail($id);
         return view("admin.service.show" , compact("service") ) ;
     }
 
@@ -64,9 +66,9 @@ class ServiceController extends Controller
     {
         // find id in Db With Error 404
         $service = Service::findOrFail($id);
-
         $services = Service::select('id','title')->get();
-        return view("admin.service.edit" , compact("service","services") ) ;
+        $authors = Author::select('id', 'name')->get();
+        return view("admin.service.edit" , compact("service","services", "authors") ) ;
 
     }
 

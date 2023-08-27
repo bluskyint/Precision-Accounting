@@ -20,6 +20,7 @@ class TaxCenter extends Model
         'seo_description',
         'seo_keywords',
         'content',
+        'author_id',
         'visibility',
         'img'
     ];

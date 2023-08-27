@@ -77,6 +77,15 @@
                                             @enderror
                                         </div>
 
+                                        <!----------------- Author Info -------------------->
+                                        <div class="mb-4 input-content">
+                                            <label for="info" class="capitalize"> <i class="fa-solid fa-align-left"></i> Info </label>
+                                            <textarea type="text" name="info" rows="5" class="ckeditor form-control @error('info') is-invalid @enderror" aria-describedby="emailHelp" placeholder="Type Author Info..." autocomplete="nope">{{ $author->info }}</textarea>
+                                            @error('info')
+                                            <small class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+
                                         <!----------------- Img -------------------->
                                         <div class="mb-3 input-content">
                                             <label for="img" class="form-label d-flex align-items-center">

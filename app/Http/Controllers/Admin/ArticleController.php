@@ -4,16 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Articles\MultiActionArticlesRequest;
+use App\Models\Author;
 use App\Traits\StoreFileTrait;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Http\Requests\Articles\StoreArticleRequest;
 use App\Http\Requests\Articles\UpdateArticleRequest;
 use App\Models\Category;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 class ArticleController extends Controller
@@ -35,14 +33,15 @@ class ArticleController extends Controller
         // Get Parent Rows Count
         $categoriesCount = Category::count();
 
-        $articles = Article::orderBy('id','desc')->paginate( 10 );
+        $articles = Article::with('author')->orderBy('id','desc')->paginate( 10 );
         return view("admin.article.index",compact("articles","categoriesCount"));
     }
 
     public function create()
     {
         $categories = Category::select('id','title')->get();
-        return view("admin.article.create",compact('categories'));
+        $authors = Author::select('id', 'name')->get();
+        return view("admin.article.create",compact('categories', 'authors'));
     }
 
     public function store(StoreArticleRequest $request)
@@ -62,16 +61,17 @@ class ArticleController extends Controller
     public function show($id)
     {
         // find id in Db With Error 404
-        $article = Article::findOrFail($id);
+        $article = Article::with('author')->findOrFail($id);
         return view("admin.article.show" , compact("article") ) ;
     }
 
     public function edit($id)
     {
         // find id in Db With Error 404
-        $article = Article::findOrFail($id);
+        $article = Article::with('author')->findOrFail($id);
         $categories = Category::select('id','title')->get();
-        return view("admin.article.edit" , compact("article","categories") ) ;
+        $authors = Author::select('id', 'name')->get();
+        return view("admin.article.edit" , compact("article","categories", "authors") ) ;
     }
 
     public function update(UpdateArticleRequest $request, Article $article)

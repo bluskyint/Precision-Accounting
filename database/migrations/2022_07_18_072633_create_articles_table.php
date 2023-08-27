@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('category_id');
             $table->string('title', 100 )->unique()->index();
             $table->string('slug')->unique()->index();
+            $table->foreignId('author_id')->constrained();
+            $table->foreignId('category_id')->constrained();
             $table->string('subtitle');
             $table->string('summary');
             $table->text('content');
@@ -25,7 +26,6 @@ return new class extends Migration
             $table->string('seo_description', 1000);
             $table->string('seo_keywords', 1000);
             $table->string('pinned' , 1)->default('0');
-            $table->string('author');
             $table->string('img');
             $table->timestamps();
         });

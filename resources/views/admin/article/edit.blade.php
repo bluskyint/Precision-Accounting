@@ -79,14 +79,17 @@
 
                                         <!----------------- Author -------------------->
                                         <div class="mb-4 input-content">
-                                            <label for="author" class="capitalize"> <i class="fa-solid fa-user-pen"></i> Author </label>
-                                            <input type="text" name="author" id="author" class="form-control @error('author') is-invalid @enderror" value="{{ $article->author }}" aria-describedby="emailHelp" placeholder="Type Author..." autocomplete="nope" />
-                                            @error('author')
-                                                <small class="form-text text-danger">{{ $message }}</small>
+                                            <label for="author_id" class="capitalize"> <i class="fa-solid fa-marker"></i> Author </label>
+                                            <select class="form-select form-control @error('author_id') is-invalid @enderror" name="author_id" id="author">
+                                                <option></option>
+                                                @foreach ( $authors as $author )
+                                                    <option value="{{ $author->id }}"  {{ $author->id == $article->author->id ? "selected" : "" }} >{{ $author->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('author_id')
+                                            <small class="form-text text-danger">{{ $message }}</small>
                                             @enderror
                                         </div>
-
-
 
 
                                         <!----------------- Catrgory_id -------------------->

@@ -28,6 +28,7 @@ class StoreAuthorRequest extends FormRequest
             'slug' => 'required|string|max:255|regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/|unique:authors',
             'linkedin' => 'required|string|url|max:255',
             'job_title' => 'required|string|max:255',
+            'info'       => 'required|string',
             'img' => 'required|image|mimes:webp|max:2048'
         ];
     }

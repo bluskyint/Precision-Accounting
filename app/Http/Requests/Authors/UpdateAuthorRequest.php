@@ -39,6 +39,7 @@ class UpdateAuthorRequest extends FormRequest
                 Rule::unique('authors')->ignore($this->author)],
             'linkedin' => 'required|url|max:255',
             'job_title' => 'required|string|max:255',
+            'info'       => 'required|string',
             'img' => 'nullable|image|mimes:webp|max:2048'
         ];
     }

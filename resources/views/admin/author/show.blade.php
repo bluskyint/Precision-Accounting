@@ -67,6 +67,10 @@
                                             <td class="text-capitalize"> <i class="fa-brands fa-linkedin"></i> LinkedIn </td>
                                             <td> {{ $author->linkedin }} </td>
                                         </tr>
+                                        <tr>
+                                            <td class="text-capitalize content"> <i class="fa-solid fa-align-left"></i> Info </td>
+                                            <td> {!! $author->info !!} </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>

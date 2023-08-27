@@ -154,6 +154,7 @@
                                     </div>
                                 </th>
                                 <th class="border-bottom">Title</th>
+                                <th class="border-bottom">Author</th>
                                 <th class="border-bottom">Visibility</th>
                                 <th class="border-bottom">Date Created</th>
                                 <th class="border-bottom">Action</th>
@@ -179,7 +180,9 @@
                                                 </span>
                                                 <div class="small text-gray">{{ $tax_center->email }}</div>
                                             </div>
-                                        </a></td>
+                                        </a>
+                                    </td>
+                                    <td>{{ $tax_center->author->name }}</td>
                                     <td class="check-icons">
                                         @if ( $tax_center->visibility === "0" )
                                             <span class="text-danger"> <i class="fa-regular fa-circle-xmark fa-2x"></i> </span>

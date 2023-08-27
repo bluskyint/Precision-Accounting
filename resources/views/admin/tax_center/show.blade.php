@@ -60,6 +60,10 @@
                                             <td> {{ $tax_center->title }} </td>
                                         </tr>
                                         <tr>
+                                            <td class="text-capitalize"> <i class="fa-solid fa-marker"></i> Author </td>
+                                            <td> {{ $tax_center->author->name  }} </td>
+                                        </tr>
+                                        <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Permalink </td>
                                             <td> {{ $tax_center->slug }} </td>
                                         </tr>

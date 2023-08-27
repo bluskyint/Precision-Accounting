@@ -35,6 +35,11 @@ Route::resource('members', App\Http\Controllers\MemberController::class)->parame
     'members' => 'member:slug'
 ]);
 
+// Authors
+Route::resource('authors', App\Http\Controllers\AuthorController::class)->parameters([
+    'authors' => 'author:slug'
+]);
+
 // Team
 Route::get('/career', [App\Http\Controllers\CareerController::class, 'index'])->name('career');
 

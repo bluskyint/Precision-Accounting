@@ -149,6 +149,7 @@
                                     </div>
                                 </th>
                                 <th class="border-bottom">Title</th>
+                                <th class="border-bottom">Author</th>
                                 <th class="border-bottom">Pinned</th>
                                 <th class="border-bottom">Date Created</th>
                                 <th class="border-bottom">Action</th>
@@ -174,8 +175,10 @@
                                                 </span>
                                                 <div class="small text-gray">{{ $article->email }}</div>
                                             </div>
-                                        </a></td>
-                                        <td class="check-icons">
+                                        </a>
+                                    </td>
+                                    <td>{{ $article->author->name }}</td>
+                                    <td class="check-icons">
                                             @if ( $article->pinned === "0" )
                                                 <span class="text-gray"> <i class="fa-solid fa-minus fa-2x"></i> </span>
                                             @else

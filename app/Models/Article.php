@@ -27,7 +27,7 @@ class Article extends Model
         'seo_title',
         'seo_description',
         'seo_keywords',
-        'author',
+        'author_id',
         'pinned',
         'category_id' ,
         'img'

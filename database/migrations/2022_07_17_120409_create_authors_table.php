@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('linkedin');
             $table->string('job_title');
+            $table->text('author');
             $table->string('img');
             $table->timestamps();
         });

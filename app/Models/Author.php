@@ -15,6 +15,7 @@ class Author extends Model
         'slug',
         'linkedin',
         'job_title',
+        'info',
         'img'
     ];
 

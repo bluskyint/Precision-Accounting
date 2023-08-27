@@ -33,6 +33,7 @@ class UpdateTaxCenterRequest extends FormRequest
             'seo_title'       => ['required' , 'string' , 'max:500'],
             'seo_description' => ['required' , 'string' , 'max:1000'],
             'seo_keywords'    => ['required' , 'string' , 'max:1000'],
+            'author_id'          => ['required' , 'exists:authors,id'],
             'img'             => ['nullable' , 'mimes:webp' , 'max:2048'],
         ];
     }

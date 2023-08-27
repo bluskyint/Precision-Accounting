@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 class SettingController extends Controller
 {
 
-    public function edit(Setting $setting)
+    public function edit()
     {
         // find id in Db With Error 404
         $setting = Setting::findOrFail(1);

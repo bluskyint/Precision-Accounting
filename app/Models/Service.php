@@ -20,6 +20,7 @@ class Service extends Model
         'seo_keywords',
         'parent_id',
         'content',
+        'author_id',
         'visibility',
         'icon',
         'img'

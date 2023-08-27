@@ -257,6 +257,7 @@
                         </li>
                         <li><a href="{{ route("blog") }}">Blog</a></li>
                         <li><a href="{{ route("members.index") }}">Team</a></li>
+                        <li><a href="{{ route("authors.index") }}">Authors</a></li>
                         <li><a href="{{ route("contact") }}">Contact</a></li>
                         <li><a href="{{ route("resources") }}">Resources</a></li>
                         <li><a href="{{ route("career") }}">Careers</a></li>

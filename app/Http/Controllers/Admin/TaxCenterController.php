@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TaxCenters\MultiActionTaxCentersRequest;
+use App\Models\Author;
 use App\Traits\StoreFileTrait;
 use Illuminate\Http\Request;
 use App\Models\TaxCenter;
@@ -28,13 +29,14 @@ class TaxCenterController extends Controller
 
     public function index()
     {
-        $tax_centers = TaxCenter::orderBy('id','desc')->paginate( 10 );
+        $tax_centers = TaxCenter::with('author')->orderBy('id','desc')->paginate( 10 );
         return view("admin.tax_center.index",compact("tax_centers"));
     }
 
     public function create()
     {
-        return view("admin.tax_center.create");
+        $authors = Author::select('id', 'name')->get();
+        return view("admin.tax_center.create", compact("authors"));
     }
 
     public function store(StoreTaxCenterRequest $request)
@@ -55,7 +57,7 @@ class TaxCenterController extends Controller
     public function show($id)
     {
         // find id in Db With Error 404
-        $tax_center = TaxCenter::findOrFail($id);
+        $tax_center = TaxCenter::with('author')->findOrFail($id);
         return view("admin.tax_center.show" , compact("tax_center") ) ;
     }
 
@@ -63,7 +65,8 @@ class TaxCenterController extends Controller
     {
         // find id in Db With Error 404
         $tax_center = TaxCenter::findOrFail($id);
-        return view("admin.tax_center.edit" , compact("tax_center") ) ;
+        $authors = Author::select('id', 'name')->get();
+        return view("admin.tax_center.edit" , compact("tax_center", "authors") ) ;
     }
 
     public function update(UpdateTaxCenterRequest $request, TaxCenter $taxCenter)

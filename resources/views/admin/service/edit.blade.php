@@ -77,7 +77,19 @@
                                             @enderror
                                         </div>
 
-
+                                        <!----------------- Author -------------------->
+                                        <div class="mb-4 input-content">
+                                            <label for="author_id" class="capitalize"> <i class="fa-solid fa-marker"></i> Author </label>
+                                            <select class="form-select form-control @error('author_id') is-invalid @enderror" name="author_id" id="author">
+                                                <option></option>
+                                                @foreach ( $authors as $author )
+                                                    <option value="{{ $author->id }}"  {{ $author->id == $service->author->id ? "selected" : "" }} >{{ $author->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('author_id')
+                                            <small class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
 
                                         <!----------------- Seo Title -------------------->
                                         <div class="mb-4 input-content">
