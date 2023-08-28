@@ -22,7 +22,8 @@
                                 </div>
                                 <div class="thumbnail alignwide mt--60"  data-sal="slide-down" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
                                     <img class="w-100 radius"
-                                        src="{{ asset("images/services/".$service->img) }}" alt="Blog Images"></div>
+                                        src="{{ asset("storage/services/images/".$service->img['src']) }}" alt="{{ $service->img['alt'] }}">
+                                </div>
                             </div>
                         </div>
                     </div>

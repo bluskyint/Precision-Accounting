@@ -19,7 +19,7 @@
                             <div class="rn-team team-style-default">
                                 <div class="inner">
                                     <div class="thumbnail">
-                                        <img src="{{ asset("storage/members/$member->img") }}" alt="member-image">
+                                        <img src="{{ asset("storage/members/".$member->img['src']) }}" alt="{{ $member->img['alt'] }}">
                                     </div>
                                     <div class="content">
                                         <a class="title d-block" href="{{ route('members.show', $member->slug) }}">{{ $member->name }}</a>

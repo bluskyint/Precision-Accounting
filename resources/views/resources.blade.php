@@ -23,7 +23,7 @@
                             <div class="service service__style--2 text-center pt-5">
                                 <div class="inner">
                                     <div class="image">
-                                        <img src="{{ asset("images/resources/".$resource->img) }}" alt="resource-image">
+                                        <img src="{{ asset("storage/resources/".$resource->img['src']) }}" alt="{{ $resource->img['alt'] }}">
                                     </div>
                                     <div class="content">
                                         <h4 class="title">

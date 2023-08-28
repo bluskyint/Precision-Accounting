@@ -19,7 +19,7 @@
                             <div class="rn-team team-style-default">
                                 <div class="inner">
                                     <div class="thumbnail">
-                                        <img src="{{ asset("storage/authors/$author->img") }}" alt="member-image">
+                                        <img src="{{ asset("storage/authors/".$author->img['src']) }}" alt="m{{ $author->img['alt'] }}">
                                     </div>
                                     <div class="content">
                                         <a class="title d-block" href="{{ route('authors.show', $author->slug) }}">{{ $author->name }}</a>

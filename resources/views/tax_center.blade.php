@@ -22,7 +22,7 @@
                                 </div>
                                 <div class="thumbnail alignwide mt--60"  data-sal="slide-down" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
                                     <img class="w-100 radius"
-                                        src="{{ asset("images/tax_center/".$tax_center->img) }}" alt="Blog Images"></div>
+                                        src="{{ asset("storage/taxCenters/".$tax_center->img['src']) }}" alt="{{ $tax_center->img['alt'] }}"></div>
                             </div>
                         </div>
                     </div>

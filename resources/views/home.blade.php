@@ -108,8 +108,8 @@
                         <div class="service service__style--1 icon-circle-style text-center">
                             <div class="service-icon pb-3">
                                 <a href="{{ route('service', $service->slug) }}">
-                                    <img src="{{ asset('storage/services/' . $service->icon) }}" width="100"
-                                    alt="service-icon">
+                                    <img src="{{ asset('storage/services/icons/'.$service->icon['src']) }}" width="100"
+                                    alt="{{ $service->icon['alt'] }}">
                                 </a>
                             </div>
                             <div class="content">
@@ -183,7 +183,7 @@
                             <div class="rn-team team-style-default">
                                 <div class="inner">
                                     <div class="thumbnail">
-                                        <img src="{{ asset('storage/members/' . $member->img) }}" alt="member-image">
+                                        <img src="{{ asset('storage/members/'.$member->img['src']) }}" alt="{{ $member->img['alt'] }}">
                                     </div>
                                     <div class="content">
                                         <a class="title d-block" href="{{ route('members.show', $member->slug) }}">{{ $member->name }}</a>
@@ -279,7 +279,7 @@
                             </div>
                             <div class="order-1 d-flex justify-content-center order-md-2 col-lg-2 col-md-4">
                                 <div class="thumbnail"><img class="w-100"
-                                        src="{{ asset('storage/testimonials/' . $testimonial->img) }}" alt="client-image">
+                                        src="{{ asset('storage/testimonials/'.$testimonial->img['src']) }}" alt="testimonial">
                                 </div>
                             </div>
                         </div>
@@ -343,18 +343,19 @@
                                     <div class="inner">
                                         <div class="thumbnail"><a class="image"
                                                 href="{{ route('article', $article->slug) }}"><img class="w-100"
-                                                    src="{{ asset('storage/articles/' . $article->img) }}"
-                                                    alt="Blog Image"></a>
+                                                    src="{{ asset('storage/articles/'.$article->img['src']) }}"
+                                                    alt="{{ $article->img['alt'] }}"></a>
                                         </div>
                                         <div class="content">
                                             <ul class="rn-meta-list">
-                                                <li><a href="#"> {{ $article->author }} </a></li>
+                                                <li><a href="#"> {{ $article->author->name }} </a></li>
                                                 <li class="separator">/</li>
                                                 <li> {{ date('m-d-Y', strtotime($article->created_at)) }} </li>
                                             </ul>
                                             <h4 class="title"><a href="{{ route('article', $article->slug) }}">
                                                     {{ $article->title }}
-                                                </a></h4>
+                                                </a>
+                                            </h4>
                                         </div>
                                     </div>
                                 </div>
