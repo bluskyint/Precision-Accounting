@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title', 100 )->unique()->index();
             $table->text('content');
-            $table->string('img');
+            $table->json('img');
             $table->string('slug')->unique();
             $table->string('subtitle');
             $table->string('summary');

@@ -171,9 +171,9 @@
                                             <label class="form-check-label" for="userCheck55"> </label>
                                         </div>
                                     </td>
-                                    <td><a href="{{ route('admin.author.show', $author->id) }}" class="d-flex align-items-center"><img
-                                                src="{{ asset("storage/authors/$author->img") }}"
-                                                class="avatar rounded-circle me-3" alt="author-image">
+                                    <td><a href="{{ route('admin.author.show', $author->id) }}" class="d-flex align-items-center">
+                                            <img src="{{ asset("storage/authors/".$author->img['src']) }}"
+                                                class="avatar rounded-circle me-3" alt="{{ $author->img['alt'] }}">
                                             <div class="d-block">
                                                 <span class="fw-bold">
                                                     @if ( strlen($author->name) > 30 )
@@ -184,7 +184,8 @@
                                                 </span>
                                                 <div class="small text-gray">{{ $author->job_title }}</div>
                                             </div>
-                                        </a></td>
+                                        </a>
+                                    </td>
                                     <td>
                                         <a class="btn btn-link" href="{{ $author->linkedin }}" target="_blank">link</a>
                                     </td>

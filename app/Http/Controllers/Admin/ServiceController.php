@@ -44,8 +44,8 @@ class ServiceController extends Controller
     {
         try {
             $requestData = $request->validated();
-            $requestData['img'] = $this->storeFile('services/images', $request->title, $request->file('img'));
-            $requestData['icon'] = $this->storeFile('services/icons', $request->title, $request->file('icon'));
+            $requestData['img']['src'] = $this->storeImage('services/images', $request->title, $request->file('img'));
+            $requestData['icon']['src'] = $this->storeImage('services/icons', $request->title, $request->file('icon'));
             Service::create($requestData);
 
             return to_route("admin.service.index")->with("success", "Service store successfully");
@@ -75,29 +75,31 @@ class ServiceController extends Controller
     public function update(UpdateServiceRequest $request, Service $service)
     {
         $requestData = $request->validated();
+        $requestData['img']['src'] = $service->img['src'];
+        $requestData['icon']['src'] = $service->icon['src'];
 
         try {
             if ($request->hasFile('img')) {
-                Storage::disk('public')->delete("services/images/$service->img");
-                $requestData['img'] = $this->storeFile('services/images', $request->title, $request->file('img'));
+                Storage::disk('public')->delete("services/images/".$service->img['src']);
+                $requestData['img']['src'] = $this->storeImage('services/images', $request->title, $request->file('img'));
             }
 
             if ($request->hasFile('icon')) {
-                Storage::disk('public')->delete("services/icons/$service->icon");
-                $requestData['icon'] = $this->storeFile('services/icons', $request->title, $request->file('icon'));
+                Storage::disk('public')->delete("services/icons/".$service->icon['src']);
+                $requestData['icon']['src'] = $this->storeImage('services/icons', $request->title, $request->file('icon'));
             }
 
             if ($service->name !== $request->validated('title')) {
                 if (!$request->hasFile('img')) {
-                    $new_img_name = Str::slug($request->validated('title')) . '.' . Str::afterLast($service->img, '.');
-                    rename("storage/services/images/$service->img", "storage/services/images/$new_img_name");
-                    $requestData['img'] = $new_img_name;
+                    $new_img_name = Str::slug($request->validated('title')) . '.' . Str::afterLast($service->img['src'], '.');
+                    rename("storage/services/images/".$service->img['src'], "storage/services/images/$new_img_name");
+                    $requestData['img']['src'] = $new_img_name;
                 }
 
                 if (!$request->hasFile('icon')) {
-                    $new_icon_name = Str::slug($request->validated('title')) . '.' . Str::afterLast($service->icon, '.');
-                    rename("storage/services/icons/$service->icon", "storage/services/icons/$new_icon_name");
-                    $requestData['icon'] = $new_icon_name;
+                    $new_icon_name = Str::slug($request->validated('title')) . '.' . Str::afterLast($service->icon['src'], '.');
+                    rename("storage/services/icons/".$service->icon['src'], "storage/services/icons/$new_icon_name");
+                    $requestData['icon']['src'] = $new_icon_name;
                 }
             }
 
@@ -112,7 +114,7 @@ class ServiceController extends Controller
     public function destroy(Service $service)
     {
         try {
-            Storage::disk('public')->delete(["services/images/$service->img", "services/icons/$service->icon"]);
+            Storage::disk('public')->delete(["services/images/".$service->img['src'], "services/icons/".$service->icon['src']]);
             $service->delete();
 
             return to_route("admin.service.index")->with(["success" => " Service deleted successfully"]);
@@ -144,7 +146,7 @@ class ServiceController extends Controller
                 $services = Service::findOrFail($request->id);
                 Service::destroy($request->id);
                 foreach ($services as $service) {
-                    Storage::disk('public')->delete(["services/images/$service->img", "services/icons/$service->icon"]);
+                    Storage::disk('public')->delete(["services/images/".$service->img['src'], "services/icons/".$service->icon['src']]);
                 }
             }
 

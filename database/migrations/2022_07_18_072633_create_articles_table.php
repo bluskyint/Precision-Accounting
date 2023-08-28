@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('seo_description', 1000);
             $table->string('seo_keywords', 1000);
             $table->string('pinned' , 1)->default('0');
-            $table->string('img');
+            $table->json('img');
             $table->timestamps();
         });
     }

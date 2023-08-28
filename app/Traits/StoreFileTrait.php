@@ -7,10 +7,10 @@ use Illuminate\Support\Str;
 
 trait StoreFileTrait
 {
-    public function storeFile(string $filePath, string $fileNameRef, $file)
+    public function storeImage(string $filePath, string $fileNameRef, $file): string
     {
-        $file_name = Str::slug($fileNameRef) . '.' . $file->getClientOriginalExtension();
-        $file->storeAs($filePath, $file_name, 'public');
+        $file_name = Str::slug($fileNameRef) . '.' . $file['src']->getClientOriginalExtension();
+        $file['src']->storeAs($filePath, $file_name, 'public');
 
         return $file_name;
     }

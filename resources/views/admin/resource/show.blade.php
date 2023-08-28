@@ -49,11 +49,15 @@
                                         </tr> --}}
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Image </td>
-                                            <td class="resource-image">
-                                                <a class="show-img-container" href="{{ asset("storage/resources/$resource->img") }}" target="_blank">
-                                                    <img src="{{ asset("storage/resources/$resource->img") }}" alt="resource-image">
+                                            <td class="article-image">
+                                                <a class="show-img-container" href="{{ asset('storage/resources/'.$resource->img['src']) }}" target="_blank">
+                                                    <img src="{{ asset('storage/resources/'.$resource->img['src']) }}" alt="{{ $resource->img['alt'] }}">
                                                 </a>
                                             </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Image Alternative Text </td>
+                                            <td> {{ $resource->img['alt'] }} </td>
                                         </tr>
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Title </td>

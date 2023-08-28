@@ -173,8 +173,8 @@
                                         </div>
                                     </td>
                                     <td><a href="{{ route('admin.member.show', $member->id) }}" class="d-flex align-items-center"><img
-                                                src="{{ asset("storage/members/$member->img") }}"
-                                                class="avatar rounded-circle me-3" alt="member-image">
+                                                src="{{ asset("storage/members/".$member->img['src']) }}"
+                                                class="avatar rounded-circle me-3" alt="{{ $member->img['alt'] }}">
                                             <div class="d-block">
                                                 <span class="fw-bold">
                                                     @if ( strlen($member->name) > 30 )

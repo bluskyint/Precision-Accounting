@@ -40,7 +40,7 @@ class MemberController extends Controller
     {
         try {
             $requestData = $request->validated();
-            $requestData['img'] = $this->storeFile('members', $request->name, $request->file('img'));
+            $requestData['img']['src'] = $this->storeImage('members', $request->name, $request->file('img'));
             Member::create($requestData);
 
             return to_route("admin.member.index")->with("success", "Member store successfully");
@@ -65,17 +65,18 @@ class MemberController extends Controller
     public function update(UpdateMemberRequest $request, Member $member)
     {
         $requestData = $request->validated();
+        $requestData['img']['src'] = $member->img['src'];
 
         try {
             if ($request->hasFile('img')) {
-                Storage::disk('public')->delete("members/$member->img");
-                $requestData['img'] = $this->storeFile('members', $request->name, $request->file('img'));
+                Storage::disk('public')->delete("members/".$member->img['src']);
+                $requestData['img']['src'] = $this->storeImage('members', $request->name, $request->file('img'));
             }
 
             if ($member->name !== $request->validated('name') && !$request->hasFile('img')) {
-                $new_file_name = Str::slug($request->validated('name')) . '.' . Str::afterLast($member->img, '.');
-                rename("storage/members/$member->img", "storage/members/$new_file_name");
-                $requestData['img'] = $new_file_name;
+                $new_file_name = Str::slug($request->validated('name')) . '.' . Str::afterLast($member->img['src'], '.');
+                rename("storage/members/".$member->img['src'], "storage/members/$new_file_name");
+                $requestData['img']['src'] = $new_file_name;
             }
 
             $member->update($requestData);
@@ -90,7 +91,7 @@ class MemberController extends Controller
     public function destroy(Member $member)
     {
         try {
-            Storage::disk('public')->delete("members/$member->img");
+            Storage::disk('public')->delete("members/".$member->img['src']);
             $member->delete();
 
             return to_route("admin.member.index")->with(["success" => " Member deleted successfully"]);
@@ -121,7 +122,7 @@ class MemberController extends Controller
                 $members = Member::findOrFail($request->id);
                 Member::destroy($request->id);
                 foreach ($members as $member) {
-                    Storage::disk('public')->delete("members/$member->img");
+                    Storage::disk('public')->delete("members/".$member->img['src']);
                 }
             }
 

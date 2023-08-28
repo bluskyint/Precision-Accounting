@@ -36,7 +36,8 @@ use Illuminate\Foundation\Http\FormRequest;
             'author_id'          => ['required' , 'exists:authors,id'],
             'pinned'          => ['required' , 'string' , 'max:1'],
             'category_id'     => ['required' , 'numeric'],
-            'img'             => ['required' , 'mimes:webp' , 'max:2048'],
+            'img.src'             => ['required' , 'mimes:webp' , 'max:2048'],
+            'img.alt'             => ['required' , 'string' , 'max:255'],
         ];
     }
 }

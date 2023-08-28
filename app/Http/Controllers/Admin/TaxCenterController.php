@@ -43,7 +43,7 @@ class TaxCenterController extends Controller
     {
         try {
             $requestData = $request->validated();
-            $requestData['img'] = $this->storeFile('taxCenters', $request->title, $request->file('img'));
+            $requestData['img']['src'] = $this->storeImage('taxCenters', $request->title, $request->file('img'));
             TaxCenter::create($requestData);
 
             return to_route("admin.tax_center.index")->with("success", "TaxCenter store successfully");
@@ -72,17 +72,18 @@ class TaxCenterController extends Controller
     public function update(UpdateTaxCenterRequest $request, TaxCenter $taxCenter)
     {
         $requestData = $request->validated();
+        $requestData['img']['src'] = $taxCenter->img['src'];
 
         try {
             if ($request->hasFile('img')) {
-                Storage::disk('public')->delete("taxCenters/$taxCenter->img");
-                $requestData['img'] = $this->storeFile('taxCenters', $request->title, $request->file('img'));
+                Storage::disk('public')->delete("taxCenters/".$taxCenter->img['src']);
+                $requestData['img']['src'] = $this->storeImage('taxCenters', $request->title, $request->file('img'));
             }
 
             if ($taxCenter->title !== $request->validated('title') && !$request->hasFile('img')) {
-                $new_file_name = Str::slug($request->validated('title')) . '.' . Str::afterLast($taxCenter->img, '.');
-                rename("storage/taxCenters/$taxCenter->img", "storage/taxCenters/$new_file_name");
-                $requestData['img'] = $new_file_name;
+                $new_file_name = Str::slug($request->validated('title')) . '.' . Str::afterLast($taxCenter->img['src'], '.');
+                rename("storage/taxCenters/".$taxCenter->img['src'], "storage/taxCenters/$new_file_name");
+                $requestData['img']['src'] = $new_file_name;
             }
 
             $taxCenter->update($requestData);
@@ -97,7 +98,7 @@ class TaxCenterController extends Controller
     public function destroy(TaxCenter $taxCenter)
     {
         try {
-            Storage::disk('public')->delete("taxCenters/$taxCenter->img");
+            Storage::disk('public')->delete("taxCenters/".$taxCenter->img['src']);
             $taxCenter->delete();
 
             return to_route("admin.tax_center.index")->with(["success" => "Tax Center deleted successfully"]);
@@ -126,7 +127,7 @@ class TaxCenterController extends Controller
                 $taxCenters = TaxCenter::findOrFail($request->id);
                 TaxCenter::destroy($request->id);
                 foreach ($taxCenters as $taxCenter) {
-                    Storage::disk('public')->delete("taxCenters/$taxCenter->img");
+                    Storage::disk('public')->delete("taxCenters/".$taxCenter->img['src']);
                 }
             }
 

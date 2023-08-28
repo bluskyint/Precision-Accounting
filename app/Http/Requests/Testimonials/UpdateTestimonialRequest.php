@@ -29,7 +29,8 @@ class UpdateTestimonialRequest extends FormRequest
             'job_title'      => ['nullable' , 'string' , 'max:100' ],
             'visibility'     => ['required' , 'integer' , 'max:1' ],
             'content'        => ['required' , 'string' , 'max:1000'],
-            'img'            => ['nullable' , 'mimes:webp' , 'max:2048'],
+            'img.src'             => 'nullable|mimes:webp|max:2048',
+            'img.alt'             => 'required|string|max:255',
         ];
     }
 }

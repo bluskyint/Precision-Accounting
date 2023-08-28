@@ -34,8 +34,10 @@ class UpdateServiceRequest extends FormRequest
             'parent_id'       => ['nullable' , 'numeric' , 'digits_between:1,11' ],
             'author_id'          => ['required' , 'exists:authors,id'],
             'content'         => ['required' , 'string' ],
-            'icon'            => ['nullable' , 'mimes:jpeg,png,jpg,webp' , 'max:2048'],
-            'img'             => ['nullable' , 'mimes:webp' , 'max:2048'],
+            'icon.src'        => 'nullable|mimes:jpeg,png,jpg,webp|max:2048',
+            'icon.alt'        => 'required|string|max:255',
+            'img.src'             => 'nullable|mimes:webp|max:2048',
+            'img.alt'             => 'required|string|max:255',
         ];
     }
 }

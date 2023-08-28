@@ -30,7 +30,8 @@ use Illuminate\Foundation\Http\FormRequest;
             'linkedin'       => ['required' , 'string' , 'url', 'max:255'],
             'info'       => ['required', 'string'],
             'slider_show'     => ['required' , 'string' , 'max:1'],
-            'img'             => ['required' , 'mimes:webp' , 'max:2048'],
+            'img.src'             => 'required|mimes:webp|max:2048',
+            'img.alt'             => 'required|string|max:255',
         ];
     }
 }

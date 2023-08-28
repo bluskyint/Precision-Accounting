@@ -41,7 +41,7 @@ class TestimonialController extends Controller
     {
         try {
             $requestData = $request->validated();
-            $requestData['img'] = $this->storeFile('testimonials', $request->name, $request->file('img'));
+            $requestData['img'] = $this->storeImage('testimonials', $request->name, $request->file('img'));
             Testimonial::create($requestData);
 
             return to_route("admin.testimonial.index")->with("success", "Testimonial store successfully");
@@ -72,7 +72,7 @@ class TestimonialController extends Controller
         try {
             if ($request->hasFile('img')) {
                 Storage::disk('public')->delete("testimonials/$testimonial->img");
-                $requestData['img'] = $this->storeFile('testimonials', $request->name, $request->file('img'));
+                $requestData['img'] = $this->storeImage('testimonials', $request->name, $request->file('img'));
             }
 
             if ($testimonial->name !== $request->validated('name') && !$request->hasFile('img')) {

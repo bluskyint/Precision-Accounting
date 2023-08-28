@@ -26,8 +26,8 @@ return new class extends Migration
             $table->integer('parent_id')->nullable();
             $table->text('content');
             $table->string('visibility', 1 )->default('1');
-            $table->string('icon');
-            $table->string('img');
+            $table->json('icon');
+            $table->json('img');
             $table->timestamps();
         });
     }

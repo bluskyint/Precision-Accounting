@@ -26,6 +26,10 @@ class Member extends Model
         'img'
     ];
 
+    protected $casts = [
+        'img' => 'array'
+    ];
+
     public function sluggable(): array
     {
         return [

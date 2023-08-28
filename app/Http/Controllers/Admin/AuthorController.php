@@ -37,8 +37,8 @@ class AuthorController extends Controller
     {
         try {
             $requestData = $request->validated();
-            $requestData['img'] = $this->storeFile('authors', $request->name, $request->file('img'));
-            Author::create($requestData);
+            $requestData['img']['src'] = $this->storeImage('authors', $request->name, $request->file('img'));
+            $author = Author::create($requestData);
 
             return to_route("admin.author.index")->with("success", "Author store successfully");
 
@@ -62,17 +62,18 @@ class AuthorController extends Controller
     public function update(UpdateAuthorRequest $request, Author $author)
     {
         $requestData = $request->validated();
+        $requestData['img']['src'] = $author->img['src'];
 
         try {
             if ($request->hasFile('img')) {
-                Storage::disk('public')->delete("authors/$author->img");
-                $requestData['img'] = $this->storeFile('authors', $request->name, $request->file('img'));
+                Storage::disk('public')->delete("authors/".$author->img['src']);
+                $requestData['img']['src'] = $this->storeImage('authors', $request->name, $request->file('img'));
             }
 
             if ($author->name !== $request->validated('name') && !$request->hasFile('img')) {
-                $new_file_name = Str::slug($request->validated('name')) . '.' . Str::afterLast($author->img, '.');
-                rename("storage/authors/$author->img", "storage/authors/$new_file_name");
-                $requestData['img'] = $new_file_name;
+                $new_file_name = Str::slug($request->validated('name')) . '.' . Str::afterLast($author->img['src'], '.');
+                rename("storage/authors/".$author->img['src'], "storage/authors/$new_file_name");
+                $requestData['img']['src'] = $new_file_name;
             }
 
             $author->update($requestData);
@@ -87,7 +88,7 @@ class AuthorController extends Controller
     public function destroy(Author $author)
     {
         try {
-            Storage::disk('public')->delete("authors/$author->img");
+            Storage::disk('public')->delete("authors/".$author->img['src']);
             $author->delete();
 
             return to_route("admin.author.index")->with(["success" => " Author deleted successfully"]);
@@ -118,7 +119,7 @@ class AuthorController extends Controller
                 $authors = Author::findOrFail($request->id);
                 Author::destroy($request->id);
                 foreach ($authors as $author) {
-                    Storage::disk('public')->delete("authors/$author->img");
+                    Storage::disk('public')->delete("authors/".$author->img['src']);
                 }
             }
 

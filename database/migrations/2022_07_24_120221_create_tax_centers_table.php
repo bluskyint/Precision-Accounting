@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('seo_keywords', 1000);
             $table->string('visibility', 1 )->default('1');
             $table->text('content');
-            $table->string('img');
+            $table->json('img');
             $table->timestamps();
         });
     }

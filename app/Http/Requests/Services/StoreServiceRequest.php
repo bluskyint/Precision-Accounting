@@ -35,8 +35,10 @@ class StoreServiceRequest extends FormRequest
             'parent_id'       => ['nullable' , 'numeric' , 'digits_between:1,11' ],
             'author_id'          => ['required' , 'exists:authors,id'],
             'content'         => ['required' , 'string' ],
-            'icon'            => ['required' , 'mimes:jpeg,png,jpg,webp' , 'max:2048'],
-            'img'             => ['required' , 'mimes:webp' , 'max:2048'],
+            'icon.src'        => 'required|mimes:jpeg,png,jpg,webp|max:2048',
+            'icon.alt'        => 'required|string|max:255',
+            'img.src'         => 'required|mimes:webp|max:2048',
+            'img.alt'         => 'required|string|max:255',
         ];
     }
 }

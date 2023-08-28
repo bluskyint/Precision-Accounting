@@ -48,7 +48,7 @@ class ArticleController extends Controller
     {
         try {
             $requestData = $request->validated();
-            $requestData['img'] = $this->storeFile('articles', $request->title, $request->file('img'));
+            $requestData['img']['src'] = $this->storeImage('articles', $request->title, $request->file('img'));
             Article::create($requestData);
 
             return to_route("admin.article.index")->with("success", "Article store successfully");
@@ -77,17 +77,18 @@ class ArticleController extends Controller
     public function update(UpdateArticleRequest $request, Article $article)
     {
         $requestData = $request->validated();
+        $requestData['img']['src'] = $article->img['src'];
 
         try {
             if ($request->hasFile('img')) {
-                Storage::disk('public')->delete("articles/$article->img");
-                $requestData['img'] = $this->storeFile('articles', $request->title, $request->file('img'));
+                Storage::disk('public')->delete("articles/".$article->img['src']);
+                $requestData['img']['src'] = $this->storeImage('articles', $request->title, $request->file('img'));
             }
 
             if ($article->title !== $request->validated('title') && !$request->hasFile('img')) {
-                $new_file_name = Str::slug($request->validated('title')) . '.' . Str::afterLast($article->img, '.');
-                rename("storage/articles/$article->img", "storage/articles/$new_file_name");
-                $requestData['img'] = $new_file_name;
+                $new_file_name = Str::slug($request->validated('title')) . '.' . Str::afterLast($article->img['src'], '.');
+                rename("storage/articles/".$article->img['src'], "storage/articles/$new_file_name");
+                $requestData['img']['src'] = $new_file_name;
             }
 
             $article->update($requestData);
@@ -102,7 +103,7 @@ class ArticleController extends Controller
     public function destroy(Article $article)
     {
         try {
-            Storage::disk('public')->delete("articles/$article->img");
+            Storage::disk('public')->delete("articles/".$article->img['src']);
             $article->delete();
 
             return to_route("admin.article.index")->with(["success" => "Article deleted successfully"]);
@@ -134,7 +135,7 @@ class ArticleController extends Controller
                 $articles = Article::findOrFail($request->id);
                 Article::destroy($request->id);
                 foreach ($articles as $article) {
-                    Storage::disk('public')->delete("articles/$article->img");
+                    Storage::disk('public')->delete("articles/".$article->img['src']);
                 }
             }
 

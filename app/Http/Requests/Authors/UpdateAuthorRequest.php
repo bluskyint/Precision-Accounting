@@ -40,7 +40,8 @@ class UpdateAuthorRequest extends FormRequest
             'linkedin' => 'required|url|max:255',
             'job_title' => 'required|string|max:255',
             'info'       => 'required|string',
-            'img' => 'nullable|image|mimes:webp|max:2048'
+            'img.src'             => 'nullable|mimes:webp|max:2048',
+            'img.alt'             => 'required|string|max:255',
         ];
     }
 }

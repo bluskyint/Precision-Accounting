@@ -36,7 +36,8 @@ class UpdateArticleRequest extends FormRequest
             'author_id'          => ['required' , 'exists:authors,id'],
             'pinned'          => ['required' , 'string' , 'max:1'],
             'category_id'     => ['required' , 'numeric'],
-            'img'             => ['nullable' , 'mimes:webp' , 'max:2048'],
+            'img.src'             => ['nullable' , 'mimes:webp' , 'max:2048'],
+            'img.alt'             => ['required' , 'string' , 'max:255'],
         ];
     }
 }

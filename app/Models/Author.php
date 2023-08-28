@@ -19,6 +19,10 @@ class Author extends Model
         'img'
     ];
 
+    protected $casts = [
+        'img' => 'array'
+    ];
+
     public function articles(): HasMany
     {
         return $this->hasMany(Article::class);

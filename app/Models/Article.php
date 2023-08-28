@@ -33,6 +33,10 @@ class Article extends Model
         'img'
     ];
 
+    protected $casts = [
+        'img' => 'array'
+    ];
+
 
     ############################## Relations ################################
     public function category(){

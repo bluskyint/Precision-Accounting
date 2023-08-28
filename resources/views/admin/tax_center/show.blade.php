@@ -49,11 +49,15 @@
                                         </tr> --}}
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Image </td>
-                                            <td class="tax_center-image">
-                                                <a class="show-img-container" href="{{ asset('storage/taxCenterS/'.$tax_center->img) }}" target="_blank">
-                                                    <img src="{{ asset('storage/taxCenterS/'.$tax_center->img) }}" alt="tax_center-image">
+                                            <td class="article-image">
+                                                <a class="show-img-container" href="{{ asset('storage/taxCenters/'.$tax_center->img['src']) }}" target="_blank">
+                                                    <img src="{{ asset('storage/taxCenters/'.$tax_center->img['src']) }}" alt="{{ $tax_center->img['alt'] }}">
                                                 </a>
                                             </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Image Alternative Text </td>
+                                            <td> {{ $tax_center->img['alt'] }} </td>
                                         </tr>
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Title </td>

@@ -91,17 +91,25 @@
                                             <label for="img" class="form-label d-flex align-items-center">
                                                 <i class="fa-solid fa-image"></i> &nbsp;  Image
                                                 <div class="show-img-container">
-                                                    <a href="{{ asset("storage/authors/$author->img") }}"  target="_blank">
-                                                        <img src="{{ asset("storage/authors/$author->img") }}" alt="author-img">
+                                                    <a href="{{ asset("storage/authors/".$author->img['src']) }}"  target="_blank">
+                                                        <img src="{{ asset("storage/authors/".$author->img['src']) }}" alt="{{ $author->img['alt'] }}">
                                                     </a>
                                                 </div>
                                             </label>
-                                            <input name="img" type="file" class="form-control @error('img') is-invalid @enderror" id="img"  />
-                                            @error('img')
-                                                <small class="form-text text-danger">{{ $message }}</small>
+                                            <input name="img[src]" type="file" class="form-control @error('img.src') is-invalid @enderror" id="img"  />
+                                            @error('img.src')
+                                            <small class="form-text text-danger">{{ $message }}</small>
                                             @enderror
                                         </div>
 
+                                        <!----------------- Img Alternative Text -------------------->
+                                        <div class="mb-4 input-content">
+                                            <label for="alt_text" class="capitalize"> <i class="fa-solid fa-image"></i> Image Alternative Text </label>
+                                            <input type="text" name="img[alt]" id="alt_text" class="form-control @error('img.alt') is-invalid @enderror" value="{{ $author->img['alt'] }}" aria-describedby="emailHelp" placeholder="Type Image Alt Text..." autocomplete="nope" />
+                                            @error('img.alt')
+                                            <small class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
 
                                         <button type="submit" class="btn btn-primary float-right" > <i class="fa-solid fa-floppy-disk"></i> Save </button>
 

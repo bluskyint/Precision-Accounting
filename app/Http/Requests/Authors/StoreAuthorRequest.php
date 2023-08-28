@@ -29,7 +29,8 @@ class StoreAuthorRequest extends FormRequest
             'linkedin' => 'required|string|url|max:255',
             'job_title' => 'required|string|max:255',
             'info'       => 'required|string',
-            'img' => 'required|image|mimes:webp|max:2048'
+            'img.src'             => 'required|mimes:webp|max:2048',
+            'img.alt'             => 'required|string|max:255',
         ];
     }
 }

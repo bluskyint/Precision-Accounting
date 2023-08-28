@@ -146,20 +146,28 @@
                                             @enderror
                                         </div>
 
-
                                         <!----------------- Img -------------------->
                                         <div class="mb-3 input-content">
                                             <label for="img" class="form-label d-flex align-items-center">
                                                 <i class="fa-solid fa-image"></i> &nbsp;  Image
                                                 <div class="show-img-container">
-                                                    <a href="{{ asset("storage/taxCenterS/".$tax_center->img) }}"  target="_blank">
-                                                        <img src="{{ asset("storage/taxCenterS/".$tax_center->img) }}" alt="tax_center-img">
+                                                    <a href="{{ asset("storage/taxCenters/".$tax_center->img['src']) }}"  target="_blank">
+                                                        <img src="{{ asset("storage/taxCenters/".$tax_center->img['src']) }}" alt="{{ $tax_center->img['alt'] }}">
                                                     </a>
                                                 </div>
                                             </label>
-                                            <input name="img" type="file" class="form-control @error('img') is-invalid @enderror" id="img"  />
-                                            @error('img')
-                                                <small class="form-text text-danger">{{ $message }}</small>
+                                            <input name="img[src]" type="file" class="form-control @error('img.src') is-invalid @enderror" id="img"  />
+                                            @error('img.src')
+                                            <small class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+
+                                        <!----------------- Img Alternative Text -------------------->
+                                        <div class="mb-4 input-content">
+                                            <label for="alt_text" class="capitalize"> <i class="fa-solid fa-image"></i> Image Alternative Text </label>
+                                            <input type="text" name="img[alt]" id="alt_text" class="form-control @error('img.alt') is-invalid @enderror" value="{{ $tax_center->img['alt'] }}" aria-describedby="emailHelp" placeholder="Type Image Alt Text..." autocomplete="nope" />
+                                            @error('img.alt')
+                                            <small class="form-text text-danger">{{ $message }}</small>
                                             @enderror
                                         </div>
 

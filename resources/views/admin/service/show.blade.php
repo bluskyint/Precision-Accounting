@@ -50,10 +50,14 @@
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Image </td>
                                             <td class="service-image">
-                                                <a class="show-img-container" href="{{ asset('storage/services/images/'.$service->img) }}" target="_blank">
-                                                    <img src="{{ asset('storage/services/images/'.$service->img) }}" alt="service-image">
+                                                <a class="show-img-container" href="{{ asset('storage/services/images/'.$service->img['src']) }}" target="_blank">
+                                                    <img src="{{ asset('storage/services/images/'.$service->img['src']) }}" alt="{{ $service->img['alt'] }}">
                                                 </a>
                                             </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Image Alternative Text </td>
+                                            <td> {{ $service->img['alt'] }} </td>
                                         </tr>
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Title </td>
@@ -78,10 +82,14 @@
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Icon </td>
                                             <td class="service-image">
-                                                <a class="show-img-container" href="{{ asset('storage/services/icons/'.$service->icon) }}" target="_blank">
-                                                    <img src="{{ asset('storage/services/icons/'.$service->icon) }}" alt="service-image" style="width:80px !important">
+                                                <a class="show-img-container" href="{{ asset('storage/services/icons/'.$service->icon['src']) }}" target="_blank">
+                                                    <img src="{{ asset('storage/services/icons/'.$service->icon['src']) }}" alt="{{ $service->icon['alt'] }}" style="width:80px !important">
                                                 </a>
                                             </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Icon Alternative Text </td>
+                                            <td> {{ $service->icon['alt'] }} </td>
                                         </tr>
                                         <tr>
                                             <td class="text-capitalize content"> <i class="fa-solid fa-align-left"></i> Content </td>

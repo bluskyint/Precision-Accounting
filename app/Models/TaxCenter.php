@@ -25,6 +25,9 @@ class TaxCenter extends Model
         'img'
     ];
 
+    protected $casts = [
+        'img' => 'array'
+    ];
 
     public function author(): BelongsTo
     {

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('linkedin');
             $table->text('info');
             $table->string('slider_show' , 1 )->default('0');
-            $table->string('img');
+            $table->json('img');
             $table->timestamps();
         });
     }

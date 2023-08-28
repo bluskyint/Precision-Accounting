@@ -50,11 +50,15 @@
 
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Image </td>
-                                            <td class="member-image">
-                                                <a class="show-img-container" href="{{ asset("storage/members/$member->img") }}" target="_blank">
-                                                    <img src="{{ asset("storage/members/$member->img") }}" alt="member-image">
+                                            <td class="article-image">
+                                                <a class="show-img-container" href="{{ asset('storage/members/'.$member->img['src']) }}" target="_blank">
+                                                    <img src="{{ asset('storage/members/'.$member->img['src']) }}" alt="{{ $member->img['alt'] }}">
                                                 </a>
                                             </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Image Alternative Text </td>
+                                            <td> {{ $member->img['alt'] }} </td>
                                         </tr>
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Name </td>

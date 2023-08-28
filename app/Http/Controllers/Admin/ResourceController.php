@@ -41,7 +41,7 @@ class ResourceController extends Controller
     {
         try {
             $requestData = $request->validated();
-            $requestData['img'] = $this->storeFile('resources', $request->title, $request->file('img'));
+            $requestData['img']['src'] = $this->storeImage('resources', $request->title, $request->file('img'));
             Resource::create($requestData);
 
             return to_route("admin.resource.index")->with("success", "Resource store successfully");
@@ -68,17 +68,18 @@ class ResourceController extends Controller
     public function update(UpdateResourceRequest $request, Resource $resource)
     {
         $requestData = $request->validated();
+        $requestData['img']['src'] = $resource->img['src'];
 
         try {
             if ($request->hasFile('img')) {
-                Storage::disk('public')->delete("resources/$resource->img");
-                $requestData['img'] = $this->storeFile('resources', $request->title, $request->file('img'));
+                Storage::disk('public')->delete("resources/".$resource->img['src']);
+                $requestData['img']['src'] = $this->storeImage('resources', $request->title, $request->file('img'));
             }
 
             if ($resource->title !== $request->validated('title') && !$request->hasFile('img')) {
-                $new_file_name = Str::slug($request->validated('title')) . '.' . Str::afterLast($resource->img, '.');
-                rename("storage/resources/$resource->img", "storage/resources/$new_file_name");
-                $requestData['img'] = $new_file_name;
+                $new_file_name = Str::slug($request->validated('title')) . '.' . Str::afterLast($resource->img['src'], '.');
+                rename("storage/resources/".$resource->img['src'], "storage/resources/$new_file_name");
+                $requestData['img']['src'] = $new_file_name;
             }
 
             $resource->update($requestData);
@@ -93,7 +94,7 @@ class ResourceController extends Controller
     public function destroy(Resource $resource)
     {
         try {
-            Storage::disk('public')->delete("resources/$resource->img");
+            Storage::disk('public')->delete("resources/".$resource->img['src']);
             $resource->delete();
 
             return to_route("admin.resource.index")->with(["success" => "Resource deleted successfully"]);
@@ -125,7 +126,7 @@ class ResourceController extends Controller
                 $resources = Resource::findOrFail($request->id);
                 Resource::destroy($request->id);
                 foreach ($resources as $resource) {
-                    Storage::disk('public')->delete("resources/$resource->img");
+                    Storage::disk('public')->delete("resources/".$resource->img['src']);
                 }
             }
 

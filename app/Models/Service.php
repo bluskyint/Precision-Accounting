@@ -26,6 +26,10 @@ class Service extends Model
         'img'
     ];
 
+    protected $casts = [
+        'icon' => 'array',
+        'img' => 'array'
+    ];
 
     public function author(): BelongsTo
     {

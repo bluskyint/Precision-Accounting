@@ -25,4 +25,8 @@ class Resource extends Model
          'subtitle',
          'summary'
     ];
+
+    protected $casts = [
+        'img' => 'array'
+    ];
 }

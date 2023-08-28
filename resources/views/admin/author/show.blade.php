@@ -45,11 +45,15 @@
                                     <tbody>
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Image </td>
-                                            <td class="author-image">
-                                                <a class="show-img-container" href="{{ asset("storage/authors/$author->img") }}" target="_blank">
-                                                    <img src="{{ asset("storage/authors/$author->img") }}" alt="author-image">
+                                            <td class="article-image">
+                                                <a class="show-img-container" href="{{ asset('storage/authors/'.$author->img['src']) }}" target="_blank">
+                                                    <img src="{{ asset('storage/authors/'.$author->img['src']) }}" alt="{{ $author->img['alt'] }}">
                                                 </a>
                                             </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Image Alternative Text </td>
+                                            <td> {{ $author->img['alt'] }} </td>
                                         </tr>
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Name </td>
