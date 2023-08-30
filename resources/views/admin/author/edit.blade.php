@@ -54,7 +54,7 @@
                                         <x-forms.text-input label="LinkedIn Account" name="linkedin" value="{{ $author->linkedin }}" icon-class="fa-solid fa-linkedin" placeholder="Type LinkedIn Account..." />
 
                                         <!----------------- Author Info -------------------->
-                                        <x-forms.ck-editor label="info" name="info" value="{!! $author->info !!}" />
+                                        <x-forms.ck-editor id="editor-no-upload" label="info" name="info" value="{!! $author->info !!}" />
 
                                         <!----------------- Img -------------------->
                                         <x-forms.upload-img-input label="Image" name="img" altTextValue="{{ $author->img['alt'] }}">

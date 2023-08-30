@@ -54,7 +54,7 @@
                                         <x-forms.text-input label="Summary" name="summary" value="{{ $resource->summary }}" icon-class="fa-solid fa-list" placeholder="Type Summary..." />
 
                                         <!----------------- Content -------------------->
-                                        <x-forms.ck-editor label="Content" name="content" value="{!! $resource->content !!}" />
+                                        <x-forms.ck-editor id="editor-no-upload" label="Content" name="content" value="{!! $resource->content !!}" />
 
                                         <!----------------- Img -------------------->
                                         <x-forms.upload-img-input label="Image" name="img" altTextValue="{{ $resource->img['alt'] }}">

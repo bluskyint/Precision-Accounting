@@ -53,8 +53,7 @@
                                         </x-forms.select-option>
 
                                         <!----------------- Content -------------------->
-                                        <x-forms.ck-editor label="Content" name="content" />
-
+                                        <x-forms.ck-editor id="editor-no-upload" label="Content" name="content" />
 
                                         <!----------------- Img -------------------->
                                         <div class="mb-3 input-content">

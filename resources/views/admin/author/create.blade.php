@@ -53,7 +53,7 @@
                                         <x-forms.text-input label="LinkedIn Account" name="linkedin" icon-class="fa-solid fa-linkedin" placeholder="Type LinkedIn Account..." />
 
                                         <!----------------- Author Info -------------------->
-                                        <x-forms.ck-editor label="info" name="info" />
+                                        <x-forms.ck-editor id="editor-no-upload" label="info" name="info" />
 
                                         <!----------------- Img -------------------->
                                         <x-forms.upload-img-input label="Image" name="img" />

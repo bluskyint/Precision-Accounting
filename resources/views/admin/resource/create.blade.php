@@ -53,7 +53,7 @@
                                         <x-forms.text-input label="Summary" name="summary" icon-class="fa-solid fa-list" placeholder="Type Summary..." />
 
                                         <!----------------- Content -------------------->
-                                        <x-forms.ck-editor label="Content" name="content" />
+                                        <x-forms.ck-editor id="editor-no-upload" label="Content" name="content" />
 
                                         <!----------------- Img -------------------->
                                         <x-forms.upload-img-input label="Image" name="img" />

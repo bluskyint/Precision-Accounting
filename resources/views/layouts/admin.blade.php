@@ -549,16 +549,32 @@
     <script src="{{ asset('volt_template_assets/js/custom.js') }}"></script>
     <script src="{{ asset('volt_template_assets/js/select2.min.js') }}"></script>
     <script>
-        ClassicEditor
-            .create( document.querySelector( '#editor' ), {
-                ckfinder: {
-                    // The URL that the images are uploaded to.
-                    uploadUrl: "{{ route('admin.ckeditor.upload', ['_token' => csrf_token()]) }}",
-                }
-            })
-            .catch( error => {
-                console.error( error );
-            });
+        let editor = document.querySelector( '#editor' );
+        let editorNoUpload = document.querySelector( '#editor-no-upload' );
+
+        if (editor) {
+            ClassicEditor
+                .create( document.querySelector( '#editor' ), {
+                    ckfinder: {
+                        // The URL that the images are uploaded to.
+                        uploadUrl: "{{ route('admin.ckeditor.upload', ['_token' => csrf_token()]) }}",
+                    }
+                })
+                .catch( error => {
+                    console.error( error );
+                });
+        }
+
+        if(editorNoUpload) {
+            ClassicEditor
+                .create(document.querySelector( '#editor-no-upload' ), {
+                        removePlugins: [ 'ImageUpload' ]
+                })
+                .catch( error => {
+                    console.error( error );
+                });
+        }
+
     </script>
 </body>
 
