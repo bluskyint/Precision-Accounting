@@ -6,19 +6,16 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TaxCenters\MultiActionTaxCentersRequest;
 use App\Models\Author;
-use App\Traits\StoreFileTrait;
+use App\Traits\StoreContentTrait;
 use Illuminate\Http\Request;
 use App\Models\TaxCenter;
 use App\Http\Requests\TaxCenters\StoreTaxCenterRequest;
 use App\Http\Requests\TaxCenters\UpdateTaxCenterRequest;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 class TaxCenterController extends Controller
 {
-    use StoreFileTrait;
+    use StoreContentTrait;
 
     public function perPage( $num=10 )
     {
@@ -43,7 +40,10 @@ class TaxCenterController extends Controller
     {
         try {
             $requestData = $request->validated();
-            $requestData['img']['src'] = $this->storeImage('taxCenters', $request->title, $request->file('img'));
+
+            $requestData['img']['src'] = $this->storeImage('taxCenters', $requestData['title'], $request->file('img'));
+            $requestData['content'] = $this->moveContentImages($requestData['content'], 'taxCenters/'.Str::slug($requestData['title']));
+
             TaxCenter::create($requestData);
 
             return to_route("admin.tax_center.index")->with("success", "TaxCenter store successfully");
@@ -51,7 +51,6 @@ class TaxCenterController extends Controller
         } catch (\Exception $e) {
             return to_route("admin.tax_center.index")->with("failed", "Error at store operation");
         }
-
     }
 
     public function show($id)
@@ -76,14 +75,12 @@ class TaxCenterController extends Controller
 
         try {
             if ($request->hasFile('img')) {
+                $requestData['img']['src'] = $this->storeImage('taxCenters', $taxCenter->title, $request->file('img'));
                 Storage::disk('public')->delete("taxCenters/".$taxCenter->img['src']);
-                $requestData['img']['src'] = $this->storeImage('taxCenters', $request->title, $request->file('img'));
             }
 
-            if ($taxCenter->title !== $request->validated('title') && !$request->hasFile('img')) {
-                $new_file_name = Str::slug($request->validated('title')) . '.' . Str::afterLast($taxCenter->img['src'], '.');
-                rename("storage/taxCenters/".$taxCenter->img['src'], "storage/taxCenters/$new_file_name");
-                $requestData['img']['src'] = $new_file_name;
+            if (Str::contains($requestData['content'], '/tempContentImages/')) {
+                $requestData['content'] = $this->moveContentImages($requestData['content'], "taxCenters/".Str::slug($requestData['title']));
             }
 
             $taxCenter->update($requestData);
@@ -98,7 +95,7 @@ class TaxCenterController extends Controller
     public function destroy(TaxCenter $taxCenter)
     {
         try {
-            Storage::disk('public')->delete("taxCenters/".$taxCenter->img['src']);
+            Storage::disk('public')->deleteDirectory("taxCenters/".Str::slug($taxCenter->title));
             $taxCenter->delete();
 
             return to_route("admin.tax_center.index")->with(["success" => "Tax Center deleted successfully"]);
@@ -127,7 +124,7 @@ class TaxCenterController extends Controller
                 $taxCenters = TaxCenter::findOrFail($request->id);
                 TaxCenter::destroy($request->id);
                 foreach ($taxCenters as $taxCenter) {
-                    Storage::disk('public')->delete("taxCenters/".$taxCenter->img['src']);
+                    Storage::disk('public')->deleteDirectory("taxCenters/".Str::slug($taxCenter->title));
                 }
             }
 

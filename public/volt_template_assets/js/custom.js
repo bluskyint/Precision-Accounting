@@ -48,14 +48,8 @@ scrollBtn.addEventListener('click', event => {
 =====================================================*/
 $(document).ready(function () {
 
-    // Select Option Service
-    $("select#service").select2( {
-        placeholder: "Choose Parent Service...",
-    });
-    // visibility
-    $("select#visibility").select2( {
-
-    });
+    // Global Select Option
+    $("select.custom-select").select2({});
     // Article , Category
     $("select#category").select2( {
         placeholder: "Choose Article Category...",

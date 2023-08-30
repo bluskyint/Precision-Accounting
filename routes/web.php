@@ -80,6 +80,8 @@ Route::group([ "prefix" => "admin" , 'middleware' => "admin" , "as" => "admin." 
     Route::resource('category', App\Http\Controllers\Admin\CategoryController::class)->except('destroy');
     Route::get('category/destroy/{id}' , [App\Http\Controllers\Admin\CategoryController::class, 'destroy'] )->name("category.destroy");
 
+    //CKEditor Image Upload
+    Route::post('/ckeditor/upload', [\App\Http\Controllers\Admin\CKEditorUploadImageController::class, 'upload'])->name('ckeditor.upload');
 
     // articles
     Route::get('article/perPage/{num}' , [App\Http\Controllers\Admin\ArticleController::class, 'perPage'])->name("article.perPage");

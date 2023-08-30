@@ -42,11 +42,21 @@
 
 
     <!--------- CkEditor 4 -------->
-    <script src="https://cdn.ckeditor.com/4.19.1/standard/ckeditor.js"></script>
+    <script src="{{asset('assets/vendor/ckeditor5-39.0.1-byht3haf57nk/build/ckeditor.js')}}"></script>
 
 </head>
 
 <body>
+    <style>
+        .ck-editor__editable[role="textbox"],
+        .ck-source-editing-area {
+            /* editing area */
+            min-height: 250px;
+            max-height: 250px;
+            overflow-y: auto;
+        }
+    </style>
+
     <div id="admin">
 
 
@@ -538,7 +548,18 @@
         crossorigin="anonymous"></script>
     <script src="{{ asset('volt_template_assets/js/custom.js') }}"></script>
     <script src="{{ asset('volt_template_assets/js/select2.min.js') }}"></script>
-
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#editor' ), {
+                ckfinder: {
+                    // The URL that the images are uploaded to.
+                    uploadUrl: "{{ route('admin.ckeditor.upload', ['_token' => csrf_token()]) }}",
+                }
+            })
+            .catch( error => {
+                console.error( error );
+            });
+    </script>
 </body>
 
 </html>

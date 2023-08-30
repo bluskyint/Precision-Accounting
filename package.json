@@ -27,6 +27,7 @@
         "webpack-livereload-plugin": "^1.2.0"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-upload": "^39.0.1",
         "autoprefixer": "10.4.5"
     }
 }

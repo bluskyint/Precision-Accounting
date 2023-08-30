@@ -43,10 +43,6 @@
                             <div class="table-responsive">
                                 <table class="table align-items-center table-flush show-data">
                                     <tbody>
-                                        {{-- <tr>
-                                            <td class="text-capitalize"> # ID </td>
-                                            <td> {{ $tax_center->id != "" ? $tax_center->id : '-'}} </td>
-                                        </tr> --}}
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Image </td>
                                             <td class="article-image">
@@ -60,24 +56,24 @@
                                             <td> {{ $tax_center->img['alt'] }} </td>
                                         </tr>
                                         <tr>
-                                            <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Title </td>
+                                            <td class="text-capitalize"> <i class="fa-solid fa-heading"></i> Title </td>
                                             <td> {{ $tax_center->title }} </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-capitalize"> <i class="fa-solid fa-link"></i> Permalink </td>
+                                            <td> {{ $tax_center->slug }} </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-capitalize"> <i class="fa-solid fa-quote-left"></i> Subtitle </td>
+                                            <td> {{ $tax_center->subtitle }} </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-capitalize"> <i class="fa-solid fa-list"></i> Summary </td>
+                                            <td> {{ $tax_center->summary }} </td>
                                         </tr>
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-marker"></i> Author </td>
                                             <td> {{ $tax_center->author->name  }} </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Permalink </td>
-                                            <td> {{ $tax_center->slug }} </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Subtitle </td>
-                                            <td> {{ $tax_center->subtitle }} </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Summary </td>
-                                            <td> {{ $tax_center->summary }} </td>
                                         </tr>
                                         <tr>
                                             <td class="text-capitalize content"> <i class="fa-solid fa-align-left"></i> Content </td>

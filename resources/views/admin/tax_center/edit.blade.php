@@ -42,137 +42,53 @@
                                         @method('PUT')
 
                                         <!----------------- title -------------------->
-                                        <div class="mb-4 input-content">
-                                            <label for="title" class="capitalize"> <i class="fa-solid fa-file-signature"></i> Title </label>
-                                            <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" value="{{ $tax_center->title }}" aria-describedby="emailHelp" placeholder="Type Tax Center Title..." autocomplete="nope" />
-                                            @error('title')
-                                                <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
+                                        <x-forms.text-input label="Title" name="title" value="{{ $tax_center->title }}" icon-class="fa-solid fa-heading" placeholder="Type Title..." />
 
                                         <!----------------- slug -------------------->
-                                        <div class="mb-4 input-content">
-                                            <label for="slug" class="capitalize"> <i class="fa-solid fa-file-signature"></i> Permalink </label>
-                                            <input type="text" name="slug" id="slug" class="form-control @error('slug') is-invalid @enderror" value="{{ $tax_center->slug }}" aria-describedby="emailHelp" placeholder="Ex: precision-accounting-international" autocomplete="nope" />
-                                            @error('slug')
-                                            <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
+                                        <x-forms.text-input label="Permalink" name="slug" value="{{ $tax_center->slug }}" icon-class="fa-solid fa-link" placeholder="Ex: precision-accounting-international" />
 
                                         <!----------------- subtitle -------------------->
-                                        <div class="mb-4 input-content">
-                                            <label for="subtitle" class="capitalize"> <i class="fa-solid fa-file-signature"></i> Subtitle </label>
-                                            <input type="text" name="subtitle" id="subtitle" class="form-control @error('subtitle') is-invalid @enderror" value="{{ $tax_center->subtitle }}" aria-describedby="emailHelp" placeholder="Type TaxCenter Subtitle..." autocomplete="nope" />
-                                            @error('subtitle')
-                                            <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-
+                                        <x-forms.text-input label="Subtitle" name="subtitle" value="{{ $tax_center->subtitle }}" icon-class="fa-solid fa-quote-left" placeholder="Type Subtitle..." />
 
                                         <!----------------- summary -------------------->
-                                        <div class="mb-4 input-content">
-                                            <label for="summary" class="capitalize"> <i class="fa-solid fa-file-signature"></i> Summary </label>
-                                            <input type="text" name="summary" id="title" class="form-control @error('summary') is-invalid @enderror" value="{{ $tax_center->summary }}" aria-describedby="emailHelp" placeholder="Type TaxCenter Summary..." autocomplete="nope" />
-                                            @error('summary')
-                                            <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
+                                        <x-forms.text-input label="Summary" name="summary" value="{{ $tax_center->summary }}" icon-class="fa-solid fa-list" placeholder="Type Summary..." />
 
                                         <!----------------- Author -------------------->
-                                        <div class="mb-4 input-content">
-                                            <label for="author_id" class="capitalize"> <i class="fa-solid fa-marker"></i> Author </label>
-                                            <select class="form-select form-control @error('author_id') is-invalid @enderror" name="author_id" id="author">
-                                                <option></option>
-                                                @foreach ( $authors as $author )
-                                                    <option value="{{ $author->id }}"  {{ $author->id == $tax_center->author->id ? "selected" : "" }} >{{ $author->name }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('author_id')
-                                            <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
+                                        <x-forms.select-option label="Author" name="author_id" icon-class="fa-solid fa-marker">
+                                            @foreach ( $authors as $author )
+                                                <option value="{{ $author->id }}"  {{ $author->id == $tax_center->author->id ? "selected" : "" }} >{{ $author->name }}</option>
+                                            @endforeach
+                                        </x-forms.select-option>
 
                                         <!----------------- Content -------------------->
-                                        <div class="mb-4 input-content">
-                                            <label for="content" class="capitalize"> <i class="fa-solid fa-align-left"></i> Tax Center Content </label>
-                                            <textarea type="text" name="content" rows="5" class="ckeditor form-control @error('content') is-invalid @enderror" aria-describedby="emailHelp" placeholder="Type Tax Center Content..." autocomplete="nope" >{{ $tax_center->content }}</textarea>
-                                            @error('content')
-                                                <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-
-
+                                        <x-forms.ck-editor label="Content" name="content" value="{{ $tax_center->content }}" />
 
                                         <!----------------- Seo Title -------------------->
-                                        <div class="mb-4 input-content">
-                                            <label for="seo_title" class="capitalize"> <i class="fa-solid fa-chart-line"></i> SEO Title </label>
-                                            <input type="text" name="seo_title" id="seo_title" class="form-control @error('seo_title') is-invalid @enderror" value="{{ $tax_center->seo_title }}" aria-describedby="emailHelp" placeholder="Type SEO Title..." autocomplete="nope" />
-                                            @error('seo_title')
-                                                <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-
+                                        <x-forms.text-input label="SEO Title" name="seo_title" value="{{ $tax_center->seo_title }}" icon-class="fa-solid fa-chart-line" placeholder="Type SEO Title..." />
 
                                         <!----------------- Seo Description -------------------->
-                                        <div class="mb-4 input-content">
-                                            <label for="seo_description" class="capitalize"> <i class="fa-solid fa-chart-line"></i> SEO Description </label>
-                                            <input type="text" name="seo_description" id="seo_description" class="form-control @error('seo_description') is-invalid @enderror" value="{{ $tax_center->seo_description }}" aria-describedby="emailHelp" placeholder="Type SEO Description..." autocomplete="nope" />
-                                            @error('seo_description')
-                                                <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-
+                                        <x-forms.text-input label="SEO Description" name="seo_description" value="{{ $tax_center->seo_description }}" icon-class="fa-solid fa-chart-line" placeholder="Type SEO Description..." />
 
                                         <!----------------- Seo Keywords -------------------->
-                                        <div class="mb-4 input-content">
-                                            <label for="seo_keywords" class="capitalize"> <i class="fa-solid fa-chart-line"></i> SEO Keywords </label>
-                                            <input type="text" name="seo_keywords" id="seo_keywords" class="form-control @error('seo_keywords') is-invalid @enderror" value="{{ $tax_center->seo_keywords }}" aria-describedby="emailHelp" placeholder="Type SEO Keywords..." autocomplete="nope" />
-                                            @error('seo_keywords')
-                                                <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-
-
+                                        <x-forms.text-input label="SEO Keywords" name="seo_keywords" value="{{ $tax_center->seo_keywords }}" icon-class="fa-solid fa-chart-line" placeholder="Type SEO Keywords..." />
 
                                         <!----------------- Visibility -------------------->
-                                        <div class="mb-4 input-content">
-                                            <label for="visibility" class="capitalize"> <i class="fa-solid fa-eye"></i> Visibility </label>
-                                            <select class="form-select form-control @error('visibility') is-invalid @enderror" name="visibility" id="visibility"  aria-label="Default select example" >
-                                                <option value="1" {{ $tax_center->visibility === '1' ? "selected" : "" }} > Visible </option>
-                                                <option value="0" {{ $tax_center->visibility === '0' ? "selected" : "" }} > Invisible </option>
-                                            </select>
-                                            @error('visibility')
-                                                <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
+                                        <x-forms.select-option label="Visibility" name="visibility" icon-class="fa-solid fa-eye">
+                                            <option value="1" {{ $tax_center->visibility === '1' ? "selected" : "" }} > Visible </option>
+                                            <option value="0" {{ $tax_center->visibility === '0' ? "selected" : "" }} > Invisible </option>
+                                        </x-forms.select-option>
 
                                         <!----------------- Img -------------------->
-                                        <div class="mb-3 input-content">
-                                            <label for="img" class="form-label d-flex align-items-center">
-                                                <i class="fa-solid fa-image"></i> &nbsp;  Image
-                                                <div class="show-img-container">
-                                                    <a href="{{ asset("storage/taxCenters/".$tax_center->img['src']) }}"  target="_blank">
-                                                        <img src="{{ asset("storage/taxCenters/".$tax_center->img['src']) }}" alt="{{ $tax_center->img['alt'] }}">
-                                                    </a>
-                                                </div>
-                                            </label>
-                                            <input name="img[src]" type="file" class="form-control @error('img.src') is-invalid @enderror" id="img"  />
-                                            @error('img.src')
-                                            <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
+                                        <x-forms.upload-img-input label="Image" name="img" altTextValue="{{ $tax_center->img['alt'] }}">
+                                            <div class="show-img-container">
+                                                <a href="{{ asset("storage/taxCenters/".$tax_center->img['src']) }}"  target="_blank">
+                                                    <img src="{{ asset("storage/taxCenters/".$tax_center->img['src']) }}" alt="{{ $tax_center->img['alt'] }}">
+                                                </a>
+                                            </div>
+                                        </x-forms.upload-img-input>
 
-                                        <!----------------- Img Alternative Text -------------------->
-                                        <div class="mb-4 input-content">
-                                            <label for="alt_text" class="capitalize"> <i class="fa-solid fa-image"></i> Image Alternative Text </label>
-                                            <input type="text" name="img[alt]" id="alt_text" class="form-control @error('img.alt') is-invalid @enderror" value="{{ $tax_center->img['alt'] }}" aria-describedby="emailHelp" placeholder="Type Image Alt Text..." autocomplete="nope" />
-                                            @error('img.alt')
-                                            <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-
-
-                                        <button type="submit" class="btn btn-primary float-right" > <i class="fa-solid fa-floppy-disk"></i> Save </button>
+                                        <!----------------- Submit Btn -------------------->
+                                        <x-forms.submit-btn name="Save" />
 
                                     </form>
                                 </div>
