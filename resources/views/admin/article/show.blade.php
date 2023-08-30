@@ -43,46 +43,42 @@
                             <div class="table-responsive">
                                 <table class="table align-items-center table-flush show-data">
                                     <tbody>
-                                        {{-- <tr>
-                                            <td class="text-capitalize"> # ID </td>
-                                            <td> {{ $article->id != "" ? $article->id : '-'}} </td>
-                                        </tr> --}}
-                                        <tr>
-                                            <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Image </td>
-                                            <td class="article-image">
-                                                <a class="show-img-container" href="{{ asset('storage/articles/'.$article->img['src']) }}" target="_blank">
-                                                    <img src="{{ asset('storage/articles/'.$article->img['src']) }}" alt="{{ $article->img['alt'] }}">
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Image Alternative Text </td>
-                                            <td> {{ $article->img['alt'] }} </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Title </td>
-                                            <td> {{ $article->title  }} </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-capitalize"> <i class="fa-solid fa-marker"></i> Author </td>
-                                            <td> {{ $article->author->name  }} </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Permalink </td>
-                                            <td> {{ $article->slug }} </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Subtitle </td>
-                                            <td> {{ $article->subtitle }} </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Summary </td>
-                                            <td> {{ $article->summary }} </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-capitalize content"> <i class="fa-solid fa-align-left"></i> Content </td>
-                                            <td> {!! $article->content !!} </td>
-                                        </tr>
+                                    <tr>
+                                        <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Image </td>
+                                        <td class="article-image">
+                                            <a class="show-img-container" href="{{ asset('storage/articles/'.$article->img['src']) }}" target="_blank">
+                                                <img src="{{ asset('storage/articles/'.$article->img['src']) }}" alt="{{ $article->img['alt'] }}">
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Image Alternative Text </td>
+                                        <td> {{ $article->img['alt'] }} </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-capitalize"> <i class="fa-solid fa-heading"></i> Title </td>
+                                        <td> {{ $article->title }} </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-capitalize"> <i class="fa-solid fa-link"></i> Permalink </td>
+                                        <td> {{ $article->slug }} </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-capitalize"> <i class="fa-solid fa-quote-left"></i> Subtitle </td>
+                                        <td> {{ $article->subtitle }} </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-capitalize"> <i class="fa-solid fa-list"></i> Summary </td>
+                                        <td> {{ $article->summary }} </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-capitalize"> <i class="fa-solid fa-marker"></i> Author </td>
+                                        <td> {{ $article->author->name  }} </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-capitalize content"> <i class="fa-solid fa-align-left"></i> Content </td>
+                                        <td> {!! $article->content !!} </td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>

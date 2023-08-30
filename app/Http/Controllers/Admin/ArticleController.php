@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Articles\MultiActionArticlesRequest;
 use App\Models\Author;
-use App\Traits\StoreFileTrait;
+use App\Traits\StoreContentTrait;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Http\Requests\Articles\StoreArticleRequest;
@@ -16,7 +16,7 @@ use Illuminate\Support\Str;
 
 class ArticleController extends Controller
 {
-    use StoreFileTrait;
+    use StoreContentTrait;
 
     public function perPage( $num=10 )
     {
@@ -48,7 +48,10 @@ class ArticleController extends Controller
     {
         try {
             $requestData = $request->validated();
-            $requestData['img']['src'] = $this->storeImage('articles', $request->title, $request->file('img'));
+
+            $requestData['img']['src'] = $this->storeImage('articles', $requestData['title'], $request->file('img'));
+            $requestData['content'] = $this->moveContentImages($requestData['content'], 'articles/'.Str::slug($requestData['title']));
+
             Article::create($requestData);
 
             return to_route("admin.article.index")->with("success", "Article store successfully");
@@ -81,14 +84,12 @@ class ArticleController extends Controller
 
         try {
             if ($request->hasFile('img')) {
+                $requestData['img']['src'] = $this->storeImage('articles', $article->title, $request->file('img'));
                 Storage::disk('public')->delete("articles/".$article->img['src']);
-                $requestData['img']['src'] = $this->storeImage('articles', $request->title, $request->file('img'));
             }
 
-            if ($article->title !== $request->validated('title') && !$request->hasFile('img')) {
-                $new_file_name = Str::slug($request->validated('title')) . '.' . Str::afterLast($article->img['src'], '.');
-                rename("storage/articles/".$article->img['src'], "storage/articles/$new_file_name");
-                $requestData['img']['src'] = $new_file_name;
+            if (Str::contains($requestData['content'], '/tempContentImages/')) {
+                $requestData['content'] = $this->moveContentImages($requestData['content'], "articles/".Str::slug($requestData['title']));
             }
 
             $article->update($requestData);
@@ -103,7 +104,7 @@ class ArticleController extends Controller
     public function destroy(Article $article)
     {
         try {
-            Storage::disk('public')->delete("articles/".$article->img['src']);
+            Storage::disk('public')->deleteDirectory("articles/".Str::slug($article->title));
             $article->delete();
 
             return to_route("admin.article.index")->with(["success" => "Article deleted successfully"]);
@@ -135,7 +136,7 @@ class ArticleController extends Controller
                 $articles = Article::findOrFail($request->id);
                 Article::destroy($request->id);
                 foreach ($articles as $article) {
-                    Storage::disk('public')->delete("articles/".$article->img['src']);
+                    Storage::disk('public')->deleteDirectory("articles/".Str::slug($article->title));
                 }
             }
 
