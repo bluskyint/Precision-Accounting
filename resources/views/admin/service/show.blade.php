@@ -43,58 +43,54 @@
                             <div class="table-responsive">
                                 <table class="table align-items-center table-flush show-data">
                                     <tbody>
-                                        {{-- <tr>
-                                            <td class="text-capitalize"> # ID </td>
-                                            <td> {{ $service->id != "" ? $service->id : '-'}} </td>
-                                        </tr> --}}
-                                        <tr>
-                                            <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Image </td>
-                                            <td class="service-image">
-                                                <a class="show-img-container" href="{{ asset('storage/services/images/'.$service->img['src']) }}" target="_blank">
-                                                    <img src="{{ asset('storage/services/images/'.$service->img['src']) }}" alt="{{ $service->img['alt'] }}">
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Image Alternative Text </td>
-                                            <td> {{ $service->img['alt'] }} </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Title </td>
-                                            <td> {{ $service->title }} </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-capitalize"> <i class="fa-solid fa-marker"></i> Author </td>
-                                            <td> {{ $service->author->name  }} </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Permalink </td>
-                                            <td> {{ $service->slug }} </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Subtitle </td>
-                                            <td> {{ $service->subtitle }} </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-capitalize"> <i class="fa-solid fa-align-left"></i> Summary </td>
-                                            <td> {{ $service->summary }} </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Icon </td>
-                                            <td class="service-image">
-                                                <a class="show-img-container" href="{{ asset('storage/services/icons/'.$service->icon['src']) }}" target="_blank">
-                                                    <img src="{{ asset('storage/services/icons/'.$service->icon['src']) }}" alt="{{ $service->icon['alt'] }}" style="width:80px !important">
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Icon Alternative Text </td>
-                                            <td> {{ $service->icon['alt'] }} </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-capitalize content"> <i class="fa-solid fa-align-left"></i> Content </td>
-                                            <td> {!! $service->content !!} </td>
-                                        </tr>
+                                    <tr>
+                                        <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Image </td>
+                                        <td class="article-image">
+                                            <a class="show-img-container" href="{{ asset('storage/services/'.$service->img['src']) }}" target="_blank">
+                                                <img src="{{ asset('storage/services/'.$service->img['src']) }}" alt="{{ $service->img['alt'] }}">
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Image Alternative Text </td>
+                                        <td> {{ $service->img['alt'] }} </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-capitalize"> <i class="fa-solid fa-heading"></i> Title </td>
+                                        <td> {{ $service->title }} </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-capitalize"> <i class="fa-solid fa-link"></i> Permalink </td>
+                                        <td> {{ $service->slug }} </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-capitalize"> <i class="fa-solid fa-quote-left"></i> Subtitle </td>
+                                        <td> {{ $service->subtitle }} </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-capitalize"> <i class="fa-solid fa-list"></i> Summary </td>
+                                        <td> {{ $service->summary }} </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-capitalize"> <i class="fa-solid fa-marker"></i> Author </td>
+                                        <td> {{ $service->author->name  }} </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Icon </td>
+                                        <td class="article-image">
+                                            <a class="show-img-container" href="{{ asset('storage/services/'.$service->icon['src']) }}" target="_blank">
+                                                <img src="{{ asset('storage/services/'.$service->icon['src']) }}" alt="{{ $service->icon['alt'] }}">
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Image Alternative Text </td>
+                                        <td> {{ $service->icon['alt'] }} </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-capitalize content"> <i class="fa-solid fa-align-left"></i> Content </td>
+                                        <td> {!! $service->content !!} </td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>

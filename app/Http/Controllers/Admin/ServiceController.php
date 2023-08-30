@@ -5,20 +5,17 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Services\MultiActionServicesRequest;
 use App\Models\Author;
-use App\Traits\StoreFileTrait;
+use App\Traits\StoreContentTrait;
 use Illuminate\Http\Request;
 use App\Models\Service;
 use App\Http\Requests\Services\StoreServiceRequest;
 use App\Http\Requests\Services\UpdateServiceRequest;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 class ServiceController extends Controller
 {
-    use StoreFileTrait;
+    use StoreContentTrait;
 
     public function perPage( $num=10 )
     {
@@ -44,8 +41,10 @@ class ServiceController extends Controller
     {
         try {
             $requestData = $request->validated();
-            $requestData['img']['src'] = $this->storeImage('services/images', $request->title, $request->file('img'));
-            $requestData['icon']['src'] = $this->storeImage('services/icons', $request->title, $request->file('icon'));
+            $requestData['img']['src'] = $this->storeImage('services', $requestData['title'], $request->file('img'));
+            $requestData['icon']['src'] = $this->storeImage('services', $requestData['title'], $request->file('icon'));
+            $requestData['content'] = $this->moveContentImages($requestData['content'], 'services/'.Str::slug($requestData['title']));
+
             Service::create($requestData);
 
             return to_route("admin.service.index")->with("success", "Service store successfully");
@@ -80,30 +79,21 @@ class ServiceController extends Controller
 
         try {
             if ($request->hasFile('img')) {
-                Storage::disk('public')->delete("services/images/".$service->img['src']);
-                $requestData['img']['src'] = $this->storeImage('services/images', $request->title, $request->file('img'));
+                $requestData['img']['src'] = $this->storeImage('services', $service->title, $request->file('img'));
+                Storage::disk('public')->delete("services/".$service->img['src']);
             }
 
             if ($request->hasFile('icon')) {
-                Storage::disk('public')->delete("services/icons/".$service->icon['src']);
-                $requestData['icon']['src'] = $this->storeImage('services/icons', $request->title, $request->file('icon'));
+                $requestData['icon']['src'] = $this->storeImage('services', $service->title, $request->file('icon'));
+                Storage::disk('public')->delete("services/".$service->icon['src']);
             }
 
-            if ($service->name !== $request->validated('title')) {
-                if (!$request->hasFile('img')) {
-                    $new_img_name = Str::slug($request->validated('title')) . '.' . Str::afterLast($service->img['src'], '.');
-                    rename("storage/services/images/".$service->img['src'], "storage/services/images/$new_img_name");
-                    $requestData['img']['src'] = $new_img_name;
-                }
-
-                if (!$request->hasFile('icon')) {
-                    $new_icon_name = Str::slug($request->validated('title')) . '.' . Str::afterLast($service->icon['src'], '.');
-                    rename("storage/services/icons/".$service->icon['src'], "storage/services/icons/$new_icon_name");
-                    $requestData['icon']['src'] = $new_icon_name;
-                }
+            if (Str::contains($requestData['content'], '/tempContentImages/')) {
+                $requestData['content'] = $this->moveContentImages($requestData['content'], "services/".Str::slug($requestData['title']));
             }
 
             $service->update($requestData);
+
             return to_route("admin.service.index")->with("success", "Service updated successfully");
 
         } catch (\Exception $e) {
@@ -114,7 +104,7 @@ class ServiceController extends Controller
     public function destroy(Service $service)
     {
         try {
-            Storage::disk('public')->delete(["services/images/".$service->img['src'], "services/icons/".$service->icon['src']]);
+            Storage::disk('public')->deleteDirectory("services/".Str::slug($service->title));
             $service->delete();
 
             return to_route("admin.service.index")->with(["success" => " Service deleted successfully"]);
@@ -146,7 +136,7 @@ class ServiceController extends Controller
                 $services = Service::findOrFail($request->id);
                 Service::destroy($request->id);
                 foreach ($services as $service) {
-                    Storage::disk('public')->delete(["services/images/".$service->img['src'], "services/icons/".$service->icon['src']]);
+                    Storage::disk('public')->deleteDirectory("services/".Str::slug($service->title));
                 }
             }
 

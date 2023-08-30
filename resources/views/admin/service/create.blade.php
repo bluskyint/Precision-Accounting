@@ -41,168 +41,57 @@
                                         @csrf
 
                                         <!----------------- title -------------------->
-                                        <div class="mb-4 input-content">
-                                            <label for="title" class="capitalize"> <i class="fa-solid fa-file-signature"></i> Title </label>
-                                            <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" aria-describedby="emailHelp" placeholder="Type Service Title..." autocomplete="nope" />
-                                            @error('title')
-                                                <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
+                                        <x-forms.text-input label="Title" name="title" icon-class="fa-solid fa-heading" placeholder="Type Title..." />
 
                                         <!----------------- slug -------------------->
-                                        <div class="mb-4 input-content">
-                                            <label for="slug" class="capitalize"> <i class="fa-solid fa-file-signature"></i> Permalink </label>
-                                            <input type="text" name="slug" id="slug" class="form-control @error('slug') is-invalid @enderror" value="{{ old('slug') }}" aria-describedby="emailHelp" placeholder="Ex: precision-accounting-international" autocomplete="nope" />
-                                            @error('slug')
-                                                <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
+                                        <x-forms.text-input label="Permalink" name="slug" icon-class="fa-solid fa-link" placeholder="Ex: precision-accounting-international" />
 
                                         <!----------------- subtitle -------------------->
-                                        <div class="mb-4 input-content">
-                                            <label for="subtitle" class="capitalize"> <i class="fa-solid fa-file-signature"></i> Subtitle </label>
-                                            <input type="text" name="subtitle" id="subtitle" class="form-control @error('subtitle') is-invalid @enderror" value="{{ old('subtitle') }}" aria-describedby="emailHelp" placeholder="Type Service Subtitle..." autocomplete="nope" />
-                                            @error('subtitle')
-                                                <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
+                                        <x-forms.text-input label="Subtitle" name="subtitle" icon-class="fa-solid fa-quote-left" placeholder="Type Subtitle..." />
 
                                         <!----------------- summary -------------------->
-                                        <div class="mb-4 input-content">
-                                            <label for="summary" class="capitalize"> <i class="fa-solid fa-align-left"></i> Summary </label>
-                                            <textarea type="text" name="summary" rows="5" class="form-control @error('summary') is-invalid @enderror" aria-describedby="emailHelp" placeholder="Type Service Summary..." autocomplete="nope" >{{ old('summary') }}</textarea>
-                                            @error('summary')
-                                                <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-
+                                        <x-forms.text-input label="Summary" name="summary" icon-class="fa-solid fa-list" placeholder="Type Summary..." />
 
                                         <!----------------- Author -------------------->
-                                        <div class="mb-4 input-content">
-                                            <label for="author_id" class="capitalize"> <i class="fa-solid fa-marker"></i> Author </label>
-                                            <select class="form-select form-control @error('author_id') is-invalid @enderror" name="author_id" id="author">
-                                                <option></option>
-                                                @foreach ( $authors as $author )
-                                                    <option value="{{ $author->id }}"  {{ old('author_id') == $author->id ? "selected" : "" }} >{{ $author->name }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('author_id')
-                                            <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-
-
-                                        <!----------------- Seo Title -------------------->
-                                        <div class="mb-4 input-content">
-                                            <label for="seo_title" class="capitalize"> <i class="fa-solid fa-chart-line"></i> SEO Title </label>
-                                            <input type="text" name="seo_title" id="seo_title" class="form-control @error('seo_title') is-invalid @enderror" value="{{ old('seo_title') }}" aria-describedby="emailHelp" placeholder="Type SEO Title..." autocomplete="nope" />
-                                            @error('seo_title')
-                                                <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-
-
-                                        <!----------------- Seo Description -------------------->
-                                        <div class="mb-4 input-content">
-                                            <label for="seo_description" class="capitalize"> <i class="fa-solid fa-chart-line"></i> SEO Description </label>
-                                            <input type="text" name="seo_description" id="seo_description" class="form-control @error('seo_description') is-invalid @enderror" value="{{ old('seo_description') }}" aria-describedby="emailHelp" placeholder="Type SEO Description..." autocomplete="nope" />
-                                            @error('seo_description')
-                                                <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-
-
-                                        <!----------------- Seo Keywords -------------------->
-                                        <div class="mb-4 input-content">
-                                            <label for="seo_keywords" class="capitalize"> <i class="fa-solid fa-chart-line"></i> SEO Keywords </label>
-                                            <input type="text" name="seo_keywords" id="seo_keywords" class="form-control @error('seo_keywords') is-invalid @enderror" value="{{ old('seo_keywords') }}" aria-describedby="emailHelp" placeholder="Type SEO Keywords..." autocomplete="nope" />
-                                            @error('seo_keywords')
-                                                <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-
-
+                                        <x-forms.select-option label="Author" name="author_id" icon-class="fa-solid fa-marker">
+                                            @foreach ( $authors as $author )
+                                                <option value="{{ $author->id }}"  {{ old('author_id') == $author->id ? "selected" : "" }} >{{ $author->name }}</option>
+                                            @endforeach
+                                        </x-forms.select-option>
 
                                         <!----------------- Parent Service -------------------->
-                                        <div class="mb-4 input-content">
-                                            <label for="parent_id" class="capitalize"> <i class="fa-solid fa-code-branch"></i> Parent Service (Optional) </label>
-                                            <select class="form-select form-control @error('parent_id') is-invalid @enderror" name="parent_id" id="service"  aria-label="Default select example" >
-                                                <option></option>
-                                                @foreach ( $services as $service )
-                                                    <option value="{{ $service->id }}"  {{ old('parent_id') == $service->id ? "selected" : "" }} >{{ $service->title }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('parent_id')
-                                                <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-
+                                        <x-forms.select-option label="Parent Service (Optional)" name="parent_id" icon-class="fa-solid fa-code-branch">
+                                            @foreach ( $services as $service )
+                                                <option value="{{ $service->id }}"  {{ old('parent_id') == $service->id ? "selected" : "" }} >{{ $service->title }}</option>
+                                            @endforeach
+                                        </x-forms.select-option>
 
                                         <!----------------- Content -------------------->
-                                        <div class="mb-4 input-content">
-                                            <label for="content" class="capitalize"> <i class="fa-solid fa-align-left"></i> Content </label>
-                                            <textarea type="text" name="content" rows="5" class="ckeditor form-control @error('content') is-invalid @enderror" aria-describedby="emailHelp" placeholder="Type Service Content..." autocomplete="nope" >{{ old('content') }}</textarea>
-                                            @error('content')
-                                                <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-
-
-
+                                        <x-forms.ck-editor label="Content" name="content" />
 
                                         <!----------------- Visibility -------------------->
-                                        <div class="mb-4 input-content">
-                                            <label for="visibility" class="capitalize"> <i class="fa-solid fa-eye"></i> Visibility </label>
-                                            <select class="form-select form-control @error('visibility') is-invalid @enderror" name="visibility" id="visibility"  aria-label="Default select example" >
-                                                <option value="1" {{ old('visibility') == '1' ? "selected" : "" }} > Visible </option>
-                                                <option value="0" {{ old('visibility') == '0' ? "selected" : "" }} > Invisible </option>
-                                            </select>
-                                            @error('visibility')
-                                                <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
+                                        <x-forms.select-option label="Visibility" name="visibility" icon-class="fa-solid fa-eye">
+                                            <option value="1" {{ old('visibility') == '1' ? "selected" : "" }} > Visible </option>
+                                            <option value="0" {{ old('visibility') == '0' ? "selected" : "" }} > Invisible </option>
+                                        </x-forms.select-option>
 
+                                        <!----------------- Seo Title -------------------->
+                                        <x-forms.text-input label="SEO Title" name="seo_title" icon-class="fa-solid fa-chart-line" placeholder="Type SEO Title..." />
+
+                                        <!----------------- Seo Description -------------------->
+                                        <x-forms.text-input label="SEO Description" name="seo_description" icon-class="fa-solid fa-chart-line" placeholder="Type SEO Description..." />
+
+                                        <!----------------- Seo Keywords -------------------->
+                                        <x-forms.text-input label="SEO Keywords" name="seo_keywords" icon-class="fa-solid fa-chart-line" placeholder="Type SEO Keywords..." />
 
                                         <!----------------- Icon -------------------->
-                                        <div class="mb-3 input-content">
-                                            <label for="icon_src" class="form-label"> <i class="fa-solid fa-image"></i> Icon </label>
-                                            <input name="icon[src]" type="file" class="form-control @error('icon.src') is-invalid @enderror" id="icon_src"  />
-                                            @error('icon.src')
-                                            <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-
-                                        <!----------------- Icon Alternative Text -------------------->
-                                        <div class="mb-4 input-content">
-                                            <label for="icon_alt_text" class="capitalize"> <i class="fa-solid fa-image"></i> Icon Alternative Text </label>
-                                            <input type="text" name="icon[alt]" id="icon_alt_text" class="form-control @error('icon.alt') is-invalid @enderror" value="{{ old('icon.alt') }}" aria-describedby="emailHelp" placeholder="Type Icon Alt Text..." autocomplete="nope" />
-                                            @error('icon.alt')
-                                            <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
+                                        <x-forms.upload-img-input label="Icon" name="icon" />
 
                                         <!----------------- Img -------------------->
-                                        <div class="mb-3 input-content">
-                                            <label for="img_src" class="form-label"> <i class="fa-solid fa-image"></i> Image </label>
-                                            <input name="img[src]" type="file" class="form-control @error('img.src') is-invalid @enderror" id="img_src"  />
-                                            @error('img.src')
-                                            <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-
-                                        <!----------------- Img Alternative Text -------------------->
-                                        <div class="mb-4 input-content">
-                                            <label for="alt_text" class="capitalize"> <i class="fa-solid fa-image"></i> Image Alternative Text </label>
-                                            <input type="text" name="img[alt]" id="alt_text" class="form-control @error('img.alt') is-invalid @enderror" value="{{ old('img.alt') }}" aria-describedby="emailHelp" placeholder="Type Image Alt Text..." autocomplete="nope" />
-                                            @error('img.alt')
-                                            <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-
+                                        <x-forms.upload-img-input label="Image" name="img" />
 
                                         <!----------------- Submit Btn -------------------->
-                                        <button type="submit" class="btn btn-primary float-right" > <i class="fa-solid fa-floppy-disk"></i> Submit </button>
-
+                                        <x-forms.submit-btn />
 
                                     </form>
                                 </div>

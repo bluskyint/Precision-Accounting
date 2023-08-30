@@ -40,7 +40,6 @@ class TaxCenterController extends Controller
     {
         try {
             $requestData = $request->validated();
-
             $requestData['img']['src'] = $this->storeImage('taxCenters', $requestData['title'], $request->file('img'));
             $requestData['content'] = $this->moveContentImages($requestData['content'], 'taxCenters/'.Str::slug($requestData['title']));
 

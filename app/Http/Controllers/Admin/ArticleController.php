@@ -48,7 +48,6 @@ class ArticleController extends Controller
     {
         try {
             $requestData = $request->validated();
-
             $requestData['img']['src'] = $this->storeImage('articles', $requestData['title'], $request->file('img'));
             $requestData['content'] = $this->moveContentImages($requestData['content'], 'articles/'.Str::slug($requestData['title']));
 
