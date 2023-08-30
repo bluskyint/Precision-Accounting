@@ -4,20 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Resources\MultiActionResourcesRequest;
-use App\Traits\StoreFileTrait;
+use App\Traits\StoreContentTrait;
 use Illuminate\Http\Request;
 use App\Models\Resource;
 use App\Http\Requests\Resources\StoreResourceRequest;
 use App\Http\Requests\Resources\UpdateResourceRequest;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 class ResourceController extends Controller
 {
-    use StoreFileTrait;
+    use StoreContentTrait;
 
     public function perPage( $num=10 )
     {
@@ -41,7 +38,7 @@ class ResourceController extends Controller
     {
         try {
             $requestData = $request->validated();
-            $requestData['img']['src'] = $this->storeImage('resources', $request->title, $request->file('img'));
+            $requestData['img']['src'] = $this->storeImage($request->file('img'),'resources');
             Resource::create($requestData);
 
             return to_route("admin.resource.index")->with("success", "Resource store successfully");
@@ -73,7 +70,7 @@ class ResourceController extends Controller
         try {
             if ($request->hasFile('img')) {
                 Storage::disk('public')->delete("resources/".$resource->img['src']);
-                $requestData['img']['src'] = $this->storeImage('resources', $request->title, $request->file('img'));
+                $requestData['img']['src'] = $this->storeImage($request->file('img'), 'resources');
             }
 
             if ($resource->title !== $request->validated('title') && !$request->hasFile('img')) {

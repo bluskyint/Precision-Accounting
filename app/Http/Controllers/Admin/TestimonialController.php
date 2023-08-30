@@ -7,17 +7,14 @@ use App\Models\Testimonial;
 use App\Http\Requests\Testimonials\StoreTestimonialRequest;
 use App\Http\Requests\Testimonials\UpdateTestimonialRequest;
 use App\Http\Controllers\Controller;
-use App\Traits\StoreFileTrait;
+use App\Traits\StoreContentTrait;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 class TestimonialController extends Controller
 {
-    use StoreFileTrait;
+    use StoreContentTrait;
 
     public function perPage( $num=10 )
     {
@@ -41,7 +38,7 @@ class TestimonialController extends Controller
     {
         try {
             $requestData = $request->validated();
-            $requestData['img'] = $this->storeImage('testimonials', $request->name, $request->file('img'));
+            $requestData['img'] = $this->storeImage($request->file('img'), 'testimonials');
             Testimonial::create($requestData);
 
             return to_route("admin.testimonial.index")->with("success", "Testimonial store successfully");
@@ -72,7 +69,7 @@ class TestimonialController extends Controller
         try {
             if ($request->hasFile('img')) {
                 Storage::disk('public')->delete("testimonials/$testimonial->img");
-                $requestData['img'] = $this->storeImage('testimonials', $request->name, $request->file('img'));
+                $requestData['img'] = $this->storeImage($request->file('img'), 'testimonials');
             }
 
             if ($testimonial->name !== $request->validated('name') && !$request->hasFile('img')) {

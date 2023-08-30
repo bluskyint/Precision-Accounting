@@ -7,14 +7,14 @@ use App\Http\Requests\Authors\MultiActionAuthorsRequest;
 use App\Http\Requests\Authors\StoreAuthorRequest;
 use App\Http\Requests\Authors\UpdateAuthorRequest;
 use App\Models\Author;
-use App\Traits\StoreFileTrait;
+use App\Traits\StoreContentTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class AuthorController extends Controller
 {
-    use StoreFileTrait;
+    use StoreContentTrait;
     public function perPage($num = 10)
     {
         // Dynamic pagination
@@ -37,8 +37,8 @@ class AuthorController extends Controller
     {
         try {
             $requestData = $request->validated();
-            $requestData['img']['src'] = $this->storeImage('authors', $request->name, $request->file('img'));
-            $author = Author::create($requestData);
+            $requestData['img']['src'] = $this->storeImage($request->file('img'), 'authors');
+            Author::create($requestData);
 
             return to_route("admin.author.index")->with("success", "Author store successfully");
 
@@ -67,13 +67,7 @@ class AuthorController extends Controller
         try {
             if ($request->hasFile('img')) {
                 Storage::disk('public')->delete("authors/".$author->img['src']);
-                $requestData['img']['src'] = $this->storeImage('authors', $request->name, $request->file('img'));
-            }
-
-            if ($author->name !== $request->validated('name') && !$request->hasFile('img')) {
-                $new_file_name = Str::slug($request->validated('name')) . '.' . Str::afterLast($author->img['src'], '.');
-                rename("storage/authors/".$author->img['src'], "storage/authors/$new_file_name");
-                $requestData['img']['src'] = $new_file_name;
+                $requestData['img']['src'] = $this->storeImage($request->file('img'), 'authors');
             }
 
             $author->update($requestData);
@@ -123,10 +117,10 @@ class AuthorController extends Controller
                 }
             }
 
-            return to_route("admin.author.index")->with(["success" => " Author deleted successfully"]);
+            return to_route("admin.author.index")->with("success", "Author deleted successfully");
 
         } catch (\Exception $e) {
-            return to_route("admin.author.index")->with("failed","Error at delete operation");
+            return to_route("admin.author.index")->with("failed", "Error at delete operation");
         }
     }
 }

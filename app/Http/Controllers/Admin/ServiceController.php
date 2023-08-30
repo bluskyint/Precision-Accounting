@@ -41,9 +41,10 @@ class ServiceController extends Controller
     {
         try {
             $requestData = $request->validated();
-            $requestData['img']['src'] = $this->storeImage('services', $requestData['title'], $request->file('img'));
-            $requestData['icon']['src'] = $this->storeImage('services', $requestData['title'], $request->file('icon'));
-            $requestData['content'] = $this->moveContentImages($requestData['content'], 'services/'.Str::slug($requestData['title']));
+            $folderName = Str::slug($requestData['title']);
+            $requestData['img']['src'] = $this->storeImage($request->file('img'), 'services', $folderName);
+            $requestData['icon']['src'] = $this->storeImage($request->file('icon'), 'services', $folderName);
+            $requestData['content'] = $this->moveContentImages($requestData['content'], "services/$folderName");
 
             Service::create($requestData);
 
@@ -78,18 +79,20 @@ class ServiceController extends Controller
         $requestData['icon']['src'] = $service->icon['src'];
 
         try {
+            $folderName = Str::slug($requestData['title']);
+
             if ($request->hasFile('img')) {
-                $requestData['img']['src'] = $this->storeImage('services', $service->title, $request->file('img'));
+                $requestData['img']['src'] = $this->storeImage($request->file('img'),'services', $folderName);
                 Storage::disk('public')->delete("services/".$service->img['src']);
             }
 
             if ($request->hasFile('icon')) {
-                $requestData['icon']['src'] = $this->storeImage('services', $service->title, $request->file('icon'));
+                $requestData['icon']['src'] = $this->storeImage($request->file('icon'), 'services', $folderName);
                 Storage::disk('public')->delete("services/".$service->icon['src']);
             }
 
             if (Str::contains($requestData['content'], '/tempContentImages/')) {
-                $requestData['content'] = $this->moveContentImages($requestData['content'], "services/".Str::slug($requestData['title']));
+                $requestData['content'] = $this->moveContentImages($requestData['content'], "services/$folderName");
             }
 
             $service->update($requestData);

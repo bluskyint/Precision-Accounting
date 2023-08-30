@@ -48,8 +48,9 @@ class ArticleController extends Controller
     {
         try {
             $requestData = $request->validated();
-            $requestData['img']['src'] = $this->storeImage('articles', $requestData['title'], $request->file('img'));
-            $requestData['content'] = $this->moveContentImages($requestData['content'], 'articles/'.Str::slug($requestData['title']));
+            $folderName = Str::slug($requestData['title']);
+            $requestData['img']['src'] = $this->storeImage($request->file('img'), 'articles', $folderName);
+            $requestData['content'] = $this->moveContentImages($requestData['content'], "articles/$folderName");
 
             Article::create($requestData);
 
@@ -82,13 +83,15 @@ class ArticleController extends Controller
         $requestData['img']['src'] = $article->img['src'];
 
         try {
+            $folderName = Str::slug($requestData['title']);
+
             if ($request->hasFile('img')) {
-                $requestData['img']['src'] = $this->storeImage('articles', $article->title, $request->file('img'));
+                $requestData['img']['src'] = $this->storeImage($request->file('img'),'articles', $folderName);
                 Storage::disk('public')->delete("articles/".$article->img['src']);
             }
 
             if (Str::contains($requestData['content'], '/tempContentImages/')) {
-                $requestData['content'] = $this->moveContentImages($requestData['content'], "articles/".Str::slug($requestData['title']));
+                $requestData['content'] = $this->moveContentImages($requestData['content'], "articles/$folderName");
             }
 
             $article->update($requestData);

@@ -56,7 +56,7 @@
                                             <td> {{ $author->img['alt'] }} </td>
                                         </tr>
                                         <tr>
-                                            <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Name </td>
+                                            <td class="text-capitalize"> <i class="fa-solid fa-heading"></i> Name </td>
                                             <td> {{ $author->name }} </td>
                                         </tr>
                                         <tr>
@@ -64,7 +64,7 @@
                                             <td> {{ $author->job_title }} </td>
                                         </tr>
                                         <tr>
-                                            <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Permalink </td>
+                                            <td class="text-capitalize"> <i class="fa-solid fa-link"></i> Permalink </td>
                                             <td> {{ $author->slug }} </td>
                                         </tr>
                                         <tr>

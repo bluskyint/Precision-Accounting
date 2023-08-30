@@ -44,11 +44,11 @@
                                 <table class="table align-items-center table-flush show-data">
                                     <tbody>
                                         <tr>
-                                            <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Title </td>
+                                            <td class="text-capitalize"> <i class="fa-solid fa-heading"></i> Title </td>
                                             <td> {{ $category->title }} </td>
                                         </tr>
                                         <tr>
-                                            <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Permalink </td>
+                                            <td class="text-capitalize"> <i class="fa-solid fa-link"></i> Permalink </td>
                                             <td> {{ $category->slug }} </td>
                                         </tr>
                                     </tbody>

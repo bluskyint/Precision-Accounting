@@ -7,13 +7,12 @@ use Illuminate\Support\Str;
 
 trait StoreContentTrait
 {
-    public function storeImage(string $directoryPath, string $folderNameRef, $file): string
+    public function storeImage($file, string $directoryPath, string|null $folderName = null): string
     {
         $fileName = $file['src']->getClientOriginalName();
-        $folderName = Str::slug($folderNameRef);
-        $imgSrc = "$folderName/$fileName";
+        $imgSrc = $folderName ? "$folderName/$fileName" : $fileName;
 
-        $file['src']->storeAs("$directoryPath/$folderName", $fileName, 'public');
+        $file['src']->storeAs($folderName ? "$directoryPath/$folderName" : $directoryPath, $fileName, 'public');
 
         // return images src
         return $imgSrc;

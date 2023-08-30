@@ -42,76 +42,31 @@
                                         @method('PUT')
 
                                         <!----------------- Name -------------------->
-                                        <div class="mb-4 input-content">
-                                            <label for="name" class="capitalize"> <i class="fa-solid fa-file-signature"></i> Name </label>
-                                            <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ $author->name }}" aria-describedby="emailHelp" placeholder="Type Author Name..." autocomplete="nope" />
-                                            @error('name')
-                                                <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-
-                                        <!-----------------job title -------------------->
-                                        <div class="mb-4 input-content">
-                                            <label for="job_title" class="capitalize"> <i class="fa-solid fa-user-tie"></i> Job Title </label>
-                                            <input type="text" name="job_title" id="job_title" class="form-control @error('job_title') is-invalid @enderror" value="{{ $author->job_title }}" aria-describedby="emailHelp" placeholder="Type Author Job Title..." autocomplete="nope" />
-                                            @error('job_title')
-                                            <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
+                                        <x-forms.text-input label="Name" name="name" value="{{ $author->name }}" icon-class="fa-solid fa-heading" placeholder="Type Name..." />
 
                                         <!----------------- slug -------------------->
-                                        <div class="mb-4 input-content">
-                                            <label for="slug" class="capitalize"> <i class="fa-solid fa-file-signature"></i> Permalink </label>
-                                            <input type="text" name="slug" id="slug" class="form-control @error('slug') is-invalid @enderror" value="{{ $author->slug }}" aria-describedby="emailHelp" placeholder="Ex: precision-accounting-international" autocomplete="nope" />
-                                            @error('slug')
-                                            <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
+                                        <x-forms.text-input label="Permalink" name="slug" value="{{ $author->job_title }}" icon-class="fa-solid fa-link" placeholder="Ex: precision-accounting-international" />
+
+                                        <!-----------------job title -------------------->
+                                        <x-forms.text-input label="Job Title" name="job_title" value="{{ $author->slug }}" icon-class="fa-solid fa-user-tie" placeholder="Type Job Title..." />
 
                                         <!----------------- LinkedIn Account Link -------------------->
-                                        <div class="mb-4 input-content">
-                                            <label for="linkedin" class="capitalize"> <i class="fa-brands fa-linkedin"></i> LinkedIn Account </label>
-                                            <input type="text" name="linkedin" id="linkedin" class="form-control @error('linkedin') is-invalid @enderror" value="{{ $author->linkedin }}" aria-describedby="emailHelp" placeholder="Type Author LinkedIn Account..." autocomplete="nope" />
-                                            @error('linkedin')
-                                            <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
+                                        <x-forms.text-input label="LinkedIn Account" name="linkedin" value="{{ $author->linkedin }}" icon-class="fa-solid fa-linkedin" placeholder="Type LinkedIn Account..." />
 
                                         <!----------------- Author Info -------------------->
-                                        <div class="mb-4 input-content">
-                                            <label for="info" class="capitalize"> <i class="fa-solid fa-align-left"></i> Info </label>
-                                            <textarea type="text" name="info" rows="5" class="ckeditor form-control @error('info') is-invalid @enderror" aria-describedby="emailHelp" placeholder="Type Author Info..." autocomplete="nope">{{ $author->info }}</textarea>
-                                            @error('info')
-                                            <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
+                                        <x-forms.ck-editor label="info" name="info" value="{!! $author->info !!}" />
 
                                         <!----------------- Img -------------------->
-                                        <div class="mb-3 input-content">
-                                            <label for="img" class="form-label d-flex align-items-center">
-                                                <i class="fa-solid fa-image"></i> &nbsp;  Image
-                                                <div class="show-img-container">
-                                                    <a href="{{ asset("storage/authors/".$author->img['src']) }}"  target="_blank">
-                                                        <img src="{{ asset("storage/authors/".$author->img['src']) }}" alt="{{ $author->img['alt'] }}">
-                                                    </a>
-                                                </div>
-                                            </label>
-                                            <input name="img[src]" type="file" class="form-control @error('img.src') is-invalid @enderror" id="img"  />
-                                            @error('img.src')
-                                            <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
+                                        <x-forms.upload-img-input label="Image" name="img" altTextValue="{{ $author->img['alt'] }}">
+                                            <div class="show-img-container">
+                                                <a href="{{ asset("storage/authors/".$author->img['src']) }}"  target="_blank">
+                                                    <img src="{{ asset("storage/authors/".$author->img['src']) }}" alt="{{ $author->img['alt'] }}">
+                                                </a>
+                                            </div>
+                                        </x-forms.upload-img-input>
 
-                                        <!----------------- Img Alternative Text -------------------->
-                                        <div class="mb-4 input-content">
-                                            <label for="alt_text" class="capitalize"> <i class="fa-solid fa-image"></i> Image Alternative Text </label>
-                                            <input type="text" name="img[alt]" id="alt_text" class="form-control @error('img.alt') is-invalid @enderror" value="{{ $author->img['alt'] }}" aria-describedby="emailHelp" placeholder="Type Image Alt Text..." autocomplete="nope" />
-                                            @error('img.alt')
-                                            <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-
-                                        <button type="submit" class="btn btn-primary float-right" > <i class="fa-solid fa-floppy-disk"></i> Save </button>
+                                        <!----------------- Submit Btn -------------------->
+                                        <x-forms.submit-btn name="Save" />
 
                                     </form>
                                 </div>

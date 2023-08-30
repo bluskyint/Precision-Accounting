@@ -43,10 +43,6 @@
                             <div class="table-responsive">
                                 <table class="table align-items-center table-flush show-data">
                                     <tbody>
-                                        {{-- <tr>
-                                            <td class="text-capitalize"> # ID </td>
-                                            <td> {{ $resource->id != "" ? $resource->id : '-'}} </td>
-                                        </tr> --}}
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Image </td>
                                             <td class="article-image">
@@ -60,19 +56,19 @@
                                             <td> {{ $resource->img['alt'] }} </td>
                                         </tr>
                                         <tr>
-                                            <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Title </td>
+                                            <td class="text-capitalize"> <i class="fa-solid fa-file-heading"></i> Title </td>
                                             <td> {{ $resource->title }} </td>
                                         </tr>
                                         <tr>
-                                            <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Permalink </td>
+                                            <td class="text-capitalize"> <i class="fa-solid fa-link"></i> Permalink </td>
                                             <td> {{ $resource->slug }} </td>
                                         </tr>
                                         <tr>
-                                            <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Subtitle </td>
+                                            <td class="text-capitalize"> <i class="fa-solid fa-quote-left"></i> Subtitle </td>
                                             <td> {{ $resource->subtitle }} </td>
                                         </tr>
                                         <tr>
-                                            <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Summary </td>
+                                            <td class="text-capitalize"> <i class="fa-solid fa-list"></i> Summary </td>
                                             <td> {{ $resource->summary }} </td>
                                         </tr>
                                         <tr>

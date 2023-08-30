@@ -41,46 +41,19 @@
 
 
                                         <!----------------- Name -------------------->
-                                        <div class="mb-4 input-content">
-                                            <label for="name" class="capitalize"> <i class="fa-solid fa-file-signature"></i> Username </label>
-                                            <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" aria-describedby="emailHelp" placeholder="Type Usermame..." autocomplete="nope" />
-                                            @error('name')
-                                                <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
+                                        <x-forms.text-input label="Name" name="name" icon-class="fa-solid fa-heading" placeholder="Type Name..." />
 
-
-                                        <!----------------- Job Title -------------------->
-                                        <div class="mb-4 input-content">
-                                            <label for="job_title" class="capitalize"> <i class="fa-solid fa-user-tie"></i> Job Title </label>
-                                            <input type="text" name="job_title" id="job_title" class="form-control @error('job_title') is-invalid @enderror" value="{{ old('job_title') }}" aria-describedby="emailHelp" placeholder="Type Job Title..." autocomplete="nope" />
-                                            @error('job_title')
-                                                <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-
+                                        <!----------------- Job title -------------------->
+                                        <x-forms.text-input label="Job Title" name="job_title" icon-class="fa-solid fa-user-tie" placeholder="Type Job Title..." />
 
                                         <!----------------- Visibility -------------------->
-                                        <div class="mb-4 input-content">
-                                            <label for="visibility" class="capitalize"> <i class="fa-solid fa-eye"></i> Testimonial Visibility </label>
-                                            <select class="form-select form-control @error('visibility') is-invalid @enderror" name="visibility" id="visibility"  aria-label="Default select example" >
-                                                <option value="1" {{ old('visibility') == '1' ? "selected" : "" }} > Visible </option>
-                                                <option value="0" {{ old('visibility') == '0' ? "selected" : "" }} > Invisible </option>
-                                            </select>
-                                            @error('visibility')
-                                                <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-
+                                        <x-forms.select-option label="Visibility" name="visibility" icon-class="fa-solid fa-eye">
+                                            <option value="1" {{ old('visibility') == '1' ? "selected" : "" }} > Visible </option>
+                                            <option value="0" {{ old('visibility') == '0' ? "selected" : "" }} > Invisible </option>
+                                        </x-forms.select-option>
 
                                         <!----------------- Content -------------------->
-                                        <div class="mb-4 input-content">
-                                            <label for="content" class="capitalize"> <i class="fa-solid fa-align-left"></i> Content </label>
-                                            <textarea type="text" name="content"  rows="5" class="form-control @error('content') is-invalid @enderror" aria-describedby="emailHelp" placeholder="Type Testimonial Content..." autocomplete="nope" >{{ old('content') }}</textarea>
-                                            @error('content')
-                                                <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
+                                        <x-forms.ck-editor label="Content" name="content" />
 
 
                                         <!----------------- Img -------------------->
@@ -92,10 +65,8 @@
                                             @enderror
                                         </div>
 
-
                                         <!----------------- Submit Btn -------------------->
-                                        <button type="submit" class="btn btn-primary float-right" > <i class="fa-solid fa-floppy-disk"></i> Submit </button>
-
+                                        <x-forms.submit-btn />
 
                                     </form>
                                 </div>

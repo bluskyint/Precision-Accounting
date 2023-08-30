@@ -40,27 +40,14 @@
 
                                         @csrf
 
-                                        <!----------------- Title -------------------->
-                                        <div class="mb-4 input-content">
-                                            <label for="title" class="capitalize"> <i class="fa-solid fa-file-signature"></i> Title </label>
-                                            <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" aria-describedby="emailHelp" placeholder="Type Article Title..." autocomplete="nope" />
-                                            @error('title')
-                                                <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
+                                        <!----------------- title -------------------->
+                                        <x-forms.text-input label="Title" name="title" icon-class="fa-solid fa-heading" placeholder="Type Title..." />
 
                                         <!----------------- slug -------------------->
-                                        <div class="mb-4 input-content">
-                                            <label for="slug" class="capitalize"> <i class="fa-solid fa-file-signature"></i> Permalink </label>
-                                            <input type="text" name="slug" id="slug" class="form-control @error('slug') is-invalid @enderror" value="{{ old('slug') }}" aria-describedby="emailHelp" placeholder="Ex: precision-accounting-international" autocomplete="nope" />
-                                            @error('slug')
-                                            <small class="form-text text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
+                                        <x-forms.text-input label="Permalink" name="slug" icon-class="fa-solid fa-link" placeholder="Ex: precision-accounting-international" />
 
                                         <!----------------- Submit Btn -------------------->
-                                        <button type="submit" class="btn btn-primary float-right" > <i class="fa-solid fa-floppy-disk"></i> Submit </button>
-
+                                        <x-forms.submit-btn />
 
                                     </form>
                                 </div>

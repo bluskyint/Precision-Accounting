@@ -40,8 +40,9 @@ class TaxCenterController extends Controller
     {
         try {
             $requestData = $request->validated();
-            $requestData['img']['src'] = $this->storeImage('taxCenters', $requestData['title'], $request->file('img'));
-            $requestData['content'] = $this->moveContentImages($requestData['content'], 'taxCenters/'.Str::slug($requestData['title']));
+            $folderName = Str::slug($requestData['title']);
+            $requestData['img']['src'] = $this->storeImage($request->file('img'),'taxCenters', $folderName);
+            $requestData['content'] = $this->moveContentImages($requestData['content'], "taxCenters/$folderName");
 
             TaxCenter::create($requestData);
 
@@ -73,13 +74,15 @@ class TaxCenterController extends Controller
         $requestData['img']['src'] = $taxCenter->img['src'];
 
         try {
+            $folderName = Str::slug($requestData['title']);
+
             if ($request->hasFile('img')) {
-                $requestData['img']['src'] = $this->storeImage('taxCenters', $taxCenter->title, $request->file('img'));
+                $requestData['img']['src'] = $this->storeImage($request->file('img'), 'taxCenters', $folderName);
                 Storage::disk('public')->delete("taxCenters/".$taxCenter->img['src']);
             }
 
             if (Str::contains($requestData['content'], '/tempContentImages/')) {
-                $requestData['content'] = $this->moveContentImages($requestData['content'], "taxCenters/".Str::slug($requestData['title']));
+                $requestData['content'] = $this->moveContentImages($requestData['content'], "taxCenters/$folderName");
             }
 
             $taxCenter->update($requestData);
