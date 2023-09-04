@@ -33,9 +33,13 @@
                 <h2 class="h4"> <i class="fa-solid fa-money-bill-wave text-primary"></i> Tax Center List</h2>
                 <p class="mb-0">You can manage this table  and do all opration system create , show, edit and delete</p>
             </div>
-            <div class="btn-toolbar mb-2 mb-md-0"><a href="{{ route('admin.tax_center.create') }}"
-                    class="btn btn-sm btn-primary d-inline-flex align-items-center"> <i class="fa-solid fa-plus"></i> &nbsp; New Tax Center</a>
+            @can('Add TaxCenters')
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <a href="{{ route('admin.tax_center.create') }}" class="btn btn-sm btn-primary d-inline-flex align-items-center">
+                    <i class="fa-solid fa-plus"></i> &nbsp; New Tax Center
+                </a>
             </div>
+            @endcan
         </div>
 
         <div class="table-settings mb-4">
@@ -192,14 +196,19 @@
                                     </td>
                                     <td><span class="fw-normal">{{ $tax_center->created_at }}</span></td>
                                     <td class="actions">
-                                        <a href="{{ route('admin.tax_center.show', $tax_center->id) }}" class="text-tertiary"> <i
-                                                class="fa-solid fa-eye fa-lg"></i> </a>
-                                        <a href="{{ route('admin.tax_center.edit', $tax_center->id) }}" class="text-info"> <i
-                                                class="fa-solid fa-pen-to-square fa-lg"></i> </a>
+                                        <a href="{{ route('admin.tax_center.show', $tax_center->id) }}" class="text-tertiary">
+                                            <i class="fa-solid fa-eye fa-lg"></i>
+                                        </a>
+                                        @can('Edit TaxCenters')
+                                        <a href="{{ route('admin.tax_center.edit', $tax_center->id) }}" class="text-info">
+                                            <i class="fa-solid fa-pen-to-square fa-lg"></i>
+                                        </a>
+                                        @endcan
+                                        @can('Delete TaxCenters')
                                         <a href="{{ route('admin.tax_center.destroy', $tax_center->id) }}" class="text-info delete-record">
                                             <i class="fa-solid fa-trash-can text-danger fa-lg"></i>
                                         </a>
-
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach

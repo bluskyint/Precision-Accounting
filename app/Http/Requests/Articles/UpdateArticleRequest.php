@@ -33,7 +33,7 @@ class UpdateArticleRequest extends FormRequest
             'seo_title'       => ['required' , 'string' , 'max:500'],
             'seo_description' => ['required' , 'string' , 'max:1000'],
             'seo_keywords'    => ['required' , 'string' , 'max:1000'],
-            'author_id'          => ['required' , 'exists:authors,id'],
+            'author_id'          => ['required' , 'exists:users,id'],
             'pinned'          => ['required' , 'string' , 'max:1'],
             'category_id'     => ['required' , 'numeric'],
             'img.src'             => ['nullable' , 'mimes:webp' , 'max:2048'],

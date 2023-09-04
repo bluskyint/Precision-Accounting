@@ -24,9 +24,11 @@
                 <h2 class="h4"> <i class="fa-solid fa-book text-primary"></i> Resources List</h2>
                 <p class="mb-0">You can manage this table  and do all opration system create , show, edit and delete</p>
             </div>
+            @can('Add Resources')
             <div class="btn-toolbar mb-2 mb-md-0"><a href="{{ route('admin.resource.create') }}"
                     class="btn btn-sm btn-primary d-inline-flex align-items-center"> <i class="fa-solid fa-plus"></i> &nbsp; New Resource</a>
             </div>
+            @endcan
         </div>
 
         <div class="table-settings mb-4">
@@ -172,14 +174,19 @@
                                         </a></td>
                                     <td><span class="fw-normal">{{ $resource->created_at }}</span></td>
                                     <td class="actions">
-                                        <a href="{{ route('admin.resource.show', $resource->id) }}" class="text-tertiary"> <i
-                                                class="fa-solid fa-eye fa-lg"></i> </a>
-                                        <a href="{{ route('admin.resource.edit', $resource->id) }}" class="text-info"> <i
-                                                class="fa-solid fa-pen-to-square fa-lg"></i> </a>
+                                        <a href="{{ route('admin.resource.show', $resource->id) }}" class="text-tertiary">
+                                            <i class="fa-solid fa-eye fa-lg"></i>
+                                        </a>
+                                        @can('Edit Resources')
+                                        <a href="{{ route('admin.resource.edit', $resource->id) }}" class="text-info">
+                                            <i class="fa-solid fa-pen-to-square fa-lg"></i>
+                                        </a>
+                                        @endcan
+                                        @can('Delete Resources')
                                         <a href="{{ route('admin.resource.destroy', $resource->id) }}" class="text-info delete-record">
                                             <i class="fa-solid fa-trash-can text-danger fa-lg"></i>
                                         </a>
-
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach

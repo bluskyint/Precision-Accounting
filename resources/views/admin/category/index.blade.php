@@ -24,9 +24,11 @@
                 <h2 class="h4"> <i class="fa-solid fa-code-branch text-primary"></i> Categories List</h2>
                 <p class="mb-0">You can manage this table  and do all opration system create , show, edit and delete</p>
             </div>
+            @can('Add Categories')
             <div class="btn-toolbar mb-2 mb-md-0"><a href="{{ route('admin.category.create') }}"
                     class="btn btn-sm btn-primary d-inline-flex align-items-center"> <i class="fa-solid fa-plus"></i> &nbsp; New Category</a>
             </div>
+            @endcan
         </div>
 
         <div class="table-settings mb-4">
@@ -174,12 +176,18 @@
                                     <td><span class="fw-normal">{{ $category->created_at }}</span></td>
                                     <td class="actions">
                                         <a href="{{ route('admin.category.show', $category->id) }}" class="text-tertiary"> <i
-                                                class="fa-solid fa-eye fa-lg"></i> </a>
+                                                class="fa-solid fa-eye fa-lg"></i>
+                                        </a>
+                                        @can('Edit Categories')
                                         <a href="{{ route('admin.category.edit', $category->id) }}" class="text-info"> <i
-                                                class="fa-solid fa-pen-to-square fa-lg"></i> </a>
+                                                class="fa-solid fa-pen-to-square fa-lg"></i>
+                                        </a>
+                                        @endcan
+                                        @can('Delete Categories')
                                         <a href="{{ route('admin.category.destroy', $category->id) }}" class="text-info delete-record">
                                             <i class="fa-solid fa-trash-can text-danger fa-lg"></i>
                                         </a>
+                                        @endcan
 
                                     </td>
                                 </tr>

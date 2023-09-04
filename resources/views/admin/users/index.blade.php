@@ -24,10 +24,13 @@
                 <h2 class="h4"> <i class="fa-solid fa-marker text-primary"></i> Users List</h2>
                 <p class="mb-0">You can manage this table  and do all opration system create , show, edit and delete</p>
             </div>
-            <div class="btn-toolbar mb-2 mb-md-0"><a href="{{ route('admin.users.create') }}"
-                    class="btn btn-sm btn-primary d-inline-flex align-items-center"> <i class="fa-solid fa-plus"></i> &nbsp;
-                    New User</a>
+            @can('Add Users')
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <a href="{{ route('admin.users.create') }}" class="btn btn-sm btn-primary d-inline-flex align-items-center">
+                    <i class="fa-solid fa-plus"></i> &nbsp;New User
+                </a>
             </div>
+            @endcan
         </div>
 
         <div class="table-settings mb-4">
@@ -194,13 +197,18 @@
                                     <td><span class="fw-normal">{{ $user->created_at }}</span></td>
                                     <td class="actions">
                                         <a href="{{ route('admin.users.show', $user->slug) }}" class="text-tertiary">
-                                            <i class="fa-solid fa-eye fa-lg"></i> </a>
-                                        <a href="{{ route('admin.users.edit', $user->slug) }}" class="text-info"> <i
-                                                class="fa-solid fa-pen-to-square fa-lg"></i> </a>
-                                        <a href="{{ route('admin.users.destroy', $user->slug) }}"
-                                            class="text-info delete-record">
+                                            <i class="fa-solid fa-eye fa-lg"></i>
+                                        </a>
+                                        @can('Edit Users')
+                                        <a href="{{ route('admin.users.edit', $user->slug) }}" class="text-info">
+                                            <i class="fa-solid fa-pen-to-square fa-lg"></i>
+                                        </a>
+                                        @endcan
+                                        @can('Delete Users')
+                                        <a href="{{ route('admin.users.destroy', $user->slug) }}" class="text-info delete-record">
                                             <i class="fa-solid fa-trash-can text-danger fa-lg"></i>
                                         </a>
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach

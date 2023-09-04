@@ -24,9 +24,13 @@
                 <h2 class="h4"> <i class="fa-solid fa-comment text-primary"></i> Testimonials List</h2>
                 <p class="mb-0">You can manage this table  and do all opration system create , show, edit and delete</p>
             </div>
-            <div class="btn-toolbar mb-2 mb-md-0"><a href="{{ route('admin.testimonial.create') }}"
-                    class="btn btn-sm btn-primary d-inline-flex align-items-center"> <i class="fa-solid fa-plus"></i> &nbsp; New Testimonial</a>
+            @can('Add Testimonials')
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <a href="{{ route('admin.testimonial.create') }}" class="btn btn-sm btn-primary d-inline-flex align-items-center">
+                    <i class="fa-solid fa-plus"></i> &nbsp; New Testimonial
+                </a>
             </div>
+            @endcan
         </div>
 
         <div class="table-settings mb-4">
@@ -184,14 +188,19 @@
                                     </td>
                                     <td><span class="fw-normal">{{ $testimonial->created_at }}</span></td>
                                     <td class="actions">
-                                        <a href="{{ route('admin.testimonial.show', $testimonial->id) }}" class="text-tertiary"> <i
-                                                class="fa-solid fa-eye fa-lg"></i> </a>
-                                        <a href="{{ route('admin.testimonial.edit', $testimonial->id) }}" class="text-info"> <i
-                                                class="fa-solid fa-pen-to-square fa-lg"></i> </a>
+                                        <a href="{{ route('admin.testimonial.show', $testimonial->id) }}" class="text-tertiary">
+                                            <i class="fa-solid fa-eye fa-lg"></i>
+                                        </a>
+                                        @can('Edit Testimonials')
+                                        <a href="{{ route('admin.testimonial.edit', $testimonial->id) }}" class="text-info">
+                                            <i class="fa-solid fa-pen-to-square fa-lg"></i>
+                                        </a>
+                                        @endcan
+                                        @can('Delete Testimonials')
                                         <a href="{{ route('admin.testimonial.destroy', $testimonial->id) }}" class="text-info delete-record">
                                             <i class="fa-solid fa-trash-can text-danger fa-lg"></i>
                                         </a>
-
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach

@@ -23,10 +23,13 @@
                 </nav>
                 <h2 class="h4"> <i class="fa-solid fa-user-lock text-primary"></i> Roles List</h2>
             </div>
-            <div class="btn-toolbar mb-2 mb-md-0"><a href="{{ route('admin.roles.create') }}"
-                    class="btn btn-sm btn-primary d-inline-flex align-items-center"> <i class="fa-solid fa-plus"></i> &nbsp;
-                    New Role</a>
+            @can('Add Roles')
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <a href="{{ route('admin.roles.create') }}" class="btn btn-sm btn-primary d-inline-flex align-items-center">
+                    <i class="fa-solid fa-plus"></i> &nbsp;New Role
+                </a>
             </div>
+            @endcan
         </div>
 
         <!--------------- Session Alert ----------------->
@@ -78,9 +81,14 @@
                                     <td><span class="fw-normal">{{ $role->created_at }}</span></td>
                                     <td class="actions d-flex align-items-center gap-2">
                                         <a href="{{ route('admin.roles.show', $role->id) }}" class="text-tertiary">
-                                            <i class="fa-solid fa-eye fa-lg"></i> </a>
-                                        <a href="{{ route('admin.roles.edit', $role->id) }}" class="text-info"> <i
-                                                class="fa-solid fa-pen-to-square fa-lg"></i> </a>
+                                            <i class="fa-solid fa-eye fa-lg"></i>
+                                        </a>
+                                        @can('Edit Roles')
+                                        <a href="{{ route('admin.roles.edit', $role->id) }}" class="text-info">
+                                            <i class="fa-solid fa-pen-to-square fa-lg"></i>
+                                        </a>
+                                        @endcan
+                                        @can('Delete Roles')
                                         <form action="{{ route('admin.roles.destroy', $role->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
@@ -88,6 +96,7 @@
                                                 <i class="fa-solid fa-trash-can text-danger fa-lg"></i>
                                             </button>
                                         </form>
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach

@@ -31,12 +31,16 @@
                                         <h2 class="fs-5 fw-bold mb-0"> <i class="fa-solid fa-eye text-primary"></i> Testimonial Details</h2>
                                     </div>
                                     <div class="col text-end">
+                                        @can('Edit Testimonials')
                                         <a href="{{ route("admin.testimonial.edit" , $testimonial->id) }}" class="btn btn-sm btn-primary">
                                             <i class="fa-solid fa-pen-to-square"></i> Edit
                                         </a>
+                                        @endcan
+                                        @can('Delete Testimonials')
                                         <a href="{{ route('admin.testimonial.destroy', $testimonial->id) }}" class="btn btn-sm btn-danger delete-record">
                                             <i class="fa-solid fa-trash-can"></i> Delete
                                         </a>
+                                        @endcan
                                     </div>
                                 </div>
                             </div>

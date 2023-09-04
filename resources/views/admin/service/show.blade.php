@@ -31,12 +31,16 @@
                                         <h2 class="fs-5 fw-bold mb-0"> <i class="fa-solid fa-eye text-primary"></i> Service Details</h2>
                                     </div>
                                     <div class="col text-end">
+                                        @can('Edit Services')
                                         <a href="{{ route("admin.service.edit" , $service->id) }}" class="btn btn-sm btn-primary">
                                             <i class="fa-solid fa-pen-to-square"></i> Edit
                                         </a>
+                                        @endcan
+                                        @can('Edit Services')
                                         <a href="{{ route('admin.service.destroy', $service->id) }}" class="btn btn-sm btn-danger delete-record">
                                             <i class="fa-solid fa-trash-can"></i> Delete
                                         </a>
+                                        @endcan
                                     </div>
                                 </div>
                             </div>

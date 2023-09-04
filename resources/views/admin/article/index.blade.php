@@ -25,12 +25,13 @@
                 <p class="mb-0">You can manage this table  and do all opration system create , show, edit and delete</p>
             </div>
             <!--------------- If No SubCategory hide create btn --------------->
+            @can('Add Articles')
             @if (isset($categoriesCount) && $categoriesCount > 0)
                 <div class="btn-toolbar mb-2 mb-md-0"><a href="{{ route('admin.article.create') }}"
                         class="btn btn-sm btn-primary d-inline-flex align-items-center"> <i class="fa-solid fa-plus"></i> &nbsp; New Article</a>
                 </div>
             @endif
-
+            @endcan
         </div>
 
         <div class="table-settings mb-4">
@@ -188,13 +189,18 @@
                                     <td><span class="fw-normal">{{ $article->created_at }}</span></td>
                                     <td class="actions">
                                         <a href="{{ route('admin.article.show', $article->id) }}" class="text-tertiary"> <i
-                                                class="fa-solid fa-eye fa-lg"></i> </a>
+                                                class="fa-solid fa-eye fa-lg"></i>
+                                        </a>
+                                        @can('Edit Articles')
                                         <a href="{{ route('admin.article.edit', $article->id) }}" class="text-info"> <i
-                                                class="fa-solid fa-pen-to-square fa-lg"></i> </a>
+                                                class="fa-solid fa-pen-to-square fa-lg"></i>
+                                        </a>
+                                        @endcan
+                                        @can('Delete Articles')
                                         <a href="{{ route('admin.article.destroy', $article->id) }}" class="text-info delete-record">
                                             <i class="fa-solid fa-trash-can text-danger fa-lg"></i>
                                         </a>
-
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach

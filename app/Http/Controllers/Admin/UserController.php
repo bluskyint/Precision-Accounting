@@ -81,7 +81,7 @@ class UserController extends Controller
 
             $user->update($requestData);
 
-            $user->assignRole([$request->validated('role_id')]);
+            $user->syncRoles([$request->validated('role_id')]);
 
             return to_route("admin.users.index")->with("success", "User updated successfully");
 

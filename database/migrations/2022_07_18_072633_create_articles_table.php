@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title', 100 )->unique()->index();
             $table->string('slug')->unique()->index();
-            $table->foreignId('author_id')->constrained();
+            $table->foreignId('author_id')->constrained('users');
             $table->foreignId('category_id')->constrained();
             $table->string('subtitle');
             $table->string('summary');
