@@ -15,7 +15,7 @@
                     </a>
                 </li>
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Admin</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('admin.member.index') }}">Authors</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.users.index') }}">Users</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Edit</li>
             </ol>
         </nav>
@@ -35,32 +35,48 @@
                             </div>
                             <div class="card-body">
                                 <div class="row align-items-center">
-                                    <form action="{{ route('admin.author.update' , $author->id) }}" class="edit-form" method="POST" enctype="multipart/form-data">
+                                    <form action="{{ route('admin.users.update' , $user->slug) }}" class="edit-form" method="POST" enctype="multipart/form-data">
 
                                         @csrf
 
                                         @method('PUT')
 
                                         <!----------------- Name -------------------->
-                                        <x-forms.text-input label="Name" name="name" value="{{ $author->name }}" icon-class="fa-solid fa-heading" placeholder="Type Name..." />
+                                        <x-forms.text-input label="Name" name="name" value="{{ $user->name }}" icon-class="fa-solid fa-heading" placeholder="Type Name..." />
+
+                                        <!----------------- Email -------------------->
+                                        <x-forms.text-input label="Email" name="email" value="{{ $user->email }}" icon-class="fa-solid fa-envelope" placeholder="Type Email..." />
+
+                                        <!----------------- Password -------------------->
+                                        <x-forms.text-input label="Password" name="password" icon-class="fa-solid fa-lock" placeholder="Type Password..." />
+
+                                        <!----------------- Password Confirmation -------------------->
+                                        <x-forms.text-input label="Confirm Password " name="password_confirmation" icon-class="fa-solid fa-lock" placeholder="Retype Password..." />
 
                                         <!----------------- slug -------------------->
-                                        <x-forms.text-input label="Permalink" name="slug" value="{{ $author->job_title }}" icon-class="fa-solid fa-link" placeholder="Ex: precision-accounting-international" />
+                                        <x-forms.text-input label="Permalink" name="slug" value="{{ $user->slug }}" icon-class="fa-solid fa-link" placeholder="Ex: precision-accounting-international" />
 
                                         <!-----------------job title -------------------->
-                                        <x-forms.text-input label="Job Title" name="job_title" value="{{ $author->slug }}" icon-class="fa-solid fa-user-tie" placeholder="Type Job Title..." />
+                                        <x-forms.text-input label="Job Title" name="job_title" value="{{ $user->job_title }}" icon-class="fa-solid fa-user-tie" placeholder="Type Job Title..." />
 
                                         <!----------------- LinkedIn Account Link -------------------->
-                                        <x-forms.text-input label="LinkedIn Account" name="linkedin" value="{{ $author->linkedin }}" icon-class="fa-solid fa-linkedin" placeholder="Type LinkedIn Account..." />
+                                        <x-forms.text-input label="LinkedIn Account" name="linkedin" value="{{ $user->linkedin }}" icon-class="fa-brands fa-linkedin" placeholder="Type LinkedIn Account..." />
 
-                                        <!----------------- Author Info -------------------->
-                                        <x-forms.ck-editor id="editor-no-upload" label="info" name="info" value="{!! $author->info !!}" />
+                                        <!----------------- Info -------------------->
+                                        <x-forms.ck-editor id="editor-no-upload" label="info" name="info" value="{!! $user->info !!}" />
+
+                                        <!----------------- User Role -------------------->
+                                        <x-forms.select-option label="Role" name="role_id" icon-class="fa-solid fa-lock">
+                                            @foreach ( $roles as $role )
+                                                <option value="{{ $role->id }}" {{ count($user->roles) ? ($user->roles[0]->id == $role->id ? "selected" : "") : '' }} >{{ $role->name }}</option>
+                                            @endforeach
+                                        </x-forms.select-option>
 
                                         <!----------------- Img -------------------->
-                                        <x-forms.upload-img-input label="Image" name="img" altTextValue="{{ $author->img['alt'] }}">
+                                        <x-forms.upload-img-input label="Image" name="img" altTextValue="{{ $user->img['alt'] }}">
                                             <div class="show-img-container">
-                                                <a href="{{ asset("storage/authors/".$author->img['src']) }}"  target="_blank">
-                                                    <img src="{{ asset("storage/authors/".$author->img['src']) }}" alt="{{ $author->img['alt'] }}">
+                                                <a href="{{ asset("storage/users/".$user->img['src']) }}"  target="_blank">
+                                                    <img src="{{ asset("storage/users/".$user->img['src']) }}" alt="{{ $user->img['alt'] }}">
                                                 </a>
                                             </div>
                                         </x-forms.upload-img-input>

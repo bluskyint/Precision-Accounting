@@ -15,7 +15,7 @@
                     </a>
                 </li>
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Admin</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('admin.author.index') }}">Authors</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.roles.index') }}">Roles</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Create</li>
             </ol>
         </nav>
@@ -28,35 +28,38 @@
                             <div class="card-header">
                                 <div class="row align-items-center">
                                     <div class="col">
-                                        <h2 class="fs-5 fw-bold mb-0"> <i class="fa-solid fa-plus text-primary"></i> Create
-                                            Author</h2>
+                                        <h2 class="fs-5 fw-bold mb-0"> <i class="fa-solid fa-plus text-primary"></i> Create Role</h2>
                                     </div>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="row align-items-center">
-                                    <form action="{{ route('admin.author.store') }}" method="POST" enctype="multipart/form-data">
-
+                                    <form action="{{ route('admin.roles.store') }}" method="POST">
 
                                         @csrf
 
                                         <!----------------- Name -------------------->
-                                        <x-forms.text-input label="Name" name="name" icon-class="fa-solid fa-heading" placeholder="Type Name..." />
+                                        <x-forms.text-input label="Role Name" name="name" icon-class="fa-solid fa-heading" placeholder="Type Name..." />
 
-                                        <!----------------- slug -------------------->
-                                        <x-forms.text-input label="Permalink" name="slug" icon-class="fa-solid fa-link" placeholder="Ex: precision-accounting-international" />
-
-                                        <!----------------- Job title -------------------->
-                                        <x-forms.text-input label="Job Title" name="job_title" icon-class="fa-solid fa-user-tie" placeholder="Type Job Title..." />
-
-                                        <!----------------- LinkedIn Account Link -------------------->
-                                        <x-forms.text-input label="LinkedIn Account" name="linkedin" icon-class="fa-solid fa-linkedin" placeholder="Type LinkedIn Account..." />
-
-                                        <!----------------- Author Info -------------------->
-                                        <x-forms.ck-editor id="editor-no-upload" label="info" name="info" />
-
-                                        <!----------------- Img -------------------->
-                                        <x-forms.upload-img-input label="Image" name="img" />
+                                        <div class="row gy-3">
+                                        @foreach($permissionsGroups as $group_name => $permissions)
+                                            <div class="col-4">
+                                                <span class="text-capitalize fw-bolder">&nbsp;• {{ $group_name }}</span>
+                                                @foreach($permissions as $permission)
+                                                    <div class="form-check">
+                                                        <label class="capitalize">
+                                                            <input type="checkbox" name="permissions[]" class="form-check-input @error( 'permissions' ) is-invalid @enderror"
+                                                                   value="{{ $permission->id }}" autocomplete="nope"/>
+                                                            {{ $permission->name }}
+                                                        </label>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        @endforeach
+                                        </div>
+                                        @error( 'permissions' )
+                                        <small class="form-text text-danger">{{ $message }}</small>
+                                        @enderror
 
                                         <!----------------- Submit Btn -------------------->
                                         <x-forms.submit-btn />

@@ -18,15 +18,15 @@
                             </a>
                         </li>
                         <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Admin</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Members</li>
+                        <li class="breadcrumb-item active" aria-current="page">Users</li>
                     </ol>
                 </nav>
-                <h2 class="h4"> <i class="fa-solid fa-users text-primary"></i> Members List</h2>
+                <h2 class="h4"> <i class="fa-solid fa-marker text-primary"></i> Users List</h2>
                 <p class="mb-0">You can manage this table  and do all opration system create , show, edit and delete</p>
             </div>
-            <div class="btn-toolbar mb-2 mb-md-0"><a href="{{ route('admin.member.create') }}"
+            <div class="btn-toolbar mb-2 mb-md-0"><a href="{{ route('admin.users.create') }}"
                     class="btn btn-sm btn-primary d-inline-flex align-items-center"> <i class="fa-solid fa-plus"></i> &nbsp;
-                    New Member</a>
+                    New User</a>
             </div>
         </div>
 
@@ -35,7 +35,7 @@
 
                 <!--------------- Search Form --------------->
                 <div class="col-9 col-lg-8 d-md-flex">
-                    <form action="{{ route('admin.member.search') }}" method="POST"
+                    <form action="{{ route('admin.users.search') }}" method="POST"
                         class="input-group me-2 me-lg-3 fmxw-400">
                         <button type="submit" class="input-group-text">
                             <svg class="icon icon-xs" x-description="Heroicon name: solid/search"
@@ -48,7 +48,7 @@
                         </button>
                         @csrf
                         <input type="text" name="search" class="form-control @error('search') is-invalid @enderror"
-                            placeholder="Search members by name" value='{{ Request::input('search') }}'
+                            placeholder="Search users by name" value='{{ Request::input('search') }}'
                             autocomplete="off" maxlength="55" required />
                         @error('search')
                             <div class="invalid-feedback" style="margin-left: 40px">{{ $message }}.</div>
@@ -73,14 +73,14 @@
                                 <div class="dynamic-pagination dropdown-menu dropdown-menu-end pb-0">
                                     <span class="small ps-3 fw-bold text-dark">Show</span>
 
-                                    <a class="dropdown-item {{ Request::is('*/perPage/10') ? 'active' : '' }} {{ Request::is('admin/member') ? 'active' : '' }}"
-                                        href="{{ route('admin.member.perPage', 10) }}"> 10 </a>
+                                    <a class="dropdown-item {{ Request::is('*/perPage/10') ? 'active' : '' }} {{ Request::is('admin/user') ? 'active' : '' }}"
+                                        href="{{ route('admin.users.perPage', 10) }}"> 10 </a>
                                     <a class="dropdown-item {{ Request::is('*/perPage/30') ? 'active' : '' }}"
-                                        href="{{ route('admin.member.perPage', 30) }}"> 30 </a>
+                                        href="{{ route('admin.users.perPage', 30) }}"> 30 </a>
                                     <a class="dropdown-item {{ Request::is('*/perPage/50') ? 'active' : '' }}"
-                                        href="{{ route('admin.member.perPage', 50) }}"> 50 </a>
+                                        href="{{ route('admin.users.perPage', 50) }}"> 50 </a>
                                     <a class="dropdown-item {{ Request::is('*/perPage/100') ? 'active' : '' }}"
-                                        href="{{ route('admin.member.perPage', 100) }}"> 100 </a>
+                                        href="{{ route('admin.users.perPage', 100) }}"> 100 </a>
 
                                 </div>
 
@@ -117,7 +117,7 @@
 
 
 
-        @if ($members->isEmpty())
+        @if ($users->isEmpty())
             <!----------- No Data ------------->
             <div class="card card-body shadow border-0 d-flex justify-content-center align-items-center">
                 <img src="{{ asset('volt_template_assets/images/no_data.png') }}" alt="no_data" class="img-fluid" style="max-width: 500px">
@@ -128,7 +128,7 @@
             <div class="card card-body shadow border-0 table-wrapper table-responsive">
 
                 <!----------- multi Action ------------->
-                <form id="multi-action-form" action="{{ route('admin.member.multiAction') }}" method="POST">
+                <form id="multi-action-form" action="{{ route('admin.users.multiAction') }}" method="POST">
                     <div class="pb-3">
 
                         @csrf
@@ -156,53 +156,48 @@
                                     </div>
                                 </th>
                                 <th class="border-bottom">Name</th>
+                                <th class="border-bottom">Role</th>
                                 <th class="border-bottom">LinkedIn</th>
-                                <th class="border-bottom">Slider Show</th>
                                 <th class="border-bottom">Date Created</th>
                                 <th class="border-bottom">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($members as $member)
+                            @foreach ($users as $user)
                                 <tr>
                                     <td>
                                         <div class="form-check dashboard-check">
-                                            <input name="id[]" value="{{ $member->id }}"
+                                            <input name="id[]" value="{{ $user->id }}"
                                                 class="form-check-input checkbox-head check-item" type="checkbox">
                                             <label class="form-check-label" for="userCheck55"> </label>
                                         </div>
                                     </td>
-                                    <td><a href="{{ route('admin.member.show', $member->id) }}" class="d-flex align-items-center"><img
-                                                src="{{ asset("storage/members/".$member->img['src']) }}"
-                                                class="avatar rounded-circle me-3" alt="{{ $member->img['alt'] }}">
+                                    <td><a href="{{ route('admin.users.show', $user->slug) }}" class="d-flex align-items-center">
+                                            <img src="{{ asset("storage/users/".$user->img['src']) }}"
+                                                class="avatar rounded-circle me-3" alt="{{ $user->img['alt'] }}">
                                             <div class="d-block">
                                                 <span class="fw-bold">
-                                                    @if ( strlen($member->name) > 30 )
-                                                        {{ Str::ucfirst( substr( $member->name , 0, 30 )) }}...
+                                                    @if ( strlen($user->name) > 30 )
+                                                        {{ Str::ucfirst( substr( $user->name , 0, 30 )) }}...
                                                     @else
-                                                        {{  Str::ucfirst( $member->name ) }}
+                                                        {{  Str::ucfirst( $user->name ) }}
                                                     @endif
                                                 </span>
-                                                <div class="small text-gray">{{ $member->job_title }}</div>
+                                                <div class="small text-gray">{{ $user->job_title }}</div>
                                             </div>
-                                        </a></td>
+                                        </a>
+                                    </td>
+                                    <td><span class="fw-normal">{{ count($user->roles) ? $user->roles[0]->name : '-' }}</span></td>
                                     <td>
-                                        <a class="btn btn-link" href="{{ $member->linkedin }}" target="_blank">link</a>
+                                        <a class="btn btn-link" href="{{ $user->linkedin }}" target="_blank">link</a>
                                     </td>
-                                    <td class="check-icons">
-                                        @if ( $member->slider_show === "0" )
-                                            <span class="text-gray"> <i class="fa-solid fa-minus fa-2x"></i> </span>
-                                        @else
-                                            <span class="text-success"> <i class="fa-regular fa-circle-check fa-2x"></i> </span>
-                                        @endif
-                                    </td>
-                                    <td><span class="fw-normal">{{ $member->created_at }}</span></td>
+                                    <td><span class="fw-normal">{{ $user->created_at }}</span></td>
                                     <td class="actions">
-                                        <a href="{{ route('admin.member.show', $member->id) }}" class="text-tertiary">
+                                        <a href="{{ route('admin.users.show', $user->slug) }}" class="text-tertiary">
                                             <i class="fa-solid fa-eye fa-lg"></i> </a>
-                                        <a href="{{ route('admin.member.edit', $member->id) }}" class="text-info"> <i
+                                        <a href="{{ route('admin.users.edit', $user->slug) }}" class="text-info"> <i
                                                 class="fa-solid fa-pen-to-square fa-lg"></i> </a>
-                                        <a href="{{ route('admin.member.destroy', $member->id) }}"
+                                        <a href="{{ route('admin.users.destroy', $user->slug) }}"
                                             class="text-info delete-record">
                                             <i class="fa-solid fa-trash-can text-danger fa-lg"></i>
                                         </a>
@@ -215,11 +210,11 @@
                         class="card-footer px-3 border-0 d-flex flex-column flex-lg-row align-items-center justify-content-between">
                         {{-- Pagination --}}
                         <div class="d-flex justify-content-center">
-                            {{ $members->links('pagination::bootstrap-4') }}
+                            {{ $users->links('pagination::bootstrap-4') }}
                         </div>
                         <div class="fw-normal small mt-4 mt-lg-0">
-                            Showing <b>{{ $members->firstItem() }}</b> to <b>{{ $members->lastItem() }}</b>
-                            of total <b>{{ $members->total() }}</b> entries
+                            Showing <b>{{ $users->firstItem() }}</b> to <b>{{ $users->lastItem() }}</b>
+                            of total <b>{{ $users->total() }}</b> entries
                         </div>
                     </div>
                 </form>

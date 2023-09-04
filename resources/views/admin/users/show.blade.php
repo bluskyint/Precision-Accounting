@@ -15,7 +15,7 @@
                     </a>
                 </li>
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Admin</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('admin.member.index') }}">Members</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.users.index') }}">Users</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Show</li>
             </ol>
         </nav>
@@ -28,13 +28,13 @@
                             <div class="card-header">
                                 <div class="row align-items-center">
                                     <div class="col">
-                                        <h2 class="fs-5 fw-bold mb-0"> <i class="fa-solid fa-eye text-primary"></i> Member Details</h2>
+                                        <h2 class="fs-5 fw-bold mb-0"> <i class="fa-solid fa-eye text-primary"></i> User Details</h2>
                                     </div>
                                     <div class="col text-end">
-                                        <a href="{{ route("admin.member.edit" , $member->id) }}" class="btn btn-sm btn-primary">
+                                        <a href="{{ route("admin.users.edit" , $user->slug) }}" class="btn btn-sm btn-primary">
                                             <i class="fa-solid fa-pen-to-square"></i> Edit
                                         </a>
-                                        <a href="{{ route('admin.member.destroy', $member->id) }}" class="btn btn-sm btn-danger delete-record">
+                                        <a href="{{ route('admin.users.destroy', $user->slug) }}" class="btn btn-sm btn-danger delete-record">
                                             <i class="fa-solid fa-trash-can"></i> Delete
                                         </a>
                                     </div>
@@ -43,38 +43,41 @@
                             <div class="table-responsive">
                                 <table class="table align-items-center table-flush show-data">
                                     <tbody>
-                                        {{-- <tr>
-                                            <td class="text-capitalize"> # ID </td>
-                                            <td> {{ $member->id != "" ? $member->id : '-'}} </td>
-                                        </tr> --}}
-
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Image </td>
                                             <td class="article-image">
-                                                <a class="show-img-container" href="{{ asset('storage/members/'.$member->img['src']) }}" target="_blank">
-                                                    <img src="{{ asset('storage/members/'.$member->img['src']) }}" alt="{{ $member->img['alt'] }}">
+                                                <a href="{{ asset("storage/users/".$user->img['src']) }}"  target="_blank">
+                                                    <img src="{{ asset("storage/users/".$user->img['src']) }}" alt="{{ $user->img['alt'] }}">
                                                 </a>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Image Alternative Text </td>
-                                            <td> {{ $member->img['alt'] }} </td>
+                                            <td> {{ $user->img ? $user->img['alt'] : "user image" }} </td>
                                         </tr>
                                         <tr>
-                                            <td class="text-capitalize"> <i class="fa-solid fa-file-signature"></i> Name </td>
-                                            <td> {{ $member->name }} </td>
+                                            <td class="text-capitalize"> <i class="fa-solid fa-heading"></i> Name </td>
+                                            <td> {{ $user->name }} </td>
                                         </tr>
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-user-tie"></i> Job Title </td>
-                                            <td> {{ $member->job_title }} </td>
+                                            <td> {{ $user->job_title }} </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-capitalize"> <i class="fa-solid fa-lock"></i> Role </td>
+                                            <td> {{ count($user->roles) ? $user->roles[0]->name : '-' }} </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-capitalize"> <i class="fa-solid fa-link"></i> Permalink </td>
+                                            <td> {{ $user->slug }} </td>
                                         </tr>
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-brands fa-linkedin"></i> LinkedIn </td>
-                                            <td> {{ $member->linkedin }} </td>
+                                            <td> {{ $user->linkedin }} </td>
                                         </tr>
                                         <tr>
                                             <td class="text-capitalize content"> <i class="fa-solid fa-align-left"></i> Info </td>
-                                            <td> {!! $member->info !!} </td>
+                                            <td> {!! $user->info !!} </td>
                                         </tr>
                                     </tbody>
                                 </table>

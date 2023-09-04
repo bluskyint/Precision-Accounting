@@ -186,7 +186,7 @@ return [
          * Package Service Providers...
          */
         Jorenvh\Share\Providers\ShareServiceProvider::class,
-
+        Spatie\Permission\PermissionServiceProvider::class,
         /*
          * Application Service Providers...
          */
