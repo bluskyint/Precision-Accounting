@@ -133,6 +133,7 @@
                             <span class="sidebar-text">Dashboard</span>
                         </a>
                     </li>
+                    @canany(['Show Categories', 'Show Articles'])
                     <li class="nav-item">
                         <span class="nav-link d-flex justify-content-between align-items-center collapsed"
                             data-bs-toggle="collapse" data-bs-target="#article" aria-expanded="false">
@@ -179,7 +180,8 @@
                             </ul>
                         </div>
                     </li>
-
+                    @endcanany
+                    @can('Show Resources')
                     <li class="nav-item ">
                         <a href="{{ route('admin.resource.index') }}"
                             class="nav-link {{ Request::is('*/resource*') ? 'active' : '' }}">
@@ -189,24 +191,8 @@
                             <span class="sidebar-text">Resources</span>
                         </a>
                     </li>
-                    <li class="nav-item ">
-                        <a href="{{ route('admin.member.index') }}"
-                            class="nav-link {{ Request::is('*/member*') ? 'active' : '' }}">
-                            <span class="sidebar-icon">
-                                <i class="fa-solid fa-users"></i>
-                            </span>
-                            <span class="sidebar-text">Members</span>
-                        </a>
-                    </li>
-                    <li class="nav-item ">
-                        <a href="{{ route('admin.author.index') }}"
-                            class="nav-link {{ Request::is('*/author*') ? 'active' : '' }}">
-                            <span class="sidebar-icon">
-                                <i class="fa-solid fa-marker"></i>
-                            </span>
-                            <span class="sidebar-text">Authors</span>
-                        </a>
-                    </li>
+                    @endcan
+                    @can('Show TaxCenters')
                     <li class="nav-item ">
                         <a href="{{ route('admin.tax_center.index') }}"
                             class="nav-link {{ Request::is('*/tax_center*') ? 'active' : '' }}">
@@ -216,6 +202,8 @@
                             <span class="sidebar-text">Tax Center</span>
                         </a>
                     </li>
+                    @endcan
+                    @can('Show Services')
                     <li class="nav-item ">
                         <a href="{{ route('admin.service.index') }}"
                             class="nav-link {{ Request::is('*/service*') ? 'active' : '' }}">
@@ -225,6 +213,8 @@
                             <span class="sidebar-text">Services</span>
                         </a>
                     </li>
+                    @endcan
+                    @can('Show Testimonials')
                     <li class="nav-item ">
                         <a href="{{ route('admin.testimonial.index') }}"
                             class="nav-link {{ Request::is('*/testimonial*') ? 'active' : '' }}">
@@ -234,6 +224,8 @@
                             <span class="sidebar-text">Testimonials</span>
                         </a>
                     </li>
+                    @endcan
+                    @can('Show Newsletters')
                     <li class="nav-item">
                         <span class="nav-link d-flex justify-content-between align-items-center collapsed"
                             data-bs-toggle="collapse" data-bs-target="#newsletters" aria-expanded="false">
@@ -280,6 +272,29 @@
                             </ul>
                         </div>
                     </li>
+                    @endcan
+                    @can('Show Users')
+                    <li class="nav-item ">
+                        <a href="{{ route('admin.users.index') }}"
+                           class="nav-link {{ Request::is('*/users*') ? 'active' : '' }}">
+                            <span class="sidebar-icon">
+                                <i class="fa-solid fa-users"></i>
+                            </span>
+                            <span class="sidebar-text">Users</span>
+                        </a>
+                    </li>
+                    @endcan
+                    @can('Show Users')
+                    <li class="nav-item ">
+                        <a href="{{ route('admin.roles.index') }}"
+                           class="nav-link {{ Request::is('*/roles*') ? 'active' : '' }}">
+                            <span class="sidebar-icon">
+                                <i class="fa-solid fa-lock"></i>
+                            </span>
+                            <span class="sidebar-text">Roles</span>
+                        </a>
+                    </li>
+                    @endcan
                     <li class="nav-item ">
                         <a href="{{ route('admin.setting.edit') }}"
                             class="nav-link {{ Request::is('*/setting*') ? 'active' : '' }}">
