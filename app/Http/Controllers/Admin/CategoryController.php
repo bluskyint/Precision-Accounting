@@ -13,6 +13,14 @@ use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:Show Categories')->only(['perPage', 'index', 'show', 'search']);
+        $this->middleware('permission:Add Categories')->only(['create', 'store']);
+        $this->middleware('permission:Edit Categories')->only(['edit', 'update']);
+        $this->middleware('permission:Delete Categories')->only(['destroy', 'multiAction']);
+    }
+
     public function perPage( $num=10 )
     {
         // Dynamic pagination

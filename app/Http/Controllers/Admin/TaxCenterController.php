@@ -18,6 +18,14 @@ class TaxCenterController extends Controller
 {
     use StoreContentTrait;
 
+    public function __construct()
+    {
+        $this->middleware('permission:Show TaxCenters')->only(['perPage', 'index', 'show', 'search']);
+        $this->middleware('permission:Add TaxCenters')->only(['create', 'store']);
+        $this->middleware('permission:Edit TaxCenters')->only(['edit', 'update']);
+        $this->middleware('permission:Delete TaxCenters')->only(['destroy', 'multiAction']);
+    }
+
     public function perPage( $num=10 )
     {
         // Dynamic pagination

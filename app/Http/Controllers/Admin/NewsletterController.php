@@ -17,11 +17,14 @@ use Illuminate\Support\Facades\Mail;
 
 class NewsletterController extends Controller
 {
-    /**
-     * Display a listing of the newsletter.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('permission:Show Newsletters')->only(['perPage', 'index', 'show', 'search']);
+        $this->middleware('permission:Add Newsletters')->only(['create', 'store']);
+        $this->middleware('permission:Edit Newsletters')->only(['edit', 'update']);
+        $this->middleware('permission:Delete Newsletters')->only(['destroy', 'multiAction']);
+    }
+
     public function perPage( $num=10 )
     {
         // Dynamic pagination
@@ -30,33 +33,17 @@ class NewsletterController extends Controller
     }
 
 
-    /**
-     * Display a listing of the newsletter.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $newsletters = Newsletter::orderBy('id','desc')->paginate( 10 );
         return view("admin.newsletter.index",compact("newsletters"));
     }
 
-    /**
-     * Show the form for creating a new newsletter.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view("admin.newsletter.create");
     }
 
-    /**
-     * Store a newly created newsletter in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreNewsletterRequest $request)
     {
 
@@ -83,12 +70,6 @@ class NewsletterController extends Controller
 
     }
 
-    /**
-     * Display the specified newsletter.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         // find id in Db With Error 404
@@ -96,14 +77,6 @@ class NewsletterController extends Controller
         return view("admin.newsletter.show" , compact("newsletter") ) ;
     }
 
-
-
-    /**
-     * Remove the specified newsletter from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         // find id in Db With Error 404
@@ -120,14 +93,6 @@ class NewsletterController extends Controller
         }
     }
 
-
-
-    /**
-     * search in record.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function search(Request $request)
     {
         // validate search and redirect back

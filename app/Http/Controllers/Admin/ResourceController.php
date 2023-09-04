@@ -16,6 +16,14 @@ class ResourceController extends Controller
 {
     use StoreContentTrait;
 
+    public function __construct()
+    {
+        $this->middleware('permission:Show Resources')->only(['perPage', 'index', 'show', 'search']);
+        $this->middleware('permission:Add Resources')->only(['create', 'store']);
+        $this->middleware('permission:Edit Resources')->only(['edit', 'update']);
+        $this->middleware('permission:Delete Resources')->only(['destroy', 'multiAction']);
+    }
+
     public function perPage( $num=10 )
     {
         // Dynamic pagination

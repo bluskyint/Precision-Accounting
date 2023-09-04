@@ -16,6 +16,14 @@ class TestimonialController extends Controller
 {
     use StoreContentTrait;
 
+    public function __construct()
+    {
+        $this->middleware('permission:Show Testimonials')->only(['perPage', 'index', 'show', 'search']);
+        $this->middleware('permission:Add Testimonials')->only(['create', 'store']);
+        $this->middleware('permission:Edit Testimonials')->only(['edit', 'update']);
+        $this->middleware('permission:Delete Testimonials')->only(['destroy', 'multiAction']);
+    }
+
     public function perPage( $num=10 )
     {
         // Dynamic pagination

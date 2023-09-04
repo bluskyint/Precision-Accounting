@@ -18,6 +18,14 @@ class ArticleController extends Controller
 {
     use StoreContentTrait;
 
+    public function __construct()
+    {
+        $this->middleware('permission:Show Articles')->only(['perPage', 'index', 'show', 'search']);
+        $this->middleware('permission:Add Articles')->only(['create', 'store']);
+        $this->middleware('permission:Edit Articles')->only(['edit', 'update']);
+        $this->middleware('permission:Delete Articles')->only(['destroy', 'multiAction']);
+    }
+
     public function perPage( $num=10 )
     {
         // Get Parent Rows Count

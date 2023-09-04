@@ -17,6 +17,14 @@ class ServiceController extends Controller
 {
     use StoreContentTrait;
 
+    public function __construct()
+    {
+        $this->middleware('permission:Show Services')->only(['perPage', 'index', 'show', 'search']);
+        $this->middleware('permission:Add Services')->only(['create', 'store']);
+        $this->middleware('permission:Edit Services')->only(['edit', 'update']);
+        $this->middleware('permission:Delete Services')->only(['destroy', 'multiAction']);
+    }
+
     public function perPage( $num=10 )
     {
         // Dynamic pagination

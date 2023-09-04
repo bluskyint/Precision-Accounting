@@ -16,6 +16,15 @@ use Spatie\Permission\Models\Role;
 class UserController extends Controller
 {
     use StoreContentTrait;
+
+    public function __construct()
+    {
+        $this->middleware('permission:Show Users')->only(['perPage', 'index', 'show', 'search']);
+        $this->middleware('permission:Add Users')->only(['create', 'store']);
+        $this->middleware('permission:Edit Users')->only(['edit', 'update']);
+        $this->middleware('permission:Delete Users')->only(['destroy', 'multiAction']);
+    }
+
     public function perPage($num = 10)
     {
         // Dynamic pagination
