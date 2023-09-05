@@ -54,6 +54,12 @@
                                         <!----------------- Info -------------------->
                                         <x-forms.ck-editor id="editor-no-upload" label="info" name="info" />
 
+                                        <!----------------- Show In Slider -------------------->
+                                        <x-forms.select-option label="Show In Slider" name="slider_show" icon-class="fa-solid fa-panorama">
+                                            <option value="1">Yes</option>
+                                            <option value="0">No</option>
+                                        </x-forms.select-option>
+
                                         <!----------------- Img -------------------->
                                         <x-forms.upload-img-input label="Image" name="img" />
 

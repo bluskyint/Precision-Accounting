@@ -35,7 +35,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="row align-items-center">
-                                    <form action="{{ route('admin.users.update' , $member->slug) }}" class="edit-form" method="POST" enctype="multipart/form-data">
+                                    <form action="{{ route('admin.member.update' , $member->slug) }}" class="edit-form" method="POST" enctype="multipart/form-data">
 
                                         @csrf
 
@@ -56,11 +56,17 @@
                                         <!----------------- Info -------------------->
                                         <x-forms.ck-editor id="editor-no-upload" label="info" name="info" value="{!! $member->info !!}" />
 
+                                        <!----------------- Show In Slider -------------------->
+                                        <x-forms.select-option label="Show In Slider" name="slider_show" icon-class="fa-solid fa-panorama">
+                                            <option value="1" {{ $member->slider_show == '1' ? 'selected' : '' }}>Yes</option>
+                                            <option value="0" {{ $member->slider_show == '0' ? 'selected' : '' }}>No</option>
+                                        </x-forms.select-option>
+
                                         <!----------------- Img -------------------->
                                         <x-forms.upload-img-input label="Image" name="img" altTextValue="{{ $member->img['alt'] }}">
                                             <div class="show-img-container">
-                                                <a href="{{ asset("storage/users/".$member->img['src']) }}"  target="_blank">
-                                                    <img src="{{ asset("storage/users/".$member->img['src']) }}" alt="{{ $member->img['alt'] }}">
+                                                <a href="{{ asset("storage/members/".$member->img['src']) }}"  target="_blank">
+                                                    <img src="{{ asset("storage/members/".$member->img['src']) }}" alt="{{ $member->img['alt'] }}">
                                                 </a>
                                             </div>
                                         </x-forms.upload-img-input>

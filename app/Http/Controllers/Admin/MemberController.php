@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Members\MultiActionMembersRequest;
+use App\Traits\StoreContentTrait;
 use App\Traits\StoreFileTrait;
 use Illuminate\Http\Request;
 use App\Models\Member;
@@ -17,7 +18,7 @@ use Illuminate\Support\Str;
 
 class MemberController extends Controller
 {
-    use StoreFileTrait;
+    use StoreContentTrait;
     public function perPage($num = 10)
     {
         // Dynamic pagination
@@ -40,7 +41,7 @@ class MemberController extends Controller
     {
         try {
             $requestData = $request->validated();
-            $requestData['img']['src'] = $this->storeImage('members', $request->name, $request->file('img'));
+            $requestData['img']['src'] = $this->storeImage($request->file('img'),'members');
             Member::create($requestData);
 
             return to_route("admin.member.index")->with("success", "Member store successfully");
@@ -68,13 +69,7 @@ class MemberController extends Controller
         try {
             if ($request->hasFile('img')) {
                 Storage::disk('public')->delete("members/".$member->img['src']);
-                $requestData['img']['src'] = $this->storeImage('members', $request->name, $request->file('img'));
-            }
-
-            if ($member->name !== $request->validated('name') && !$request->hasFile('img')) {
-                $new_file_name = Str::slug($request->validated('name')) . '.' . Str::afterLast($member->img['src'], '.');
-                rename("storage/members/".$member->img['src'], "storage/members/$new_file_name");
-                $requestData['img']['src'] = $new_file_name;
+                $requestData['img']['src'] = $this->storeImage($request->file('img'),'members');
             }
 
             $member->update($requestData);
