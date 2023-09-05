@@ -72,10 +72,6 @@
                                             <td> {{ count($user->roles) ? $user->roles[0]->name : '-' }} </td>
                                         </tr>
                                         <tr>
-                                            <td class="text-capitalize"> <i class="fa-brands fa-linkedin"></i> LinkedIn </td>
-                                            <td> {{ $user->linkedin }} </td>
-                                        </tr>
-                                        <tr>
                                             <td class="text-capitalize content"> <i class="fa-solid fa-align-left"></i> Info </td>
                                             <td> {!! $user->info !!} </td>
                                         </tr>

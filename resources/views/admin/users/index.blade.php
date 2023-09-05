@@ -160,7 +160,6 @@
                                 </th>
                                 <th class="border-bottom">Name</th>
                                 <th class="border-bottom">Role</th>
-                                <th class="border-bottom">LinkedIn</th>
                                 <th class="border-bottom">Date Created</th>
                                 <th class="border-bottom">Action</th>
                             </tr>
@@ -191,9 +190,6 @@
                                         </a>
                                     </td>
                                     <td><span class="fw-normal">{{ count($user->roles) ? $user->roles[0]->name : '-' }}</span></td>
-                                    <td>
-                                        <a class="btn btn-link" href="{{ $user->linkedin }}" target="_blank">link</a>
-                                    </td>
                                     <td><span class="fw-normal">{{ $user->created_at }}</span></td>
                                     <td class="actions">
                                         <a href="{{ route('admin.users.show', $user->id) }}" class="text-tertiary">

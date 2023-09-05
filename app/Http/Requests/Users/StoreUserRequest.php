@@ -28,7 +28,6 @@ class StoreUserRequest extends FormRequest
             'name' => 'required|string|max:100|unique:users',
             'email' => 'required|string|email|max:100|unique:users',
             'password' => ['required', 'confirmed', Password::defaults()],
-            'linkedin' => 'required|string|url|max:255',
             'job_title' => 'required|string|max:255',
             'role_id'    => 'required|exists:roles,id',
             'img.src'    => 'required|mimes:webp|max:2048',

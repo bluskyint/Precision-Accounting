@@ -34,7 +34,6 @@ class UpdateUserRequest extends FormRequest
             ],
             'email' => ['required','string','email','max:100',Rule::unique('users')->ignore($this->user)],
             'password' => ['nullable', 'confirmed', Password::defaults()],
-            'linkedin' => 'required|url|max:255',
             'job_title' => 'required|string|max:255',
             'role_id'    => 'required|exists:roles,id',
             'img.src'    => 'nullable|mimes:webp|max:2048',
