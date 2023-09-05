@@ -35,7 +35,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="row align-items-center">
-                                    <form action="{{ route('admin.users.update' , $user->slug) }}" class="edit-form" method="POST" enctype="multipart/form-data">
+                                    <form action="{{ route('admin.users.update' , $user->id) }}" class="edit-form" method="POST" enctype="multipart/form-data">
 
                                         @csrf
 
@@ -53,17 +53,11 @@
                                         <!----------------- Password Confirmation -------------------->
                                         <x-forms.text-input label="Confirm Password " name="password_confirmation" icon-class="fa-solid fa-lock" placeholder="Retype Password..." />
 
-                                        <!----------------- slug -------------------->
-                                        <x-forms.text-input label="Permalink" name="slug" value="{{ $user->slug }}" icon-class="fa-solid fa-link" placeholder="Ex: precision-accounting-international" />
-
                                         <!-----------------job title -------------------->
                                         <x-forms.text-input label="Job Title" name="job_title" value="{{ $user->job_title }}" icon-class="fa-solid fa-user-tie" placeholder="Type Job Title..." />
 
                                         <!----------------- LinkedIn Account Link -------------------->
                                         <x-forms.text-input label="LinkedIn Account" name="linkedin" value="{{ $user->linkedin }}" icon-class="fa-brands fa-linkedin" placeholder="Type LinkedIn Account..." />
-
-                                        <!----------------- Info -------------------->
-                                        <x-forms.ck-editor id="editor-no-upload" label="info" name="info" value="{!! $user->info !!}" />
 
                                         <!----------------- User Role -------------------->
                                         <x-forms.select-option label="Role" name="role_id" icon-class="fa-solid fa-lock">

@@ -51,9 +51,6 @@
                                         <!----------------- Password Confirmation -------------------->
                                         <x-forms.text-input label="Confirm Password " name="password_confirmation" icon-class="fa-solid fa-lock" placeholder="Retype Password..." />
 
-                                        <!----------------- slug -------------------->
-                                        <x-forms.text-input label="Permalink" name="slug" icon-class="fa-solid fa-link" placeholder="Ex: precision-accounting-international" />
-
                                         <!----------------- Job title -------------------->
                                         <x-forms.text-input label="Job Title" name="job_title" icon-class="fa-solid fa-user-tie" placeholder="Type Job Title..." />
 
@@ -66,9 +63,6 @@
                                                 <option value="{{ $role->id }}" {{ old('role_id') == $role->id ? "selected" : "" }} >{{ $role->name }}</option>
                                             @endforeach
                                         </x-forms.select-option>
-
-                                        <!----------------- User Info -------------------->
-                                        <x-forms.ck-editor id="editor-no-upload" label="info" name="info" />
 
                                         <!----------------- Img -------------------->
                                         <x-forms.upload-img-input label="Image" name="img" />

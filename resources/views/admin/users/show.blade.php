@@ -32,12 +32,12 @@
                                     </div>
                                     <div class="col text-end">
                                         @can('Edit Users')
-                                        <a href="{{ route("admin.users.edit" , $user->slug) }}" class="btn btn-sm btn-primary">
+                                        <a href="{{ route("admin.users.edit" , $user->id) }}" class="btn btn-sm btn-primary">
                                             <i class="fa-solid fa-pen-to-square"></i> Edit
                                         </a>
                                         @endcan
                                         @can('Edit Users')
-                                        <a href="{{ route('admin.users.destroy', $user->slug) }}" class="btn btn-sm btn-danger delete-record">
+                                        <a href="{{ route('admin.users.destroy', $user->id) }}" class="btn btn-sm btn-danger delete-record">
                                             <i class="fa-solid fa-trash-can"></i> Delete
                                         </a>
                                         @endcan
@@ -70,10 +70,6 @@
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-lock"></i> Role </td>
                                             <td> {{ count($user->roles) ? $user->roles[0]->name : '-' }} </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-capitalize"> <i class="fa-solid fa-link"></i> Permalink </td>
-                                            <td> {{ $user->slug }} </td>
                                         </tr>
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-brands fa-linkedin"></i> LinkedIn </td>

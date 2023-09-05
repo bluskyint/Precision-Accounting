@@ -85,11 +85,10 @@ class UserController extends Controller
             }
 
             if($request->filled('password')) {
-                $requestData['password'] = Hash::make($requestData['password']);
+                $requestData['password'] = Hash::make($request['password']);
             }
 
             $user->update($requestData);
-
             $user->syncRoles([$request->validated('role_id')]);
 
             return to_route("admin.users.index")->with("success", "User updated successfully");

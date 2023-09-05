@@ -175,7 +175,7 @@
                                             <label class="form-check-label" for="userCheck55"> </label>
                                         </div>
                                     </td>
-                                    <td><a href="{{ route('admin.users.show', $user->slug) }}" class="d-flex align-items-center">
+                                    <td><a href="{{ route('admin.users.show', $user->id) }}" class="d-flex align-items-center">
                                             <img src="{{ asset("storage/users/".$user->img['src']) }}"
                                                 class="avatar rounded-circle me-3" alt="{{ $user->img['alt'] }}">
                                             <div class="d-block">
@@ -196,16 +196,16 @@
                                     </td>
                                     <td><span class="fw-normal">{{ $user->created_at }}</span></td>
                                     <td class="actions">
-                                        <a href="{{ route('admin.users.show', $user->slug) }}" class="text-tertiary">
+                                        <a href="{{ route('admin.users.show', $user->id) }}" class="text-tertiary">
                                             <i class="fa-solid fa-eye fa-lg"></i>
                                         </a>
                                         @can('Edit Users')
-                                        <a href="{{ route('admin.users.edit', $user->slug) }}" class="text-info">
+                                        <a href="{{ route('admin.users.edit', $user->id) }}" class="text-info">
                                             <i class="fa-solid fa-pen-to-square fa-lg"></i>
                                         </a>
                                         @endcan
                                         @can('Delete Users')
-                                        <a href="{{ route('admin.users.destroy', $user->slug) }}" class="text-info delete-record">
+                                        <a href="{{ route('admin.users.destroy', $user->id) }}" class="text-info delete-record">
                                             <i class="fa-solid fa-trash-can text-danger fa-lg"></i>
                                         </a>
                                         @endcan
