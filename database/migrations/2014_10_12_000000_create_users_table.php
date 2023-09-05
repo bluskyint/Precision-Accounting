@@ -21,6 +21,7 @@ return new class extends Migration
             $table->json('img')->default(json_encode(["src" => "user-avatar.png", "alt" => "user image"], JSON_THROW_ON_ERROR));
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->enum('active', [0, 1]);
             $table->rememberToken();
             $table->timestamps();
         });

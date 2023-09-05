@@ -72,6 +72,16 @@
                                             <td> {{ count($user->roles) ? $user->roles[0]->name : '-' }} </td>
                                         </tr>
                                         <tr>
+                                            <td class="text-capitalize"> <i class="fa-solid fa-bolt"></i> Status </td>
+                                            <td>
+                                                @if($user->active)
+                                                    <span class="badge bg-success">Active</span>
+                                                @else
+                                                    <span class="badge bg-danger">Inactive</span>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
                                             <td class="text-capitalize content"> <i class="fa-solid fa-align-left"></i> Info </td>
                                             <td> {!! $user->info !!} </td>
                                         </tr>

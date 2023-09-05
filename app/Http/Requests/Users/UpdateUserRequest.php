@@ -36,6 +36,7 @@ class UpdateUserRequest extends FormRequest
             'password' => ['nullable', 'confirmed', Password::defaults()],
             'job_title' => 'required|string|max:255',
             'role_id'    => 'required|exists:roles,id',
+            'active'    => ['required', Rule::in([0, 1])],
             'img.src'    => 'nullable|mimes:webp|max:2048',
             'img.alt'    => 'required|string|max:255',
         ];

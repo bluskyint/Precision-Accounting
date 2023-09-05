@@ -160,6 +160,7 @@
                                 </th>
                                 <th class="border-bottom">Name</th>
                                 <th class="border-bottom">Role</th>
+                                <th class="border-bottom">Status</th>
                                 <th class="border-bottom">Date Created</th>
                                 <th class="border-bottom">Action</th>
                             </tr>
@@ -190,6 +191,13 @@
                                         </a>
                                     </td>
                                     <td><span class="fw-normal">{{ count($user->roles) ? $user->roles[0]->name : '-' }}</span></td>
+                                    <td>
+                                        @if($user->active)
+                                            <span class="badge bg-success">Active</span>
+                                        @else
+                                            <span class="badge bg-danger">Inactive</span>
+                                        @endif
+                                    </td>
                                     <td><span class="fw-normal">{{ $user->created_at }}</span></td>
                                     <td class="actions">
                                         <a href="{{ route('admin.users.show', $user->id) }}" class="text-tertiary">

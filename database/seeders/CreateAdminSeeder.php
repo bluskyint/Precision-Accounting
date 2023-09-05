@@ -22,7 +22,8 @@ class CreateAdminSeeder extends Seeder
             'name' => 'Mohamed Elsayeh',
             'email' => 'mosayeh899@gmail.com',
             'password' => Hash::make('Saleh2015$'),
-            'job_title' => 'Manager'
+            'job_title' => 'Manager',
+            'active' => '1'
         ]);
 
         $user->assignRole('Admin');

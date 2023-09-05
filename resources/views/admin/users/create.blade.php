@@ -61,6 +61,12 @@
                                             @endforeach
                                         </x-forms.select-option>
 
+                                        <!----------------- Active User -------------------->
+                                        <x-forms.select-option label="Status" name="active" icon-class="fa-solid fa-bolt">
+                                            <option value="1" {{ old('role_id') == 1 ? "selected" : "" }} >Active</option>
+                                            <option value="0" {{ old('role_id') == 0 ? "selected" : "" }} >Inactive</option>
+                                        </x-forms.select-option>
+
                                         <!----------------- Img -------------------->
                                         <x-forms.upload-img-input label="Image" name="img" />
 

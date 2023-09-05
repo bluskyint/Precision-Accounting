@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Users;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
 
 class StoreUserRequest extends FormRequest
@@ -30,6 +31,7 @@ class StoreUserRequest extends FormRequest
             'password' => ['required', 'confirmed', Password::defaults()],
             'job_title' => 'required|string|max:255',
             'role_id'    => 'required|exists:roles,id',
+            'active'    => ['required', Rule::in([0, 1])],
             'img.src'    => 'required|mimes:webp|max:2048',
             'img.alt'    => 'required|string|max:255',
         ];
