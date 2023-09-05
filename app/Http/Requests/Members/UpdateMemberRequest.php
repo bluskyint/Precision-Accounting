@@ -26,6 +26,7 @@ class UpdateMemberRequest extends FormRequest
     {
         return [
             'name'            => ['required' , 'string' , 'max:100' , Rule::unique('members')->ignore($this->member)],
+            'slug'           => ['required' , 'string' , 'max:255', 'regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/', Rule::unique('members')->ignore($this->member)],
             'job_title'       => ['required' , 'string' , 'max:100'],
             'linkedin'       => ['required' , 'string' , 'url', 'max:255'],
             'info'       => ['required', 'string'],

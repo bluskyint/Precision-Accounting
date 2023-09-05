@@ -72,6 +72,13 @@ Route::group([ "prefix" => "admin", 'middleware' => "auth" , "as" => "admin." ] 
     Route::resource('users', App\Http\Controllers\Admin\UserController::class)->except('destroy');
     Route::get('users/destroy/{user}', [App\Http\Controllers\Admin\UserController::class, 'destroy'] )->name("users.destroy");
 
+    // Member
+    Route::get('member/perPage/{num}', [App\Http\Controllers\Admin\MemberController::class, 'perPage'])->name("member.perPage");
+    Route::post('member/search', [App\Http\Controllers\Admin\MemberController::class, 'search'])->name("member.search");
+    Route::post('member/multiAction', [App\Http\Controllers\Admin\MemberController::class, 'multiAction'])->name("member.multiAction");
+    Route::resource('member', App\Http\Controllers\Admin\MemberController::class)->parameters(['member' => 'member:slug'])->except('destroy');
+    Route::get('member/destroy/{member:slug}', [App\Http\Controllers\Admin\MemberController::class, 'destroy'] )->name("member.destroy");
+
     // Role
     Route::resource('roles', App\Http\Controllers\Admin\RoleController::class);
 
