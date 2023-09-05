@@ -16,11 +16,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/test', [App\Http\Controllers\TestController::class, 'index'])->name('test');
 
-
-Auth::routes();
+require __DIR__ . '/auth.php';
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 
 Route::get('/about-us', [App\Http\Controllers\AboutController::class, 'index'])->name('about');
 Route::get('/service/{slug}', [App\Http\Controllers\ServiceController::class, 'index'])->name('service');
