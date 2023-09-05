@@ -22,11 +22,7 @@ class CreateAdminSeeder extends Seeder
             'name' => 'Mohamed Elsayeh',
             'email' => 'mosayeh899@gmail.com',
             'password' => Hash::make('Saleh2015$'),
-            'slug' => 'mohamed-elsayeh',
-            'linkedin' => 'https://linkedin.com',
-            'job_title' => 'Manager',
-            'info' => 'Manager',
-            'img' => ['src' => 'user-avatar.png', 'alt' => 'user image']
+            'job_title' => 'Manager'
         ]);
 
         $user->assignRole('Admin');
