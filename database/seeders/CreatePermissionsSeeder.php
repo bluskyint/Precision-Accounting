@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 
-class CreatePermissionSeeder extends Seeder
+class CreatePermissionsSeeder extends Seeder
 {
     public function run(): void
     {

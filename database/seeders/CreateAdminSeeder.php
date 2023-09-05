@@ -29,12 +29,6 @@ class CreateAdminSeeder extends Seeder
             'img' => ['src' => 'user-avatar.png', 'alt' => 'user image']
         ]);
 
-        $role = Role::create(['name' => 'Admin']);
-
-        $permissions = Permission::pluck('id')->all();
-
-        $role->syncPermissions($permissions);
-
-        $user->assignRole([$role->id]);
+        $user->assignRole('Admin');
     }
 }
