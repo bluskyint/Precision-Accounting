@@ -21,7 +21,7 @@
                         <li class="breadcrumb-item active" aria-current="page">Members</li>
                     </ol>
                 </nav>
-                <h2 class="h4"> <i class="fa-solid fa-users text-primary"></i> Members List</h2>
+                <h2 class="h4"> <i class="fa-solid fa-people-group text-primary"></i> Members List</h2>
                 <p class="mb-0">You can manage this table  and do all opration system create , show, edit and delete</p>
             </div>
             @can('Add Members')

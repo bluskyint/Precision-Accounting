@@ -65,8 +65,8 @@
 
                                         <!----------------- Active User -------------------->
                                         <x-forms.select-option label="Status" name="active" icon-class="fa-solid fa-bolt">
-                                            <option value="1" {{ $user->active == 1 ? "selected" : "" }} >Active</option>
-                                            <option value="0" {{ $user->active == 0 ? "selected" : "" }} >Inactive</option>
+                                            <option value="1" {{ $user->active === '1' ? "selected" : "" }} >Active</option>
+                                            <option value="0" {{ $user->active === '0' ? "selected" : "" }} >Inactive</option>
                                         </x-forms.select-option>
 
                                         <!----------------- Img -------------------->
