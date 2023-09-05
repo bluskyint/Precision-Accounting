@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('seo_keywords', 1000);
             $table->string('pinned' , 1)->default('0');
             $table->json('img');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

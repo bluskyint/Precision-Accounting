@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Services\MultiActionServicesRequest;
 use App\Models\User;
 use App\Traits\StoreContentTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 use App\Models\Service;
 use App\Http\Requests\Services\StoreServiceRequest;
@@ -15,7 +16,7 @@ use Illuminate\Support\Str;
 
 class ServiceController extends Controller
 {
-    use StoreContentTrait;
+    use SoftDeletes, StoreContentTrait;
 
     public function __construct()
     {

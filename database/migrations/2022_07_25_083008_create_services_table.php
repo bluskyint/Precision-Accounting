@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('visibility', 1 )->default('1');
             $table->json('icon');
             $table->json('img');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

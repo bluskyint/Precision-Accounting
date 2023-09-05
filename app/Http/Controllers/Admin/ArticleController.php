@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Articles\MultiActionArticlesRequest;
 use App\Models\User;
 use App\Traits\StoreContentTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Http\Requests\Articles\StoreArticleRequest;
@@ -16,7 +17,7 @@ use Illuminate\Support\Str;
 
 class ArticleController extends Controller
 {
-    use StoreContentTrait;
+    use SoftDeletes, StoreContentTrait;
 
     public function __construct()
     {
@@ -133,8 +134,6 @@ class ArticleController extends Controller
         return view("admin.article.index",compact("articles"));
 
     }
-
-
 
     public function multiAction(MultiActionArticlesRequest $request)
     {

@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TaxCenters\MultiActionTaxCentersRequest;
-use App\Models\Author;
 use App\Models\User;
 use App\Traits\StoreContentTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 use App\Models\TaxCenter;
 use App\Http\Requests\TaxCenters\StoreTaxCenterRequest;
@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 class TaxCenterController extends Controller
 {
-    use StoreContentTrait;
+    use SoftDeletes, StoreContentTrait;
 
     public function __construct()
     {
