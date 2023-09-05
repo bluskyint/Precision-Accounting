@@ -23,6 +23,16 @@ class CreatePermissionsSeeder extends Seeder
             ],
 
             [
+                'name' => 'Members',
+                'permissions' => [
+                    'Show Members',
+                    'Add Members',
+                    'Edit Members',
+                    'Delete Members'
+                ]
+            ],
+
+            [
                 'name' => 'Roles',
                 'permissions' => [
                     'Show Roles',
