@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Articles\MultiActionArticlesRequest;
 use App\Models\User;
 use App\Traits\StoreContentTrait;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Http\Requests\Articles\StoreArticleRequest;
@@ -17,7 +16,7 @@ use Illuminate\Support\Str;
 
 class ArticleController extends Controller
 {
-    use SoftDeletes, StoreContentTrait;
+    use StoreContentTrait;
 
     public function __construct()
     {
@@ -25,6 +24,9 @@ class ArticleController extends Controller
         $this->middleware('permission:Add Articles')->only(['create', 'store']);
         $this->middleware('permission:Edit Articles')->only(['edit', 'update']);
         $this->middleware('permission:Delete Articles')->only(['destroy', 'multiAction']);
+        $this->middleware('permission:Show Articles Trash')->only(['getTrash']);
+        $this->middleware('permission:Restore Articles')->only(['restore']);
+        $this->middleware('permission:ForceDelete Articles')->only(['forceDelete']);
     }
 
     public function perPage( $num=10 )
@@ -46,6 +48,12 @@ class ArticleController extends Controller
         return view("admin.article.index", compact("articles","categoriesCount"));
     }
 
+    public function getTrash()
+    {
+        $articles = Article::onlyTrashed()->with('author')->latest('deleted_at')->paginate(10);
+        return view("admin.article.index", compact("articles"));
+    }
+
     public function create()
     {
         $categories = Category::select('id','title')->get();
@@ -57,7 +65,7 @@ class ArticleController extends Controller
     {
         try {
             $requestData = $request->validated();
-            $folderName = Str::slug($requestData['title']);
+            $folderName = $requestData['slug'];
             $requestData['img']['src'] = $this->storeImage($request->file('img'), 'articles', $folderName);
             $requestData['content'] = $this->moveContentImages($requestData['content'], "articles/$folderName");
 
@@ -70,10 +78,11 @@ class ArticleController extends Controller
         }
     }
 
-    public function show(Article $article)
+    public function show(string $id)
     {
-        $article->load('author');
-        return view("admin.article.show", compact("article"));
+        $article = Article::withTrashed()->with('author')->where('id', $id)->first();
+        $isArticleTrashed = $article->trashed();
+        return view("admin.article.show", compact("article", "isArticleTrashed"));
     }
 
     public function edit(Article $article)
@@ -90,16 +99,20 @@ class ArticleController extends Controller
         $requestData['img']['src'] = $article->img['src'];
 
         try {
-            $folderName = Str::slug($requestData['title']);
+            $folderName = $requestData['slug'];
+
+            if ($folderName !== $article->slug) {
+                rename("storage/articles/$article->slug", "storage/articles/$folderName");
+            }
 
             if ($request->hasFile('img')) {
                 $requestData['img']['src'] = $this->storeImage($request->file('img'),'articles', $folderName);
-                Storage::disk('public')->delete("articles/".$article->img['src']);
+                Storage::disk('public')->delete("articles/$folderName/".$article->img['src']);
             }
 
-            if (Str::contains($requestData['content'], '/tempContentImages/')) {
-                $requestData['content'] = $this->moveContentImages($requestData['content'], "articles/$folderName");
-            }
+//            if (Str::contains($requestData['content'], '/tempContentImages/')) {
+//                $requestData['content'] = $this->moveContentImages($requestData['content'], "articles/$folderName");
+//            }
 
             $article->update($requestData);
 
@@ -110,16 +123,41 @@ class ArticleController extends Controller
         }
     }
 
-    public function destroy(Article $article)
+    public function delete(Article $article)
     {
         try {
-            Storage::disk('public')->deleteDirectory("articles/".Str::slug($article->title));
             $article->delete();
 
             return to_route("admin.article.index")->with(["success" => "Article deleted successfully"]);
 
         } catch (\Exception $e) {
             return to_route("admin.article.index")->with("failed","Error at delete operation");
+        }
+    }
+
+    public function restore(string $id)
+    {
+        try {
+            Article::withTrashed()->where('id', $id)->restore();
+
+            return to_route("admin.article.index")->with(["success" => "Article restored successfully"]);
+
+        } catch (\Exception $e) {
+            return to_route("admin.article.index")->with("failed","Error at restore operation");
+        }
+    }
+
+    public function forceDelete(string $id)
+    {
+        try {
+            $article = Article::withTrashed()->where('id', $id)->first();
+            Storage::disk('public')->deleteDirectory("articles/".$article['slug']);
+            $article->forceDelete();
+
+            return to_route("admin.article.index")->with(["success" => "Article destroyed successfully"]);
+
+        } catch (\Exception $e) {
+            return to_route("admin.article.index")->with("failed","Error at destroyed operation");
         }
     }
 
@@ -132,18 +170,33 @@ class ArticleController extends Controller
 
         $articles = Article::where('title', 'like', "%{$request->search}%")->paginate( 10 );
         return view("admin.article.index",compact("articles"));
-
     }
 
     public function multiAction(MultiActionArticlesRequest $request)
     {
         try {
-            // If Action is Delete
+            $articles = Article::withTrashed()->findOrFail($request->id);
+
             if ($request->action === "delete") {
-                $articles = Article::findOrFail($request->id);
-                Article::destroy($request->id);
                 foreach ($articles as $article) {
-                    Storage::disk('public')->deleteDirectory("articles/".Str::slug($article->title));
+                    $article->delete();
+                }
+            } elseif ($request->action === "restore") {
+                if (auth()->user()->hasPermissionTo('Restore Articles')) {
+                    foreach ($articles as $article) {
+                        $article->restore();
+                    }
+                } else {
+                    abort('403', 'USER DOES NOT HAVE THE RIGHT PERMISSIONS.');
+                }
+            } elseif ($request->action === "forceDelete") {
+                if (auth()->user()->hasPermissionTo('ForceDelete Articles')) {
+                    foreach ($articles as $article) {
+                        Storage::disk('public')->deleteDirectory("articles/$article->slug/");
+                        $article->forceDelete();
+                    }
+                } else {
+                    abort('403', 'USER DOES NOT HAVE THE RIGHT PERMISSIONS.');
                 }
             }
 
@@ -153,6 +206,4 @@ class ArticleController extends Controller
             return to_route("admin.article.index")->with("failed","Error at delete operation");
         }
     }
-
-
 }

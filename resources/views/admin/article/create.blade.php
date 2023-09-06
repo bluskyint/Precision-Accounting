@@ -67,7 +67,7 @@
                                         </x-forms.select-option>
 
                                         <!----------------- Content -------------------->
-                                        <x-forms.ck-editor label="Content" name="content" />
+                                        <x-forms.ck-editor label="Content" name="content" images-Directory="articles"/>
 
                                         <!----------------- pinned -------------------->
                                         <x-forms.select-option label="Pinned Article In Top" name="pinned" icon-class="fa-solid fa-thumbtack">
@@ -83,7 +83,7 @@
 
                                         <!----------------- Seo Keywords -------------------->
                                         <x-forms.text-input label="SEO Keywords" name="seo_keywords" icon-class="fa-solid fa-chart-line" placeholder="Type SEO Keywords..." />
-                                        
+
                                         <!----------------- Img -------------------->
                                         <x-forms.upload-img-input label="Image" name="img" />
 

@@ -31,16 +31,29 @@
                                         <h2 class="fs-5 fw-bold mb-0"> <i class="fa-solid fa-eye text-primary"></i> Article Details</h2>
                                     </div>
                                     <div class="col text-end">
-                                        @can('Edit Articles')
-                                        <a href="{{ route("admin.article.edit" , $article->id) }}" class="btn btn-sm btn-primary">
-                                            <i class="fa-solid fa-pen-to-square"></i> Edit
-                                        </a>
-                                        @endcan
-                                        @can('Delete Articles')
-                                        <a href="{{ route('admin.article.destroy', $article->id) }}" class="btn btn-sm btn-danger delete-record">
-                                            <i class="fa-solid fa-trash-can"></i> Delete
-                                        </a>
-                                        @endcan
+                                        @if( !$isArticleTrashed )
+                                            @can('Edit Articles')
+                                                <a href="{{ route("admin.article.edit" , $article->id) }}" class="btn btn-sm btn-primary">
+                                                    <i class="fa-solid fa-pen-to-square"></i> Edit
+                                                </a>
+                                            @endcan
+                                            @can('Delete Articles')
+                                                <a href="{{ route('admin.article.delete', $article->id) }}" class="btn btn-sm btn-danger delete-record">
+                                                    <i class="fa-solid fa-trash-can"></i> Delete
+                                                </a>
+                                            @endcan
+                                        @else
+                                            @can('Restore Articles')
+                                                <a href="{{ route('admin.article.restore', $article->id) }}" class="btn btn-sm btn-primary">
+                                                    <i class="fa-solid fa-retweet"></i> Restore
+                                                </a>
+                                            @endcan
+                                            @can('ForceDelete Articles')
+                                                <a href="{{ route('admin.article.force.delete', $article->id) }}" class="btn btn-sm btn-danger delete-record">
+                                                    <i class="fa-solid fa-xmark"></i> Force Delete
+                                                </a>
+                                            @endcan
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -50,8 +63,8 @@
                                     <tr>
                                         <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Image </td>
                                         <td class="article-image">
-                                            <a class="show-img-container" href="{{ asset('storage/articles/'.$article->img['src']) }}" target="_blank">
-                                                <img src="{{ asset('storage/articles/'.$article->img['src']) }}" alt="{{ $article->img['alt'] }}">
+                                            <a class="show-img-container" href="{{ asset("storage/articles/$article->slug/".$article->img['src']) }}" target="_blank">
+                                                <img src="{{ asset("storage/articles/$article->slug/".$article->img['src']) }}" alt="{{ $article->img['alt'] }}">
                                             </a>
                                         </td>
                                     </tr>

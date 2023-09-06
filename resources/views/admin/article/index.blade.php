@@ -53,13 +53,26 @@
                         @enderror
                     </form>
                 </div>
-                <!------------------ Dynamic Pagination ------------------->
-                @if( preg_match('(search)', url()->current()) !== 1 )  <!---- Remove in search Page ---->
-                    <div class="col-3 col-lg-4 d-flex justify-content-end">
+
+                <div class="col-3 col-lg-4 d-flex justify-content-end align-items-center gap-2">
+
+                    @if(Route::is('admin.article.index'))
+                        @can('Show Articles Trash')
+                            <!------------------ Trash ------------------->
+                            <div title="Trash" role="button">
+                                <a href="{{ route('admin.article.trash') }}">
+                                    <i class="fa-solid fa-trash-can fa-lg"></i>
+                                </a>
+                            </div>
+                        @endcan
+                    @endif
+
+                    <!------------------ Dynamic Pagination ------------------->
+                    @if( preg_match('(search)', url()->current()) !== 1 )  <!---- Remove in search Page ---->
                         <div class="btn-group">
                             <div class="dropdown me-1">
                                 <button class="btn btn-link text-dark dropdown-toggle dropdown-toggle-split m-0 p-1"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><svg
+                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><svg
                                         class="icon icon-sm" fill="currentColor" viewBox="0 0 20 20"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -71,20 +84,21 @@
                                     <span class="small ps-3 fw-bold text-dark">Show</span>
 
                                     <a class="dropdown-item {{ Request::is('*/perPage/10') ? 'active' : '' }} {{ Request::is('admin/article') ? 'active' : '' }}"
-                                        href="{{ route('admin.article.perPage', 10) }}"> 10 </a>
+                                       href="{{ route('admin.article.perPage', 10) }}"> 10 </a>
                                     <a class="dropdown-item {{ Request::is('*/perPage/30') ? 'active' : '' }}"
-                                        href="{{ route('admin.article.perPage', 30) }}"> 30 </a>
+                                       href="{{ route('admin.article.perPage', 30) }}"> 30 </a>
                                     <a class="dropdown-item {{ Request::is('*/perPage/50') ? 'active' : '' }}"
-                                        href="{{ route('admin.article.perPage', 50) }}"> 50 </a>
+                                       href="{{ route('admin.article.perPage', 50) }}"> 50 </a>
                                     <a class="dropdown-item {{ Request::is('*/perPage/100') ? 'active' : '' }}"
-                                        href="{{ route('admin.article.perPage', 100) }}"> 100 </a>
+                                       href="{{ route('admin.article.perPage', 100) }}"> 100 </a>
 
                                 </div>
 
                             </div>
                         </div>
-                    </div>
-                @endif
+                    @endif
+                </div>
+
             </div>
         </div>
 
@@ -126,12 +140,23 @@
 
                 <!----------- multi Action ------------->
                 <form id="multi-action-form" action="{{ route("admin.article.multiAction") }}" method="POST">
-                    <div class="pb-3">
+                    @csrf
 
-                        @csrf
+                    @canany(['Delete Articles', 'ForceDelete Articles', 'Restore Articles'])
+                    <div class="pb-3">
                         <select id="select-action" class="form-select fmxw-200" name="action" aria-label="Message select example" style="display:inline">
                             <option value="" selected="selected" style="display: none"> Choose Action </option>
-                            <option value="delete"> Delete Article</option>
+                            @can('Delete Articles')
+                                <option value="delete"> Delete Article</option>
+                            @endcan
+                            @can('ForceDelete Articles')
+                                <option value="forceDelete"> Destroy Article</option>
+                            @endcan
+                            @if( Route::is('admin.article.trash') )
+                                @can('Restore Articles')
+                                    <option value="restore"> Restore Article</option>
+                                @endcan
+                            @endif
                         </select>
                         <button type="submit" id="multi-alert-btn" class="btn btn-sm px-3 btn-primary ms-3 multi-alert" disabled> <i class="fa-solid fa-list-check"></i> Apply</button>
 
@@ -140,15 +165,18 @@
                         @enderror
 
                     </div>
+                    @endcanany
                     <table class="table article-table table-hover align-items-center index-table">
                         <thead>
                             <tr>
+                                @canany(['Delete Articles', 'ForceDelete Articles', 'Restore Articles'])
                                 <th class="border-bottom">
                                     <div class="form-check dashboard-check">
                                         <input  class="form-check-input checkbox-head" type="checkbox" id="main-checker">
                                         <label class="form-check-label" for="userCheck55"> </label>
                                     </div>
                                 </th>
+                                @endcanany
                                 <th class="border-bottom">Title</th>
                                 <th class="border-bottom">Author</th>
                                 <th class="border-bottom">Pinned</th>
@@ -159,12 +187,14 @@
                         <tbody>
                             @foreach ($articles as $article)
                                 <tr>
+                                    @canany(['Delete Articles', 'ForceDelete Articles', 'Restore Articles'])
                                     <td>
                                         <div class="form-check dashboard-check">
                                             <input name="id[]" value="{{ $article->id }}" class="form-check-input checkbox-head check-item"  type="checkbox">
                                             <label class="form-check-label" for="userCheck55">  </label>
                                         </div>
                                     </td>
+                                    @endcanany
                                     <td><a href="{{ route('admin.article.show', $article->id) }}" class="d-flex align-items-center">
                                             <div class="d-block">
                                                 <span class="fw-bold">
@@ -191,16 +221,29 @@
                                         <a href="{{ route('admin.article.show', $article->id) }}" class="text-tertiary"> <i
                                                 class="fa-solid fa-eye fa-lg"></i>
                                         </a>
-                                        @can('Edit Articles')
-                                        <a href="{{ route('admin.article.edit', $article->id) }}" class="text-info"> <i
-                                                class="fa-solid fa-pen-to-square fa-lg"></i>
-                                        </a>
-                                        @endcan
-                                        @can('Delete Articles')
-                                        <a href="{{ route('admin.article.destroy', $article->id) }}" class="text-info delete-record">
-                                            <i class="fa-solid fa-trash-can text-danger fa-lg"></i>
-                                        </a>
-                                        @endcan
+                                        @if( Route::is('admin.article.index') )
+                                            @can('Edit Articles')
+                                            <a href="{{ route('admin.article.edit', $article->id) }}" class="text-info"> <i
+                                                    class="fa-solid fa-pen-to-square fa-lg"></i>
+                                            </a>
+                                            @endcan
+                                            @can('Delete Articles')
+                                            <a href="{{ route('admin.article.delete', $article->id) }}" class="text-info delete-record">
+                                                <i class="fa-solid fa-trash-can text-danger fa-lg"></i>
+                                            </a>
+                                            @endcan
+                                        @else
+                                            @can('Restore Articles')
+                                                <a href="{{ route('admin.article.restore', $article->id) }}" class="text-info">
+                                                    <i class="fa-solid fa-retweet fa-lg"></i>
+                                                </a>
+                                            @endcan
+                                            @can('ForceDelete Articles')
+                                                <a href="{{ route('admin.article.force.delete', $article->id) }}" class="text-info delete-record">
+                                                    <i class="fa-solid fa-xmark text-danger fa-lg"></i>
+                                                </a>
+                                            @endcan
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

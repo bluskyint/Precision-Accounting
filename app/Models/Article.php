@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Article extends Model
 {
-    use HasFactory;
+    use SoftDeletes, HasFactory;
 
     /**
      * Return the sluggable configuration array for this model.
