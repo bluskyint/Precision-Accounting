@@ -31,16 +31,29 @@
                                         <h2 class="fs-5 fw-bold mb-0"> <i class="fa-solid fa-eye text-primary"></i> Service Details</h2>
                                     </div>
                                     <div class="col text-end">
-                                        @can('Edit Services')
-                                        <a href="{{ route("admin.service.edit" , $service->id) }}" class="btn btn-sm btn-primary">
-                                            <i class="fa-solid fa-pen-to-square"></i> Edit
-                                        </a>
-                                        @endcan
-                                        @can('Edit Services')
-                                        <a href="{{ route('admin.service.destroy', $service->id) }}" class="btn btn-sm btn-danger delete-record">
-                                            <i class="fa-solid fa-trash-can"></i> Delete
-                                        </a>
-                                        @endcan
+                                        @if( !$isServiceTrashed )
+                                            @can('Edit Services')
+                                                <a href="{{ route('admin.service.edit', $service->id) }}" class="btn btn-sm btn-primary">
+                                                    <i class="fa-solid fa-pen-to-square"></i> Edit
+                                                </a>
+                                            @endcan
+                                            @can('Delete Services')
+                                                <a href="{{ route('admin.service.delete', $service->id) }}" class="btn btn-sm btn-danger delete-record">
+                                                    <i class="fa-solid fa-trash-can"></i> Delete
+                                                </a>
+                                            @endcan
+                                        @else
+                                            @can('Restore Services')
+                                                <a href="{{ route('admin.service.restore', $service->id) }}" class="btn btn-sm btn-primary">
+                                                    <i class="fa-solid fa-retweet"></i> Restore
+                                                </a>
+                                            @endcan
+                                            @can('ForceDelete Services')
+                                                <a href="{{ route('admin.service.force.delete', $service->id) }}" class="btn btn-sm btn-danger delete-record">
+                                                    <i class="fa-solid fa-xmark"></i> Force Delete
+                                                </a>
+                                            @endcan
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -50,8 +63,8 @@
                                     <tr>
                                         <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Image </td>
                                         <td class="article-image">
-                                            <a class="show-img-container" href="{{ asset('storage/services/'.$service->img['src']) }}" target="_blank">
-                                                <img src="{{ asset('storage/services/'.$service->img['src']) }}" alt="{{ $service->img['alt'] }}">
+                                            <a class="show-img-container" href="{{ asset("storage/services/$service->slug/".$service->img['src']) }}" target="_blank">
+                                                <img src="{{ asset("storage/services/$service->slug/".$service->img['src']) }}" alt="{{ $service->img['alt'] }}">
                                             </a>
                                         </td>
                                     </tr>
@@ -82,8 +95,8 @@
                                     <tr>
                                         <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Icon </td>
                                         <td class="article-image">
-                                            <a class="show-img-container" href="{{ asset('storage/services/'.$service->icon['src']) }}" target="_blank">
-                                                <img src="{{ asset('storage/services/'.$service->icon['src']) }}" alt="{{ $service->icon['alt'] }}">
+                                            <a class="show-img-container" href="{{ asset("storage/services/$service->slug/".$service->icon['src']) }}" target="_blank">
+                                                <img src="{{ asset("storage/services/$service->slug/".$service->icon['src']) }}" alt="{{ $service->icon['alt'] }}">
                                             </a>
                                         </td>
                                     </tr>

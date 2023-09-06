@@ -52,9 +52,22 @@
                         @enderror
                     </form>
                 </div>
-                <!------------------ Dynamic Pagination ------------------->
-                @if( preg_match('(search)', url()->current()) !== 1 )  <!---- Remove in search Page ---->
-                    <div class="col-3 col-lg-4 d-flex justify-content-end">
+
+                <div class="col-3 col-lg-4 d-flex justify-content-end align-items-center gap-2">
+
+                    @if(Route::is('admin.service.index'))
+                        @can('Show Services Trash')
+                            <!------------------ Trash ------------------->
+                            <div title="Trash" role="button">
+                                <a href="{{ route('admin.service.trash') }}">
+                                    <i class="fa-solid fa-trash-can fa-lg"></i>
+                                </a>
+                            </div>
+                        @endcan
+                    @endif
+
+                    <!------------------ Dynamic Pagination ------------------->
+                    @if( preg_match('(search)', url()->current()) !== 1 )  <!---- Remove in search Page ---->
                         <div class="btn-group">
                             <div class="dropdown me-1">
                                 <button class="btn btn-link text-dark dropdown-toggle dropdown-toggle-split m-0 p-1"
@@ -82,8 +95,9 @@
 
                             </div>
                         </div>
-                    </div>
-                @endif
+                   @endif
+
+                </div>
             </div>
         </div>
 
@@ -125,12 +139,23 @@
 
                 <!----------- multi Action ------------->
                 <form id="multi-action-form" action="{{ route("admin.service.multiAction") }}" method="POST">
-                    <div class="pb-3">
+                    @csrf
 
-                        @csrf
+                    @canany(['Delete Services', 'ForceDelete Services', 'Restore Services'])
+                    <div class="pb-3">
                         <select id="select-action" class="form-select fmxw-200" name="action" aria-label="Message select example" style="display:inline">
                             <option value="" selected="selected" style="display: none"> Choose Action </option>
-                            <option value="delete"> Delete Service</option>
+                            @can('Delete Services')
+                                <option value="delete"> Delete Service</option>
+                            @endcan
+                            @can('ForceDelete Services')
+                                <option value="forceDelete"> Destroy Service</option>
+                            @endcan
+                            @if( Route::is('admin.service.trash') )
+                                @can('Restore Services')
+                                    <option value="restore"> Restore Service</option>
+                                @endcan
+                            @endif
                         </select>
                         <button type="submit" id="multi-alert-btn" class="btn btn-sm px-3 btn-primary ms-3 multi-alert" disabled> <i class="fa-solid fa-list-check"></i> Apply</button>
 
@@ -139,15 +164,18 @@
                         @enderror
 
                     </div>
+                    @endcanany
                     <table class="table service-table table-hover align-items-center index-table">
                         <thead>
                             <tr>
+                                @canany(['Delete Services', 'ForceDelete Services', 'Restore Services'])
                                 <th class="border-bottom">
                                     <div class="form-check dashboard-check">
                                         <input  class="form-check-input checkbox-head" type="checkbox" id="main-checker">
                                         <label class="form-check-label" for="userCheck55"> </label>
                                     </div>
                                 </th>
+                                @endcanany
                                 <th class="border-bottom">Title</th>
                                 <th class="border-bottom">Author</th>
                                 <th class="border-bottom">Visibility</th>
@@ -158,12 +186,14 @@
                         <tbody>
                             @foreach ($services as $service)
                                 <tr>
+                                    @canany(['Delete Services', 'ForceDelete Services', 'Restore Services'])
                                     <td>
                                         <div class="form-check dashboard-check">
                                             <input name="id[]" value="{{ $service->id }}" class="form-check-input checkbox-head check-item"  type="checkbox">
                                             <label class="form-check-label" for="userCheck55">  </label>
                                         </div>
                                     </td>
+                                    @endcanany
                                     <td><a href="{{ route('admin.service.show', $service->id) }}" class="d-flex align-items-center">
                                             <div class="d-block">
                                                 <span class="fw-bold">
@@ -190,16 +220,29 @@
                                         <a href="{{ route('admin.service.show', $service->id) }}" class="text-tertiary">
                                             <i class="fa-solid fa-eye fa-lg"></i>
                                         </a>
-                                        @can('Edit Services')
-                                        <a href="{{ route('admin.service.edit', $service->id) }}" class="text-info">
-                                            <i class="fa-solid fa-pen-to-square fa-lg"></i>
-                                        </a>
-                                        @endcan
-                                        @can('Delete Services')
-                                        <a href="{{ route('admin.service.destroy', $service->id) }}" class="text-info delete-record">
-                                            <i class="fa-solid fa-trash-can text-danger fa-lg"></i>
-                                        </a>
-                                        @endcan
+                                        @if( Route::is('admin.service.index') )
+                                            @can('Edit Services')
+                                                <a href="{{ route('admin.service.edit', $service->id) }}" class="text-info"> <i
+                                                        class="fa-solid fa-pen-to-square fa-lg"></i>
+                                                </a>
+                                            @endcan
+                                            @can('Delete Services')
+                                                <a href="{{ route('admin.service.delete', $service->id) }}" class="text-info delete-record">
+                                                    <i class="fa-solid fa-trash-can text-danger fa-lg"></i>
+                                                </a>
+                                            @endcan
+                                        @else
+                                            @can('Restore Services')
+                                                <a href="{{ route('admin.service.restore', $service->id) }}" class="text-info">
+                                                    <i class="fa-solid fa-retweet fa-lg"></i>
+                                                </a>
+                                            @endcan
+                                            @can('ForceDelete Services')
+                                                <a href="{{ route('admin.service.force.delete', $service->id) }}" class="text-info delete-record">
+                                                    <i class="fa-solid fa-xmark text-danger fa-lg"></i>
+                                                </a>
+                                            @endcan
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

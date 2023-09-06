@@ -88,8 +88,8 @@
                                         <!----------------- Icon -------------------->
                                         <x-forms.upload-img-input label="Icon" name="icon" altTextValue="{{ $service->icon['alt'] }}">
                                             <div class="show-img-container">
-                                                <a href="{{ asset("storage/services/".$service->icon['src']) }}"  target="_blank">
-                                                    <img src="{{ asset("storage/services/".$service->icon['src']) }}" alt="{{ $service->icon['alt'] }}">
+                                                <a href="{{ asset("storage/services/$service->slug/".$service->icon['src']) }}"  target="_blank">
+                                                    <img src="{{ asset("storage/services/$service->slug/".$service->icon['src']) }}" alt="{{ $service->icon['alt'] }}">
                                                 </a>
                                             </div>
                                         </x-forms.upload-img-input>
@@ -97,8 +97,8 @@
                                         <!----------------- Img -------------------->
                                         <x-forms.upload-img-input label="Image" name="img" altTextValue="{{ $service->img['alt'] }}">
                                             <div class="show-img-container">
-                                                <a href="{{ asset("storage/services/".$service->img['src']) }}"  target="_blank">
-                                                    <img src="{{ asset("storage/services/".$service->img['src']) }}" alt="{{ $service->img['alt'] }}">
+                                                <a href="{{ asset("storage/services/$service->slug/".$service->img['src']) }}"  target="_blank">
+                                                    <img src="{{ asset("storage/services/$service->slug/".$service->img['src']) }}" alt="{{ $service->img['alt'] }}">
                                                 </a>
                                             </div>
                                         </x-forms.upload-img-input>
