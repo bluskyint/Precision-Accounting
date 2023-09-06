@@ -15,7 +15,7 @@
                     </a>
                 </li>
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Admin</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('admin.service.index') }}">Services</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.services.index') }}">Services</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Create</li>
             </ol>
         </nav>
@@ -35,7 +35,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="row align-items-center">
-                                    <form action="{{ route('admin.service.store') }}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{ route('admin.services.store') }}" method="POST" enctype="multipart/form-data">
 
 
                                         @csrf
@@ -65,9 +65,6 @@
                                                 <option value="{{ $service->id }}"  {{ old('parent_id') == $service->id ? "selected" : "" }} >{{ $service->title }}</option>
                                             @endforeach
                                         </x-forms.select-option>
-
-                                        <!----------------- Content -------------------->
-                                        <x-forms.ck-editor label="Content" name="content" />
 
                                         <!----------------- Visibility -------------------->
                                         <x-forms.select-option label="Visibility" name="visibility" icon-class="fa-solid fa-eye">

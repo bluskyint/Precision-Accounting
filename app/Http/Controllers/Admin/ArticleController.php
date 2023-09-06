@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Articles\MultiActionArticlesRequest;
+use App\Http\Requests\Articles\StoreArticleContentRequest;
 use App\Models\User;
 use App\Traits\StoreContentTrait;
 use Illuminate\Http\Request;
@@ -36,7 +37,7 @@ class ArticleController extends Controller
 
         // Dynamic pagination
         $articles = Article::orderBy('id','desc')->paginate( $num );
-        return view("admin.article.index",compact("articles","categoriesCount"));
+        return view("admin.articles.index",compact("articles","categoriesCount"));
     }
 
     public function index()
@@ -45,20 +46,25 @@ class ArticleController extends Controller
         $categoriesCount = Category::count();
 
         $articles = Article::with('author')->latest()->paginate(10);
-        return view("admin.article.index", compact("articles","categoriesCount"));
+        return view("admin.articles.index", compact("articles","categoriesCount"));
     }
 
     public function getTrash()
     {
         $articles = Article::onlyTrashed()->with('author')->latest('deleted_at')->paginate(10);
-        return view("admin.article.index", compact("articles"));
+        return view("admin.articles.index", compact("articles"));
     }
 
     public function create()
     {
         $categories = Category::select('id','title')->get();
         $authors = User::whereRelation('roles', 'name', 'Author')->select('id', 'name')->get();
-        return view("admin.article.create",compact('categories', 'authors'));
+        return view("admin.articles.create",compact('categories', 'authors'));
+    }
+
+    public function createContent(Article $article)
+    {
+        return view("admin.articles.createContent",compact('article'));
     }
 
     public function store(StoreArticleRequest $request)
@@ -67,22 +73,33 @@ class ArticleController extends Controller
             $requestData = $request->validated();
             $folderName = $requestData['slug'];
             $requestData['img']['src'] = $this->storeImage($request->file('img'), 'articles', $folderName);
-            $requestData['content'] = $this->moveContentImages($requestData['content'], "articles/$folderName");
 
-            Article::create($requestData);
+            $article = Article::create($requestData);
 
-            return to_route("admin.article.index")->with("success", "Article store successfully");
+            return to_route("admin.articles.content.create", $article->slug)->with("success", "Article store successfully");
 
         } catch (\Exception $e) {
-            return to_route("admin.article.index")->with("failed", "Error at store operation");
+            return back()->with("failed", "Error at store operation");
         }
     }
 
-    public function show(string $id)
+    public function storeContent(StoreArticleContentRequest $request, Article $article)
     {
-        $article = Article::withTrashed()->with('author')->where('id', $id)->first();
+        try {
+            $article->update(['content' => $request->validated('content')]);
+
+            return to_route("admin.articles.index")->with("success", "Article store successfully");
+
+        } catch (\Exception $e) {
+            return to_route("admin.articles.index")->with("failed", "Error at store operation");
+        }
+    }
+
+    public function show(string $slug)
+    {
+        $article = Article::withTrashed()->with('author')->where('slug', $slug)->first();
         $isArticleTrashed = $article->trashed();
-        return view("admin.article.show", compact("article", "isArticleTrashed"));
+        return view("admin.articles.show", compact("article", "isArticleTrashed"));
     }
 
     public function edit(Article $article)
@@ -90,7 +107,7 @@ class ArticleController extends Controller
         $article->load('author');
         $categories = Category::select('id','title')->get();
         $authors = User::whereRelation('roles', 'name', 'Author')->select('id', 'name')->get();
-        return view("admin.article.edit", compact("article","categories", "authors"));
+        return view("admin.articles.edit", compact("article","categories", "authors"));
     }
 
     public function update(UpdateArticleRequest $request, Article $article)
@@ -103,6 +120,7 @@ class ArticleController extends Controller
 
             if ($folderName !== $article->slug) {
                 rename("storage/articles/$article->slug", "storage/articles/$folderName");
+                $requestData['content'] = Str::replace("/$article->slug/", "/$folderName/", $requestData['content']);
             }
 
             if ($request->hasFile('img')) {
@@ -110,16 +128,12 @@ class ArticleController extends Controller
                 Storage::disk('public')->delete("articles/$folderName/".$article->img['src']);
             }
 
-//            if (Str::contains($requestData['content'], '/tempContentImages/')) {
-//                $requestData['content'] = $this->moveContentImages($requestData['content'], "articles/$folderName");
-//            }
-
             $article->update($requestData);
 
-            return to_route("admin.article.index")->with("success", "Article updated successfully");
+            return to_route("admin.articles.index")->with("success", "Article updated successfully");
 
         } catch (\Exception $e) {
-            return to_route("admin.article.index")->with("failed", "Error at update operation");
+            return to_route("admin.articles.index")->with("failed", "Error at update operation");
         }
     }
 
@@ -128,10 +142,10 @@ class ArticleController extends Controller
         try {
             $article->delete();
 
-            return to_route("admin.article.index")->with(["success" => "Article deleted successfully"]);
+            return to_route("admin.articles.index")->with(["success" => "Article deleted successfully"]);
 
         } catch (\Exception $e) {
-            return to_route("admin.article.index")->with("failed","Error at delete operation");
+            return to_route("admin.articles.index")->with("failed","Error at delete operation");
         }
     }
 
@@ -140,10 +154,10 @@ class ArticleController extends Controller
         try {
             Article::withTrashed()->where('id', $id)->restore();
 
-            return to_route("admin.article.index")->with(["success" => "Article restored successfully"]);
+            return to_route("admin.articles.index")->with(["success" => "Article restored successfully"]);
 
         } catch (\Exception $e) {
-            return to_route("admin.article.index")->with("failed","Error at restore operation");
+            return to_route("admin.articles.index")->with("failed","Error at restore operation");
         }
     }
 
@@ -154,10 +168,10 @@ class ArticleController extends Controller
             Storage::disk('public')->deleteDirectory("articles/".$article['slug']);
             $article->forceDelete();
 
-            return to_route("admin.article.index")->with(["success" => "Article destroyed successfully"]);
+            return to_route("admin.articles.index")->with(["success" => "Article destroyed successfully"]);
 
         } catch (\Exception $e) {
-            return to_route("admin.article.index")->with("failed","Error at destroyed operation");
+            return to_route("admin.articles.index")->with("failed","Error at destroyed operation");
         }
     }
 
@@ -169,7 +183,7 @@ class ArticleController extends Controller
         ]);
 
         $articles = Article::where('title', 'like', "%{$request->search}%")->paginate( 10 );
-        return view("admin.article.index",compact("articles"));
+        return view("admin.articles.index",compact("articles"));
     }
 
     public function multiAction(MultiActionArticlesRequest $request)
@@ -200,10 +214,10 @@ class ArticleController extends Controller
                 }
             }
 
-            return to_route("admin.article.index")->with(["success" => "Article deleted successfully"]);
+            return to_route("admin.articles.index")->with(["success" => "Article deleted successfully"]);
 
         } catch (\Exception $e) {
-            return to_route("admin.article.index")->with("failed","Error at delete operation");
+            return to_route("admin.articles.index")->with("failed","Error at delete operation");
         }
     }
 }

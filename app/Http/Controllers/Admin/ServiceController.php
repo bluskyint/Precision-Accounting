@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Services\MultiActionServicesRequest;
+use App\Http\Requests\Services\StoreServiceContentRequest;
 use App\Models\User;
 use App\Traits\StoreContentTrait;
 use Illuminate\Http\Request;
@@ -32,26 +33,31 @@ class ServiceController extends Controller
     {
         // Dynamic pagination
         $services = Service::orderBy('id', 'desc')->paginate($num);
-        return view("admin.service.index", compact("services"));
+        return view("admin.services.index", compact("services"));
     }
 
     public function index()
     {
         $services = Service::with('author')->latest()->paginate(10);
-        return view("admin.service.index", compact("services"));
+        return view("admin.services.index", compact("services"));
     }
 
     public function getTrash()
     {
         $services = Service::onlyTrashed()->with('author')->latest('deleted_at')->paginate(10);
-        return view("admin.service.index", compact("services"));
+        return view("admin.services.index", compact("services"));
     }
 
     public function create()
     {
         $services = Service::select('id', 'title')->get();
         $authors = User::whereRelation('roles', 'name', 'Author')->select('id', 'name')->get();
-        return view("admin.service.create", compact("services", "authors"));
+        return view("admin.services.create", compact("services", "authors"));
+    }
+
+    public function createContent(Service $service)
+    {
+        return view("admin.services.createContent", compact('service'));
     }
 
     public function store(StoreServiceRequest $request)
@@ -61,22 +67,33 @@ class ServiceController extends Controller
             $folderName = $requestData['slug'];
             $requestData['img']['src'] = $this->storeImage($request->file('img'), 'services', $folderName);
             $requestData['icon']['src'] = $this->storeImage($request->file('icon'), 'services', $folderName);
-            $requestData['content'] = $this->moveContentImages($requestData['content'], "services/$folderName");
 
-            Service::create($requestData);
+            $service = Service::create($requestData);
 
-            return to_route("admin.service.index")->with("success", "Service store successfully");
+            return to_route("admin.services.content.create", $service->slug)->with("success", "Service store successfully");
 
         } catch (\Exception $e) {
-            return to_route("admin.service.index")->with("failed", "Error at store operation");
+            return back()->with("failed", "Error at store operation");
         }
     }
 
-    public function show(string $id)
+    public function storeContent(StoreServiceContentRequest $request, Service $service)
     {
-        $service = Service::withTrashed()->with('author')->where('id', $id)->first();
+        try {
+            $service->update(['content' => $request->validated('content')]);
+
+            return to_route("admin.services.index")->with("success", "Service store successfully");
+
+        } catch (\Exception $e) {
+            return to_route("admin.services.index")->with("failed", "Error at store operation");
+        }
+    }
+
+    public function show(string $slug)
+    {
+        $service = Service::withTrashed()->with('author')->where('slug', $slug)->first();
         $isServiceTrashed = $service->trashed();
-        return view("admin.service.show", compact("service", "isServiceTrashed"));
+        return view("admin.services.show", compact("service", "isServiceTrashed"));
     }
 
     public function edit(Service $service)
@@ -84,7 +101,7 @@ class ServiceController extends Controller
         $service->load('author');
         $services = Service::select('id', 'title')->get();
         $authors = User::whereRelation('roles', 'name', 'Author')->select('id', 'name')->get();
-        return view("admin.service.edit", compact("service", "services", "authors"));
+        return view("admin.services.edit", compact("service", "services", "authors"));
 
     }
 
@@ -99,6 +116,7 @@ class ServiceController extends Controller
 
             if ($folderName !== $service->slug) {
                 rename("storage/services/$service->slug", "storage/services/$folderName");
+                $requestData['content'] = Str::replace("/$service->slug/", "/$folderName/", $requestData['content']);
             }
 
             if ($request->hasFile('img')) {
@@ -111,16 +129,12 @@ class ServiceController extends Controller
                 Storage::disk('public')->delete("services/$folderName/" . $service->icon['src']);
             }
 
-            if (Str::contains($requestData['content'], '/tempContentImages/')) {
-                $requestData['content'] = $this->moveContentImages($requestData['content'], "services/$folderName");
-            }
-
             $service->update($requestData);
 
-            return to_route("admin.service.index")->with("success", "Service updated successfully");
+            return to_route("admin.services.index")->with("success", "Service updated successfully");
 
         } catch (\Exception $e) {
-            return to_route("admin.service.index")->with("failed", "Error at update operation");
+            return to_route("admin.services.index")->with("failed", "Error at update operation");
         }
     }
 
@@ -129,10 +143,10 @@ class ServiceController extends Controller
         try {
             $service->delete();
 
-            return to_route("admin.service.index")->with(["success" => "Service deleted successfully"]);
+            return to_route("admin.services.index")->with(["success" => "Service deleted successfully"]);
 
         } catch (\Exception $e) {
-            return to_route("admin.service.index")->with("failed", "Error at delete operation");
+            return to_route("admin.services.index")->with("failed", "Error at delete operation");
         }
     }
 
@@ -141,10 +155,10 @@ class ServiceController extends Controller
         try {
             Service::withTrashed()->where('id', $id)->restore();
 
-            return to_route("admin.service.index")->with(["success" => "Service restored successfully"]);
+            return to_route("admin.services.index")->with(["success" => "Service restored successfully"]);
 
         } catch (\Exception $e) {
-            return to_route("admin.service.index")->with("failed", "Error at restore operation");
+            return to_route("admin.services.index")->with("failed", "Error at restore operation");
         }
     }
 
@@ -155,10 +169,10 @@ class ServiceController extends Controller
             Storage::disk('public')->deleteDirectory("services/".$service['slug']);
             $service->forceDelete();
 
-            return to_route("admin.service.index")->with(["success" => "Service destroyed successfully"]);
+            return to_route("admin.services.index")->with(["success" => "Service destroyed successfully"]);
 
         } catch (\Exception $e) {
-            return to_route("admin.service.index")->with("failed", "Error at destroyed operation");
+            return to_route("admin.services.index")->with("failed", "Error at destroyed operation");
         }
     }
 
@@ -170,7 +184,7 @@ class ServiceController extends Controller
         ]);
 
         $services = Service::where('title', 'like', "%{$request->search}%")->paginate(10);
-        return view("admin.service.index", compact("services"));
+        return view("admin.services.index", compact("services"));
 
     }
 
@@ -203,10 +217,10 @@ class ServiceController extends Controller
                 }
             }
 
-            return to_route("admin.service.index")->with(["success" => " Service deleted successfully"]);
+            return to_route("admin.services.index")->with(["success" => " Service deleted successfully"]);
 
         } catch (\Exception $e) {
-            return to_route("admin.service.index")->with("failed", "Error at delete operation");
+            return to_route("admin.services.index")->with("failed", "Error at delete operation");
         }
 
     }

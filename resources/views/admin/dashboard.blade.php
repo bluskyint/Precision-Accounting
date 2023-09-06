@@ -100,7 +100,7 @@
                             <p class="text-uppercase mb-1 text-muted">Tax Center</p>
                             <h2>{{ $tax_centers }}</h2>
                             <div>
-                                <span class="text-muted"> <a href="{{ route('admin.tax_center.index') }}"
+                                <span class="text-muted"> <a href="{{ route('admin.taxCenters.index') }}"
                                         class="text-underline view-more"> View More </a></span>
                             </div>
                         </div>

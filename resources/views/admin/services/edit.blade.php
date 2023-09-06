@@ -15,7 +15,7 @@
                     </a>
                 </li>
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Admin</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('admin.service.index') }}">Services</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.services.index') }}">Services</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Edit</li>
             </ol>
         </nav>
@@ -35,7 +35,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="row align-items-center">
-                                    <form action="{{ route('admin.service.update' , $service->id) }}" class="edit-form" method="POST" enctype="multipart/form-data">
+                                    <form action="{{ route('admin.services.update' , $service->slug) }}" class="edit-form" method="POST" enctype="multipart/form-data">
 
                                         @csrf
 

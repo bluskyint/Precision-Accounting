@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TaxCenters\MultiActionTaxCentersRequest;
+use App\Http\Requests\TaxCenters\StoreTaxCenterContentRequest;
 use App\Models\User;
 use App\Traits\StoreContentTrait;
 use Illuminate\Http\Request;
@@ -33,25 +34,30 @@ class TaxCenterController extends Controller
     {
         // Dynamic pagination
         $tax_centers = TaxCenter::orderBy('id', 'desc')->paginate($num);
-        return view("admin.tax_center.index", compact("tax_centers"));
+        return view("admin.taxCenters.index", compact("tax_centers"));
     }
 
     public function index()
     {
         $tax_centers = TaxCenter::with('author')->latest()->paginate(10);
-        return view("admin.tax_center.index", compact("tax_centers"));
+        return view("admin.taxCenters.index", compact("tax_centers"));
     }
 
     public function getTrash()
     {
         $tax_centers = TaxCenter::onlyTrashed()->with('author')->latest('deleted_at')->paginate(10);
-        return view("admin.tax_center.index", compact("tax_centers"));
+        return view("admin.taxCenters.index", compact("tax_centers"));
     }
 
     public function create()
     {
         $authors = User::whereRelation('roles', 'name', 'Author')->select('id', 'name')->get();
-        return view("admin.tax_center.create", compact("authors"));
+        return view("admin.taxCenters.create", compact("authors"));
+    }
+
+    public function createContent(TaxCenter $taxCenter)
+    {
+        return view("admin.taxCenters.createContent",compact('taxCenter'));
     }
 
     public function store(StoreTaxCenterRequest $request)
@@ -60,29 +66,41 @@ class TaxCenterController extends Controller
             $requestData = $request->validated();
             $folderName = $requestData['slug'];
             $requestData['img']['src'] = $this->storeImage($request->file('img'), 'taxCenters', $folderName);
-            $requestData['content'] = $this->moveContentImages($requestData['content'], "taxCenters/$folderName");
 
-            TaxCenter::create($requestData);
+            $taxCenters = TaxCenter::create($requestData);
 
-            return to_route("admin.tax_center.index")->with("success", "TaxCenter store successfully");
+            return to_route("admin.taxCenters.content.create", $taxCenters->slug)->with("success", "TaxCenter store successfully");
 
         } catch (\Exception $e) {
-            return to_route("admin.tax_center.index")->with("failed", "Error at store operation");
+            return back()->with("failed", "Error at store operation");
         }
     }
 
-    public function show(string $id)
+
+    public function storeContent(StoreTaxCenterContentRequest $request, TaxCenter $taxCenter)
     {
-        $tax_center = TaxCenter::withTrashed()->with('author')->where('id', $id)->first();
-        $isTaxTrashed = $tax_center->trashed();
-        return view("admin.tax_center.show", compact("tax_center", "isTaxTrashed"));
+        try {
+            $taxCenter->update(['content' => $request->validated('content')]);
+
+            return to_route("admin.taxCenters.index")->with("success", "Article store successfully");
+
+        } catch (\Exception $e) {
+            return to_route("admin.taxCenters.index")->with("failed", "Error at store operation");
+        }
     }
 
-    public function edit(TaxCenter $tax_center)
+    public function show(string $slug)
     {
-        $tax_center->load('author');
+        $taxCenter = TaxCenter::withTrashed()->with('author')->where('slug', $slug)->first();
+        $isTaxTrashed = $taxCenter->trashed();
+        return view("admin.taxCenters.show", compact("taxCenter", "isTaxTrashed"));
+    }
+
+    public function edit(TaxCenter $taxCenter)
+    {
+        $taxCenter->load('author');
         $authors = User::whereRelation('roles', 'name', 'Author')->select('id', 'name')->get();
-        return view("admin.tax_center.edit", compact("tax_center", "authors"));
+        return view("admin.taxCenters.edit", compact("taxCenter", "authors"));
     }
 
     public function update(UpdateTaxCenterRequest $request, TaxCenter $taxCenter)
@@ -95,6 +113,7 @@ class TaxCenterController extends Controller
 
             if ($folderName !== $taxCenter->slug) {
                 rename("storage/taxCenters/$taxCenter->slug", "storage/taxCenters/$folderName");
+                $requestData['content'] = Str::replace("/$taxCenter->slug/", "/$folderName/", $requestData['content']);
             }
 
             if ($request->hasFile('img')) {
@@ -102,16 +121,12 @@ class TaxCenterController extends Controller
                 Storage::disk('public')->delete("taxCenters/$folderName/" . $taxCenter->img['src']);
             }
 
-            if (Str::contains($requestData['content'], '/tempContentImages/')) {
-                $requestData['content'] = $this->moveContentImages($requestData['content'], "taxCenters/$folderName");
-            }
-
             $taxCenter->update($requestData);
 
-            return to_route("admin.tax_center.index")->with("success", "TaxCenter updated successfully");
+            return to_route("admin.taxCenters.index")->with("success", "TaxCenter updated successfully");
 
         } catch (\Exception $e) {
-            return to_route("admin.tax_center.index")->with("failed", "Error at update operation");
+            return to_route("admin.taxCenters.index")->with("failed", "Error at update operation");
         }
     }
 
@@ -120,10 +135,10 @@ class TaxCenterController extends Controller
         try {
             $taxCenter->delete();
 
-            return to_route("admin.tax_center.index")->with(["success" => "Tax Center deleted successfully"]);
+            return to_route("admin.taxCenters.index")->with(["success" => "Tax Center deleted successfully"]);
 
         } catch (\Exception $e) {
-            return to_route("admin.tax_center.index")->with("failed", "Error at delete operation");
+            return to_route("admin.taxCenters.index")->with("failed", "Error at delete operation");
         }
     }
 
@@ -132,10 +147,10 @@ class TaxCenterController extends Controller
         try {
             TaxCenter::withTrashed()->where('id', $id)->restore();
 
-            return to_route("admin.tax_center.index")->with(["success" => "TaxCenter restored successfully"]);
+            return to_route("admin.taxCenters.index")->with(["success" => "TaxCenter restored successfully"]);
 
         } catch (\Exception $e) {
-            return to_route("admin.tax_center.index")->with("failed", "Error at restore operation");
+            return to_route("admin.taxCenters.index")->with("failed", "Error at restore operation");
         }
     }
 
@@ -146,10 +161,10 @@ class TaxCenterController extends Controller
             Storage::disk('public')->deleteDirectory("taxCenters/" . $taxCenter['slug']);
             $taxCenter->forceDelete();
 
-            return to_route("admin.tax_center.index")->with(["success" => "TaxCenter destroyed successfully"]);
+            return to_route("admin.taxCenters.index")->with(["success" => "TaxCenter destroyed successfully"]);
 
         } catch (\Exception $e) {
-            return to_route("admin.tax_center.index")->with("failed", "Error at destroyed operation");
+            return to_route("admin.taxCenters.index")->with("failed", "Error at destroyed operation");
         }
     }
 
@@ -161,7 +176,7 @@ class TaxCenterController extends Controller
         ]);
 
         $tax_centers = TaxCenter::where('title', 'like', "%{$request->search}%")->paginate(10);
-        return view("admin.tax_center.index", compact("tax_centers"));
+        return view("admin.taxCenters.index", compact("tax_centers"));
     }
 
     public function multiAction(MultiActionTaxCentersRequest $request)
@@ -192,10 +207,10 @@ class TaxCenterController extends Controller
                 }
             }
 
-            return to_route("admin.tax_center.index")->with(["success" => "Tax Center deleted successfully"]);
+            return to_route("admin.taxCenters.index")->with(["success" => "Tax Center deleted successfully"]);
 
         } catch (\Exception $e) {
-            return to_route("admin.tax_center.index")->with("failed", "Error at delete operation");
+            return to_route("admin.taxCenters.index")->with("failed", "Error at delete operation");
         }
     }
 

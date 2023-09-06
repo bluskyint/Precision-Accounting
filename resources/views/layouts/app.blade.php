@@ -143,7 +143,7 @@
                                         <li class="has-droupdown has-menu-child-item"><a href="#">Tax Center</a>
                                             <ul class="submenu">
                                                 @foreach ( $tax_centers as $tax_center )
-                                                    <li><a href="{{ route("tax_center", $tax_center->slug ) }}"> {{ $tax_center->title }} </a></li>
+                                                    <li><a href="{{ route("taxCenters", $tax_center->slug ) }}"> {{ $tax_center->title }} </a></li>
                                                 @endforeach
                                             </ul>
                                         </li>
@@ -251,7 +251,7 @@
                         <li class="has-droupdown has-menu-child-item"><a href="#">Tax Center</a>
                             <ul class="submenu">
                                 @foreach ( $tax_centers as $tax_center )
-                                    <li><a href="{{ route("tax_center", $tax_center->slug ) }}"> {{ $tax_center->title }} </a></li>
+                                    <li><a href="{{ route("taxCenters", $tax_center->slug ) }}"> {{ $tax_center->title }} </a></li>
                                 @endforeach
                             </ul>
                         </li>

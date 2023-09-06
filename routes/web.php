@@ -21,8 +21,8 @@ require __DIR__ . '/auth.php';
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/about-us', [App\Http\Controllers\AboutController::class, 'index'])->name('about');
-Route::get('/service/{slug}', [App\Http\Controllers\ServiceController::class, 'index'])->name('service');
-Route::get('tax-center/{slug}', [App\Http\Controllers\TaxcenterController::class, 'index'])->name('tax_center');
+Route::get('/services/{slug}', [App\Http\Controllers\ServiceController::class, 'index'])->name('services');
+Route::get('taxCenters/{slug}', [App\Http\Controllers\TaxcenterController::class, 'index'])->name('taxCenters');
 Route::get('/resource', [App\Http\Controllers\ResourceController::class, 'index'])->name('resources');
 
 // subscribe
@@ -52,7 +52,7 @@ Route::post('/contact/send', [App\Http\Controllers\ContactController::class, 'se
 // Blog
 Route::get('/blog', [App\Http\Controllers\BlogController::class, 'index'])->name('blog');
 Route::post('/blog/search', [App\Http\Controllers\BlogController::class, 'search'])->name('blog.search');
-Route::get('/{slug}', [App\Http\Controllers\BlogController::class, 'article'])->name('article');
+Route::get('/{slug}', [App\Http\Controllers\BlogController::class, 'articles'])->name('articles');
 
 
 /*===========================================================================
@@ -95,14 +95,53 @@ Route::group([ "prefix" => "admin", 'middleware' => "auth" , "as" => "admin." ] 
     Route::get('category/destroy/{id}' , [App\Http\Controllers\Admin\CategoryController::class, 'destroy'] )->name("category.destroy");
 
     //CKEditor Image Upload
-    Route::post('/ckeditor/upload', [\App\Http\Controllers\Admin\CKEditorUploadImageController::class, 'upload'])->name('ckeditor.upload');
+    Route::post('/ckeditor/upload/{directoryName?}/{folderName?}', [\App\Http\Controllers\Admin\CKEditorUploadImageController::class, 'upload'])->name('ckeditor.upload');
 
     // articles
-    Route::get('article/perPage/{num}' , [App\Http\Controllers\Admin\ArticleController::class, 'perPage'])->name("article.perPage");
-    Route::post('article/search' , [App\Http\Controllers\Admin\ArticleController::class, 'search'])->name("article.search");
-    Route::post('article/multiAction' , [App\Http\Controllers\Admin\ArticleController::class, 'multiAction'])->name("article.multiAction");
-    Route::resource('article', App\Http\Controllers\Admin\ArticleController::class)->except('destroy');
-    Route::get('article/destroy/{article}' , [App\Http\Controllers\Admin\ArticleController::class, 'destroy'] )->name("article.destroy");
+    Route::get('articles/perPage/{num}' , [App\Http\Controllers\Admin\ArticleController::class, 'perPage'])->name("articles.perPage");
+    Route::post('articles/search' , [App\Http\Controllers\Admin\ArticleController::class, 'search'])->name("articles.search");
+    Route::post('articles/multiAction' , [App\Http\Controllers\Admin\ArticleController::class, 'multiAction'])->name("articles.multiAction");
+    Route::get('articles/trash' , [App\Http\Controllers\Admin\ArticleController::class, 'getTrash'] )->name("articles.trash");
+    Route::get('articles/delete/{article}' , [App\Http\Controllers\Admin\ArticleController::class, 'delete'] )->name("articles.delete");
+    Route::get('articles/trash/restore/{id}' , [App\Http\Controllers\Admin\ArticleController::class, 'restore'] )->name("articles.restore");
+    Route::get('articles/trash/force-delete/{id}' , [App\Http\Controllers\Admin\ArticleController::class, 'forceDelete'] )->name("articles.force.delete");
+    Route::get('articles/{article:slug}/content' , [App\Http\Controllers\Admin\ArticleController::class, 'createContent'])->name("articles.content.create");
+    Route::put('articles/{article:slug}/content' , [App\Http\Controllers\Admin\ArticleController::class, 'storeContent'])->name("articles.content.store");
+    Route::resource('articles', App\Http\Controllers\Admin\ArticleController::class)->parameters([
+        'articles' => 'article:slug'
+    ])->except('destroy');
+
+
+
+    // taxCenters
+    Route::get('taxCenters/perPage/{num}' , [App\Http\Controllers\Admin\TaxCenterController::class, 'perPage'])->name("taxCenters.perPage");
+    Route::post('taxCenters/search' , [App\Http\Controllers\Admin\TaxCenterController::class, 'search'])->name("taxCenters.search");
+    Route::post('taxCenters/multiAction' , [App\Http\Controllers\Admin\TaxCenterController::class, 'multiAction'])->name("taxCenters.multiAction");
+    Route::get('taxCenters/trash' , [App\Http\Controllers\Admin\TaxCenterController::class, 'getTrash'] )->name("taxCenters.trash");
+    Route::get('taxCenters/delete/{taxCenter}' , [App\Http\Controllers\Admin\TaxCenterController::class, 'delete'] )->name("taxCenters.delete");
+    Route::get('taxCenters/trash/restore/{id}' , [App\Http\Controllers\Admin\TaxCenterController::class, 'restore'] )->name("taxCenters.restore");
+    Route::get('taxCenters/trash/force-delete/{id}' , [App\Http\Controllers\Admin\TaxCenterController::class, 'forceDelete'] )->name("taxCenters.force.delete");
+    Route::get('taxCenters/{taxCenter:slug}/content' , [App\Http\Controllers\Admin\TaxCenterController::class, 'createContent'])->name("taxCenters.content.create");
+    Route::put('taxCenters/{taxCenter:slug}/content' , [App\Http\Controllers\Admin\TaxCenterController::class, 'storeContent'])->name("taxCenters.content.store");
+    Route::resource('taxCenters', App\Http\Controllers\Admin\TaxCenterController::class)->parameters([
+        'taxCenters' => 'taxCenter:slug'
+    ])->except('destroy');
+
+
+
+    // services
+    Route::get('services/perPage/{num}' , [App\Http\Controllers\Admin\ServiceController::class, 'perPage'])->name("services.perPage");
+    Route::post('services/search' , [App\Http\Controllers\Admin\ServiceController::class, 'search'])->name("services.search");
+    Route::post('services/multiAction' , [App\Http\Controllers\Admin\ServiceController::class, 'multiAction'])->name("services.multiAction");
+    Route::get('services/trash' , [App\Http\Controllers\Admin\ServiceController::class, 'getTrash'] )->name("services.trash");
+    Route::get('services/delete/{service}' , [App\Http\Controllers\Admin\ServiceController::class, 'delete'] )->name("services.delete");
+    Route::get('services/trash/restore/{id}' , [App\Http\Controllers\Admin\ServiceController::class, 'restore'] )->name("services.restore");
+    Route::get('services/trash/force-delete/{id}' , [App\Http\Controllers\Admin\ServiceController::class, 'forceDelete'] )->name("services.force.delete");
+    Route::get('services/{service:slug}/content' , [App\Http\Controllers\Admin\ServiceController::class, 'createContent'])->name("services.content.create");
+    Route::put('services/{service:slug}/content' , [App\Http\Controllers\Admin\ServiceController::class, 'storeContent'])->name("services.content.store");
+    Route::resource('services', App\Http\Controllers\Admin\ServiceController::class)->parameters([
+        'services' => 'service:slug'
+    ])->except('destroy');
 
 
     // resources
@@ -111,24 +150,6 @@ Route::group([ "prefix" => "admin", 'middleware' => "auth" , "as" => "admin." ] 
     Route::post('resource/multiAction' , [App\Http\Controllers\Admin\ResourceController::class, 'multiAction'])->name("resource.multiAction");
     Route::resource('resource', App\Http\Controllers\Admin\ResourceController::class)->except('destroy');
     Route::get('resource/destroy/{resource}' , [App\Http\Controllers\Admin\ResourceController::class, 'destroy'] )->name("resource.destroy");
-
-
-
-    // tax_center
-    Route::get('tax_center/perPage/{num}' , [App\Http\Controllers\Admin\TaxCenterController::class, 'perPage'])->name("tax_center.perPage");
-    Route::post('tax_center/search' , [App\Http\Controllers\Admin\TaxCenterController::class, 'search'])->name("tax_center.search");
-    Route::post('tax_center/multiAction' , [App\Http\Controllers\Admin\TaxCenterController::class, 'multiAction'])->name("tax_center.multiAction");
-    Route::resource('tax_center', App\Http\Controllers\Admin\TaxCenterController::class)->except('destroy');
-    Route::get('tax_center/destroy/{taxCenter}' , [App\Http\Controllers\Admin\TaxCenterController::class, 'destroy'] )->name("tax_center.destroy");
-
-
-
-    // service
-    Route::get('service/perPage/{num}' , [App\Http\Controllers\Admin\ServiceController::class, 'perPage'])->name("service.perPage");
-    Route::post('service/search' , [App\Http\Controllers\Admin\ServiceController::class, 'search'])->name("service.search");
-    Route::post('service/multiAction' , [App\Http\Controllers\Admin\ServiceController::class, 'multiAction'])->name("service.multiAction");
-    Route::resource('service', App\Http\Controllers\Admin\ServiceController::class)->except('destroy');
-    Route::get('service/destroy/{service}' , [App\Http\Controllers\Admin\ServiceController::class, 'destroy'] )->name("service.destroy");
 
 
     // testimonial

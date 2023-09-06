@@ -15,8 +15,8 @@
                     </a>
                 </li>
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Admin</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('admin.tax_center.index') }}">Tax Center</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Edit</li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.taxCenters.index') }}">Tax Center</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Create</li>
             </ol>
         </nav>
 
@@ -28,67 +28,56 @@
                             <div class="card-header">
                                 <div class="row align-items-center">
                                     <div class="col">
-                                        <h2 class="fs-5 fw-bold mb-0"> <i class="fa-solid fa-pen-to-square text-primary"></i> Edit
+                                        <h2 class="fs-5 fw-bold mb-0"> <i class="fa-solid fa-plus text-primary"></i> Create
                                             Tax Center</h2>
                                     </div>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="row align-items-center">
-                                    <form action="{{ route('admin.tax_center.update' , $tax_center->id) }}" class="edit-form" method="POST" enctype="multipart/form-data">
+                                    <form id="editor-form" action="{{ route('admin.taxCenters.store') }}" method="POST" enctype="multipart/form-data">
 
                                         @csrf
 
-                                        @method('PUT')
-
                                         <!----------------- title -------------------->
-                                        <x-forms.text-input label="Title" name="title" value="{{ $tax_center->title }}" icon-class="fa-solid fa-heading" placeholder="Type Title..." />
+                                        <x-forms.text-input label="Title" name="title" icon-class="fa-solid fa-heading" placeholder="Type Title..." />
 
                                         <!----------------- slug -------------------->
-                                        <x-forms.text-input label="Permalink" name="slug" value="{{ $tax_center->slug }}" icon-class="fa-solid fa-link" placeholder="Ex: precision-accounting-international" />
+                                        <x-forms.text-input label="Permalink" name="slug" icon-class="fa-solid fa-link" placeholder="Ex: precision-accounting-international" />
 
                                         <!----------------- subtitle -------------------->
-                                        <x-forms.text-input label="Subtitle" name="subtitle" value="{{ $tax_center->subtitle }}" icon-class="fa-solid fa-quote-left" placeholder="Type Subtitle..." />
+                                        <x-forms.text-input label="Subtitle" name="subtitle" icon-class="fa-solid fa-quote-left" placeholder="Type Subtitle..." />
 
                                         <!----------------- summary -------------------->
-                                        <x-forms.text-input label="Summary" name="summary" value="{{ $tax_center->summary }}" icon-class="fa-solid fa-list" placeholder="Type Summary..." />
+                                        <x-forms.text-input label="Summary" name="summary" icon-class="fa-solid fa-list" placeholder="Type Summary..." />
 
                                         <!----------------- Author -------------------->
                                         <x-forms.select-option label="Author" name="author_id" icon-class="fa-solid fa-marker">
                                             @foreach ( $authors as $author )
-                                                <option value="{{ $author->id }}"  {{ $author->id == $tax_center->author->id ? "selected" : "" }} >{{ $author->name }}</option>
+                                                <option value="{{ $author->id }}"  {{ old('author_id') == $author->id ? "selected" : "" }} >{{ $author->name }}</option>
                                             @endforeach
                                         </x-forms.select-option>
 
-                                        <!----------------- Content -------------------->
-                                        <x-forms.ck-editor label="Content" name="content" value="{{ $tax_center->content }}" />
-
                                         <!----------------- Seo Title -------------------->
-                                        <x-forms.text-input label="SEO Title" name="seo_title" value="{{ $tax_center->seo_title }}" icon-class="fa-solid fa-chart-line" placeholder="Type SEO Title..." />
+                                        <x-forms.text-input label="SEO Title" name="seo_title" icon-class="fa-solid fa-chart-line" placeholder="Type SEO Title..." />
 
                                         <!----------------- Seo Description -------------------->
-                                        <x-forms.text-input label="SEO Description" name="seo_description" value="{{ $tax_center->seo_description }}" icon-class="fa-solid fa-chart-line" placeholder="Type SEO Description..." />
+                                        <x-forms.text-input label="SEO Description" name="seo_description" icon-class="fa-solid fa-chart-line" placeholder="Type SEO Description..." />
 
                                         <!----------------- Seo Keywords -------------------->
-                                        <x-forms.text-input label="SEO Keywords" name="seo_keywords" value="{{ $tax_center->seo_keywords }}" icon-class="fa-solid fa-chart-line" placeholder="Type SEO Keywords..." />
+                                        <x-forms.text-input label="SEO Keywords" name="seo_keywords" icon-class="fa-solid fa-chart-line" placeholder="Type SEO Keywords..." />
 
                                         <!----------------- Visibility -------------------->
                                         <x-forms.select-option label="Visibility" name="visibility" icon-class="fa-solid fa-eye">
-                                            <option value="1" {{ $tax_center->visibility === '1' ? "selected" : "" }} > Visible </option>
-                                            <option value="0" {{ $tax_center->visibility === '0' ? "selected" : "" }} > Invisible </option>
+                                            <option value="1" {{ old('visibility') == '1' ? "selected" : "" }} > Visible </option>
+                                            <option value="0" {{ old('visibility') == '0' ? "selected" : "" }} > Invisible </option>
                                         </x-forms.select-option>
 
                                         <!----------------- Img -------------------->
-                                        <x-forms.upload-img-input label="Image" name="img" altTextValue="{{ $tax_center->img['alt'] }}">
-                                            <div class="show-img-container">
-                                                <a href="{{ asset("storage/taxCenters/$tax_center->slug/".$tax_center->img['src']) }}"  target="_blank">
-                                                    <img src="{{ asset("storage/taxCenters/$tax_center->slug/".$tax_center->img['src']) }}" alt="{{ $tax_center->img['alt'] }}">
-                                                </a>
-                                            </div>
-                                        </x-forms.upload-img-input>
+                                        <x-forms.upload-img-input label="Image" name="img" />
 
                                         <!----------------- Submit Btn -------------------->
-                                        <x-forms.submit-btn name="Save" />
+                                        <x-forms.submit-btn />
 
                                     </form>
                                 </div>

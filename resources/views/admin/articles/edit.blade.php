@@ -15,8 +15,8 @@
                     </a>
                 </li>
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Admin</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('admin.article.index') }}">Articles</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Create</li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.articles.index') }}">Articles</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Edit</li>
             </ol>
         </nav>
 
@@ -28,67 +28,74 @@
                             <div class="card-header">
                                 <div class="row align-items-center">
                                     <div class="col">
-                                        <h2 class="fs-5 fw-bold mb-0"> <i class="fa-solid fa-plus text-primary"></i> Create
+                                        <h2 class="fs-5 fw-bold mb-0"> <i class="fa-solid fa-pen-to-square text-primary"></i> Edit
                                             Article</h2>
                                     </div>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="row align-items-center">
-                                    <form action="{{ route('admin.article.store') }}" method="POST" enctype="multipart/form-data">
-
+                                    <form action="{{ route('admin.articles.update' , $article->slug) }}" class="edit-form" method="POST" enctype="multipart/form-data">
 
                                         @csrf
 
+                                        @method('PUT')
+
                                         <!----------------- title -------------------->
-                                        <x-forms.text-input label="Title" name="title" icon-class="fa-solid fa-heading" placeholder="Type Title..." />
+                                        <x-forms.text-input label="Title" name="title" value="{{ $article->title }}" icon-class="fa-solid fa-heading" placeholder="Type Title..." />
 
                                         <!----------------- slug -------------------->
-                                        <x-forms.text-input label="Permalink" name="slug" icon-class="fa-solid fa-link" placeholder="Ex: precision-accounting-international" />
+                                        <x-forms.text-input label="Permalink" name="slug" value="{{ $article->slug }}" icon-class="fa-solid fa-link" placeholder="Ex: precision-accounting-international" />
 
                                         <!----------------- subtitle -------------------->
-                                        <x-forms.text-input label="Subtitle" name="subtitle" icon-class="fa-solid fa-quote-left" placeholder="Type Subtitle..." />
+                                        <x-forms.text-input label="Subtitle" name="subtitle" value="{{ $article->subtitle }}" icon-class="fa-solid fa-quote-left" placeholder="Type Subtitle..." />
 
                                         <!----------------- summary -------------------->
-                                        <x-forms.text-input label="Summary" name="summary" icon-class="fa-solid fa-list" placeholder="Type Summary..." />
+                                        <x-forms.text-input label="Summary" name="summary" value="{{ $article->summary }}" icon-class="fa-solid fa-list" placeholder="Type Summary..." />
 
                                         <!----------------- Author -------------------->
                                         <x-forms.select-option label="Author" name="author_id" icon-class="fa-solid fa-marker">
                                             @foreach ( $authors as $author )
-                                                <option value="{{ $author->id }}"  {{ old('author_id') == $author->id ? "selected" : "" }} >{{ $author->name }}</option>
+                                                <option value="{{ $author->id }}"  {{ $author->id == $article->author->id ? "selected" : "" }} >{{ $author->name }}</option>
                                             @endforeach
                                         </x-forms.select-option>
 
-                                        <!----------------- Category_id -------------------->
+                                        <!----------------- Catrgory_id -------------------->
                                         <x-forms.select-option label="Category" name="category_id" icon-class="fa-solid fa-code-branch">
                                             @foreach ( $categories as $category )
-                                                <option value="{{ $category->id }}"  {{ old('category_id') == $category->id ? "selected" : "" }} >{{ $category->title }}</option>
+                                                <option value="{{ $category->id }}"  {{ $category->id == $article->category->id ? "selected" : "" }} >{{ $category->title }}</option>
                                             @endforeach
                                         </x-forms.select-option>
 
                                         <!----------------- Content -------------------->
-                                        <x-forms.ck-editor label="Content" name="content" images-Directory="articles"/>
+                                        <x-forms.ck-editor label="Content" name="content" value="{{ $article->content }}" />
 
                                         <!----------------- pinned -------------------->
                                         <x-forms.select-option label="Pinned Article In Top" name="pinned" icon-class="fa-solid fa-thumbtack">
-                                            <option value="0" {{ old('pinned') == '0' ? "selected" : "" }}> No </option>
-                                            <option value="1" {{ old('pinned') == '1' ? "selected" : "" }}> Yes </option>
+                                            <option value="0" {{ $article->pinned == '0' ? "selected" : "" }}> No </option>
+                                            <option value="1" {{ $article->pinned == '1' ? "selected" : "" }}> Yes </option>
                                         </x-forms.select-option>
 
                                         <!----------------- Seo Title -------------------->
-                                        <x-forms.text-input label="SEO Title" name="seo_title" icon-class="fa-solid fa-chart-line" placeholder="Type SEO Title..." />
+                                        <x-forms.text-input label="SEO Title" name="seo_title" value="{{ $article->seo_title }}" icon-class="fa-solid fa-chart-line" placeholder="Type SEO Title..." />
 
                                         <!----------------- Seo Description -------------------->
-                                        <x-forms.text-input label="SEO Description" name="seo_description" icon-class="fa-solid fa-chart-line" placeholder="Type SEO Description..." />
+                                        <x-forms.text-input label="SEO Description" name="seo_description" value="{{ $article->seo_description }}" icon-class="fa-solid fa-chart-line" placeholder="Type SEO Description..." />
 
                                         <!----------------- Seo Keywords -------------------->
-                                        <x-forms.text-input label="SEO Keywords" name="seo_keywords" icon-class="fa-solid fa-chart-line" placeholder="Type SEO Keywords..." />
+                                        <x-forms.text-input label="SEO Keywords" name="seo_keywords" value="{{ $article->seo_keywords }}" icon-class="fa-solid fa-chart-line" placeholder="Type SEO Keywords..." />
 
                                         <!----------------- Img -------------------->
-                                        <x-forms.upload-img-input label="Image" name="img" />
+                                        <x-forms.upload-img-input label="Image" name="img" altTextValue="{{ $article->img['alt'] }}">
+                                            <div class="show-img-container">
+                                                <a href="{{ asset("storage/articles/$article->slug/".$article->img['src']) }}"  target="_blank">
+                                                    <img src="{{ asset("storage/articles/$article->slug/".$article->img['src']) }}" alt="{{ $article->img['alt'] }}">
+                                                </a>
+                                            </div>
+                                        </x-forms.upload-img-input>
 
                                         <!----------------- Submit Btn -------------------->
-                                        <x-forms.submit-btn />
+                                        <x-forms.submit-btn name="Save" />
 
                                     </form>
                                 </div>

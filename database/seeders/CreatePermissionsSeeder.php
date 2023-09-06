@@ -43,6 +43,45 @@ class CreatePermissionsSeeder extends Seeder
             ],
 
             [
+                'name' => 'Articles',
+                'permissions' => [
+                    'Show Articles',
+                    'Add Articles',
+                    'Edit Articles',
+                    'Delete Articles',
+                    'Show Articles Trash',
+                    'Restore Articles',
+                    'ForceDelete Articles',
+                ]
+            ],
+
+            [
+                'name' => 'Services',
+                'permissions' => [
+                    'Show Services',
+                    'Add Services',
+                    'Edit Services',
+                    'Delete Services',
+                    'Show Services Trash',
+                    'Restore Services',
+                    'ForceDelete Services',
+                ]
+            ],
+
+            [
+                'name' => 'TaxCenters',
+                'permissions' => [
+                    'Show TaxCenters',
+                    'Add TaxCenters',
+                    'Edit TaxCenters',
+                    'Delete TaxCenters',
+                    'Show TaxCenters Trash',
+                    'Restore TaxCenters',
+                    'ForceDelete TaxCenters',
+                ]
+            ],
+
+            [
                 'name' => 'Categories',
                 'permissions' => [
                     'Show Categories',
@@ -53,42 +92,12 @@ class CreatePermissionsSeeder extends Seeder
             ],
 
             [
-                'name' => 'Articles',
-                'permissions' => [
-                    'Show Articles',
-                    'Add Articles',
-                    'Edit Articles',
-                    'Delete Articles'
-                ]
-            ],
-
-            [
-                'name' => 'TaxCenters',
-                'permissions' => [
-                    'Show TaxCenters',
-                    'Add TaxCenters',
-                    'Edit TaxCenters',
-                    'Delete TaxCenters'
-                ]
-            ],
-
-            [
                 'name' => 'Resources',
                 'permissions' => [
                     'Show Resources',
                     'Add Resources',
                     'Edit Resources',
                     'Delete Resources'
-                ]
-            ],
-
-            [
-                'name' => 'Services',
-                'permissions' => [
-                    'Show Services',
-                    'Add Services',
-                    'Edit Services',
-                    'Delete Services'
                 ]
             ],
 

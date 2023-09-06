@@ -166,8 +166,8 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link {{ Request::is('*/article*') ? 'active' : '' }}"
-                                        href="{{ route('admin.article.index') }}">
+                                    <a class="nav-link {{ Request::is('*/articles*') ? 'active' : '' }}"
+                                        href="{{ route('admin.articles.index') }}">
                                         <span class="sidebar-text-contracted">
                                             <i class="fa-solid fa-cart-shopping"></i>
                                         </span>
@@ -194,8 +194,8 @@
                     @endcan
                     @can('Show TaxCenters')
                     <li class="nav-item ">
-                        <a href="{{ route('admin.tax_center.index') }}"
-                            class="nav-link {{ Request::is('*/tax_center*') ? 'active' : '' }}">
+                        <a href="{{ route('admin.taxCenters.index') }}"
+                            class="nav-link {{ Request::is('*/taxCenters*') ? 'active' : '' }}">
                             <span class="sidebar-icon">
                                 <i class="fa-solid fa-money-bill-wave"></i>
                             </span>
@@ -205,8 +205,8 @@
                     @endcan
                     @can('Show Services')
                     <li class="nav-item ">
-                        <a href="{{ route('admin.service.index') }}"
-                            class="nav-link {{ Request::is('*/service*') ? 'active' : '' }}">
+                        <a href="{{ route('admin.services.index') }}"
+                            class="nav-link {{ Request::is('*/services*') ? 'active' : '' }}">
                             <span class="sidebar-icon">
                                 <i class="fa-solid fa-handshake-simple"></i>
                             </span>
@@ -580,10 +580,10 @@
 
         if (editor) {
             ClassicEditor
-                .create( document.querySelector( '#editor' ), {
+                .create( editor, {
                     ckfinder: {
                         // The URL that the images are uploaded to.
-                        uploadUrl: "{{ route('admin.ckeditor.upload', ['_token' => csrf_token()]) }}",
+                        uploadUrl: "{{ route('admin.ckeditor.upload', ['_token' => csrf_token(), 'directoryName' => \Request::segment(2), 'folderName' => \Request::segment(3)]) }}",
                     }
                 })
                 .catch( error => {
@@ -593,11 +593,11 @@
 
         if(editorNoUpload) {
             ClassicEditor
-                .create(document.querySelector( '#editor-no-upload' ), {
+                .create( editorNoUpload, {
                         removePlugins: [ 'ImageUpload' ]
                 })
                 .catch( error => {
-                    console.error( error );
+                    console.log( error );
                 });
         }
 

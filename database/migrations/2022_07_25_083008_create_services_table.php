@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('seo_keywords', 1000);
             $table->string('summary', 255 );
             $table->integer('parent_id')->nullable();
-            $table->text('content');
+            $table->text('content')->nullable();
             $table->string('visibility', 1 )->default('1');
             $table->json('icon');
             $table->json('img');

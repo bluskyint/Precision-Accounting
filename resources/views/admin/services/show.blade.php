@@ -15,7 +15,7 @@
                     </a>
                 </li>
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Admin</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('admin.article.index') }}">Article</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.services.index') }}">Service</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Show</li>
             </ol>
         </nav>
@@ -28,28 +28,28 @@
                             <div class="card-header">
                                 <div class="row align-items-center">
                                     <div class="col">
-                                        <h2 class="fs-5 fw-bold mb-0"> <i class="fa-solid fa-eye text-primary"></i> Article Details</h2>
+                                        <h2 class="fs-5 fw-bold mb-0"> <i class="fa-solid fa-eye text-primary"></i> Service Details</h2>
                                     </div>
                                     <div class="col text-end">
-                                        @if( !$isArticleTrashed )
-                                            @can('Edit Articles')
-                                                <a href="{{ route("admin.article.edit" , $article->id) }}" class="btn btn-sm btn-primary">
+                                        @if( !$isServiceTrashed )
+                                            @can('Edit Services')
+                                                <a href="{{ route('admin.services.edit', $service->slug) }}" class="btn btn-sm btn-primary">
                                                     <i class="fa-solid fa-pen-to-square"></i> Edit
                                                 </a>
                                             @endcan
-                                            @can('Delete Articles')
-                                                <a href="{{ route('admin.article.delete', $article->id) }}" class="btn btn-sm btn-danger delete-record">
+                                            @can('Delete Services')
+                                                <a href="{{ route('admin.services.delete', $service->id) }}" class="btn btn-sm btn-danger delete-record">
                                                     <i class="fa-solid fa-trash-can"></i> Delete
                                                 </a>
                                             @endcan
                                         @else
-                                            @can('Restore Articles')
-                                                <a href="{{ route('admin.article.restore', $article->id) }}" class="btn btn-sm btn-primary">
+                                            @can('Restore Services')
+                                                <a href="{{ route('admin.services.restore', $service->id) }}" class="btn btn-sm btn-primary">
                                                     <i class="fa-solid fa-retweet"></i> Restore
                                                 </a>
                                             @endcan
-                                            @can('ForceDelete Articles')
-                                                <a href="{{ route('admin.article.force.delete', $article->id) }}" class="btn btn-sm btn-danger delete-record">
+                                            @can('ForceDelete Services')
+                                                <a href="{{ route('admin.services.force.delete', $service->id) }}" class="btn btn-sm btn-danger delete-record">
                                                     <i class="fa-solid fa-xmark"></i> Force Delete
                                                 </a>
                                             @endcan
@@ -63,38 +63,50 @@
                                     <tr>
                                         <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Image </td>
                                         <td class="article-image">
-                                            <a class="show-img-container" href="{{ asset("storage/articles/$article->slug/".$article->img['src']) }}" target="_blank">
-                                                <img src="{{ asset("storage/articles/$article->slug/".$article->img['src']) }}" alt="{{ $article->img['alt'] }}">
+                                            <a class="show-img-container" href="{{ asset("storage/services/$service->slug/".$service->img['src']) }}" target="_blank">
+                                                <img src="{{ asset("storage/services/$service->slug/".$service->img['src']) }}" alt="{{ $service->img['alt'] }}">
                                             </a>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Image Alternative Text </td>
-                                        <td> {{ $article->img['alt'] }} </td>
+                                        <td> {{ $service->img['alt'] }} </td>
                                     </tr>
                                     <tr>
                                         <td class="text-capitalize"> <i class="fa-solid fa-heading"></i> Title </td>
-                                        <td> {{ $article->title }} </td>
+                                        <td> {{ $service->title }} </td>
                                     </tr>
                                     <tr>
                                         <td class="text-capitalize"> <i class="fa-solid fa-link"></i> Permalink </td>
-                                        <td> {{ $article->slug }} </td>
+                                        <td> {{ $service->slug }} </td>
                                     </tr>
                                     <tr>
                                         <td class="text-capitalize"> <i class="fa-solid fa-quote-left"></i> Subtitle </td>
-                                        <td> {{ $article->subtitle }} </td>
+                                        <td> {{ $service->subtitle }} </td>
                                     </tr>
                                     <tr>
                                         <td class="text-capitalize"> <i class="fa-solid fa-list"></i> Summary </td>
-                                        <td> {{ $article->summary }} </td>
+                                        <td> {{ $service->summary }} </td>
                                     </tr>
                                     <tr>
                                         <td class="text-capitalize"> <i class="fa-solid fa-marker"></i> Author </td>
-                                        <td> {{ $article->author->name  }} </td>
+                                        <td> {{ $service->author->name  }} </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Icon </td>
+                                        <td class="article-image">
+                                            <a class="show-img-container" href="{{ asset("storage/services/$service->slug/".$service->icon['src']) }}" target="_blank">
+                                                <img src="{{ asset("storage/services/$service->slug/".$service->icon['src']) }}" alt="{{ $service->icon['alt'] }}">
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Image Alternative Text </td>
+                                        <td> {{ $service->icon['alt'] }} </td>
                                     </tr>
                                     <tr>
                                         <td class="text-capitalize content"> <i class="fa-solid fa-align-left"></i> Content </td>
-                                        <td> {!! $article->content !!} </td>
+                                        <td> {!! $service->content !!} </td>
                                     </tr>
                                     </tbody>
                                 </table>

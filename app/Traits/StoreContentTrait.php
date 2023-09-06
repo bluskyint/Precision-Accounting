@@ -10,12 +10,11 @@ trait StoreContentTrait
     public function storeImage($file, string $directoryPath, string|null $folderName = null): string
     {
         $fileName = $file['src']->getClientOriginalName();
-        $imgSrc = $folderName ? "$folderName/$fileName" : $fileName;
 
         $file['src']->storeAs($folderName ? "$directoryPath/$folderName" : $directoryPath, $fileName, 'public');
 
-        // return images src
-        return $imgSrc;
+        // return image src
+        return $fileName;
     }
 
     public function moveContentImages(string $content, string $directoryPath): string

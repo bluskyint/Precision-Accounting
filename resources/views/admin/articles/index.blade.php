@@ -27,7 +27,7 @@
             <!--------------- If No SubCategory hide create btn --------------->
             @can('Add Articles')
             @if (isset($categoriesCount) && $categoriesCount > 0)
-                <div class="btn-toolbar mb-2 mb-md-0"><a href="{{ route('admin.article.create') }}"
+                <div class="btn-toolbar mb-2 mb-md-0"><a href="{{ route('admin.articles.create') }}"
                         class="btn btn-sm btn-primary d-inline-flex align-items-center"> <i class="fa-solid fa-plus"></i> &nbsp; New Article</a>
                 </div>
             @endif
@@ -39,7 +39,7 @@
 
                 <!--------------- Search Form --------------->
                 <div class="col-9 col-lg-8 d-md-flex">
-                    <form action="{{ route('admin.article.search') }}" method="POST" class="input-group me-2 me-lg-3 fmxw-400">
+                    <form action="{{ route('admin.articles.search') }}" method="POST" class="input-group me-2 me-lg-3 fmxw-400">
                         <button type="submit" class="input-group-text">
                             <svg class="icon icon-xs" x-description="Heroicon name: solid/search" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                 <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
@@ -56,11 +56,11 @@
 
                 <div class="col-3 col-lg-4 d-flex justify-content-end align-items-center gap-2">
 
-                    @if(Route::is('admin.article.index'))
+                    @if(Route::is('admin.articles.index'))
                         @can('Show Articles Trash')
                             <!------------------ Trash ------------------->
                             <div title="Trash" role="button">
-                                <a href="{{ route('admin.article.trash') }}">
+                                <a href="{{ route('admin.articles.trash') }}">
                                     <i class="fa-solid fa-trash-can fa-lg"></i>
                                 </a>
                             </div>
@@ -84,13 +84,13 @@
                                     <span class="small ps-3 fw-bold text-dark">Show</span>
 
                                     <a class="dropdown-item {{ Request::is('*/perPage/10') ? 'active' : '' }} {{ Request::is('admin/article') ? 'active' : '' }}"
-                                       href="{{ route('admin.article.perPage', 10) }}"> 10 </a>
+                                       href="{{ route('admin.articles.perPage', 10) }}"> 10 </a>
                                     <a class="dropdown-item {{ Request::is('*/perPage/30') ? 'active' : '' }}"
-                                       href="{{ route('admin.article.perPage', 30) }}"> 30 </a>
+                                       href="{{ route('admin.articles.perPage', 30) }}"> 30 </a>
                                     <a class="dropdown-item {{ Request::is('*/perPage/50') ? 'active' : '' }}"
-                                       href="{{ route('admin.article.perPage', 50) }}"> 50 </a>
+                                       href="{{ route('admin.articles.perPage', 50) }}"> 50 </a>
                                     <a class="dropdown-item {{ Request::is('*/perPage/100') ? 'active' : '' }}"
-                                       href="{{ route('admin.article.perPage', 100) }}"> 100 </a>
+                                       href="{{ route('admin.articles.perPage', 100) }}"> 100 </a>
 
                                 </div>
 
@@ -139,7 +139,7 @@
             <div class="card card-body shadow border-0 table-wrapper table-responsive">
 
                 <!----------- multi Action ------------->
-                <form id="multi-action-form" action="{{ route("admin.article.multiAction") }}" method="POST">
+                <form id="multi-action-form" action="{{ route("admin.articles.multiAction") }}" method="POST">
                     @csrf
 
                     @canany(['Delete Articles', 'ForceDelete Articles', 'Restore Articles'])
@@ -152,7 +152,7 @@
                             @can('ForceDelete Articles')
                                 <option value="forceDelete"> Destroy Article</option>
                             @endcan
-                            @if( Route::is('admin.article.trash') )
+                            @if( Route::is('admin.articles.trash') )
                                 @can('Restore Articles')
                                     <option value="restore"> Restore Article</option>
                                 @endcan
@@ -195,7 +195,7 @@
                                         </div>
                                     </td>
                                     @endcanany
-                                    <td><a href="{{ route('admin.article.show', $article->id) }}" class="d-flex align-items-center">
+                                    <td><a href="{{ route('admin.articles.show', $article->slug) }}" class="d-flex align-items-center">
                                             <div class="d-block">
                                                 <span class="fw-bold">
                                                     @if ( strlen($article->title) > 30 )
@@ -218,28 +218,28 @@
                                         </td>
                                     <td><span class="fw-normal">{{ $article->created_at }}</span></td>
                                     <td class="actions">
-                                        <a href="{{ route('admin.article.show', $article->id) }}" class="text-tertiary"> <i
+                                        <a href="{{ route('admin.articles.show', $article->slug) }}" class="text-tertiary"> <i
                                                 class="fa-solid fa-eye fa-lg"></i>
                                         </a>
-                                        @if( Route::is('admin.article.index') )
+                                        @if( Route::is('admin.articles.index') )
                                             @can('Edit Articles')
-                                            <a href="{{ route('admin.article.edit', $article->id) }}" class="text-info"> <i
+                                            <a href="{{ route('admin.articles.edit', $article->slug) }}" class="text-info"> <i
                                                     class="fa-solid fa-pen-to-square fa-lg"></i>
                                             </a>
                                             @endcan
                                             @can('Delete Articles')
-                                            <a href="{{ route('admin.article.delete', $article->id) }}" class="text-info delete-record">
+                                            <a href="{{ route('admin.articles.delete', $article->id) }}" class="text-info delete-record">
                                                 <i class="fa-solid fa-trash-can text-danger fa-lg"></i>
                                             </a>
                                             @endcan
                                         @else
                                             @can('Restore Articles')
-                                                <a href="{{ route('admin.article.restore', $article->id) }}" class="text-info">
+                                                <a href="{{ route('admin.articles.restore', $article->id) }}" class="text-info">
                                                     <i class="fa-solid fa-retweet fa-lg"></i>
                                                 </a>
                                             @endcan
                                             @can('ForceDelete Articles')
-                                                <a href="{{ route('admin.article.force.delete', $article->id) }}" class="text-info delete-record">
+                                                <a href="{{ route('admin.articles.force.delete', $article->id) }}" class="text-info delete-record">
                                                     <i class="fa-solid fa-xmark text-danger fa-lg"></i>
                                                 </a>
                                             @endcan
