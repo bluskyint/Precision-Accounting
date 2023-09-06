@@ -81,8 +81,8 @@
                                         <!----------------- Img -------------------->
                                         <x-forms.upload-img-input label="Image" name="img" altTextValue="{{ $tax_center->img['alt'] }}">
                                             <div class="show-img-container">
-                                                <a href="{{ asset("storage/taxCenters/".$tax_center->img['src']) }}"  target="_blank">
-                                                    <img src="{{ asset("storage/taxCenters/".$tax_center->img['src']) }}" alt="{{ $tax_center->img['alt'] }}">
+                                                <a href="{{ asset("storage/taxCenters/$tax_center->slug/".$tax_center->img['src']) }}"  target="_blank">
+                                                    <img src="{{ asset("storage/taxCenters/$tax_center->slug/".$tax_center->img['src']) }}" alt="{{ $tax_center->img['alt'] }}">
                                                 </a>
                                             </div>
                                         </x-forms.upload-img-input>

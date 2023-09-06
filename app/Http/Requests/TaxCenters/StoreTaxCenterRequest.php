@@ -33,7 +33,7 @@ class StoreTaxCenterRequest extends FormRequest
             'seo_title'       => ['required' , 'string' , 'max:500'],
             'seo_description' => ['required' , 'string' , 'max:1000'],
             'seo_keywords'    => ['required' , 'string' , 'max:1000'],
-            'author_id'          => ['required' , 'exists:authors,id'],
+            'author_id'          => ['required' , 'exists:users,id'],
             'visibility'          => ['required' , 'numeric', Rule::in([0, 1])],
             'img.src'             => 'required|mimes:webp|max:2048',
             'img.alt'             => 'required|string|max:255',
