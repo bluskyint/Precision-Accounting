@@ -33,7 +33,7 @@ class StoreServiceRequest extends FormRequest
             'seo_description' => ['required' , 'string' , 'max:1000'],
             'seo_keywords'    => ['required' , 'string' , 'max:1000'],
             'parent_id'       => ['nullable' , 'numeric' , 'digits_between:1,11' ],
-            'author_id'          => ['required' , 'exists:authors,id'],
+            'author_id'          => ['required' , 'exists:users,id'],
             'content'         => ['required' , 'string' ],
             'icon.src'        => 'required|mimes:jpeg,png,jpg,webp|max:2048',
             'icon.alt'        => 'required|string|max:255',
