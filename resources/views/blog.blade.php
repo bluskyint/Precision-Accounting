@@ -16,12 +16,12 @@
                                     <div class="rn-card box-card-style-default content-transparent post-large h-100"  data-sal="slide-up" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
                                         <div class="inner">
                                             <div class="thumbnail">
-                                                <a class="image" href="{{ route('article', $pinned_articles[0]->slug) }}">
-                                                    <img class="w-100" src="{{ asset("storage/articles/".$pinned_articles[0]->img['src']) }}" alt="{{ $pinned_articles[0]->img['alt'] }}">
+                                                <a class="image" href="{{ route('articles', $pinned_articles[0]->slug) }}">
+                                                    <img class="w-100" src="{{ asset("storage/articles/".$pinned_articles[0]->slug.'/'.$pinned_articles[0]->img['src']) }}" alt="{{ $pinned_articles[0]->img['alt'] }}">
                                                 </a>
                                             </div>
                                             <div class="content">
-                                                <h4 class="title"><a href="{{ route('article', $pinned_articles[0]->slug) }}">{{ $pinned_articles[0]->title }}</a></h4>
+                                                <h4 class="title"><a href="{{ route('articles', $pinned_articles[0]->slug) }}">{{ $pinned_articles[0]->title }}</a></h4>
                                                 <ul class="rn-meta-list">
                                                     <li><a href="#">{{ $pinned_articles[0]->author->name }}</a></li>
                                                     <li class="separator">/</li>
@@ -39,12 +39,12 @@
                                         <div class="rn-card box-card-style-default content-transparent h-100"  data-sal="slide-down" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
                                             <div class="inner h-100">
                                                 <div class="thumbnail h-100">
-                                                    <a class="image h-100 w-100" href="{{ route('article', $pinned_articles[1]->slug) }}"  style="background-image: url('{{asset("storage/articles/".$pinned_articles[1]->img['src'])}}')">
+                                                    <a class="image h-100 w-100" href="{{ route('articles', $pinned_articles[1]->slug) }}"  style="background-image: url('{{asset("storage/articles/$article->slug".$pinned_articles[1]->img['src'])}}')">
                                                         {{-- <img class="w-100" src="{{ asset("images/articles/".$pinned_articles[1]->img) }}" alt="Blog Image"> --}}
                                                     </a>
                                                 </div>
                                                 <div class="content">
-                                                    <h4 class="title"><a href="{{ route('article', $pinned_articles[1]->slug) }}">{{ $pinned_articles[1]->title }}</a></h4>
+                                                    <h4 class="title"><a href="{{ route('articles', $pinned_articles[1]->slug) }}">{{ $pinned_articles[1]->title }}</a></h4>
                                                     <ul class="rn-meta-list">
                                                         <li><a href="#">{{ $pinned_articles[1]->author->name }}</a></li>
                                                         <li class="separator">/</li>
@@ -61,12 +61,12 @@
                                         @if ( isset($pinned_articles[2]) )
                                             <div class="inner"  data-sal="slide-left" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
                                                 <div class="thumbnail">
-                                                    <a class="image" href="{{ route('article', $pinned_articles[2]->slug) }}">
-                                                        <img class="w-100" src="{{ asset("storage/articles/".$pinned_articles[2]->img['src']) }}" alt="{{ $pinned_articles[2]->img['alt'] }}">
+                                                    <a class="image" href="{{ route('articles', $pinned_articles[2]->slug) }}">
+                                                        <img class="w-100" src="{{ asset("storage/articles/$article->slug".$pinned_articles[2]->img['src']) }}" alt="{{ $pinned_articles[2]->img['alt'] }}">
                                                     </a>
                                                 </div>
                                                 <div class="content">
-                                                    <h4 class="title"><a href="{{ route('article', $pinned_articles[2]->slug) }}">{{ $pinned_articles[2]->title }}</a></h4>
+                                                    <h4 class="title"><a href="{{ route('articles', $pinned_articles[2]->slug) }}">{{ $pinned_articles[2]->title }}</a></h4>
                                                     <ul class="rn-meta-list">
                                                         <li><a href="#">{{ $pinned_articles[2]->author->name }}</a></li>
                                                         <li class="separator">/</li>
@@ -82,12 +82,12 @@
                                         @if ( isset($pinned_articles[3]) )
                                             <div class="inner"  data-sal="slide-left" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
                                                 <div class="thumbnail">
-                                                    <a class="image" href="{{ route('article', $pinned_articles[3]->slug) }}">
-                                                        <img class="w-100" src="{{ asset("storage/articles/".$pinned_articles[3]->img['src']) }}" alt="{{ $pinned_articles[3]->img['alt'] }}">
+                                                    <a class="image" href="{{ route('articles', $pinned_articles[3]->slug) }}">
+                                                        <img class="w-100" src="{{ asset("storage/articles/$article->slug".$pinned_articles[3]->img['src']) }}" alt="{{ $pinned_articles[3]->img['alt'] }}">
                                                     </a>
                                                 </div>
                                                 <div class="content">
-                                                    <h4 class="title"><a href="{{ route('article', $pinned_articles[3]->slug) }}">{{ $pinned_articles[3]->title }}</a></h4>
+                                                    <h4 class="title"><a href="{{ route('articles', $pinned_articles[3]->slug) }}">{{ $pinned_articles[3]->title }}</a></h4>
                                                     <ul class="rn-meta-list">
                                                         <li><a href="#">{{ $pinned_articles[3]->author->name }}</a></li>
                                                         <li class="separator">/</li>
@@ -143,8 +143,8 @@
                                                 <div class="rn-card undefined">
                                                     <div class="inner">
                                                         <div class="thumbnail"><a class="image"
-                                                                href="{{ route('article', $article->slug) }}"><img
-                                                                    src="{{ asset('storage/articles/'.$article->img['src']) }}"
+                                                                href="{{ route('articles', $article->slug) }}"><img
+                                                                    src="{{ asset("storage/articles/$article->slug/".$article->img['src']) }}"
                                                                     alt="{{ $article->img['alt'] }}"></a>
                                                         </div>
                                                         <div class="content">
@@ -153,7 +153,7 @@
                                                                 <li class="separator">/</li>
                                                                 <li>{{date( 'm-d-Y', strtotime( $article->created_at) )}}</li>
                                                             </ul>
-                                                            <h4 class="title"><a href="{{ route('article', $article->slug) }}">
+                                                            <h4 class="title"><a href="{{ route('articles', $article->slug) }}">
                                                                 {{$article->title }}
                                                                 </a>
                                                             </h4>
@@ -207,7 +207,7 @@
                                 <div class="inner">
                                     <ul>
                                         @foreach ($lasted_articles as $lasted_article)
-                                            <li><a class="d-block" href="{{ route('article', $lasted_article->slug ) }}">
+                                            <li><a class="d-block" href="{{ route('articles', $lasted_article->slug ) }}">
                                                     {{ $lasted_article->title }}
                                                 </a><span class="cate"> {{ $lasted_article->category->title }} </span>
                                             </li>

@@ -12,11 +12,7 @@ use App\Traits\SEOTrait;
 class HomeController extends Controller
 {
     use SEOTrait;
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+
     public function index()
     {
         $testimonials = Testimonial::where('visibility', '1')->get();

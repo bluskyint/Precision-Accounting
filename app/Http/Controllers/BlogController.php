@@ -36,19 +36,14 @@ class BlogController extends Controller
         return view('blog',compact('categories','lasted_articles','articles','pinned_articles'));
     }
 
-    public function article($slug)
+    public function article(Article $article)
     {
-        $categories      = Category::all();
-        $article = Article::where('slug',$slug)->first();
-        // if article Not Found
-        if( !$article ){
-            return redirect('/');
-        }
+        $categories = Category::all();
 
         // SEO Trait
         $this->dynamicPagesSeo($article);
 
-        return view('article',compact('article','categories', 'slug'));
+        return view('article',compact('article','categories'));
     }
 
     public function search(Request $request)

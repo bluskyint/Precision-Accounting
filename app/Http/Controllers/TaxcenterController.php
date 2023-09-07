@@ -17,17 +17,12 @@ class TaxcenterController extends Controller
     */
 
 
-    public function index($slug)
+    public function index(TaxCenter $taxCenter)
     {
-        $tax_center = TaxCenter::where('slug',$slug)->first();
-        // if taxCenters Not Found
-        if( !$tax_center ){
-            return redirect('/');
-        }
         // SEO Trait
-        $this->dynamicPagesSeo($tax_center);
+        $this->dynamicPagesSeo($taxCenter);
 
-        return view('taxCenters',compact("tax_center", "slug"));
+        return view('taxCenter',compact('taxCenter'));
     }
 
 

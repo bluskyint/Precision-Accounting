@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('pageUrl', $slug)
+@section('pageUrl', "articles/$article->slug")
 
 @section('content')
     <div class="main-content pt--125">
@@ -13,11 +13,12 @@
                             <div class="content text-center">
                                 <div class="page-title" data-sal="slide-left" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
                                     <p class="h1 theme-gradient"> {{ $article->title }} </p>
+                                    <p class=""> {{ $article->subtitle }} </p>
                                 </div>
                                 <ul class="rn-meta-list" data-sal="slide-right" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
                                     <li>
                                         <i class="feather-user"></i>
-                                        <a href="#"> {{ $article->author }} </a>
+                                        <a href="#"> {{ $article->author->name }} </a>
                                     </li>
                                     <li>
                                         <i class="feather-calendar"></i>
@@ -25,7 +26,7 @@
                                     </li>
                                 </ul>
                                 <div class="thumbnail alignwide mt--60"   data-sal="slide-down" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
-                                    <img class="w-100 radius" src="{{ asset("storage/articles/".$article->img['src']) }}" alt="{{ $article->img['alt'] }}">
+                                    <img class="w-100 radius" src="{{ asset("storage/articles/$article->slug/".$article->img['src']) }}" alt="{{ $article->img['alt'] }}">
                                 </div>
                             </div>
                         </div>

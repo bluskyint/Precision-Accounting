@@ -18,17 +18,12 @@ class ServiceController extends Controller
     */
 
 
-    public function index($slug)
+    public function index(Service $service)
     {
-        $service = Service::where('slug',$slug)->first();
-        // if service Not Found
-        if( !$service ){
-            return redirect('/');
-        }
         // SEO Trait
         $this->dynamicPagesSeo($service);
 
-        return view('service',compact("service", 'slug'));
+        return view('service',compact("service"));
     }
 
 

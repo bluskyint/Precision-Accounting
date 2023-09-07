@@ -108,7 +108,7 @@
                             <div class="tab-pane fade advance-tab-content-1 active show" id="home" role="tabpanel"
                                 aria-labelledby="home-tab">
                                 <div class="thumbnail">
-                                    <img src="{{ asset('doob_template_assets/images/advance-tab/payroll.jpg') }}"
+                                    <img src="{{ asset('doob_template_assets/images/advance-tab/payroll.webp') }}"
                                         alt="advance-tab-image">
                                 </div>
 
@@ -116,14 +116,14 @@
                             <div class="tab-pane fade advance-tab-content-1" id="profile" role="tabpanel"
                                 aria-labelledby="profile-tab">
                                 <div class="thumbnail">
-                                    <img src="{{ asset('doob_template_assets/images/advance-tab/irs.jpg') }}"
+                                    <img src="{{ asset('doob_template_assets/images/advance-tab/irs.webp') }}"
                                         alt="advance-tab-image">
                                 </div>
                             </div>
                             <div class="tab-pane fade advance-tab-content-1" id="contact" role="tabpanel"
                                 aria-labelledby="contact-tab">
                                 <div class="thumbnail">
-                                    <img src="{{ asset('doob_template_assets/images/advance-tab/quick.jpg') }}"
+                                    <img src="{{ asset('doob_template_assets/images/advance-tab/quick.webp') }}"
                                         alt="advance-tab-image">
                                 </div>
                             </div>
@@ -160,7 +160,7 @@
                     <div class="row g-0 radius-10 align-items-center">
                         <div class="col-lg-12 col-xl-6 col-12"  data-sal="slide-down" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
                             <div class="thumbnail">
-                                <img src="{{ asset('doob_template_assets/images/split/about.jpg') }}"  alt="split Images">
+                                <img src="{{ asset('doob_template_assets/images/split/about.webp') }}"  alt="split Images">
                             </div>
                         </div>
                         <div class="col-lg-12 col-xl-6 col-12"  data-sal="slide-up" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
