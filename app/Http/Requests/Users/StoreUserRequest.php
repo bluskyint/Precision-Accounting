@@ -27,9 +27,12 @@ class StoreUserRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:100|unique:users',
+            'slug' => ['required_if:role_id,2' , 'max:255', Rule::when($this->input('role_id') == '2', 'regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/'), 'unique:users'],
             'email' => 'required|string|email|max:100|unique:users',
             'password' => ['required', 'confirmed', Password::defaults()],
             'job_title' => 'required|string|max:255',
+            'linkedin' => 'required_if:role_id,2|url|max:255',
+            'info' => 'required_if:role_id,2|string',
             'role_id'    => 'required|exists:roles,id',
             'active'    => ['required', Rule::in([0, 1])],
             'img.src'    => 'required|mimes:webp|max:2048',

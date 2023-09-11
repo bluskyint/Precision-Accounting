@@ -348,7 +348,7 @@
                                         </div>
                                         <div class="content">
                                             <ul class="rn-meta-list">
-                                                <li><a href="#"> {{ $article->author->name }} </a></li>
+                                                <li><a href="{{ route('authors.show', $article->author->slug) }}"> {{ $article->author->name }} </a></li>
                                                 <li class="separator">/</li>
                                                 <li> {{ date('m-d-Y', strtotime($article->created_at)) }} </li>
                                             </ul>

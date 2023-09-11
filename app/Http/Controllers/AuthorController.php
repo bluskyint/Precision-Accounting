@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Author;
+use App\Models\User;
 use App\Traits\SEOTrait;
 
 class AuthorController extends Controller
@@ -11,7 +11,7 @@ class AuthorController extends Controller
 
     public function index()
     {
-        $authors   = Author::all();
+        $authors   = User::whereRelation('roles', 'name', 'Author')->get();
 
         // SEO Trait
         $this->staticPagesSeo(
@@ -25,8 +25,9 @@ class AuthorController extends Controller
     }
 
 
-    public function show(Author $author)
+    public function show(User $author)
     {
+        $author->load('articles');
         return view('author',compact('author'));
     }
 

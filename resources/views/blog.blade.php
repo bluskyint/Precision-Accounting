@@ -23,7 +23,7 @@
                                             <div class="content">
                                                 <h4 class="title"><a href="{{ route('articles', $pinned_articles[0]->slug) }}">{{ $pinned_articles[0]->title }}</a></h4>
                                                 <ul class="rn-meta-list">
-                                                    <li><a href="#">{{ $pinned_articles[0]->author->name }}</a></li>
+                                                    <li><a href="{{ route('authors.show', $pinned_articles[0]->author->slug) }}">{{ $pinned_articles[0]->author->name }}</a></li>
                                                     <li class="separator">/</li>
                                                     <li>{{date( 'm-d-Y', strtotime( $pinned_articles[0]->created_at) )}}</li>
                                                 </ul>
@@ -46,7 +46,7 @@
                                                 <div class="content">
                                                     <h4 class="title"><a href="{{ route('articles', $pinned_articles[1]->slug) }}">{{ $pinned_articles[1]->title }}</a></h4>
                                                     <ul class="rn-meta-list">
-                                                        <li><a href="#">{{ $pinned_articles[1]->author->name }}</a></li>
+                                                        <li><a href="{{ route('authors.show', $pinned_articles[1]->author->slug) }}">{{ $pinned_articles[1]->author->name }}</a></li>
                                                         <li class="separator">/</li>
                                                         <li>{{date( 'm-d-Y', strtotime( $pinned_articles[1]->created_at) )}}</li>
                                                     </ul>
@@ -68,7 +68,7 @@
                                                 <div class="content">
                                                     <h4 class="title"><a href="{{ route('articles', $pinned_articles[2]->slug) }}">{{ $pinned_articles[2]->title }}</a></h4>
                                                     <ul class="rn-meta-list">
-                                                        <li><a href="#">{{ $pinned_articles[2]->author->name }}</a></li>
+                                                        <li><a href="{{ route('authors.show', $pinned_articles[2]->author->slug) }}">{{ $pinned_articles[2]->author->name }}</a></li>
                                                         <li class="separator">/</li>
                                                         <li>{{date( 'm-d-Y', strtotime( $pinned_articles[2]->created_at) )}}</li>
                                                     </ul>
@@ -89,7 +89,7 @@
                                                 <div class="content">
                                                     <h4 class="title"><a href="{{ route('articles', $pinned_articles[3]->slug) }}">{{ $pinned_articles[3]->title }}</a></h4>
                                                     <ul class="rn-meta-list">
-                                                        <li><a href="#">{{ $pinned_articles[3]->author->name }}</a></li>
+                                                        <li><a href="{{ route('authors.show', $pinned_articles[3]->author->slug) }}">{{ $pinned_articles[3]->author->name }}</a></li>
                                                         <li class="separator">/</li>
                                                         <li>{{date( 'm-d-Y', strtotime( $pinned_articles[3]->created_at) )}}</li>
                                                     </ul>
@@ -149,7 +149,7 @@
                                                         </div>
                                                         <div class="content">
                                                             <ul class="rn-meta-list">
-                                                                <li><a href="#">{{ $article->author->name }}</a></li>
+                                                                <li><a href="{{ route('authors.show', $article->author->slug) }}">{{ $article->author->name }}</a></li>
                                                                 <li class="separator">/</li>
                                                                 <li>{{date( 'm-d-Y', strtotime( $article->created_at) )}}</li>
                                                             </ul>

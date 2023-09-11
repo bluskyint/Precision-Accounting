@@ -42,6 +42,9 @@
                                         <!----------------- Name -------------------->
                                         <x-forms.text-input label="Name" name="name" icon-class="fa-solid fa-heading" placeholder="Type Name..." />
 
+                                        <!----------------- slug -------------------->
+                                        <x-forms.text-input label="Permalink" name="slug" icon-class="fa-solid fa-link" placeholder="Ex: precision-accounting-international" />
+
                                         <!----------------- Email -------------------->
                                         <x-forms.text-input label="Email" name="email" icon-class="fa-solid fa-envelope" placeholder="Type Email..." />
 
@@ -53,6 +56,12 @@
 
                                         <!----------------- Job title -------------------->
                                         <x-forms.text-input label="Job Title" name="job_title" icon-class="fa-solid fa-user-tie" placeholder="Type Job Title..." />
+
+                                        <!----------------- LinkedIn Account Link -------------------->
+                                        <x-forms.text-input label="LinkedIn Account" name="linkedin" icon-class="fa-brands fa-linkedin" placeholder="Type LinkedIn Account..." />
+
+                                        <!----------------- Info -------------------->
+                                        <x-forms.ck-editor id="editor-no-upload" label="info" name="info" />
 
                                         <!----------------- User Role -------------------->
                                         <x-forms.select-option label="Role" name="role_id" icon-class="fa-solid fa-lock">
