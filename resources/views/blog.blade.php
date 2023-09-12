@@ -39,7 +39,7 @@
                                         <div class="rn-card box-card-style-default content-transparent h-100"  data-sal="slide-down" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
                                             <div class="inner h-100">
                                                 <div class="thumbnail h-100">
-                                                    <a class="image h-100 w-100" href="{{ route('articles', $pinned_articles[1]->slug) }}"  style="background-image: url('{{asset("storage/articles/$article->slug".$pinned_articles[1]->img['src'])}}')">
+                                                    <a class="image h-100 w-100" href="{{ route('articles', $pinned_articles[1]->slug) }}"  style="background-image: url('{{asset("storage/articles/".$pinned_articles[1]->slug.'/'.$pinned_articles[1]->img['src'])}}')">
                                                         {{-- <img class="w-100" src="{{ asset("images/articles/".$pinned_articles[1]->img) }}" alt="Blog Image"> --}}
                                                     </a>
                                                 </div>
@@ -62,7 +62,7 @@
                                             <div class="inner"  data-sal="slide-left" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
                                                 <div class="thumbnail">
                                                     <a class="image" href="{{ route('articles', $pinned_articles[2]->slug) }}">
-                                                        <img class="w-100" src="{{ asset("storage/articles/$article->slug".$pinned_articles[2]->img['src']) }}" alt="{{ $pinned_articles[2]->img['alt'] }}">
+                                                        <img class="w-100" src="{{ asset("storage/articles/".$pinned_articles[2]->slug.'/'.$pinned_articles[2]->img['src']) }}" alt="{{ $pinned_articles[2]->img['alt'] }}">
                                                     </a>
                                                 </div>
                                                 <div class="content">
@@ -83,7 +83,7 @@
                                             <div class="inner"  data-sal="slide-left" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
                                                 <div class="thumbnail">
                                                     <a class="image" href="{{ route('articles', $pinned_articles[3]->slug) }}">
-                                                        <img class="w-100" src="{{ asset("storage/articles/$article->slug".$pinned_articles[3]->img['src']) }}" alt="{{ $pinned_articles[3]->img['alt'] }}">
+                                                        <img class="w-100" src="{{ asset("storage/articles/".$pinned_articles[3]->slug.'/'.$pinned_articles[3]->img['src']) }}" alt="{{ $pinned_articles[3]->img['alt'] }}">
                                                     </a>
                                                 </div>
                                                 <div class="content">

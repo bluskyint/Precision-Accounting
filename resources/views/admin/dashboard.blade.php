@@ -27,7 +27,7 @@
                             <p class="text-uppercase mb-1 text-muted">Articles</p>
                             <h2>{{ $articles }}</h2>
                             <div>
-                                <span class="text-muted"> <a href="{{ route('admin.article.index') }}"
+                                <span class="text-muted"> <a href="{{ route('admin.articles.index') }}"
                                         class="text-underline view-more"> View More </a></span>
                             </div>
                         </div>
@@ -64,7 +64,7 @@
                             <p class="text-uppercase mb-1 text-muted">Services</p>
                             <h2>{{ $services }}</h2>
                             <div>
-                                <span class="text-muted"> <a href="{{ route('admin.service.index') }}"
+                                <span class="text-muted"> <a href="{{ route('admin.services.index') }}"
                                         class="text-underline view-more"> View More </a></span>
                             </div>
                         </div>
