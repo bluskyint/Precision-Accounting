@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name', 100 )->unique()->index();
             $table->string('slug');
             $table->string('job_title', 100 );
-            $table->string('linkedin');
+            $table->string('linkedin')->nullable();
             $table->text('info');
             $table->string('slider_show' , 1 )->default('0');
             $table->json('img');

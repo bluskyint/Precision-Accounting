@@ -73,7 +73,7 @@
                                     </tr>
                                     <tr>
                                         <td class="text-capitalize"> <i class="fa-brands fa-linkedin"></i> LinkedIn </td>
-                                        <td> {{ $member->linkedin }} </td>
+                                        <td> {{ $member->linkedin ?? '-' }} </td>
                                     </tr>
                                     <tr>
                                         <td class="text-capitalize content"> <i class="fa-solid fa-align-left"></i> Info </td>

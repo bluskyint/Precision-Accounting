@@ -25,14 +25,14 @@ class UpdateMemberRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'            => ['required' , 'string' , 'max:100' , Rule::unique('members')->ignore($this->member)],
+            'name'           => ['required' , 'string' , 'max:100' , Rule::unique('members')->ignore($this->member)],
             'slug'           => ['required' , 'string' , 'max:255', 'regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/', Rule::unique('members')->ignore($this->member)],
-            'job_title'       => ['required' , 'string' , 'max:100'],
-            'linkedin'       => ['required' , 'string' , 'url', 'max:255'],
-            'info'       => ['required', 'string'],
-            'slider_show'     => ['required' , 'string' , 'max:1'],
-            'img.src'             => 'nullable|mimes:webp|max:2048',
-            'img.alt'             => 'required|string|max:255',
+            'job_title'      => ['required' , 'string' , 'max:100'],
+            'linkedin'       => ['nullable' , 'string' , 'url', 'max:255'],
+            'info'           => ['required', 'string'],
+            'slider_show'    => ['required' , 'string' , 'max:1'],
+            'img.src'        => 'nullable|mimes:webp|max:2048',
+            'img.alt'        => 'required|string|max:255',
         ];
     }
 }

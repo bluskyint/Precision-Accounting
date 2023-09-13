@@ -25,14 +25,14 @@ use Illuminate\Foundation\Http\FormRequest;
     public function rules()
     {
         return [
-            'name'            => ['required' , 'string' , 'max:100' , 'unique:members'],
-            'slug'           => ['required' , 'string' , 'max:255', 'regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/', 'unique:members'],
-            'job_title'       => ['required' , 'string' , 'max:100'],
-            'linkedin'       => ['required' , 'string' , 'url', 'max:255'],
-            'info'       => ['required', 'string'],
-            'slider_show'     => ['required' , 'string' , 'max:1'],
-            'img.src'             => 'required|mimes:webp|max:2048',
-            'img.alt'             => 'required|string|max:255',
+            'name'          => ['required' , 'string' , 'max:100' , 'unique:members'],
+            'slug'          => ['required' , 'string' , 'max:255', 'regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/', 'unique:members'],
+            'job_title'     => ['required' , 'string' , 'max:100'],
+            'linkedin'      => ['nullable' , 'string' , 'url', 'max:255'],
+            'info'          => ['required', 'string'],
+            'slider_show'   => ['required' , 'string' , 'max:1'],
+            'img.src'       => 'required|mimes:webp|max:2048',
+            'img.alt'       => 'required|string|max:255',
         ];
     }
 }

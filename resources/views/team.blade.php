@@ -24,10 +24,12 @@
                                     <div class="content">
                                         <a class="title d-block" href="{{ route('members.show', $member->slug) }}">{{ $member->name }}</a>
                                         <h6 class="subtitle theme-gradient">{{ $member->job_title }}</h6>
-                                        <a href="{{ $member->linkedin }}" target="_blank" class="d-flex justify-content-center align-items-center gap-1">
-                                            <i class="fa-brands fa-linkedin"></i>
-                                            <span>Follow on LinkedIn</span>
-                                        </a>
+                                        @if ( $member->linkedin )
+                                            <a href="{{ $member->linkedin }}" target="_blank" class="d-flex justify-content-center align-items-center gap-1">
+                                                <i class="fa-brands fa-linkedin"></i>
+                                                <span>Follow on LinkedIn</span>
+                                            </a>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
