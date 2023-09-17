@@ -61,7 +61,7 @@
                                         </x-forms.select-option>
 
                                         <!----------------- Parent Service -------------------->
-                                        <x-forms.select-option label="Author" name="author_id" icon-class="fa-solid fa-marker">
+                                        <x-forms.select-option label="Parent Service (Optional)" name="parent_id" icon-class="fa-solid fa-marker">
                                             @foreach ( $services as $service_parent )
                                                 <option value="{{ $service_parent->id }}"  {{ $service->parent_id == $service_parent->id ? "selected" : "" }} >{{ $service_parent->title }}</option>
                                             @endforeach
