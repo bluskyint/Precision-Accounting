@@ -46,7 +46,10 @@ class TestimonialController extends Controller
     {
         try {
             $requestData = $request->validated();
-            $requestData['img'] = $this->storeImage($request->file('img'), 'testimonials');
+            $file = $request->file('img');
+            $fileName = $file->getClientOriginalName();
+            $file->storeAs('testimonials', $fileName, 'public');
+            $requestData['img'] = $fileName;
             Testimonial::create($requestData);
 
             return to_route("admin.testimonial.index")->with("success", "Testimonial store successfully");
@@ -77,13 +80,10 @@ class TestimonialController extends Controller
         try {
             if ($request->hasFile('img')) {
                 Storage::disk('public')->delete("testimonials/$testimonial->img");
-                $requestData['img'] = $this->storeImage($request->file('img'), 'testimonials');
-            }
-
-            if ($testimonial->name !== $request->validated('name') && !$request->hasFile('img')) {
-                $new_file_name = Str::slug($request->validated('name')) . '.' . Str::afterLast($testimonial->img, '.');
-                rename("storage/testimonials/$testimonial->img", "storage/testimonials/$new_file_name");
-                $requestData['img'] = $new_file_name;
+                $file = $request->file('img');
+                $fileName = $file->getClientOriginalName();
+                $file->storeAs('testimonials', $fileName, 'public');
+                $requestData['img'] = $fileName;
             }
 
             $testimonial->update($requestData);
