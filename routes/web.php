@@ -29,8 +29,8 @@ Route::get('/resources', [App\Http\Controllers\ResourceController::class, 'index
 Route::post('/subscribe', [App\Http\Controllers\SubscriberController::class, 'store'])->name('subscriber.store');
 
 // Team
-Route::resource('members', App\Http\Controllers\MemberController::class)->parameters([
-    'members' => 'member:slug'
+Route::resource('team', App\Http\Controllers\MemberController::class)->parameters([
+    'team' => 'team_member:slug'
 ]);
 
 // Authors

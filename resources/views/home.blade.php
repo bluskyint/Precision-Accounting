@@ -186,7 +186,7 @@
                                         <img src="{{ asset('storage/members/'.$member->img['src']) }}" alt="{{ $member->img['alt'] }}">
                                     </div>
                                     <div class="content">
-                                        <a class="title d-block" href="{{ route('members.show', $member->slug) }}">{{ $member->name }}</a>
+                                        <a class="title d-block" href="{{ route('team.show', $member->slug) }}">{{ $member->name }}</a>
                                         <h6 class="subtitle theme-gradient">{{ $member->job_title }}</h6>
                                         @if ( $member->linkedin )
                                             <a href="{{ $member->linkedin }}" target="_blank" class="d-flex justify-content-center align-items-center gap-1">
@@ -202,7 +202,7 @@
                 </div>
                 <div class="col-lg-12 text-center">
                     <div class="rwt-load-more text-center">
-                        <a class="btn-default mt--30" href="{{ route("members.index") }}">View Full Team
+                        <a class="btn-default mt--30" href="{{ route("team.index") }}">View Full Team
                             <i class="feather-loader"></i>
                         </a>
                     </div>
@@ -271,7 +271,7 @@
                             <div class="order-2 order-md-1 col-lg-8 col-md-8 offset-lg-1">
                                 <div class="content mt_sm--40"><span class="form">&nbsp;</span>
                                     <p class="description">
-                                        {{ $testimonial->content }}
+                                        {!! $testimonial->content !!}
                                     </p>
                                     <div class="client-info">
                                         <h4 class="title">{{ $testimonial->name }}</h4>
@@ -281,7 +281,7 @@
                             </div>
                             <div class="order-1 d-flex justify-content-center order-md-2 col-lg-2 col-md-4">
                                 <div class="thumbnail"><img class="w-100"
-                                        src="{{ asset('storage/testimonials/'.$testimonial->img['src']) }}" alt="testimonial">
+                                        src="{{ asset('storage/testimonials/'.$testimonial->img) }}" alt="testimonial">
                                 </div>
                             </div>
                         </div>

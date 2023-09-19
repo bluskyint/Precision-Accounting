@@ -30,9 +30,9 @@ class MemberController extends Controller
     }
 
 
-    public function show(Member $member)
+    public function show(Member $team_member)
     {
-        return view('team_member',compact('member'));
+        return view('team_member',compact('team_member'));
     }
 
 }

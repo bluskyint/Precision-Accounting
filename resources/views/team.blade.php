@@ -22,7 +22,7 @@
                                         <img src="{{ asset("storage/members/".$member->img['src']) }}" alt="{{ $member->img['alt'] }}">
                                     </div>
                                     <div class="content">
-                                        <a class="title d-block" href="{{ route('members.show', $member->slug) }}">{{ $member->name }}</a>
+                                        <a class="title d-block" href="{{ route('team.show', $member->slug) }}">{{ $member->name }}</a>
                                         <h6 class="subtitle theme-gradient">{{ $member->job_title }}</h6>
                                         @if ( $member->linkedin )
                                             <a href="{{ $member->linkedin }}" target="_blank" class="d-flex justify-content-center align-items-center gap-1">

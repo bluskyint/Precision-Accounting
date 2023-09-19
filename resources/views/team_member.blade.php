@@ -17,19 +17,19 @@
                         <div class="rn-team team-style-default">
                             <div class="inner">
                                 <div class="thumbnail">
-                                    <img src="{{ asset("storage/members/".$member->img['src']) }}" alt="{{ $member->img['alt'] }}">
+                                    <img src="{{ asset("storage/members/".$team_member->img['src']) }}" alt="{{ $team_member->img['alt'] }}">
                                 </div>
                                 <div class="content">
-                                    <a class="title d-block" href="{{ route('members.show', $member->slug) }}">{{ $member->name }}</a>
-                                    <h6 class="subtitle theme-gradient">{{ $member->job_title }}</h6>
-                                    @if ( $member->linkedin )
-                                        <a href="{{ $member->linkedin }}" target="_blank" class="d-flex justify-content-center align-items-center gap-1">
+                                    <a class="title d-block" href="{{ route('team.show', $team_member->slug) }}">{{ $team_member->name }}</a>
+                                    <h6 class="subtitle theme-gradient">{{ $team_member->job_title }}</h6>
+                                    @if ( $team_member->linkedin )
+                                        <a href="{{ $team_member->linkedin }}" target="_blank" class="d-flex justify-content-center align-items-center gap-1">
                                             <i class="fa-brands fa-linkedin"></i>
                                             <span>Follow on LinkedIn</span>
                                         </a>
                                     @endif
                                     <div class="mt--30">
-                                        {!! $member->info !!}
+                                        {!! $team_member->info !!}
                                     </div>
                                 </div>
                             </div>
