@@ -430,6 +430,11 @@
                             </script>
                             <a class="active" href="{{ route('home') }}">Precision Accounting International.</a>
                             All Rights Reserved
+                            <br>
+                            <div class="policies d-flex">
+                                <a href="{{ route("policy") }}" class="text-decoration-underline mr-3">Our Policy</a>
+                                <a href="{{ route("terms") }}" class="text-decoration-underline mr-3">Terms & Conditions</a>
+                            </div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12 col-sm-12 col-12">

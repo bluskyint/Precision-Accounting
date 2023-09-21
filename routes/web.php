@@ -54,6 +54,14 @@ Route::get('/blog', [App\Http\Controllers\BlogController::class, 'index'])->name
 Route::post('/blog/search', [App\Http\Controllers\BlogController::class, 'search'])->name('blog.search');
 Route::get('/articles/{article:slug}', [App\Http\Controllers\BlogController::class, 'article'])->name('articles');
 
+Route::get('/privacy', function () {
+    return view("static.privacy");
+})->name('privacy');
+
+// Policies
+Route::view('/terms', 'static.terms')->name('terms');
+Route::view('/policy', 'static.policy')->name('policy');
+Route::view('/privacy', 'static.privacy')->name('privacy');
 
 /*===========================================================================
 ========== Admin Routes =====================================================
