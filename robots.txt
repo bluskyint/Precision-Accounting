@@ -1,0 +1,5 @@
+robots.txt Precision Accounting International Cpapai.com
+User-agent: *
+Disallow: 
+Disallow: /cgi-bin/
+Sitemap: https://www.cpapai.com/sitemap.xml
