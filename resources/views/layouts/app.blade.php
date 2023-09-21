@@ -432,8 +432,9 @@
                             All Rights Reserved
                             <br>
                             <div class="policies d-flex">
-                                <a href="{{ route("policy") }}" class="text-decoration-underline mr-3">Our Policy</a>
-                                <a href="{{ route("terms") }}" class="text-decoration-underline mr-3">Terms & Conditions</a>
+                                <a href="{{ route("policy") }}" class="text-decoration-underline mr--10">Our Policy</a>
+                                <a href="{{ route("privacy") }}" class="text-decoration-underline mr--10">Our Privacy</a>
+                                <a href="{{ route("terms") }}" class="text-decoration-underline mr--10">Terms & Conditions</a>
                             </div>
                         </div>
                     </div>

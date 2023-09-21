@@ -2201,6 +2201,10 @@ textarea:-ms-input-placeholder {
   margin-right: 0 !important;
 }
 
+.mr--10 {
+  margin-right: 10 !important;
+}
+
 .ml--0 {
   margin-left: 0 !important;
 }
