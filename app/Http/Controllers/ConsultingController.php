@@ -7,10 +7,11 @@ use App\Mail\ConsultingMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Traits\SEOTrait;
+use App\Traits\AirtableTrait;
 
 class ConsultingController extends Controller
 {
-    use SEOTrait;
+    use SEOTrait, AirtableTrait;
 
     CONST RECIVER_MAIL   = 'a.ismael@bluskyint.com' ;
     CONST MAIL_SUBJECT   = 'A new consulting submition at cpapai.com' ;
@@ -36,16 +37,27 @@ class ConsultingController extends Controller
 
     public function send(ConsultingRequest $request )
     {
-        $consultingData = $request->all();
-        $consultingData += ['subject' => static::MAIL_SUBJECT ];
-        Mail::to(static::RECIVER_MAIL)->            // Our Email 'reciver'
-            send( new ConsultingMail( $consultingData ) );
-            return view('submission');
+
+        // Table ID To insert Data
+        $tableId = 'tblBEvJHFw5lGoqT2';
+
+        // Data Of Row to send to Airtable
+        $data = [
+            'fields' => [
+                'First Name'       => $request->input('first_name'),
+                'Last Name'        => $request->input('last_name'),
+                'Phone Number'     => $request->input('phone'),
+                'Email'            => $request->input('email'),
+                'Address'          => $request->input('address'),
+                'Business Service' => $request->input('business_service'),
+                'Business Type'    => $request->input('business_type'),
+                'State'            => $request->input('state'),
+                'Meeting Type'     => $request->input('meeting'),
+                'Message'          => $request->input('message'),
+            ],
+        ];
+
+        return $this->insertNewRow($tableId, $data);
+
     }
-
-
-
-
-
-
 }

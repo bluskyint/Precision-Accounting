@@ -33,7 +33,7 @@ class ConsultingRequest extends FormRequest
             'business_type'    => ['required' , 'string', 'max:100' ],
             'state'            => ['required' , 'string', 'max:55' ],
             'meeting'          => ['required' , 'string', 'max:55' ],
-            'messege'          => ['required' , 'string', 'max:1000' ],
+            'message'          => ['required' , 'string', 'max:1000' ],
         ];
     }
 }
