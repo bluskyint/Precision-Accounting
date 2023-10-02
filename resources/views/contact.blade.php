@@ -97,8 +97,8 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <textarea name="messege" id="messege" placeholder="Your Message..." required>{{ old("messege") }}</textarea>
-                            @error('messege')
+                            <textarea name="message" id="message" placeholder="Your Message..." required>{{ old("message") }}</textarea>
+                            @error('message')
                                 <div class="invalid-feedback d-block">{{ $message }}.</div>
                             @enderror
                         </div>

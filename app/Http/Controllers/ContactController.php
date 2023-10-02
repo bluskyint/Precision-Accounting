@@ -8,10 +8,11 @@ use App\Http\Requests\ContactRequest;
 use App\Mail\ContactMail;
 use Illuminate\Support\Facades\Mail;
 use App\Traits\SEOTrait;
+use App\Traits\AirtableTrait;
 
 class ContactController extends Controller
 {
-    use SEOTrait;
+    use SEOTrait, AirtableTrait;
 
     CONST RECIVER_MAIL   = 'a.ismael@bluskyint.com' ;
     CONST MAIL_SUBJECT   = 'A new contact submition at cpapai.com' ;
@@ -38,12 +39,20 @@ class ContactController extends Controller
 
     public function send(ContactRequest $request)
     {
-        $contactData = $request->all();
-        $contactData += ['subject' => static::MAIL_SUBJECT ];
-        Mail::to(static::RECIVER_MAIL)->            // Our Email 'reciver'
-            send( new ContactMail( $contactData ) );
+        // Table ID To insert Data
+        $tableId = 'tblyUEwm5ogHw8uW1';
 
-        return view('submission');
+        // Data Of Row to send to Airtable
+        $data = [
+            'fields' => [
+                'Name'         => $request->input('name'),
+                'Phone Number' => $request->input('phone'),
+                'Email'        => $request->input('email'),
+                'Message'      => $request->input('message'),
+            ],
+        ];
+
+        return $this->insertNewRow($tableId, $data);
     }
 
 

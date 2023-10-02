@@ -55,6 +55,11 @@ Route::post('/blog/search', [App\Http\Controllers\BlogController::class, 'search
 Route::get('/articles/{article:slug}', [App\Http\Controllers\BlogController::class, 'article'])->name('articles');
 
 
+// Policies
+Route::view('/terms', 'static.terms')->name('terms');
+Route::view('/privacy', 'static.privacy')->name('privacy');
+
+
 /*===========================================================================
 ========== Admin Routes =====================================================
 ===========================================================================*/

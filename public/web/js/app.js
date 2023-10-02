@@ -45300,7 +45300,7 @@ process.umask = function() { return 0; };
   \******************************************************/
 /***/ (() => {
 
-throw new Error("Module build failed (from ./node_modules/vue-loader/lib/index.js):\nTypeError: Cannot read properties of undefined (reading 'parseComponent')\n    at parse (C:\\Users\\Precision\\Desktop\\precision-accounting\\node_modules\\@vue\\component-compiler-utils\\dist\\parse.js:15:23)\n    at module.exports (C:\\Users\\Precision\\Desktop\\precision-accounting\\node_modules\\vue-loader\\lib\\index.js:67:22)");
+throw new Error("Module build failed (from ./node_modules/vue-loader/lib/index.js):\nTypeError: Cannot read properties of undefined (reading 'parseComponent')\n    at parse (C:\\Users\\BlueSkyDev\\Desktop\\Works\\Precision-accounting\\node_modules\\@vue\\component-compiler-utils\\dist\\parse.js:15:23)\n    at module.exports (C:\\Users\\BlueSkyDev\\Desktop\\Works\\Precision-accounting\\node_modules\\vue-loader\\lib\\index.js:67:22)");
 
 /***/ }),
 

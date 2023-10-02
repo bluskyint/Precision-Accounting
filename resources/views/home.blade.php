@@ -15,14 +15,20 @@
                 <div class="row row--30 align-items-center">
                     <div class="order-2 order-lg-1 col-lg-7">
                         <div class="inner text-left">
-                            <p class="title h1"> IRS Acceptance <br> Agents in NJ </p>
+                            <p class="title h1"> IRS Acceptance <br> Agents </p>
                             <p class="description">
                                 Applying for an ITIN? We will help you obtain your ITIN if you are not qualified for an SSN. We simplify the application process by reviewing the essential documents and redirecting completed Forms to IRS.
                             </p>
-                            <div class="button-group mt--30"><a class="btn-default" target="_blank" href="https://www.irs.gov/individuals/international-taxpayers/acceptance-agents-new-jersey">
-                                Check Our Acceptance
-                                <i class="fa-solid fa-clipboard-check"></i>
-                                </a></div>
+                            <div class="button-group mt--30">
+                                <a class="btn-default" target="_blank" href="https://www.irs.gov/individuals/international-taxpayers/acceptance-agents-new-jersey">
+                                    IRS Acceptance in US
+                                    <i class="fa-solid fa-clipboard-check"></i>
+                                </a>
+                                <a class="btn-default" target="_blank" href="https://www.irs.gov/individuals/international-taxpayers/acceptance-agents-egypt">
+                                    IRS Acceptance in EG
+                                    <i class="fa-solid fa-clipboard-check"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>

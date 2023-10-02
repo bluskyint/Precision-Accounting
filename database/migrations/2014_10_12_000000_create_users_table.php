@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('job_title');
             $table->string('linkedin')->nullable();
             $table->text('info')->nullable();
-            $table->json('img')->default(json_encode(["src" => "user-avatar.png", "alt" => "user image"], JSON_THROW_ON_ERROR));
+            $table->json('img');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('active', [0, 1]);
