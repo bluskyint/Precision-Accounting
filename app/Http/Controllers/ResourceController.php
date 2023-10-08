@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Page;
 use Illuminate\Http\Request;
 use App\Models\Resource;
 use App\Traits\SEOTrait;
@@ -19,14 +20,10 @@ class ResourceController extends Controller
     public function index()
     {
         $resources = Resource::get();
-
+        $page = Page::where('name', 'resources')->first();
 
         // SEO Trait
-        $this->staticPagesSeo(
-            'Resources',
-            'resources of precision accounting Intl LLC site',
-            'State of New Jersey Department of Treasury,The New York State Department of Taxation and Finance,IRS Small Business Resources,Social Security Resources,Tax Calculator,Track Your Tax Refunds'
-        );
+        $this->dynamicPagesSeo($page);
 
 
         return view('resources',compact('resources'));

@@ -307,6 +307,15 @@
                     </li>
                     @endcan
                     <li class="nav-item ">
+                        <a href="{{ route('admin.pages.index') }}"
+                           class="nav-link {{ Request::is('*/pages*') ? 'active' : '' }}">
+                            <span class="sidebar-icon">
+                                <i class="fa-solid fa-window-maximize"></i>
+                            </span>
+                            <span class="sidebar-text">Pages SEO</span>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
                         <a href="{{ route('admin.setting.edit') }}"
                             class="nav-link {{ Request::is('*/setting*') ? 'active' : '' }}">
                             <span class="sidebar-icon">

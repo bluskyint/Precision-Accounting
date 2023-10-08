@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Member;
+use App\Models\Page;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\TwitterCard;
 use Illuminate\Http\Request;
@@ -17,13 +18,10 @@ class MemberController extends Controller
     public function index()
     {
         $members   = Member::get();
+        $page = Page::where('name', 'members')->first();
 
         // SEO Trait
-        $this->staticPagesSeo(
-            'Precision Accounting Team',
-            'For many years PRECISION ACCOUNTING has been helping individuals, families and small businesses in the community prepare their taxes',
-            'Digital switching over, How tax planning matters,Payroll management,Qbooks,How COVID-19 affected the IRS,CPA from A to Z part two,CPA from A to Z'
-        );
+        $this->dynamicPagesSeo($page);
 
         return view('team',compact('members'));
 

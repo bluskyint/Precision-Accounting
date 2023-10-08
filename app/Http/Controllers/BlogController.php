@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Page;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\TwitterCard;
 use Illuminate\Http\Request;
@@ -23,14 +24,10 @@ class BlogController extends Controller
         $categories      = Category::all();
         $lasted_articles = Article::orderBy('id','desc')->limit(5)->get();
         $pinned_articles = Article::where('pinned','1')->orderBy('id','desc')->limit(4)->get();
-        // return $articles;
+        $page = Page::where('name', 'blog')->first();
 
         // SEO Trait
-        $this->staticPagesSeo(
-            'Blog',
-            'For many years PRECISION ACCOUNTING has been helping individuals, families and small businesses in the community prepare their taxes',
-            'Digital switching over, How tax planning matters,Payroll management,Qbooks,How COVID-19 affected the IRS,CPA from A to Z part two,CPA from A to Z'
-        );
+        $this->dynamicPagesSeo($page);
 
 
         return view('blog',compact('categories','lasted_articles','articles','pinned_articles'));

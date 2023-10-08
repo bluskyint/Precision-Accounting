@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Member;
+use App\Models\Page;
 use App\Models\Service;
 use App\Models\Setting;
 use App\Models\Testimonial;
@@ -19,13 +20,10 @@ class HomeController extends Controller
         $members      = Member::where('slider_show','1')->get();
         $articles     = Article::orderBy('id','desc')->limit(6)->get();
         $services     = Service::where('parent_id', Null)->limit(6)->get();
+        $page = Page::where('name', 'home')->first();
 
         // SEO Trait
-        $this->staticPagesSeo(
-            'Home',
-            'Precision Accounting Intl LLC provides professional services in the Tri-State Area and specialize in helping and guiding business owners',
-            'tax services,Tax,cpa firms,LLC,LLP,CPA,IRS,NJ,new jersey,clifton,consulting firms,consulting services,payroll,taxes 2021,consulting services,business,cpa business,precision accounting'
-        );
+        $this->dynamicPagesSeo($page);
 
         return view('home' , compact('testimonials', 'members','articles','services'));
     }

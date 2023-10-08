@@ -188,8 +188,7 @@ Route::group([ "prefix" => "admin", 'middleware' => "auth" , "as" => "admin." ] 
     Route::resource('newsletter', App\Http\Controllers\Admin\NewsletterController::class)->except('destroy');
     Route::get('newsletter/destroy/{id}' , [App\Http\Controllers\Admin\NewsletterController::class, 'destroy'] )->name("newsletter.destroy");
 
-
-
+    Route::resource('pages',\App\Http\Controllers\Admin\PageController::class);
 
 
 });

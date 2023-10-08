@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Page;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use App\Http\Requests\ContactRequest;
@@ -25,13 +26,10 @@ class ContactController extends Controller
     public function index()
     {
         $setting      = Setting::find(1);
+        $page = Page::where('name', 'contact us')->first();
 
         // SEO Trait
-        $this->staticPagesSeo(
-            'Contact Us',
-            'For many years PRECISION ACCOUNTING has been helping individuals, families and small businesses in the community prepare their taxes',
-            'tax services,Tax,cpa firms,LLC,LLP,CPA,IRS,NJ,new jersey,clifton,consulting firms,consulting services,payroll,taxes 2021,consulting services,business,cpa business,precision accounting'
-        );
+        $this->dynamicPagesSeo($page);
 
         return view('contact',compact('setting'));
     }
