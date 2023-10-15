@@ -167,10 +167,6 @@
 
                                 </div>
                             </div>
-                            {{-- Pagination --}}
-                            <div class="d-flex justify-content-center mt-5 pagination-container">
-                                {{ $articles->links('pagination::bootstrap-4') }}
-                            </div>
                         </div>
                     </div>
                     <div class="col-lg-4 mt_md--40 mt_sm--40">
