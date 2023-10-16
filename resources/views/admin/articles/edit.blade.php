@@ -85,6 +85,15 @@
                                         <!----------------- Seo Keywords -------------------->
                                         <x-forms.text-input label="SEO Keywords" name="seo_keywords" value="{{ $article->seo_keywords }}" icon-class="fa-solid fa-chart-line" placeholder="Type SEO Keywords..." />
 
+                                        <!----------------- Seo Robots -------------------->
+                                        <x-forms.text-input label="SEO Robots" name="seo_robots" value="{{ $article->seo_robots }}" icon-class="fa-solid fa-chart-line" placeholder="Type SEO Robots..." />
+
+                                        <!----------------- OpenGraph Title -------------------->
+                                        <x-forms.text-input label="OpenGraph Title" name="og_title" value="{{ $article->og_title }}" icon-class="fa-solid fa-chart-line" placeholder="Type OpenGraph Title..." />
+
+                                        <!----------------- OpenGraph Type -------------------->
+                                        <x-forms.text-input label="OpenGraph Type" name="og_type" value="{{ $article->og_type }}" icon-class="fa-solid fa-chart-line" placeholder="Type OpenGraph Type..." />
+
                                         <!----------------- Img -------------------->
                                         <x-forms.upload-img-input label="Image" name="img" altTextValue="{{ $article->img['alt'] }}">
                                             <div class="show-img-container">

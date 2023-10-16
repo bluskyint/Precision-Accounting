@@ -22,9 +22,12 @@ return new class extends Migration
             $table->string('subtitle');
             $table->string('summary');
             $table->text('content')->nullable();
-            $table->string('seo_title', 500);
-            $table->string('seo_description', 1000);
-            $table->string('seo_keywords', 1000);
+            $table->string('seo_title');
+            $table->text('seo_description');
+            $table->text('seo_keywords');
+            $table->string('seo_robots');
+            $table->string('og_title');
+            $table->string('og_type');
             $table->string('pinned' , 1)->default('0');
             $table->json('img');
             $table->softDeletes();

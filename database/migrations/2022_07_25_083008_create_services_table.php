@@ -22,6 +22,9 @@ return new class extends Migration
             $table->string('seo_title', 500);
             $table->string('seo_description', 1000);
             $table->string('seo_keywords', 1000);
+            $table->string('seo_robots');
+            $table->string('og_title');
+            $table->string('og_type');
             $table->string('summary', 255 );
             $table->integer('parent_id')->nullable();
             $table->text('content')->nullable();

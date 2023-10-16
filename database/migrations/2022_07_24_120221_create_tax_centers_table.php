@@ -23,6 +23,9 @@ return new class extends Migration
             $table->string('seo_title', 500);
             $table->string('seo_description', 1000);
             $table->string('seo_keywords', 1000);
+            $table->string('seo_robots');
+            $table->string('og_title');
+            $table->string('og_type');
             $table->string('visibility', 1 )->default('1');
             $table->text('content')->nullable();
             $table->json('img');
