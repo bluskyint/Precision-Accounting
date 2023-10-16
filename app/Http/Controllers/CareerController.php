@@ -26,7 +26,7 @@ class CareerController extends Controller
         // SEO Trait
         $this->dynamicPagesSeo($page);
 
-        return view('career');
+        return view('career', compact('page'));
     }
 
 

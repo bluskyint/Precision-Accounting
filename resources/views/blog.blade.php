@@ -9,7 +9,7 @@
             <div class="col-lg-12 mt--20">
                 <div class="section-title text-center">
                     <h1 class="subtitle"  data-sal="slide-right" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
-                        <span class="theme-gradient">FILL THE BELOW FORM TO GET YOUR</span>
+                        <span class="theme-gradient">{{ $page->heading }}</span>
                     </h1>
                 </div>
             </div>

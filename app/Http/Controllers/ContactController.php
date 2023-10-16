@@ -31,7 +31,7 @@ class ContactController extends Controller
         // SEO Trait
         $this->dynamicPagesSeo($page);
 
-        return view('contact',compact('setting'));
+        return view('contact',compact('setting', 'page'));
     }
 
 

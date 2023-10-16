@@ -19,6 +19,10 @@ return new class extends Migration
             $table->string('seo_title');
             $table->string('seo_description');
             $table->string('seo_keywords');
+            $table->string('seo_robots');
+            $table->string('heading');
+            $table->string('og_title');
+            $table->string('og_type');
             $table->timestamps();
         });
     }

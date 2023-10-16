@@ -76,6 +76,13 @@
                                                         @enderror
                                                     </div>
                                                     <div class="mb-4 input-content">
+                                                        <label for="heading" class="capitalize"> Heading (H1) </label>
+                                                        <input type="text" name="heading" id="heading" class="form-control" value="{{ $page->heading ?: '' }}" placeholder="Type Page Heading (H1)..." />
+                                                        @error('heading')
+                                                        <small class="form-text text-danger">{{ $message }}</small>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="mb-4 input-content">
                                                         <label for="seo_keywords" class="capitalize"> Seo Keywords </label>
                                                         <textarea name="seo_keywords" id="seo_keywords" rows="4" class="form-control @error('seo_keywords') is-invalid @enderror" placeholder="Type Page Keywords...">{{ $page->seo_keywords ?: '' }}</textarea>
                                                         @error('seo_keywords')
@@ -86,6 +93,27 @@
                                                         <label for="seo_description" class="capitalize"> Seo Description </label>
                                                         <textarea name="seo_description" id="seo_description" rows="4" class="form-control @error('seo_description') is-invalid @enderror" placeholder="Type Page Description...">{{ $page->seo_description ?: '' }}</textarea>
                                                         @error('seo_description')
+                                                        <small class="form-text text-danger">{{ $message }}</small>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="mb-4 input-content">
+                                                        <label for="seo_robots" class="capitalize"> Seo Robots </label>
+                                                        <input type="text" name="seo_robots" id="seo_robots" class="form-control" value="{{ $page->seo_robots ?: '' }}" placeholder="Type Seo Robots..." />
+                                                        @error('seo_robots')
+                                                        <small class="form-text text-danger">{{ $message }}</small>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="mb-4 input-content">
+                                                        <label for="og_title" class="capitalize"> OpenGraph Title </label>
+                                                        <input type="text" name="og_title" id="og_title" class="form-control" value="{{ $page->og_title ?: '' }}" placeholder="Type OpenGraph Title..." />
+                                                        @error('og_title')
+                                                        <small class="form-text text-danger">{{ $message }}</small>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="mb-4 input-content">
+                                                        <label for="og_type" class="capitalize"> OpenGraph Type </label>
+                                                        <input type="text" name="og_type" id="og_type" class="form-control" value="{{ $page->og_type ?: '' }}" placeholder="Type OpenGraph Type..." />
+                                                        @error('og_type')
                                                         <small class="form-text text-danger">{{ $message }}</small>
                                                         @enderror
                                                     </div>

@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="col-lg-12 mb--40">
                     <div class="section-title text-center"  data-sal="slide-down" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
-                        <h1 class="subtitle "><span class="theme-gradient">Contact Form</span></h1>
+                        <h1 class="subtitle "><span class="theme-gradient">{{ $page->heading }}</span></h1>
                         <h2 class="title w-600 mb--20">Our Contact Address Here</h2>
                     </div>
                 </div>

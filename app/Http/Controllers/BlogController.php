@@ -30,7 +30,7 @@ class BlogController extends Controller
         $this->dynamicPagesSeo($page);
 
 
-        return view('blog',compact('categories','lasted_articles','articles','pinned_articles'));
+        return view('blog',compact('categories','lasted_articles','articles','pinned_articles', 'page'));
     }
 
     public function article(Article $article)

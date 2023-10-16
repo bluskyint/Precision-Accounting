@@ -98,7 +98,7 @@
                 <div class="col-lg-12">
                     <div class="section-title text-center" data-sal="slide-up" data-sal-duration="700" data-sal-delay="100">
                         <h1 class="subtitle ">
-                            <span class="theme-gradient">What we can do for you</span>
+                            <span class="theme-gradient">{{ $page->heading }}</span>
                         </h1>
                         <h2 class="title w-600 mb--20">Services provided for you</h2>
                     </div>

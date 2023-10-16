@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Page;
 use App\Models\User;
 use App\Traits\SEOTrait;
 
@@ -13,14 +14,11 @@ class AuthorController extends Controller
     {
         $authors   = User::whereRelation('roles', 'name', 'Author')->get();
 
+        $page = Page::where('name', 'authors')->first();
         // SEO Trait
-        $this->staticPagesSeo(
-            'Precision Accounting Authors',
-            'For many years PRECISION ACCOUNTING has been helping individuals, families and small businesses in the community prepare their taxes',
-            'Digital switching over, How tax planning matters,Payroll management,Qbooks,How COVID-19 affected the IRS,CPA from A to Z part two,CPA from A to Z'
-        );
+        $this->dynamicPagesSeo($page);
 
-        return view('authors',compact('authors'));
+        return view('authors',compact('authors', 'page'));
 
     }
 

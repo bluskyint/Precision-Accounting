@@ -14,6 +14,9 @@ class Page extends Model
         'seo_title',
         'seo_description',
         'seo_keywords',
-        'h1'
+        'seo_robots',
+        'heading',
+        'og_title',
+        'og_type'
     ];
 }

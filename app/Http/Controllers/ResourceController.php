@@ -26,7 +26,7 @@ class ResourceController extends Controller
         $this->dynamicPagesSeo($page);
 
 
-        return view('resources',compact('resources'));
+        return view('resources',compact('resources', 'page'));
     }
 
 

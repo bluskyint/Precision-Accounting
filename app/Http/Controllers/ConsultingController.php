@@ -29,7 +29,7 @@ class ConsultingController extends Controller
         // SEO Trait
         $this->dynamicPagesSeo($page);
 
-        return view('consulting');
+        return view('consulting', compact('page'));
     }
 
 

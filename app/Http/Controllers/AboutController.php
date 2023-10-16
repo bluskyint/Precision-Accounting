@@ -21,6 +21,6 @@ class AboutController extends Controller
         // SEO Trait
         $this->dynamicPagesSeo($page);
 
-        return view('about');
+        return view('about', compact('page'));
     }
 }

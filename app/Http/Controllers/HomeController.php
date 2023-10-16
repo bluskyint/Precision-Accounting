@@ -25,6 +25,6 @@ class HomeController extends Controller
         // SEO Trait
         $this->dynamicPagesSeo($page);
 
-        return view('home' , compact('testimonials', 'members','articles','services'));
+        return view('home' , compact('testimonials', 'members','articles','services', 'page'));
     }
 }
