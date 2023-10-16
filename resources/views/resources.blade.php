@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-title text-center">
-                            <h4 class="subtitle "><span class="theme-gradient">Links</span></h4>
+                            <h1 class="subtitle "><span class="theme-gradient">Links</span></h1>
                             <h2 class="title w-600 mb--20"  data-sal="slide-right" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back"> Our Resources</h2>
                             <p class="description b1"  data-sal="slide-left" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back"> Access the most recent analyses and insights. </p>
                         </div>

@@ -12,7 +12,7 @@
                         <div class="col-lg-8 offset-lg-2">
                             <div class="content text-center">
                                 <div class="page-title" data-sal="slide-left" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
-                                    <p class="h1 theme-gradient"> {{ $article->title }} </p>
+                                    <h1 class="theme-gradient"> {{ $article->title }} </h1>
                                     <p class=""> {{ $article->subtitle }} </p>
                                 </div>
                                 <ul class="rn-meta-list" data-sal="slide-right" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">

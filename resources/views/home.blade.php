@@ -35,8 +35,6 @@
             </div>
         </div>
 
-
-
         <div class="single-rn-slider slider-bg-image bg-overlay bg_image bg_image--7 height-100vh d-flex align-items-center">
             <div class="container">
                 <div class="row row--30 align-items-center">
@@ -99,9 +97,9 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title text-center" data-sal="slide-up" data-sal-duration="700" data-sal-delay="100">
-                        <h4 class="subtitle ">
+                        <h1 class="subtitle ">
                             <span class="theme-gradient">What we can do for you</span>
-                        </h4>
+                        </h1>
                         <h2 class="title w-600 mb--20">Services provided for you</h2>
                     </div>
                 </div>

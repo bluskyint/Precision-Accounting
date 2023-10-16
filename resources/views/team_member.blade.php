@@ -7,7 +7,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-title text-center sal-animate" data-sal="slide-up" data-sal-duration="700" data-sal-delay="100">
-                            <h4 class="subtitle "><span class="theme-gradient">Partners</span></h4>
+                            <h1 class="subtitle "><span class="theme-gradient">Partners</span></h1>
                             <h2 class="title w-600 mb--20"> Member Info </h2>
                         </div>
                     </div>

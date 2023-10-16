@@ -11,14 +11,14 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="section-title text-center" data-sal="slide-left" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
-                                    <h4 class="subtitle "><span class="theme-gradient">Tax Center . {{ $taxCenter->title }}                            </span></h4>
+                                    <h4 class="subtitle "><span class="theme-gradient">Tax Center . {{ $taxCenter->title }}</span></h4>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-8 offset-lg-2">
                             <div class="content text-center">
                                 <div class="page-title"  data-sal="slide-right" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
-                                    <p class="theme-gradient h1"> {{ $taxCenter->title }} </p>
+                                    <h1 class="theme-gradient"> {{ $taxCenter->title }} </h1>
                                     <p>{{ $taxCenter->subtitle }}</p>
                                 </div>
                                 <div class="thumbnail alignwide mt--60"  data-sal="slide-down" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">

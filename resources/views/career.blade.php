@@ -15,7 +15,7 @@
                                 <div class="col-lg-8 offset-lg-2">
                                     <div class="content text-center">
                                         <div class="page-title sal-animate" data-sal="slide-right" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
-                                            <p class="theme-gradient h1"> Want To join Us ? </p>
+                                            <h1 class="theme-gradient"> Want To join Us ? </h1>
                                         </div>
                                     </div>
                                 </div>

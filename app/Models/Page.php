@@ -13,6 +13,7 @@ class Page extends Model
         'name',
         'seo_title',
         'seo_description',
-        'seo_keywords'
+        'seo_keywords',
+        'h1'
     ];
 }

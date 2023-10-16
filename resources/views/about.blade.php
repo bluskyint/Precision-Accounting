@@ -12,9 +12,12 @@
                 <div class="col-lg-12">
                     <div class="inner text-center">
                         {{-- <span class="subtitle">Certified Public Accountants</span> --}}
-                        <h4 class="subtitle d-inline p-2" style="background-color: #fff; border-radius:5px"
-                        data-sal="slide-left" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back"><span class="theme-gradient"> Certified Public Accountants </span></h4>
-                        <p class="title display-two fw-bolder"><span class="theme-gradient">We can help you with</span> <br>
+                        <h1 class="subtitle d-inline p-2" style="background-color: #fff; border-radius:5px"
+                            data-sal="slide-left" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
+                            <span class="theme-gradient"> Certified Public Accountants </span>
+                        </h1>
+                        <p class="title display-two fw-bolder">
+                            <span class="theme-gradient">We can help you with</span> <br>
                             <span class="header-caption">
                                 <span class="cd-headline clip is-full-width">
                                     <span class="cd-words-wrapper">

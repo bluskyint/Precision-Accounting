@@ -5,6 +5,15 @@
 @section('content')
     <div class="main-content pt--125">
 
+        <div class="row">
+            <div class="col-lg-12 mt--20">
+                <div class="section-title text-center">
+                    <h1 class="subtitle"  data-sal="slide-right" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
+                        <span class="theme-gradient">FILL THE BELOW FORM TO GET YOUR</span>
+                    </h1>
+                </div>
+            </div>
+        </div>
 
         @if( preg_match('(search)', url()->current()) != 1 )
             <div class="rn-magazine-area ptb--40">
