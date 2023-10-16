@@ -26,6 +26,10 @@ class AuthorController extends Controller
     public function show(User $author)
     {
         $author->load('articles');
+
+        // SEO Trait
+        $this->dynamicPagesSeo($author);
+
         return view('author',compact('author'));
     }
 

@@ -23,7 +23,13 @@ class Member extends Model
         'linkedin',
         'info',
         'slider_show',
-        'img'
+        'img',
+         'seo_title',
+         'seo_description',
+         'seo_keywords',
+         'seo_robots',
+         'og_title',
+         'og_type',
     ];
 
     protected $casts = [

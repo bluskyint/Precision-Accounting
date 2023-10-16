@@ -29,7 +29,7 @@ class StoreTaxCenterRequest extends FormRequest
             'slug'            => ['required' , 'string' , 'max:255', 'regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/', 'unique:tax_centers'],
             'subtitle'        => ['required' , 'string' , 'max:255'],
             'summary'        => ['required' , 'string' , 'max:255'],
-            'seo_title'       => ['required' , 'string' , 'max:500'],
+            'seo_title'       => ['required' , 'string' , 'max:255'],
             'seo_description' => ['required' , 'string'],
             'seo_keywords'    => ['required' , 'string'],
             'seo_robots'       => ['required' , 'string' , 'max:255'],

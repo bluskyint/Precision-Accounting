@@ -7,8 +7,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-title text-center sal-animate" data-sal="slide-up" data-sal-duration="700" data-sal-delay="100">
-                            <h1 class="subtitle "><span class="theme-gradient">Partners</span></h1>
-                            <h2 class="title w-600 mb--20"> Member Info </h2>
+                            <p class="subtitle h1"><span class="theme-gradient">Team</span></p>
                         </div>
                     </div>
                 </div>
@@ -20,7 +19,7 @@
                                     <img src="{{ asset("storage/members/".$team_member->img['src']) }}" alt="{{ $team_member->img['alt'] }}">
                                 </div>
                                 <div class="content">
-                                    <a class="title d-block" href="{{ route('team.show', $team_member->slug) }}">{{ $team_member->name }}</a>
+                                    <h1 class="title d-block">{{ $team_member->name }}</h1>
                                     <h6 class="subtitle theme-gradient">{{ $team_member->job_title }}</h6>
                                     @if ( $team_member->linkedin )
                                         <a href="{{ $team_member->linkedin }}" target="_blank" class="d-flex justify-content-center align-items-center gap-1">

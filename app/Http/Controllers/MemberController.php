@@ -30,6 +30,9 @@ class MemberController extends Controller
 
     public function show(Member $team_member)
     {
+        // SEO Trait
+        $this->dynamicPagesSeo($team_member);
+
         return view('team_member',compact('team_member'));
     }
 

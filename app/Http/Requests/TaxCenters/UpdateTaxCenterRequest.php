@@ -30,7 +30,7 @@ class UpdateTaxCenterRequest extends FormRequest
             'subtitle'        => ['required' , 'string' , 'max:255'],
             'summary'        => ['required' , 'string' , 'max:255'],
             'content'         => ['required' , 'string' ],
-            'seo_title'       => ['required' , 'string' , 'max:500'],
+            'seo_title'       => ['required' , 'string' , 'max:255'],
             'seo_description' => ['required' , 'string'],
             'seo_keywords'    => ['required' , 'string'],
             'seo_robots'       => ['required' , 'string' , 'max:255'],

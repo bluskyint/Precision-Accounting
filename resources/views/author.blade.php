@@ -7,7 +7,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-title text-center sal-animate" data-sal="slide-up" data-sal-duration="700" data-sal-delay="100">
-                            <h1 class="subtitle "><span class="theme-gradient">Partners</span></h1>
+                            <p class="subtitle "><span class="theme-gradient">Authors</span></p>
                         </div>
                     </div>
                 </div>
@@ -19,7 +19,7 @@
                                     <img src="{{ asset("storage/users/".$author->img['src']) }}" alt="m{{ $author->img['alt'] }}">
                                 </div>
                                 <div class="content">
-                                    <a class="title d-block" href="{{ route('authors.show', $author->slug) }}">{{ $author->name }}</a>
+                                    <h1 class="title d-block">{{ $author->name }}</h1>
                                     <h6 class="subtitle theme-gradient">{{ $author->job_title }}</h6>
                                     <a href="{{ $author->linkedin }}" target="_blank" class="d-flex justify-content-center align-items-center gap-1">
                                         <i class="fa-brands fa-linkedin"></i>

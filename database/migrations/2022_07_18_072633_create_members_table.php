@@ -22,6 +22,12 @@ return new class extends Migration
             $table->text('info');
             $table->string('slider_show' , 1 )->default('0');
             $table->json('img');
+            $table->string('seo_title');
+            $table->text('seo_description');
+            $table->text('seo_keywords');
+            $table->string('seo_robots');
+            $table->string('og_title');
+            $table->string('og_type');
             $table->timestamps();
         });
     }
