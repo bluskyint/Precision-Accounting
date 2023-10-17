@@ -6,8 +6,14 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="section-title text-center sal-animate" data-sal="slide-up" data-sal-duration="700" data-sal-delay="100">
-                            <p class="subtitle "><span class="theme-gradient">Authors</span></p>
+                        <div class="section-title text-center">
+                            <div class="subtitle">
+                                <a class="theme-gradient" href="{{ route('home') }}">Home</a>
+                                <span class="theme-gradient">/</span>
+                                <a class="theme-gradient" href="{{ route('authors.index') }}">Authors</a>
+                                <span class="theme-gradient">/</span>
+                                <a class="theme-gradient" href="{{ route('authors.show', $author->slug) }}">{{ $author->name }}</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -16,7 +22,7 @@
                         <div class="rn-team team-style-default">
                             <div class="inner">
                                 <div class="thumbnail">
-                                    <img src="{{ asset("storage/users/".$author->img['src']) }}" alt="m{{ $author->img['alt'] }}">
+                                    <img src="{{ asset("storage/users/".$author->img['src']) }}" alt="{{ $author->img['alt'] }}">
                                 </div>
                                 <div class="content">
                                     <h1 class="title d-block">{{ $author->name }}</h1>

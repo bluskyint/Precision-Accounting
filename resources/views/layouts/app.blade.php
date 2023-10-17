@@ -122,11 +122,11 @@
                                     <ul class="mainmenu">
                                         <li><a href="{{ route("home") }}">Home</a></li>
                                         <li><a href="{{ route("about") }}">About</a></li>
-                                        <li class="has-droupdown has-menu-child-item"><a href="#">Services</a>
+                                        <li class="has-droupdown has-menu-child-item"><a href="{{ route('services.index') }}">Services</a>
                                             <ul class="submenu">
                                                 @foreach ( $parent_services as $parent_service )
                                                     <li>
-                                                        <a href="{{ route('services', $parent_service->slug ) }}"> {{ $parent_service->title }}  </a>
+                                                        <a href="{{ route('services.show', $parent_service->slug ) }}"> {{ $parent_service->title }}  </a>
                                                         @php
                                                             $sub_services = App\Models\Service::where([ ['parent_id', $parent_service->id] , ['visibility','1'] ])->get();
                                                         @endphp
@@ -134,7 +134,7 @@
                                                             <i class="fa-solid fa-arrow-right"></i>
                                                             <ul class="sub-menu text-left">
                                                                 @foreach ( $sub_services as $sub_service )
-                                                                    <li><a href="{{ route('services', $sub_service->slug ) }}"> {{ $sub_service->title }} </a></li>
+                                                                    <li><a href="{{ route('services.show', $sub_service->slug ) }}"> {{ $sub_service->title }} </a></li>
                                                                 @endforeach
                                                             </ul>
                                                         @endif
@@ -142,10 +142,10 @@
                                                 @endforeach
                                             </ul>
                                         </li>
-                                        <li class="has-droupdown has-menu-child-item"><a href="#">Tax Center</a>
+                                        <li class="has-droupdown has-menu-child-item"><a href="{{ route('taxCenters.index') }}">Tax Center</a>
                                             <ul class="submenu">
                                                 @foreach ( $tax_centers as $tax_center )
-                                                    <li><a href="{{ route("taxCenters", $tax_center->slug ) }}"> {{ $tax_center->title }} </a></li>
+                                                    <li><a href="{{ route("taxCenters.show", $tax_center->slug ) }}"> {{ $tax_center->title }} </a></li>
                                                 @endforeach
                                             </ul>
                                         </li>
@@ -231,14 +231,14 @@
                                             $sub_services = App\Models\Service::where('parent_id', $parent_service->id)->get();
                                         @endphp
                                         @if ( $sub_services->isEmpty())
-                                            <a href="{{ route('services', $parent_service->slug ) }}"> {{ $parent_service->title }}  </a>
+                                            <a href="{{ route('services.show', $parent_service->slug ) }}"> {{ $parent_service->title }}  </a>
                                         @else
                                             <li class="has-droupdown has-menu-child-item">
-                                                <a href="{{ route('services', $parent_service->slug ) }}"> {{ $parent_service->title }}  </a>
+                                                <a href="{{ route('services.show', $parent_service->slug ) }}"> {{ $parent_service->title }}  </a>
                                                 <ul class="submenu">
                                                     @foreach ( $sub_services as $sub_service )
                                                         <li>
-                                                            <a href="{{ route('services', $sub_service->slug ) }}">
+                                                            <a href="{{ route('services.show', $sub_service->slug ) }}">
                                                                 {{ $sub_service->title }}
                                                             </a>
                                                         </li>
@@ -251,10 +251,10 @@
                             </ul>
                         </li>
 
-                        <li class="has-droupdown has-menu-child-item"><a href="#">Tax Center</a>
+                        <li class="has-droupdown has-menu-child-item"><a href="{{ route('taxCenters.index') }}">Tax Center</a>
                             <ul class="submenu">
                                 @foreach ( $tax_centers as $tax_center )
-                                    <li><a href="{{ route("taxCenters", $tax_center->slug ) }}"> {{ $tax_center->title }} </a></li>
+                                    <li><a href="{{ route("taxCenters.show", $tax_center->slug ) }}"> {{ $tax_center->title }} </a></li>
                                 @endforeach
                             </ul>
                         </li>

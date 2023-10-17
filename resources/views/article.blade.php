@@ -9,6 +9,19 @@
             <div class="post-page-banner" style="padding-top: 60px">
                 <div class="container">
                     <div class="row">
+                        <div class="col-lg-12">
+                            <div class="section-title text-center">
+                                <div class="subtitle">
+                                    <a class="theme-gradient" href="{{ route('home') }}">Home</a>
+                                    <span class="theme-gradient">/</span>
+                                    <a class="theme-gradient" href="{{ route('blog') }}">Blog</a>
+                                    <span class="theme-gradient">/</span>
+                                    <a class="theme-gradient" href="{{ route('blog.article', $article->slug) }}">{{ $article->title }}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-lg-8 offset-lg-2">
                             <div class="content text-center">
                                 <div class="page-title" data-sal="slide-left" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">

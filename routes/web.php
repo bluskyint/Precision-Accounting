@@ -21,8 +21,15 @@ require __DIR__ . '/auth.php';
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/about-us', [App\Http\Controllers\AboutController::class, 'index'])->name('about');
-Route::get('/services/{service:slug}', [App\Http\Controllers\ServiceController::class, 'index'])->name('services');
-Route::get('taxCenters/{taxCenter:slug}', [App\Http\Controllers\TaxcenterController::class, 'index'])->name('taxCenters');
+
+Route::resource('services', App\Http\Controllers\ServiceController::class)->parameters([
+    'services' => 'service:slug'
+]);
+
+Route::resource('taxCenters', App\Http\Controllers\TaxcenterController::class)->parameters([
+    'taxCenters' => 'taxCenter:slug'
+]);
+
 Route::get('/resources', [App\Http\Controllers\ResourceController::class, 'index'])->name('resources');
 
 // subscribe
@@ -52,7 +59,7 @@ Route::post('/contact/send', [App\Http\Controllers\ContactController::class, 'se
 // Blog
 Route::get('/blog', [App\Http\Controllers\BlogController::class, 'index'])->name('blog');
 Route::post('/blog/search', [App\Http\Controllers\BlogController::class, 'search'])->name('blog.search');
-Route::get('/articles/{article:slug}', [App\Http\Controllers\BlogController::class, 'article'])->name('articles');
+Route::get('/blog/{article:slug}', [App\Http\Controllers\BlogController::class, 'article'])->name('blog.article');
 
 
 // Policies

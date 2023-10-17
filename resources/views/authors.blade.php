@@ -7,8 +7,12 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-title text-center sal-animate" data-sal="slide-up" data-sal-duration="700" data-sal-delay="100">
-                            <h1 class="subtitle "><span class="theme-gradient">{{ $page->heading }}</span></h1>
-                            <h2 class="title w-600 mb--20"> Meet Our Experts</h2>
+                            <div class="subtitle">
+                                <a class="theme-gradient" href="{{ route('home') }}">Home</a>
+                                <span class="theme-gradient">/</span>
+                                <a class="theme-gradient" href="{{ route('authors.index') }}">Authors</a>
+                            </div>
+                            <h1>{{ $page->heading }}</h1>
                         </div>
                     </div>
                 </div>

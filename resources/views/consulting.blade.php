@@ -10,13 +10,16 @@
     <div class="rwt-contact-area rn-section-gap">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12 mb--40">
+                <div class="col-lg-12 mt--20">
                     <div class="section-title text-center">
-                        <h1 class="subtitle"  data-sal="slide-right" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
-                            <span class="theme-gradient">{{ $page->heading }}</span>
-                        </h1>
-                        <h2 class="title w-600 mb--20"  data-sal="slide-left" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">Free Consulting Now
-                            </h2>
+                        <div class="section-title text-center sal-animate" data-sal="slide-up" data-sal-duration="700" data-sal-delay="100">
+                            <div class="subtitle">
+                                <a class="theme-gradient" href="{{ route('home') }}">Home</a>
+                                <span class="theme-gradient">/</span>
+                                <a class="theme-gradient" href="{{ route('consulting') }}">Free Consulting</a>
+                            </div>
+                            <h1 class="mb--20">{{ $page->heading }}</h1>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -9,13 +9,20 @@
     <div class="slider-area bg_image bg_image--12 slider-style-1 height-100vh">
         <div class="container">
             <div class="row">
+                <div class="col-lg-12 mb--40">
+                    <div class="section-title text-center"  data-sal="slide-down" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
+                        <div class="subtitle">
+                            <a class="theme-gradient" href="{{ route('home') }}">Home</a>
+                            <span class="theme-gradient">/</span>
+                            <a class="theme-gradient" href="{{ route('about') }}">About Us</a>
+                        </div>
+                        <h1>{{ $page->heading }}</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-lg-12">
                     <div class="inner text-center">
-                        {{-- <span class="subtitle">Certified Public Accountants</span> --}}
-                        <h1 class="subtitle d-inline p-2" style="background-color: #fff; border-radius:5px"
-                            data-sal="slide-left" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
-                            <span class="theme-gradient"> {{ $page->heading }} </span>
-                        </h1>
                         <p class="title display-two fw-bolder">
                             <span class="theme-gradient">We can help you with</span> <br>
                             <span class="header-caption">
@@ -160,13 +167,13 @@
             </div>
             <div class="rn-splite-style bg-color-blackest">
                 <div class="split-wrapper">
-                    <div class="row g-0 radius-10 align-items-center">
-                        <div class="col-lg-12 col-xl-6 col-12"  data-sal="slide-down" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
+                    <div class="row g-0 radius-10 align-items-center" data-sal="slide-up" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
+                        <div class="col-lg-12 col-xl-6 col-12">
                             <div class="thumbnail">
                                 <img src="{{ asset('doob_template_assets/images/split/about.webp') }}"  alt="split Images">
                             </div>
                         </div>
-                        <div class="col-lg-12 col-xl-6 col-12"  data-sal="slide-up" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
+                        <div class="col-lg-12 col-xl-6 col-12">
                             <div class="split-inner">
                                 <h5 class="title sal-animate" data-sal="slide-up" data-sal-duration="400"
                                     data-sal-delay="200">PRECISION ACCOUNTING INTL LLC.</h5>

@@ -11,7 +11,13 @@
                         <div class="row">
                             <div class="col-lg-12" data-sal="slide-left" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
                                 <div class="section-title text-center">
-                                    <h4 class="subtitle "><span class="theme-gradient">Services . {{ $service->title }}</span></h4>
+                                    <div class="subtitle">
+                                        <a class="theme-gradient" href="{{ route('home') }}">Home</a>
+                                        <span class="theme-gradient">/</span>
+                                        <a class="theme-gradient" href="{{ route('services.index') }}">Services</a>
+                                        <span class="theme-gradient">/</span>
+                                        <a class="theme-gradient" href="{{ route('services.show', $service->slug) }}">{{ $service->title }}</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

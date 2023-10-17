@@ -10,10 +10,16 @@
     <div class="rwt-contact-area rn-section-gap">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12 mb--40">
-                    <div class="section-title text-center"  data-sal="slide-down" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
-                        <h1 class="subtitle "><span class="theme-gradient">{{ $page->heading }}</span></h1>
-                        <h2 class="title w-600 mb--20">Our Contact Address Here</h2>
+                <div class="col-lg-12 mt--20">
+                    <div class="section-title text-center">
+                        <div class="section-title text-center sal-animate" data-sal="slide-up" data-sal-duration="700" data-sal-delay="100">
+                            <div class="subtitle">
+                                <a class="theme-gradient" href="{{ route('home') }}">Home</a>
+                                <span class="theme-gradient">/</span>
+                                <a class="theme-gradient" href="{{ route('contact') }}">Contact</a>
+                            </div>
+                            <h1 class="mb--20">{{ $page->heading }}</h1>
+                        </div>
                     </div>
                 </div>
             </div>

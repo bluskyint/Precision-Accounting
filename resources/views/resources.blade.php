@@ -10,10 +10,14 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="section-title text-center">
-                            <h1 class="subtitle "><span class="theme-gradient">{{ $page->heading }}</span></h1>
-                            <h2 class="title w-600 mb--20"  data-sal="slide-right" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back"> Our Resources</h2>
-                            <p class="description b1"  data-sal="slide-left" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back"> Access the most recent analyses and insights. </p>
+                        <div class="section-title text-center" data-sal="slide-left" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
+                            <div class="subtitle">
+                                <a class="theme-gradient" href="{{ route('home') }}">Home</a>
+                                <span class="theme-gradient">/</span>
+                                <a class="theme-gradient" href="{{ route('contact') }}">Resources</a>
+                            </div>
+                            <h1>{{ $page->heading }}</h1>
+                            <p class="description b1"> Access the most recent analyses and insights. </p>
                         </div>
                     </div>
                 </div>
