@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Page;
 use Illuminate\Http\Request;
 use App\Models\TaxCenter;
 use App\Traits\SEOTrait;
@@ -16,8 +17,18 @@ class TaxcenterController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
     */
 
+    public function index()
+    {
+        $taxCenters = TaxCenter::all();
 
-    public function index(TaxCenter $taxCenter)
+        // SEO Trait
+        $page = Page::where('name', 'tax centers')->first();
+        $this->dynamicPagesSeo($page);
+
+        return view('taxCenters', compact('taxCenters', 'page'));
+    }
+
+    public function show(TaxCenter $taxCenter)
     {
         // SEO Trait
         $this->dynamicPagesSeo($taxCenter);
