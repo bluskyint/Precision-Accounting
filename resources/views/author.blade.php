@@ -31,7 +31,7 @@
                                         <i class="fa-brands fa-linkedin"></i>
                                         <span>Follow on LinkedIn</span>
                                     </a>
-                                    <div class="mt--30">
+                                    <div class="mt--30 text-start">
                                         {!! $author->info !!}
                                     </div>
                                 </div>

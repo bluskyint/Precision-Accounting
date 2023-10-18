@@ -33,7 +33,7 @@
                                             <span>Follow on LinkedIn</span>
                                         </a>
                                     @endif
-                                    <div class="mt--30">
+                                    <div class="mt--30 text-start">
                                         {!! $team_member->info !!}
                                     </div>
                                 </div>

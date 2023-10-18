@@ -15,8 +15,8 @@
                 <div class="row row--30 align-items-center">
                     <div class="order-2 order-lg-1 col-lg-7">
                         <div class="inner text-left">
-                            <p class="title h1"> IRS Acceptance <br> Agents </p>
-                            <p class="description">
+                            <p class="title h2"> IRS Acceptance <br> Agents </p>
+                            <p class="fs-3">
                                 Applying for an ITIN? We will help you obtain your ITIN if you are not qualified for an SSN. We simplify the application process by reviewing the essential documents and redirecting completed Forms to IRS.
                             </p>
                             <div class="button-group mt--30">
@@ -40,8 +40,8 @@
                 <div class="row row--30 align-items-center">
                     <div class="order-2 order-lg-1 col-lg-7">
                         <div class="inner text-left">
-                            <p class="title h1">Making <br> Accounting Marvels</p>
-                            <p class="description">We aim to establish a long-lasting partnership with you from the beginning to the end.</p>
+                            <p class="title h2">Making <br> Accounting Marvels</p>
+                            <p class="fs-3">We aim to establish a long-lasting partnership with you from the beginning to the end.</p>
                         </div>
                     </div>
                 </div>
@@ -53,8 +53,8 @@
                 <div class="row row--30 align-items-center">
                     <div class="order-2 order-lg-1 col-lg-7">
                         <div class="inner text-left">
-                            <p class="title h1">Helping  <br> Your Business Grow</p>
-                            <p class="description">Our main goal is to optimize your business processes, and minimize your taxes payable and liabilities. Your books and payroll processes are taken good care of.</p>
+                            <p class="title h2">Helping  <br> Your Business Grow</p>
+                            <p class="fs-3">Our main goal is to optimize your business processes, and minimize your taxes payable and liabilities. Your books and payroll processes are taken good care of.</p>
                         </div>
                     </div>
                 </div>
@@ -66,8 +66,8 @@
                 <div class="row row--30 align-items-center">
                     <div class="order-2 order-lg-1 col-lg-7">
                         <div class="inner text-left">
-                            <p class="title h1">Free <br> Consulting</p>
-                            <p class="description">
+                            <p class="title h2">Free <br> Consulting</p>
+                            <p class="fs-3">
                             You’ll find us providing you with reasonable advice to meet your best interests and supporting you with all your concerns.</p>
                             <div class="button-group mt--30"><a class="btn-default" target="_blank" href="{{ route("consulting") }}">
                                 Consulting Now
@@ -111,13 +111,13 @@
                     <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-sal="slide-up" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
                         <div class="service service__style--1 icon-circle-style text-center">
                             <div class="service-icon pb-3">
-                                <a href="{{ route('services', $service->slug) }}">
+                                <a href="{{ route('services.show', $service->slug) }}">
                                     <img src="{{ asset("storage/services/$service->slug/".$service->icon['src']) }}" width="100"
                                     alt="{{ $service->icon['alt'] }}">
                                 </a>
                             </div>
                             <div class="content">
-                                <h4 class="title w-600"><a href="{{ route('services', $service->slug) }}">
+                                <h4 class="title w-600"><a href="{{ route('services.show', $service->slug) }}">
                                         {{ $service->title }} </a></h4>
                                 <p class="description b1 color-gray mb--0">
                                     {{ $service->summary }}
@@ -348,7 +348,7 @@
                                 <div class="rn-card box-card-style-default">
                                     <div class="inner">
                                         <div class="thumbnail"><a class="image"
-                                                href="{{ route('articles', $article->slug) }}"><img class="w-100"
+                                                href="{{ route('blog.article', $article->slug) }}"><img class="w-100"
                                                     src="{{ asset("storage/articles/$article->slug/".$article->img['src']) }}"
                                                     alt="{{ $article->img['alt'] }}"></a>
                                         </div>
@@ -358,7 +358,7 @@
                                                 <li class="separator">/</li>
                                                 <li> {{ date('m-d-Y', strtotime($article->created_at)) }} </li>
                                             </ul>
-                                            <h4 class="title"><a href="{{ route('articles', $article->slug) }}">
+                                            <h4 class="title"><a href="{{ route('blog.article', $article->slug) }}">
                                                     {{ $article->title }}
                                                 </a>
                                             </h4>

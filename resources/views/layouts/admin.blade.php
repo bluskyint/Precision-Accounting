@@ -48,8 +48,7 @@
 
 <body>
     <style>
-        .ck-editor__editable[role="textbox"],
-        .ck-source-editing-area {
+        .ck-editor__editable[role="textbox"] {
             /* editing area */
             min-height: 250px;
             max-height: 250px;
@@ -587,13 +586,60 @@
         let editor = document.querySelector( '#editor' );
         let editorNoUpload = document.querySelector( '#editor-no-upload' );
 
+        let linkOptions = {
+            decorators: {
+                openInNewTap: {
+                    mode: 'manual',
+                    label: 'Open in a new tab',
+                    attributes: {
+                        target: '_blank',
+                        rel: 'noopener noreferrer'
+                    },
+                },
+                openInNewTapWithNofollow: {
+                    mode: 'manual',
+                    label: 'Open in a new tab with nofollow',
+                    attributes: {
+                        target: '_blank',
+                        rel: 'noopener noreferrer nofollow'
+                    }
+                }
+            }
+        }
+
         if (editor) {
+            function schemaCustomization( editor ) {
+                editor.model.schema.extend( '$block', {
+                    allowAttributes: ['id', 'classList']
+                } );
+
+                editor.conversion.attributeToAttribute( {
+                    model: {
+                        key: 'id'
+                    },
+                    view: {
+                        key: 'id'
+                    }
+                } );
+
+                editor.conversion.attributeToAttribute( {
+                    model: {
+                        key: 'classList'
+                    },
+                    view: {
+                        key: 'class'
+                    }
+                } );
+            }
+
             ClassicEditor
                 .create( editor, {
                     ckfinder: {
                         // The URL that the images are uploaded to.
                         uploadUrl: "{{ route('admin.ckeditor.upload', ['_token' => csrf_token(), 'directoryName' => \Request::segment(2), 'folderName' => \Request::segment(3)]) }}",
-                    }
+                    },
+                    extraPlugins: [ schemaCustomization ],
+                    link: linkOptions
                 })
                 .catch( error => {
                     console.error( error );
@@ -601,9 +647,35 @@
         }
 
         if(editorNoUpload) {
+            function schemaCustomizationForNoUpload( editorNoUpload ) {
+                editorNoUpload.model.schema.extend( '$block', {
+                    allowAttributes: ['id', 'classList']
+                } );
+
+                editorNoUpload.conversion.attributeToAttribute( {
+                    model: {
+                        key: 'id'
+                    },
+                    view: {
+                        key: 'id'
+                    }
+                } );
+
+                editorNoUpload.conversion.attributeToAttribute( {
+                    model: {
+                        key: 'classList'
+                    },
+                    view: {
+                        key: 'class'
+                    }
+                } );
+            }
+
             ClassicEditor
                 .create( editorNoUpload, {
-                        removePlugins: [ 'ImageUpload' ]
+                    removePlugins: [ 'ImageUpload' ],
+                    extraPlugins: [ schemaCustomizationForNoUpload ],
+                    link: linkOptions
                 })
                 .catch( error => {
                     console.log( error );
