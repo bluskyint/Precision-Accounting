@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('seo_title');
-            $table->string('seo_description');
-            $table->string('seo_keywords');
+            $table->text('seo_description');
+            $table->text('seo_keywords');
             $table->string('seo_robots');
             $table->string('heading');
             $table->string('og_title');
