@@ -44,7 +44,7 @@
                                 <div class="rn-card box-card-style-default">
                                     <div class="inner">
                                         <div class="thumbnail"><a class="image"
-                                                                  href="{{ route('articles', $article->slug) }}"><img class="w-100"
+                                                                  href="{{ route('blog.article', $article->slug) }}"><img class="w-100"
                                                                                                                       src="{{ asset("storage/articles/$article->slug/".$article->img['src']) }}"
                                                                                                                       alt="{{ $article->img['alt'] }}"></a>
                                         </div>
@@ -54,7 +54,7 @@
                                                 <li class="separator">/</li>
                                                 <li> {{ date('m-d-Y', strtotime($article->created_at)) }} </li>
                                             </ul>
-                                            <h4 class="title"><a href="{{ route('articles', $article->slug) }}">
+                                            <h4 class="title"><a href="{{ route('blog.article', $article->slug) }}">
                                                     {{ $article->title }}
                                                 </a>
                                             </h4>
