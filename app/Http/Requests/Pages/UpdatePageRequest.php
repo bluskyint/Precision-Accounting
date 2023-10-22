@@ -24,7 +24,6 @@ class UpdatePageRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:255',
             'seo_title' => 'required|string|max:255',
             'seo_description' => 'required|string',
             'seo_keywords' => 'required|string',

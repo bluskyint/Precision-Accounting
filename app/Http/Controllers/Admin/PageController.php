@@ -17,7 +17,7 @@ class PageController extends Controller
 
     public function update(UpdatePageRequest $request, Page $page)
     {
-        $page->update($request->all());
+        $page->update($request->validated());
         return back()->with([ "success" => "Page updated successfully"] );
     }
 }
