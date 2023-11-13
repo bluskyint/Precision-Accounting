@@ -26,11 +26,11 @@ Route::resource('services', App\Http\Controllers\ServiceController::class)->para
     'services' => 'service:slug'
 ]);
 
-Route::resource('taxCenters', App\Http\Controllers\TaxcenterController::class)->parameters([
-    'taxCenters' => 'taxCenter:slug'
+Route::resource('tax-centers', App\Http\Controllers\TaxcenterController::class)->parameters([
+    'tax-centers' => 'taxcenter:slug'
 ]);
 
-Route::get('/resources', [App\Http\Controllers\ResourceController::class, 'index'])->name('resources');
+Route::get('/our-resources', [App\Http\Controllers\ResourceController::class, 'index'])->name('resources');
 
 // subscribe
 Route::post('/subscribe', [App\Http\Controllers\SubscriberController::class, 'store'])->name('subscriber.store');
@@ -125,18 +125,18 @@ Route::group([ "prefix" => "admin", 'middleware' => "auth" , "as" => "admin." ] 
 
 
 
-    // taxCenters
-    Route::get('taxCenters/perPage/{num}' , [App\Http\Controllers\Admin\TaxCenterController::class, 'perPage'])->name("taxCenters.perPage");
-    Route::post('taxCenters/search' , [App\Http\Controllers\Admin\TaxCenterController::class, 'search'])->name("taxCenters.search");
-    Route::post('taxCenters/multiAction' , [App\Http\Controllers\Admin\TaxCenterController::class, 'multiAction'])->name("taxCenters.multiAction");
-    Route::get('taxCenters/trash' , [App\Http\Controllers\Admin\TaxCenterController::class, 'getTrash'] )->name("taxCenters.trash");
-    Route::get('taxCenters/delete/{taxCenter}' , [App\Http\Controllers\Admin\TaxCenterController::class, 'delete'] )->name("taxCenters.delete");
-    Route::get('taxCenters/trash/restore/{id}' , [App\Http\Controllers\Admin\TaxCenterController::class, 'restore'] )->name("taxCenters.restore");
-    Route::get('taxCenters/trash/force-delete/{id}' , [App\Http\Controllers\Admin\TaxCenterController::class, 'forceDelete'] )->name("taxCenters.force.delete");
-    Route::get('taxCenters/{taxCenter:slug}/content' , [App\Http\Controllers\Admin\TaxCenterController::class, 'createContent'])->name("taxCenters.content.create");
-    Route::put('taxCenters/{taxCenter:slug}/content' , [App\Http\Controllers\Admin\TaxCenterController::class, 'storeContent'])->name("taxCenters.content.store");
-    Route::resource('taxCenters', App\Http\Controllers\Admin\TaxCenterController::class)->parameters([
-        'taxCenters' => 'taxCenter:slug'
+    // taxcenters
+    Route::get('taxcenters/perPage/{num}' , [App\Http\Controllers\Admin\TaxCenterController::class, 'perPage'])->name("taxcenters.perPage");
+    Route::post('taxcenters/search' , [App\Http\Controllers\Admin\TaxCenterController::class, 'search'])->name("taxcenters.search");
+    Route::post('taxcenters/multiAction' , [App\Http\Controllers\Admin\TaxCenterController::class, 'multiAction'])->name("taxcenters.multiAction");
+    Route::get('taxcenters/trash' , [App\Http\Controllers\Admin\TaxCenterController::class, 'getTrash'] )->name("taxcenters.trash");
+    Route::get('taxcenters/delete/{taxcenter}' , [App\Http\Controllers\Admin\TaxCenterController::class, 'delete'] )->name("taxcenters.delete");
+    Route::get('taxcenters/trash/restore/{id}' , [App\Http\Controllers\Admin\TaxCenterController::class, 'restore'] )->name("taxcenters.restore");
+    Route::get('taxcenters/trash/force-delete/{id}' , [App\Http\Controllers\Admin\TaxCenterController::class, 'forceDelete'] )->name("taxcenters.force.delete");
+    Route::get('taxcenters/{taxcenter:slug}/content' , [App\Http\Controllers\Admin\TaxCenterController::class, 'createContent'])->name("taxcenters.content.create");
+    Route::put('taxcenters/{taxcenter:slug}/content' , [App\Http\Controllers\Admin\TaxCenterController::class, 'storeContent'])->name("taxcenters.content.store");
+    Route::resource('taxcenters', App\Http\Controllers\Admin\TaxCenterController::class)->parameters([
+        'taxcenters' => 'taxcenter:slug'
     ])->except('destroy');
 
 

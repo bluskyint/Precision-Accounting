@@ -15,7 +15,7 @@
                     </a>
                 </li>
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Admin</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('admin.taxCenters.index') }}">Tax Center</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.taxcenters.index') }}">Tax Center</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Show</li>
             </ol>
         </nav>
@@ -33,23 +33,23 @@
                                     <div class="col text-end">
                                         @if( !$isTaxTrashed )
                                             @can('Edit TaxCenters')
-                                                <a href="{{ route('admin.taxCenters.edit', $taxCenter->slug) }}" class="btn btn-sm btn-primary">
+                                                <a href="{{ route('admin.taxcenters.edit', $taxcenter->slug) }}" class="btn btn-sm btn-primary">
                                                     <i class="fa-solid fa-pen-to-square"></i> Edit
                                                 </a>
                                             @endcan
                                             @can('Delete TaxCenters')
-                                                <a href="{{ route('admin.taxCenters.delete', $taxCenter->id) }}" class="btn btn-sm btn-danger delete-record">
+                                                <a href="{{ route('admin.taxcenters.delete', $taxcenter->id) }}" class="btn btn-sm btn-danger delete-record">
                                                     <i class="fa-solid fa-trash-can"></i> Delete
                                                 </a>
                                             @endcan
                                         @else
                                             @can('Restore TaxCenters')
-                                                <a href="{{ route('admin.taxCenters.restore', $taxCenter->id) }}" class="btn btn-sm btn-primary">
+                                                <a href="{{ route('admin.taxcenters.restore', $taxcenter->id) }}" class="btn btn-sm btn-primary">
                                                     <i class="fa-solid fa-retweet"></i> Restore
                                                 </a>
                                             @endcan
                                             @can('ForceDelete TaxCenters')
-                                                <a href="{{ route('admin.taxCenters.force.delete', $taxCenter->id) }}" class="btn btn-sm btn-danger delete-record">
+                                                <a href="{{ route('admin.taxcenters.force.delete', $taxcenter->id) }}" class="btn btn-sm btn-danger delete-record">
                                                     <i class="fa-solid fa-xmark"></i> Force Delete
                                                 </a>
                                             @endcan
@@ -63,38 +63,38 @@
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Image </td>
                                             <td class="article-image">
-                                                <a class="show-img-container" href="{{ asset("storage/taxCenters/$taxCenter->slug/".$taxCenter->img['src']) }}" target="_blank">
-                                                    <img src="{{ asset("storage/taxCenters/$taxCenter->slug/".$taxCenter->img['src']) }}" alt="{{ $taxCenter->img['alt'] }}">
+                                                <a class="show-img-container" href="{{ asset("storage/tax-centers/$taxcenter->slug/".$taxcenter->img['src']) }}" target="_blank">
+                                                    <img src="{{ asset("storage/tax-centers/$taxcenter->slug/".$taxcenter->img['src']) }}" alt="{{ $taxcenter->img['alt'] }}">
                                                 </a>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Image Alternative Text </td>
-                                            <td> {{ $taxCenter->img['alt'] }} </td>
+                                            <td> {{ $taxcenter->img['alt'] }} </td>
                                         </tr>
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-heading"></i> Title </td>
-                                            <td> {{ $taxCenter->title }} </td>
+                                            <td> {{ $taxcenter->title }} </td>
                                         </tr>
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-link"></i> Permalink </td>
-                                            <td> {{ $taxCenter->slug }} </td>
+                                            <td> {{ $taxcenter->slug }} </td>
                                         </tr>
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-quote-left"></i> Subtitle </td>
-                                            <td> {{ $taxCenter->subtitle }} </td>
+                                            <td> {{ $taxcenter->subtitle }} </td>
                                         </tr>
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-list"></i> Summary </td>
-                                            <td> {{ $taxCenter->summary }} </td>
+                                            <td> {{ $taxcenter->summary }} </td>
                                         </tr>
                                         <tr>
                                             <td class="text-capitalize"> <i class="fa-solid fa-marker"></i> Author </td>
-                                            <td> {{ $taxCenter->author->name  }} </td>
+                                            <td> {{ $taxcenter->author->name  }} </td>
                                         </tr>
                                         <tr>
                                             <td class="text-capitalize content"> <i class="fa-solid fa-align-left"></i> Content </td>
-                                            <td> {!! $taxCenter->content !!} </td>
+                                            <td> {!! $taxcenter->content !!} </td>
                                         </tr>
                                     </tbody>
                                 </table>

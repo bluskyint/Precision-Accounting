@@ -15,7 +15,7 @@
                     </a>
                 </li>
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Admin</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('admin.taxCenters.index') }}">Tax Center</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.taxcenters.index') }}">Tax Center</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Edit</li>
             </ol>
         </nav>
@@ -35,62 +35,62 @@
                             </div>
                             <div class="card-body">
                                 <div class="row align-items-center">
-                                    <form action="{{ route('admin.taxCenters.update', $taxCenter->slug) }}" class="edit-form" method="POST" enctype="multipart/form-data">
+                                    <form action="{{ route('admin.taxcenters.update', $taxcenter->slug) }}" class="edit-form" method="POST" enctype="multipart/form-data">
 
                                         @csrf
                                         @method('PUT')
 
                                         <!----------------- title -------------------->
-                                        <x-forms.text-input label="Title" name="title" value="{{ $taxCenter->title }}" icon-class="fa-solid fa-heading" placeholder="Type Title..." />
+                                        <x-forms.text-input label="Title" name="title" value="{{ $taxcenter->title }}" icon-class="fa-solid fa-heading" placeholder="Type Title..." />
 
                                         <!----------------- slug -------------------->
-                                        <x-forms.text-input label="Permalink" name="slug" value="{{ $taxCenter->slug }}" icon-class="fa-solid fa-link" placeholder="Ex: precision-accounting-international" />
+                                        <x-forms.text-input label="Permalink" name="slug" value="{{ $taxcenter->slug }}" icon-class="fa-solid fa-link" placeholder="Ex: precision-accounting-international" />
 
                                         <!----------------- subtitle -------------------->
-                                        <x-forms.text-input label="Subtitle" name="subtitle" value="{{ $taxCenter->subtitle }}" icon-class="fa-solid fa-quote-left" placeholder="Type Subtitle..." />
+                                        <x-forms.text-input label="Subtitle" name="subtitle" value="{{ $taxcenter->subtitle }}" icon-class="fa-solid fa-quote-left" placeholder="Type Subtitle..." />
 
                                         <!----------------- summary -------------------->
-                                        <x-forms.text-input label="Summary" name="summary" value="{{ $taxCenter->summary }}" icon-class="fa-solid fa-list" placeholder="Type Summary..." />
+                                        <x-forms.text-input label="Summary" name="summary" value="{{ $taxcenter->summary }}" icon-class="fa-solid fa-list" placeholder="Type Summary..." />
 
                                         <!----------------- Author -------------------->
                                         <x-forms.select-option label="Author" name="author_id" icon-class="fa-solid fa-marker">
                                             @foreach ( $authors as $author )
-                                                <option value="{{ $author->id }}"  {{ $author->id == $taxCenter->author->id ? "selected" : "" }} >{{ $author->name }}</option>
+                                                <option value="{{ $author->id }}"  {{ $author->id == $taxcenter->author->id ? "selected" : "" }} >{{ $author->name }}</option>
                                             @endforeach
                                         </x-forms.select-option>
 
                                         <!----------------- Content -------------------->
-                                        <x-forms.ck-editor label="Content" name="content" value="{{ $taxCenter->content }}" />
+                                        <x-forms.ck-editor label="Content" name="content" value="{{ $taxcenter->content }}" />
 
                                         <!----------------- Seo Title -------------------->
-                                        <x-forms.text-input label="SEO Title" name="seo_title" value="{{ $taxCenter->seo_title }}" icon-class="fa-solid fa-chart-line" placeholder="Type SEO Title..." />
+                                        <x-forms.text-input label="SEO Title" name="seo_title" value="{{ $taxcenter->seo_title }}" icon-class="fa-solid fa-chart-line" placeholder="Type SEO Title..." />
 
                                         <!----------------- Seo Description -------------------->
-                                        <x-forms.text-input label="SEO Description" name="seo_description" value="{{ $taxCenter->seo_description }}" icon-class="fa-solid fa-chart-line" placeholder="Type SEO Description..." />
+                                        <x-forms.text-input label="SEO Description" name="seo_description" value="{{ $taxcenter->seo_description }}" icon-class="fa-solid fa-chart-line" placeholder="Type SEO Description..." />
 
                                         <!----------------- Seo Keywords -------------------->
-                                        <x-forms.text-input label="SEO Keywords" name="seo_keywords" value="{{ $taxCenter->seo_keywords }}" icon-class="fa-solid fa-chart-line" placeholder="Type SEO Keywords..." />
+                                        <x-forms.text-input label="SEO Keywords" name="seo_keywords" value="{{ $taxcenter->seo_keywords }}" icon-class="fa-solid fa-chart-line" placeholder="Type SEO Keywords..." />
 
                                         <!----------------- Seo Robots -------------------->
-                                        <x-forms.text-input label="SEO Robots" name="seo_robots" value="{{ $taxCenter->seo_robots }}" icon-class="fa-solid fa-chart-line" placeholder="Type SEO Robots..." />
+                                        <x-forms.text-input label="SEO Robots" name="seo_robots" value="{{ $taxcenter->seo_robots }}" icon-class="fa-solid fa-chart-line" placeholder="Type SEO Robots..." />
 
                                         <!----------------- OpenGraph Title -------------------->
-                                        <x-forms.text-input label="OpenGraph Title" name="og_title" value="{{ $taxCenter->og_title }}" icon-class="fa-solid fa-chart-line" placeholder="Type OpenGraph Title..." />
+                                        <x-forms.text-input label="OpenGraph Title" name="og_title" value="{{ $taxcenter->og_title }}" icon-class="fa-solid fa-chart-line" placeholder="Type OpenGraph Title..." />
 
                                         <!----------------- OpenGraph Type -------------------->
-                                        <x-forms.text-input label="OpenGraph Type" name="og_type" value="{{ $taxCenter->og_type }}" icon-class="fa-solid fa-chart-line" placeholder="Type OpenGraph Type..." />
+                                        <x-forms.text-input label="OpenGraph Type" name="og_type" value="{{ $taxcenter->og_type }}" icon-class="fa-solid fa-chart-line" placeholder="Type OpenGraph Type..." />
 
                                         <!----------------- Visibility -------------------->
                                         <x-forms.select-option label="Visibility" name="visibility" icon-class="fa-solid fa-eye">
-                                            <option value="1" {{ $taxCenter->visibility === '1' ? "selected" : "" }} > Visible </option>
-                                            <option value="0" {{ $taxCenter->visibility === '0' ? "selected" : "" }} > Invisible </option>
+                                            <option value="1" {{ $taxcenter->visibility === '1' ? "selected" : "" }} > Visible </option>
+                                            <option value="0" {{ $taxcenter->visibility === '0' ? "selected" : "" }} > Invisible </option>
                                         </x-forms.select-option>
 
                                         <!----------------- Img -------------------->
-                                        <x-forms.upload-img-input label="Image" name="img" altTextValue="{{ $taxCenter->img['alt'] }}">
+                                        <x-forms.upload-img-input label="Image" name="img" altTextValue="{{ $taxcenter->img['alt'] }}">
                                             <div class="show-img-container">
-                                                <a href="{{ asset("storage/taxCenters/$taxCenter->slug/".$taxCenter->img['src']) }}"  target="_blank">
-                                                    <img src="{{ asset("storage/taxCenters/$taxCenter->slug/".$taxCenter->img['src']) }}" alt="{{ $taxCenter->img['alt'] }}">
+                                                <a href="{{ asset("storage/tax-centers/$taxcenter->slug/".$taxcenter->img['src']) }}"  target="_blank">
+                                                    <img src="{{ asset("storage/tax-centers/$taxcenter->slug/".$taxcenter->img['src']) }}" alt="{{ $taxcenter->img['alt'] }}">
                                                 </a>
                                             </div>
                                         </x-forms.upload-img-input>

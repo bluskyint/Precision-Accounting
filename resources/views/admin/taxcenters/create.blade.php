@@ -15,7 +15,7 @@
                     </a>
                 </li>
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Admin</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('admin.taxCenters.index') }}">Tax Center</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.taxcenters.index') }}">Tax Center</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Create</li>
             </ol>
         </nav>
@@ -35,7 +35,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="row align-items-center">
-                                    <form id="editor-form" action="{{ route('admin.taxCenters.store') }}" method="POST" enctype="multipart/form-data">
+                                    <form id="editor-form" action="{{ route('admin.taxcenters.store') }}" method="POST" enctype="multipart/form-data">
 
                                         @csrf
 

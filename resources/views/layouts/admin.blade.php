@@ -193,8 +193,8 @@
                     @endcan
                     @can('Show TaxCenters')
                     <li class="nav-item ">
-                        <a href="{{ route('admin.taxCenters.index') }}"
-                            class="nav-link {{ Request::is('*/taxCenters*') ? 'active' : '' }}">
+                        <a href="{{ route('admin.taxcenters.index') }}"
+                            class="nav-link {{ Request::is('*/taxcenters*') ? 'active' : '' }}">
                             <span class="sidebar-icon">
                                 <i class="fa-solid fa-money-bill-wave"></i>
                             </span>

@@ -19,21 +19,21 @@ class TaxcenterController extends Controller
 
     public function index()
     {
-        $taxCenters = TaxCenter::all();
+        $taxcenters = TaxCenter::all();
 
         // SEO Trait
         $page = Page::where('name', 'tax centers')->first();
         $this->dynamicPagesSeo($page);
 
-        return view('taxCenters', compact('taxCenters', 'page'));
+        return view('taxcenters', compact('taxcenters', 'page'));
     }
 
-    public function show(TaxCenter $taxCenter)
+    public function show(TaxCenter $taxcenter)
     {
         // SEO Trait
-        $this->dynamicPagesSeo($taxCenter);
+        $this->dynamicPagesSeo($taxcenter);
 
-        return view('taxCenter',compact('taxCenter'));
+        return view('taxcenter',compact('taxcenter'));
     }
 
 

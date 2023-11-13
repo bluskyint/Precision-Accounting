@@ -35,7 +35,7 @@
             </div>
             @can('Add TaxCenters')
             <div class="btn-toolbar mb-2 mb-md-0">
-                <a href="{{ route('admin.taxCenters.create') }}" class="btn btn-sm btn-primary d-inline-flex align-items-center">
+                <a href="{{ route('admin.taxcenters.create') }}" class="btn btn-sm btn-primary d-inline-flex align-items-center">
                     <i class="fa-solid fa-plus"></i> &nbsp; New Tax Center
                 </a>
             </div>
@@ -47,7 +47,7 @@
 
                 <!--------------- Search Form --------------->
                 <div class="col-9 col-lg-8 d-md-flex">
-                    <form action="{{ route('admin.taxCenters.search') }}" method="POST" class="input-group me-2 me-lg-3 fmxw-400">
+                    <form action="{{ route('admin.taxcenters.search') }}" method="POST" class="input-group me-2 me-lg-3 fmxw-400">
                         <button type="submit" class="input-group-text">
                             <svg class="icon icon-xs" x-description="Heroicon name: solid/search" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                 <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
@@ -64,11 +64,11 @@
 
                 <div class="col-3 col-lg-4 d-flex justify-content-end align-items-center gap-2">
 
-                    @if(Route::is('admin.taxCenters.index'))
+                    @if(Route::is('admin.taxcenters.index'))
                         @can('Show TaxCenters Trash')
                             <!------------------ Trash ------------------->
                             <div title="Trash" role="button">
-                                <a href="{{ route('admin.taxCenters.trash') }}">
+                                <a href="{{ route('admin.taxcenters.trash') }}">
                                     <i class="fa-solid fa-trash-can fa-lg"></i>
                                 </a>
                             </div>
@@ -91,14 +91,14 @@
                                     <div class="dynamic-pagination dropdown-menu dropdown-menu-end pb-0">
                                         <span class="small ps-3 fw-bold text-dark">Show</span>
 
-                                        <a class="dropdown-item {{ Request::is('*/perPage/10') ? 'active' : '' }} {{ Request::is('admin/taxCenters') ? 'active' : '' }}"
-                                            href="{{ route('admin.taxCenters.perPage', 10) }}"> 10 </a>
+                                        <a class="dropdown-item {{ Request::is('*/perPage/10') ? 'active' : '' }} {{ Request::is('admin/taxcenters') ? 'active' : '' }}"
+                                            href="{{ route('admin.taxcenters.perPage', 10) }}"> 10 </a>
                                         <a class="dropdown-item {{ Request::is('*/perPage/30') ? 'active' : '' }}"
-                                            href="{{ route('admin.taxCenters.perPage', 30) }}"> 30 </a>
+                                            href="{{ route('admin.taxcenters.perPage', 30) }}"> 30 </a>
                                         <a class="dropdown-item {{ Request::is('*/perPage/50') ? 'active' : '' }}"
-                                            href="{{ route('admin.taxCenters.perPage', 50) }}"> 50 </a>
+                                            href="{{ route('admin.taxcenters.perPage', 50) }}"> 50 </a>
                                         <a class="dropdown-item {{ Request::is('*/perPage/100') ? 'active' : '' }}"
-                                            href="{{ route('admin.taxCenters.perPage', 100) }}"> 100 </a>
+                                            href="{{ route('admin.taxcenters.perPage', 100) }}"> 100 </a>
 
                                     </div>
 
@@ -146,7 +146,7 @@
             <div class="card card-body shadow border-0 table-wrapper table-responsive">
 
                 <!----------- multi Action ------------->
-                <form id="multi-action-form" action="{{ route("admin.taxCenters.multiAction") }}" method="POST">
+                <form id="multi-action-form" action="{{ route("admin.taxcenters.multiAction") }}" method="POST">
                     @csrf
 
                     @canany(['Delete Articles', 'ForceDelete Articles', 'Restore Articles'])
@@ -159,7 +159,7 @@
                             @can('ForceDelete TaxCenters')
                                 <option value="forceDelete"> Destroy Tax Center</option>
                             @endcan
-                            @if( Route::is('admin.taxCenters.trash') )
+                            @if( Route::is('admin.taxcenters.trash') )
                                 @can('Restore TaxCenters')
                                     <option value="restore"> Restore Tax Center</option>
                                 @endcan
@@ -202,7 +202,7 @@
                                         </div>
                                     </td>
                                     @endcanany
-                                    <td><a href="{{ route('admin.taxCenters.show', $tax_center->slug) }}" class="d-flex align-items-center">
+                                    <td><a href="{{ route('admin.taxcenters.show', $tax_center->slug) }}" class="d-flex align-items-center">
                                             <div class="d-block">
                                                 <span class="fw-bold">
                                                     @if ( strlen($tax_center->title) > 30 )
@@ -225,28 +225,28 @@
                                     </td>
                                     <td><span class="fw-normal">{{ $tax_center->created_at }}</span></td>
                                     <td class="actions">
-                                        <a href="{{ route('admin.taxCenters.show', $tax_center->slug) }}" class="text-tertiary"> <i
+                                        <a href="{{ route('admin.taxcenters.show', $tax_center->slug) }}" class="text-tertiary"> <i
                                                 class="fa-solid fa-eye fa-lg"></i>
                                         </a>
-                                        @if( Route::is('admin.taxCenters.index') )
+                                        @if( Route::is('admin.taxcenters.index') )
                                             @can('Edit TaxCenters')
-                                                <a href="{{ route('admin.taxCenters.edit', $tax_center->slug) }}" class="text-info"> <i
+                                                <a href="{{ route('admin.taxcenters.edit', $tax_center->slug) }}" class="text-info"> <i
                                                         class="fa-solid fa-pen-to-square fa-lg"></i>
                                                 </a>
                                             @endcan
                                             @can('Delete TaxCenters')
-                                                <a href="{{ route('admin.taxCenters.delete', $tax_center->id) }}" class="text-info delete-record">
+                                                <a href="{{ route('admin.taxcenters.delete', $tax_center->id) }}" class="text-info delete-record">
                                                     <i class="fa-solid fa-trash-can text-danger fa-lg"></i>
                                                 </a>
                                             @endcan
                                         @else
                                             @can('Restore TaxCenters')
-                                                <a href="{{ route('admin.taxCenters.restore', $tax_center->id) }}" class="text-info">
+                                                <a href="{{ route('admin.taxcenters.restore', $tax_center->id) }}" class="text-info">
                                                     <i class="fa-solid fa-retweet fa-lg"></i>
                                                 </a>
                                             @endcan
                                             @can('ForceDelete TaxCenters')
-                                                <a href="{{ route('admin.taxCenters.force.delete', $tax_center->id) }}" class="text-info delete-record">
+                                                <a href="{{ route('admin.taxcenters.force.delete', $tax_center->id) }}" class="text-info delete-record">
                                                     <i class="fa-solid fa-xmark text-danger fa-lg"></i>
                                                 </a>
                                             @endcan
