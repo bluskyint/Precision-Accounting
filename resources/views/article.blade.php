@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('pageUrl', "articles/$article->slug")
+@section('pageUrl', "blog/$article->slug")
 
 @section('content')
     <div class="main-content pt--125">
@@ -39,7 +39,7 @@
                                     </li>
                                 </ul>
                                 <div class="thumbnail alignwide mt--60"   data-sal="slide-down" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
-                                    <img class="w-100 radius" src="{{ asset("storage/articles/$article->slug/".$article->img['src']) }}" alt="{{ $article->img['alt'] }}">
+                                    <img class="w-100 radius" src="{{ asset("storage/blog/$article->slug/".$article->img['src']) }}" alt="{{ $article->img['alt'] }}">
                                 </div>
                             </div>
                         </div>

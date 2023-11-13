@@ -72,7 +72,7 @@ class ArticleController extends Controller
         try {
             $requestData = $request->validated();
             $folderName = $requestData['slug'];
-            $requestData['img']['src'] = $this->storeImage($request->file('img'), 'articles', $folderName);
+            $requestData['img']['src'] = $this->storeImage($request->file('img'), 'blog', $folderName);
 
             $article = Article::create($requestData);
 
@@ -119,13 +119,13 @@ class ArticleController extends Controller
             $folderName = $requestData['slug'];
 
             if ($folderName !== $article->slug) {
-                rename("storage/articles/$article->slug", "storage/articles/$folderName");
+                rename("storage/blog/$article->slug", "storage/blog/$folderName");
                 $requestData['content'] = Str::replace("/$article->slug/", "/$folderName/", $requestData['content']);
             }
 
             if ($request->hasFile('img')) {
-                $requestData['img']['src'] = $this->storeImage($request->file('img'),'articles', $folderName);
-                Storage::disk('public')->delete("articles/$folderName/".$article->img['src']);
+                $requestData['img']['src'] = $this->storeImage($request->file('img'),'blog', $folderName);
+                Storage::disk('public')->delete("blog/$folderName/".$article->img['src']);
             }
 
             $article->update($requestData);
@@ -165,7 +165,7 @@ class ArticleController extends Controller
     {
         try {
             $article = Article::withTrashed()->where('id', $id)->first();
-            Storage::disk('public')->deleteDirectory("articles/".$article['slug']);
+            Storage::disk('public')->deleteDirectory("blog/".$article['slug']);
             $article->forceDelete();
 
             return to_route("admin.articles.index")->with(["success" => "Article destroyed successfully"]);
@@ -206,7 +206,7 @@ class ArticleController extends Controller
             } elseif ($request->action === "forceDelete") {
                 if (auth()->user()->hasPermissionTo('ForceDelete Articles')) {
                     foreach ($articles as $article) {
-                        Storage::disk('public')->deleteDirectory("articles/$article->slug/");
+                        Storage::disk('public')->deleteDirectory("blog/$article->slug/");
                         $article->forceDelete();
                     }
                 } else {

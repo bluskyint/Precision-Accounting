@@ -97,8 +97,8 @@
                                         <!----------------- Img -------------------->
                                         <x-forms.upload-img-input label="Image" name="img" altTextValue="{{ $article->img['alt'] }}">
                                             <div class="show-img-container">
-                                                <a href="{{ asset("storage/articles/$article->slug/".$article->img['src']) }}"  target="_blank">
-                                                    <img src="{{ asset("storage/articles/$article->slug/".$article->img['src']) }}" alt="{{ $article->img['alt'] }}">
+                                                <a href="{{ asset("storage/blog/$article->slug/".$article->img['src']) }}"  target="_blank">
+                                                    <img src="{{ asset("storage/blog/$article->slug/".$article->img['src']) }}" alt="{{ $article->img['alt'] }}">
                                                 </a>
                                             </div>
                                         </x-forms.upload-img-input>

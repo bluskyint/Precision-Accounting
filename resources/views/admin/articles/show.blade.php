@@ -63,8 +63,8 @@
                                     <tr>
                                         <td class="text-capitalize"> <i class="fa-solid fa-image"></i> Image </td>
                                         <td class="article-image">
-                                            <a class="show-img-container" href="{{ asset("storage/articles/$article->slug/".$article->img['src']) }}" target="_blank">
-                                                <img src="{{ asset("storage/articles/$article->slug/".$article->img['src']) }}" alt="{{ $article->img['alt'] }}">
+                                            <a class="show-img-container" href="{{ asset("storage/blog/$article->slug/".$article->img['src']) }}" target="_blank">
+                                                <img src="{{ asset("storage/blog/$article->slug/".$article->img['src']) }}" alt="{{ $article->img['alt'] }}">
                                             </a>
                                         </td>
                                     </tr>
