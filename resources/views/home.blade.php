@@ -15,7 +15,7 @@
                 <div class="row row--30 align-items-center">
                     <div class="order-2 order-lg-1 col-lg-7">
                         <div class="inner text-left">
-                            <p class="title h2"> IRS Acceptance <br> Agents </p>
+                            <p class="title h2"> Certifying Acceptance <br> Agents </p>
                             <p class="fs-3">
                                 Applying for an ITIN? We will help you obtain your ITIN if you are not qualified for an SSN. We simplify the application process by reviewing the essential documents and redirecting completed Forms to IRS.
                             </p>
