@@ -8,7 +8,41 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    {!! SEO::generate() !!}
+    {!! SEOMeta::generate() !!}
+    {!! OpenGraph::generate() !!}
+
+    <!-- JSON-LD markup -->
+    <script type="application/ld+json">
+        {
+          "@context": "http://schema.org",
+          "@type": "LocalBusiness",
+          "name": "Precision Accounting Intl LLC",
+          "description":"Precision Accounting Intl LLC | Amr M. Ibrahim CPA, CGMA | We Can Help You With Bookkeeping, Business And Individual Tax, Payroll, Nonprofit Organizations, And Part-Time CFO",
+          "image": "https://cpapai.com/doob_template_assets/images/logo/logo-dark.png",
+          "telephone": "(973) 956-1040",
+          "email": "info@cpapai.com",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "1035 US Highway 46 East STE B-101",
+            "addressLocality": "Clifton",
+            "addressRegion": "NJ",
+            "addressCountry": "United States of America",
+            "postalCode": "07013"
+          },
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": {
+              "@type": "DayOfWeek",
+              "name": "Sunday Closed  Monday 9 AM–5 PM  Tuesday 9 AM–5 PM  Wednesday 9 AM–5 PM  Thursday 9 AM–5 PM  Friday 9 AM–5 PM  Saturday Closed"
+            }
+          },
+          "url": "https://www.cpapai.com/"
+        }
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TK08RNWWSH"></script>
+    <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-TK08RNWWSH'); </script>
 
     <link rel="canonical" href="{{ request()->url() }}">
 
