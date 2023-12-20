@@ -45,8 +45,8 @@
                                     <div class="inner">
                                         <div class="thumbnail"><a class="image"
                                                                   href="{{ route('blog.article', $article->slug) }}"><img class="w-100"
-                                                                                                                      src="{{ asset("storage/articles/$article->slug/".$article->img['src']) }}"
-                                                                                                                      alt="{{ $article->img['alt'] }}"></a>
+                                                                                                                          src="{{ asset("storage/blog/$article->slug/".$article->img['src']) }}"
+                                                                                                                          alt="{{ $article->img['alt'] }}"></a>
                                         </div>
                                         <div class="content">
                                             <ul class="rn-meta-list">
