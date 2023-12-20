@@ -4,8 +4,8 @@
 
 
     <!-- Start Slider Area  -->
-    <div class="slider-area bg_image bg_image--12 slider-style-1 height-100vh">
-        <div class="container">
+    <div class="slider-area bg_image bg_image--12 slider-style-1">
+        <div class="container pb--30 pt--145">
             <div class="row">
                 <div class="col-lg-12 mb--40">
                     <div class="section-title text-center"  data-sal="slide-down" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
