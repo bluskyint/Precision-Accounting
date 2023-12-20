@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@section('pageUrl', 'consulting')
-
 @section('content')
 
 

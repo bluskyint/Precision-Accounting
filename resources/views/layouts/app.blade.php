@@ -44,7 +44,7 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TK08RNWWSH"></script>
     <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-TK08RNWWSH'); </script>
 
-    <link rel="canonical" href="{{ request()->url() }}">
+    <link rel="canonical" href="{{ url()->current() }}">
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('doob_template_assets/images/favicon.png') }}">
@@ -60,7 +60,7 @@
     <link rel="stylesheet" href="{{ asset('doob_template_assets/css/plugins/slick-theme.css') }}">
     <link rel="stylesheet" href="{{ asset('doob_template_assets/css/plugins/lightbox.css') }}">
     <link rel="stylesheet" href="{{ asset('doob_template_assets/css/style.css') }}">
-    <link rel="alternate" href="https://cpapai.com/@yield('pageUrl')" hreflang="en-us" />
+    <link rel="alternate" href="{{ url()->current() }}" hreflang="en-us" />
 </head>
 
 <body class="active-light-mode">

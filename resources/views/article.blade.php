@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@section('pageUrl', "blog/$article->slug")
-
 @section('content')
     <div class="main-content pt--125">
 

@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@section('pageUrl', "service/$service->slug")
-
 @section('content')
     <div class="main-content pt--125">
         <div class="rn-blog-details-area">
