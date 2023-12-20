@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/test', [App\Http\Controllers\TestController::class, 'index'])->name('test');
 
+require __DIR__.'/redirect-301.php';
+
 require __DIR__.'/gone-410.php';
 
 require __DIR__ . '/auth.php';
