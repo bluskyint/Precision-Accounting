@@ -12,7 +12,7 @@
                             <div class="subtitle">
                                 <a class="theme-gradient" href="{{ route('home') }}">Home</a>
                                 <span class="theme-gradient">/</span>
-                                <a class="theme-gradient" href="{{ route('contact') }}">Resources</a>
+                                <a class="theme-gradient" href="{{ route('resources') }}">Resources</a>
                             </div>
                             <h1>{{ $page->heading }}</h1>
                             <p class="description b1"> Access the most recent analyses and insights. </p>

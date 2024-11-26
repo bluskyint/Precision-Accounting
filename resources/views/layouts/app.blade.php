@@ -50,6 +50,8 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('doob_template_assets/images/favicon.png') }}">
     <!------- FontAwesome  ------->
     <script src="https://kit.fontawesome.com/bc98e6aa51.js" crossorigin="anonymous"></script>
+    
+    @yield('head')
 
     <!-- Styles CSS -->
     <link rel="stylesheet" href="{{ asset('doob_template_assets/css/vendor/bootstrap.min.css') }}">
@@ -61,6 +63,7 @@
     <link rel="stylesheet" href="{{ asset('doob_template_assets/css/plugins/lightbox.css') }}">
     <link rel="stylesheet" href="{{ asset('doob_template_assets/css/style.css') }}">
     <link rel="alternate" href="{{ url()->current() }}" hreflang="en-us" />
+    <link rel="alternate" href="{{ url()->current() }}" hreflang="x-default" />
 </head>
 
 <body class="active-light-mode">
@@ -98,11 +101,11 @@
                                                 <i class="feather-facebook"></i>
                                             </a>
                                         </li>
-                                        <li>
-                                            <a href="{{ $setting->twitter }}" target="_blank">
-                                                <i class="feather-twitter"></i>
-                                            </a>
-                                        </li>
+                                        <!--<li>-->
+                                        <!--    <a href="{{ $setting->twitter }}" target="_blank">-->
+                                        <!--        <i class="feather-twitter"></i>-->
+                                        <!--    </a>-->
+                                        <!--</li>-->
                                         <li>
                                             <a href="{{ $setting->youtube }}"
                                                 target="_blank">
@@ -349,11 +352,11 @@
                                                 <i class="feather-facebook"></i>
                                             </a>
                                         </li>
-                                        <li>
-                                            <a href="{{ $setting->twitter }}" target="_blank">
-                                                <i class="feather-twitter"></i>
-                                            </a>
-                                        </li>
+                                        <!--<li>-->
+                                        <!--    <a href="{{ $setting->twitter }}" target="_blank">-->
+                                        <!--        <i class="feather-twitter"></i>-->
+                                        <!--    </a>-->
+                                        <!--</li>-->
                                         <li>
                                             <a href="{{ $setting->youtube }}"
                                                 target="_blank">
@@ -404,12 +407,16 @@
                                     <div class="footer-contact">
                                         <p class="p-0 m-0">
                                             <strong> <i class="feather-map-pin"></i> </strong>
-                                            <a href="https://www.google.com/maps?q=31.2119026,29.9415277&z=17&hl=en" target="_blank"> 36 Kamal el-Din Salah st, Admon Fremon, Smouha ,Alex </a>
+                                            <a href="https://www.google.com/maps?q=31.2119026,29.9415277&z=17&hl=en" target="_blank"> 36 Kamal el-Din Salah st, Admon Fremon, Smouha, Alexandria </a>
                                         </p>
                                         <p>
                                             <span> <i class="feather-phone"></i> <a href="tel:+2034249018">(03) 4249018 </a></span>
                                             <span> &nbsp; , &nbsp; </span>
                                             <span> <i class="feather-phone"></i> <a href="tel:+2034249015">(03) 4249015 </a></span>
+                                        </p>
+                                        <p class="p-0 m-0">
+                                            <strong> <i class="feather-map-pin"></i> </strong>
+                                            <a href="https://maps.app.goo.gl/yvjNZ3TidbwRJgyU6" target="_blank"> Smart Village, Kinetic B2115, Office 304, Giza</a>
                                         </p>
                                     </div>
                                 </div>
@@ -526,6 +533,7 @@
     <!-- App Scripts -->
     {{-- <script src="{{ asset('web/js/app.js') }}" defer></script> --}}
 
+    @yield('scripts')
 
 </body>
 

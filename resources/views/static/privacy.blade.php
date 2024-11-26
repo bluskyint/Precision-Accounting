@@ -15,7 +15,7 @@
                             <h2 class="title w-600 mb--20 text-center">Our Privacy Policy</h2>
                             <div class="page-content">
 
-                                <h4>Collection and Use of Personal Information</h4>
+                                <h4>Clients Information</h4>
                                 <p>
                                     <strong>a. Personal Information:</strong> We collect and store the personal information
                                     you provide during the
@@ -24,14 +24,13 @@
                                     details, and financial information.
                                 </p>
                                 <p>
-                                    <strong>b. Use of Information:</strong> We use the collected information to provide you
-                                    with access to the Application's
-                                    features and functionalities, and to improve our services. We will not share your
-                                    personal information
-                                    with third parties without your consent, except as required by law or as outlined in
-                                    this Privacy Policy.
+                                    <strong>b. Collected Information:</strong><br>
+                                    We do not collect your information and provide it to the third-party services for processing. The phone numbers we collect and the consent we received will not be shared with 3rd party providers.
                                 </p>
-
+                                <p>
+                                    <strong>c. Mobile Information:</strong>
+                                    No mobile information will be shared with third parties/affiliates for marketing/promotional purposes. All other categories exclude text messaging originator opt-in data and consent; this information will not be shared with any third parties.
+                                </p>
                                 <h4>Data Security</h4>
                                 <p>
                                     <strong>a. Security Measures:</strong> We implement industry-standard security measures
@@ -52,6 +51,7 @@
                                     We encourage you
                                     to review their privacy policies before providing any personal information.
                                 </p>
+
 
                                 <h4>Updates to Privacy Policy</h4>
                                 <p>

@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('head')
+    <script async src="https://cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
+@endsection
+
 @section('content')
     <div class="main-content pt--125">
 
@@ -59,4 +63,22 @@
         </div>
 
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        let oEmbeds = document.querySelectorAll( 'oembed[url]' );
+        if( oEmbeds.length > 0 ) {
+            oEmbeds.forEach( element => {
+                // Create the <a href="..." class="embedly-card"></a> element that Embedly uses
+                // to discover the media.
+                const anchor = document.createElement( 'a' );
+
+                anchor.setAttribute( 'href', element.getAttribute( 'url' ) );
+                anchor.className = 'embedly-card';
+
+                element.appendChild( anchor );
+            } );
+        }
+    </script>
 @endsection

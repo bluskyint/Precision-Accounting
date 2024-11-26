@@ -51,7 +51,7 @@
         .ck-editor__editable[role="textbox"] {
             /* editing area */
             min-height: 250px;
-            max-height: 250px;
+            max-height: 600;
             overflow-y: auto;
         }
     </style>

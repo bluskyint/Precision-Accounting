@@ -81,32 +81,51 @@
             <div class="row mt--40 row--15 pt--15">
                 <div class="col-lg-7"  data-sal="slide-right" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
                     <form class="contact-form-1 rwt-dynamic-form" id="contact-form" action="{{ route("contact.send") }}" method="POST" >
+
+                        <!-- Display Captcha Error -->
+                        {!! NoCaptcha::renderJs() !!}
+                        @if ($errors->has('g-recaptcha-response'))
+                            <div class="alert alert-danger" role="alert">
+                                {{ $errors->first('g-recaptcha-response') }}
+                            </div>
+                        @endif
+
                         @csrf
+
                         <div class="form-group">
-                            <input type="text" name="name" id="name" placeholder="Your Name..." value="{{ old("name") }}" required/>
+                            <input type="text" name="name" id="name" placeholder="Your Name..." value="{{ old("name") }}" />
                             @error('name')
                                 <div class="invalid-feedback d-block">{{ $message }}.</div>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <input type="text" name="phone" id="phone" placeholder="Your Phone Number..." value="{{ old("phone") }}" required/>
+                            <input type="text" name="phone" id="phone" placeholder="Your Phone Number..." value="{{ old("phone") }}" />
                             @error('phone')
                                 <div class="invalid-feedback d-block">{{ $message }}.</div>
                             @enderror
+                            <span class="fs-4">
+                                By providing a telephone number and submitting the form you are consenting
+                                to be contacted by SMS text message. Message & data rates may
+                                apply. Reply STOP to opt out of further messaging.
+                            </span>
                         </div>
                         <div class="form-group">
-                            <input type="email" name="email" id="email" placeholder="Your Email Address..." value="{{ old("email") }}" required/>
+                            <input type="email" name="email" id="email" placeholder="Your Email Address..." value="{{ old("email") }}" />
                             @error('email')
                                 <div class="invalid-feedback d-block">{{ $message }}.</div>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <textarea name="message" id="message" placeholder="Your Message..." required>{{ old("message") }}</textarea>
+                            <textarea name="message" id="message" placeholder="Your Message..." >{{ old("message") }}</textarea>
                             @error('message')
                                 <div class="invalid-feedback d-block">{{ $message }}.</div>
                             @enderror
                         </div>
 
+                        <div class="form-group">
+                            {!! NoCaptcha::display() !!}
+                        </div>
+                        
                         <div class="form-group">
                             <button type="submit" id="submit" class="btn-default btn-large rn-btn">
                                 <span>Submit Now</span>

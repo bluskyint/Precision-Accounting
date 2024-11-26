@@ -26,6 +26,15 @@
             <div class="row mt--40 row--15 pt--15">
                 <div class="col-lg-7" data-sal="slide-right" data-sal-duration="700" data-sal-delay="300" data-sal-easing="ease-out-back">
                     <form class="contact-form-1 rwt-dynamic-form" id="contact-form" method="POST" action="{{ route('consulting.send') }}">
+
+                        <!-- Display Captcha Error -->
+                        {!! NoCaptcha::renderJs() !!}
+                        @if ($errors->has('g-recaptcha-response'))
+                            <div class="alert alert-danger" role="alert">
+                                {{ $errors->first('g-recaptcha-response') }}
+                            </div>
+                        @endif
+
                         @csrf
                         <div class="row">
                             <div class="col-6">
@@ -233,7 +242,10 @@
                             @enderror
                         </div>
 
-
+                        <div class="form-group">
+                            {!! NoCaptcha::display() !!}
+                        </div>
+                        
                         <div class="form-group">
                             <button name="submit" type="submit" id="submit" class="btn-default btn-large rn-btn">
                                 <span>Submit Now</span>
